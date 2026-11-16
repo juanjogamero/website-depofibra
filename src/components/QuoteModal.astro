@@ -116,7 +116,27 @@
     if (event.key === 'Escape' && modal?.classList.contains('is-open')) closeQuoteModal();
   });
 
-  // No se captura el envío de formularios dentro de iframes de otro origen.
-  // El CRM debe confirmar recepción mediante una integración autenticada;
-  // nunca marcar una apertura o un clic como generate_lead.
+  // v0.10.5 | Confirmación de CRM (NO confundir con el cambio de altura del iframe).
+  // El CRM debe emitir este mensaje SOLO cuando el servidor haya registrado
+  // correctamente la solicitud. insertar.js actualmente NO emite ese mensaje.
+  const crmFrame = modal?.querySelector<HTMLIFrameElement>('iframe[data-crm-formulario]');
+  const crmOrigin = 'https://formulario.depofibra.com';
+  let navigatingToConfirmation = false;
+
+  window.addEventListener('message', (event: MessageEvent) => {
+    // Solo aceptamos el origen del CRM y el iframe concreto de este modal.
+    if (event.origin !== crmOrigin || event.source !== crmFrame?.contentWindow) return;
+    if (!modal?.classList.contains('is-open') || navigatingToConfirmation) return;
+
+    const message = event.data;
+    // El CRM debe mandar un OBJETO explícito; nunca una altura, texto suelto
+    // ni un mensaje genérico que pueda confundirse con otros eventos.
+    if (!message || typeof message !== 'object' || Array.isArray(message)) return;
+    if (message.type !== 'depofibra:crm:solicitud-registrada') return;
+
+    navigatingToConfirmation = true;
+    // No enviamos a GA4 el contenido del formulario ni datos de la persona.
+    // La confirmación del proveedor y la entrega del correo son cosas distintas.
+    window.location.assign('/solicitud-enviada/');
+  });
 </script>

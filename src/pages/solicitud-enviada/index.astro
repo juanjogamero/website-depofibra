@@ -1,9 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-const title = 'Solicitud enviada | Depofibra';
-const description = 'Gracias por enviar tu consulta a Depofibra. Nuestro equipo revisará la información comercial que nos has facilitado.';
+const title = 'Solicitud registrada | Depofibra';
+const description = 'Información de confirmación para solicitudes enviadas desde el formulario comercial de Depofibra.';
 ---
 <Layout title={title} description={description} canonical="https://depofibra.com/solicitud-enviada/" activeNav="contacto" indexable={false}>
+  <meta slot="head" name="googlebot" content="noindex, nofollow, noarchive, nosnippet" />
   <div class="confirmation-page">
     <div class="container">
       <div class="confirmation-card">
@@ -12,8 +13,8 @@ const description = 'Gracias por enviar tu consulta a Depofibra. Nuestro equipo 
         </div>
         <p class="confirmation-eyebrow">CONTACTO COMERCIAL · DEPOFIBRA</p>
         <h1>Gracias por tu consulta.</h1>
-        <p>Tu solicitud se ha procesado a través del servicio de formularios. Revisaremos la información y nos pondremos en contacto contigo por los datos que nos has facilitado.</p>
-        <p class="confirmation-hint">Si necesitas resolverlo directamente, puedes llamarnos al <a href="tel:+34642129233">642 129 233</a>. No se ha generado todavía ningún presupuesto.</p>
+        <p>Si acabas de enviar el formulario, tu solicitud se ha registrado para su revisión. Estudiaremos la información facilitada y nos pondremos en contacto contigo a través de los datos que nos hayas indicado.</p>
+        <p class="confirmation-hint">Esta confirmación no constituye un presupuesto ni supone una reserva de producto. Si necesitas hablar con nosotros, llama al <a href="tel:+34642129233">642 129 233</a>.</p>
         <div class="confirmation-actions">
           <a href="/" class="confirmation-button confirmation-button--main">Volver al inicio <span aria-hidden="true">↗</span></a>
           <a href="/depositos/" class="confirmation-button">Ver depósitos <span aria-hidden="true">↗</span></a>
