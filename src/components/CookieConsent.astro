@@ -1,14 +1,11 @@
 ---
 /**
- * DEPOFIBRA · Aviso de cookies compacto (v0.10.1).
- * Versión actual SIN GA4, GTM, Clarity ni otros scripts de analítica.
- * Solo guarda la elección en localStorage, sin enviarla a un servidor.
- *
- * Integración futura:
- *  - Aumentar CONSENT_VERSION cuando cambien finalidades/proveedores.
- *  - Bloquear cualquier script no esencial antes de obtener consentimiento.
- *  - Escuchar el evento "depofibra:consent" en la integración correspondiente.
- *  - No enviar datos al futuro VPS hasta definir el tratamiento de datos.
+ * DEPOFIBRA · Aviso compacto de cookies + GA4 (v0.10.2).
+ * Modo de consentimiento BÁSICO: NO se descarga Google Tag Manager ni GA4
+ * antes de una decisión positiva de analítica. Rechazo y ausencia de elección
+ * implican cero carga de scripts de Google de medición.
+ * No se remiten preferencias al VPS; permanecen en localStorage.
+ * No se envían datos de formularios, teléfono o correo a GA4.
  */
 ---
 
@@ -17,7 +14,7 @@
     <div class="dfcc__copy">
       <h2 id="dfcc-title">Cookies y privacidad</h2>
       <p>
-        Guardamos tu elección en este navegador. Por ahora no usamos analítica.
+        Google Analytics solo se activa si aceptas. Guardamos tu elección en este navegador.
         <a href="/politica-de-cookies/">Ver política</a>
       </p>
     </div>
@@ -39,12 +36,12 @@
     <label class="dfcc__category" for="dfcc-analytics">
       <div>
         <strong>Preferencia de analítica</strong>
-        <span>Actualmente inactiva: no se recogen estadísticas. Al activarlas solicitaremos de nuevo tu consentimiento.</span>
+        <span>Google Analytics: páginas visitadas y uso general de la web, solo si aceptas. No enviamos los datos que escribas en formularios.</span>
       </div>
       <input id="dfcc-analytics" type="checkbox" aria-label="Guardar preferencia sobre estadísticas futuras" />
     </label>
     <div class="dfcc__detail-bottom">
-      <p>Esta elección no activa herramientas de seguimiento.</p>
+      <p>Rechazar bloquea la analítica. Puedes cambiar tu elección desde el pie de página.</p>
       <button type="button" class="dfcc__save" id="dfcc-save">Guardar elección</button>
     </div>
   </div>
@@ -184,9 +181,9 @@
 </style>
 
 <script>
-  // Conservamos la versión de consentimiento existente: el diseño NO cambia
-  // qué datos se recogen y no debe volver a preguntar a usuarios ya decididos.
-  const CONSENT_VERSION = 'depofibra-cookies-v1-no-analytics';
+  // NUEVA FINALIDAD real: se invalida el consentimiento antiguo, que solo
+  // guardaba preferencias futuras sin seguimiento. Todos deben elegir de nuevo.
+  const CONSENT_VERSION = 'depofibra-cookies-v2-ga4-consent';
   const STORAGE_KEY = 'depofibra-cookie-preferences';
 
   interface CookieChoice { version:string; necessary:true; analytics:boolean; savedAt:string; }
@@ -198,6 +195,50 @@
   const rejectBtn = document.getElementById('dfcc-reject');
   const acceptBtn = document.getElementById('dfcc-accept');
   let reopenedByFooter = false;
+  let gtmLoaded = false;
+  let googleScriptsWereLoaded = false;
+
+  // Solo cargar el contenedor tras consentimiento positivo explícito.
+  // No se añade iframe noscript ni script global en Layout.astro.
+  function enableMeasurement() {
+    if (gtmLoaded) return;
+    gtmLoaded = true;
+    googleScriptsWereLoaded = true;
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-KQQZDF6P';
+    document.head.appendChild(s);
+  }
+
+  function pushEvent(name: string) {
+    if (!gtmLoaded) return;
+    (window as any).dataLayer?.push({event:name});
+  }
+
+  // Eventos sin información personal. Clicks = intención, NO clientes potenciales confirmados.
+  document.addEventListener('click', (event) => {
+    if (!gtmLoaded) return;
+    const target = event.target as Element | null;
+    if (!(target instanceof Element)) return;
+    const a = target.closest('a[href]') as HTMLAnchorElement | null;
+    if (a) {
+      const url = a.getAttribute('href') || '';
+      if (/^tel:/i.test(url)) pushEvent('contact_phone');
+      else if (/whatsapp\.com|wa\.me/i.test(url)) pushEvent('contact_whatsapp');
+    }
+    if (target.closest('.open-quote-trigger')) pushEvent('quote_form_open');
+  }, true);
+  document.addEventListener('submit', (event) => {
+    if (!gtmLoaded) return;
+    const form = event.target;
+    if (form instanceof HTMLFormElement && form.checkValidity() &&
+        (form.id === 'quoteForm' || /formsubmit\.co/.test(form.action))) {
+      // Intento de envío, no contabilizar como solicitud confirmada.
+      pushEvent('quote_form_submit_attempt');
+    }
+  }, true);
 
   function currentChoice(): CookieChoice | null {
     try {
@@ -233,6 +274,12 @@
     try { localStorage.setItem(STORAGE_KEY,JSON.stringify(choice)); } catch { /* Sin almacenamiento el sitio funciona igualmente */ }
     announce(choice);
     hideBanner();
+    if (analytics) enableMeasurement();
+    else if (googleScriptsWereLoaded) {
+      // Después de revocar consentimiento, descargar una página limpia para
+      // interrumpir las etiquetas ya cargadas (no es posible desinyectar GTM).
+      window.location.reload();
+    }
   }
 
   function showBanner(openDetails=false) {
@@ -274,6 +321,8 @@
   });
 
   const initial = currentChoice();
-  if (initial) announce(initial);
-  else { announce(null); showBanner(false); }
+  if (initial) {
+    announce(initial);
+    if (initial.analytics) enableMeasurement();
+  } else { announce(null); showBanner(false); }
 </script>

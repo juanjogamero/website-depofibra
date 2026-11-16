@@ -1,3 +1,16 @@
+## v0.10.2 — 2026-11-16 — Preparada para integración y publicación controlada
+
+**Tipo:** Analítica con consentimiento básico; base para eventos comerciales.
+
+- Integración del contenedor existente `GTM-KQQZDF6P` mediante carga dinámica exclusivamente tras aceptación expresa de analítica. Rechazar no descarga scripts de Google.
+- Se mantiene el aviso compacto de la versión v0.10.1 con información breve sobre Google Analytics.
+- Nueva versión de consentimiento (`v2`): se vuelve a preguntar a todos los visitantes porque anteriormente no se recopilaban estadísticas.
+- Eventos de intención, sin datos personales: `contact_phone`, `contact_whatsapp`, `quote_form_open`, `quote_form_submit_attempt`. Los envíos no se consideran conversiones confirmadas.
+- Revocación con recarga para impedir que continúen cargadas etiquetas de seguimiento en la visita.
+- Sin cambios en páginas legales, imágenes, SEO, formularios, dominios ni estructura.
+
+**Pendientes antes de activar en producción:** informar de Google Analytics en la política de cookies y privacidad actual (sin necesidad de publicar datos personales del titular), revisar la configuración de GTM, publicar su versión y verificar pruebas con aceptación y rechazo. No se activa analítica por el mero hecho de subir el ZIP si GTM no está publicado con la etiqueta GA4.
+
 ## v0.10.1 — 2026-11-16 — Preparada para revisión y publicación
 
 **Tipo:** Corrección de experiencia de usuario en el aviso de cookies.
