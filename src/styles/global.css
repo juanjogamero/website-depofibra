@@ -481,8 +481,3 @@ textarea.form-input {
     scroll-behavior: auto !important;
   }
 }
-
-/* V19: desplazamiento vertical NATIVO, sin scroll-snap.
-   El anclaje automático de V18 podía devolver la rueda a la sección anterior
-   o hacer que pareciera bloqueada. Mantenemos solo la separación para el header. */
-html { scroll-padding-top: 88px; }

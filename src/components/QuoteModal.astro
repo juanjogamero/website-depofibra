@@ -1,277 +1,274 @@
 ---
 /**
- * DEPOFIBRA v0.10.6 | Formulario nativo y envio asincrono sin CRM.
- * GitHub Pages no recibe formularios: FormSubmit gestiona el envio por HTTPS,
- * sin redireccionar al visitante a formularios de terceros.
- * Solo se muestra la confirmacion tras respuesta de exito del proveedor.
- * Exito del proveedor no equivale a entrega verificada de correo ni venta.
- * Sin iframes ni scripts del CRM experimental.
+ * Modal de solicitud de presupuesto (modo demostración).
+ * Se abre desde cualquier botón con clase .open-quote-trigger
+ * El data-product precarga la selección del producto.
+ * Aviso visible de que NO envía datos reales.
  */
 ---
 
-<div class="quote-overlay" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle" aria-describedby="quoteModalDesc" aria-hidden="true">
+<div
+  class="quote-overlay"
+  id="quoteModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="quoteModalTitle"
+  aria-describedby="quoteModalDesc"
+>
   <div class="quote-card">
     <button class="quote-close" id="quoteCloseBtn" type="button" aria-label="Cerrar formulario">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
     </button>
 
-    <span class="quote-eyebrow">CONTACTO COMERCIAL · DEPOFIBRA</span>
-    <h2 id="quoteModalTitle" class="quote-title">Pedir presupuesto</h2>
-    <p id="quoteModalDesc" class="quote-desc">Cuatro datos para empezar. Te ayudamos a encontrar el producto adecuado.</p>
+    <h2 id="quoteModalTitle" class="quote-title">Solicitar presupuesto</h2>
+    <p id="quoteModalDesc" class="quote-desc">
+      Indica el producto, tu localidad y un teléfono de contacto. Este formulario es una demostración y todavía no envía datos.
+    </p>
 
-    <!-- Alternativa directa al formulario: una llamada telefónica. -->
-    <div class="quote-call" aria-label="Llamar sin rellenar el formulario">
-      <div class="quote-call__intro">¿Prefieres hablar directamente con nosotros?</div>
-      <a class="quote-call__link" href="tel:+34642129233" aria-label="Llamar ahora a Depofibra al 642 129 233">
-        <span class="quote-call__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </span>
-        <span class="quote-call__text"><strong>Llamar ahora · 642 129 233</strong><small>Abre la llamada, sin rellenar el formulario</small></span>
-        <span class="quote-call__arrow" aria-hidden="true">↗</span>
-      </a>
-      <div class="quote-call__divider"><span>O envía tu consulta por escrito</span></div>
-    </div>
-
-    <form id="quoteForm" method="POST" action="https://formsubmit.co/ajax/depofibra21@gmail.com" accept-charset="UTF-8">
-      <!-- FormSubmit AJAX: requiere destinatario activado por correo. Nunca confirmar sin respuesta de exito. -->
-      <input type="hidden" name="_subject" id="quoteSubject" value="DEPOFIBRA | Nueva solicitud de presupuesto" />
-      <input type="hidden" name="_template" value="box" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="Referencia consultada" id="quoteReference" value="" />
-      <input type="hidden" name="Página de origen" id="quoteOrigin" value="" />
-      <div class="quote-honeypot" aria-hidden="true">
-        <label for="quoteWebsite">No rellenar este campo</label>
-        <input type="text" id="quoteWebsite" name="_honey" tabindex="-1" autocomplete="off" />
-      </div>
-      <div class="quote-fields">
-        <div class="form-group">
-          <label class="form-label" for="quoteName">Nombre *</label>
-          <input class="form-input" type="text" id="quoteName" name="Nombre" placeholder="¿Cómo te llamas?" autocomplete="name" maxlength="90" required />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="quoteLocation">Localidad *</label>
-          <input class="form-input" type="text" id="quoteLocation" name="Localidad" placeholder="Ej.: Écija (Sevilla)" autocomplete="address-level2" maxlength="100" required />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="quotePhone">Teléfono *</label>
-          <input class="form-input" type="tel" id="quotePhone" name="Teléfono" placeholder="Tu teléfono de contacto" autocomplete="tel" inputmode="tel" maxlength="24" required />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="quoteEmail">Correo electrónico (opcional)</label>
-          <input class="form-input" type="email" id="quoteEmail" name="email" placeholder="tu@correo.com" autocomplete="email" maxlength="150" />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="quotePostal">Código postal (opcional)</label>
-          <input class="form-input" type="text" id="quotePostal" name="Código postal" placeholder="Ej.: 41580" inputmode="numeric" autocomplete="postal-code" maxlength="12" />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="quoteProduct">¿Qué necesitas? *</label>
-          <select class="form-select" id="quoteProduct" name="Producto" required>
-            <option value="" disabled selected>Selecciona una opción</option>
-            <option value="Depósito">Depósito</option>
-            <option value="Piscina">Piscina</option>
-            <option value="Fosa séptica">Fosa séptica</option>
-            <option value="Cuba o cisterna">Cuba / cisterna</option>
-            <option value="Otra consulta">Otra consulta</option>
-          </select>
-        </div>
+    <form id="quoteForm" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="quoteProduct">Producto o capacidad *</label>
+        <select class="form-select" id="quoteProduct" name="product" required>
+          <option value="" disabled selected>Selecciona un producto</option>
+          <option value="Depósito vertical de base plana 5.000 L">Depósito vertical base plana — 5.000 L</option>
+          <option value="Depósito vertical de base plana 10.000 L">Depósito vertical base plana — 10.000 L</option>
+          <option value="Depósito vertical de base plana 15.000 L">Depósito vertical base plana — 15.000 L</option>
+          <option value="Otro depósito de poliéster">Otro depósito de poliéster</option>
+          <option value="Piscina de poliéster">Piscina de poliéster</option>
+          <option value="Fosa séptica">Fosa séptica</option>
+          <option value="Cuba o cisterna">Cuba o cisterna</option>
+        </select>
       </div>
 
-      <details class="quote-more">
-        <summary>¿Quieres añadir algún detalle? <span aria-hidden="true">+</span></summary>
-        <div class="form-group">
-          <label class="form-label" for="quoteDetails">Capacidad, medidas o información útil (opcional)</label>
-          <textarea class="form-input" id="quoteDetails" name="Detalles de la solicitud" rows="2" maxlength="600" placeholder="Por ejemplo, depósito de 10.000 litros para riego..."></textarea>
-        </div>
-      </details>
+      <div class="form-group">
+        <label class="form-label" for="quoteLocation">Localidad y código postal *</label>
+        <input
+          class="form-input"
+          type="text"
+          id="quoteLocation"
+          name="location"
+          placeholder="Ej.: Écija (41400), Sevilla"
+          required
+          autocomplete="off"
+        />
+      </div>
 
-      <p class="quote-privacy">Utilizaremos tus datos para responder a esta consulta mediante un servicio externo de envío. <a href="/politica-de-privacidad/" target="_blank" rel="noopener noreferrer">Política de privacidad</a>.</p>
+      <div class="form-group">
+        <label class="form-label" for="quotePhone">Teléfono de contacto *</label>
+        <input
+          class="form-input"
+          type="tel"
+          id="quotePhone"
+          name="phone"
+          placeholder="Tu teléfono"
+          required
+          autocomplete="tel"
+        />
+      </div>
 
-      <p id="quoteFeedback" class="quote-feedback" role="status" aria-live="polite" hidden></p>
-      <button class="btn btn--primary btn--full quote-submit" id="quoteSubmit" type="submit">
-        Enviar solicitud a Depofibra
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <div class="form-group">
+        <label class="form-label" for="quoteDetails">Uso previsto o detalles (opcional)</label>
+        <textarea
+          class="form-input"
+          id="quoteDetails"
+          name="details"
+          placeholder="Ej.: agua de riego, salida de 2 pulgadas, acceso limitado…"
+          rows="3"
+        ></textarea>
+      </div>
+
+      <button class="btn btn--primary btn--full quote-submit" type="submit">
+        Preparar solicitud
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
       </button>
-      <p class="quote-method">Tu consulta se enviará desde esta página. Si surge algún problema, podrás intentarlo de nuevo sin perder los datos.</p>
+
+      <div class="quote-demo-notice" id="quoteDemoNotice" role="status">
+        <strong>Demostración:</strong> la solicitud no se ha enviado ni almacenado. Antes de publicar esta web, se configurará un sistema de recepción seguro con verificación de privacidad y protección anti-spam.
+      </div>
     </form>
   </div>
 </div>
 
 <style>
-  .quote-overlay {position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,18,38,.72);backdrop-filter:blur(7px);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
-  .quote-overlay.is-open {opacity:1;visibility:visible}
-  .quote-card {position:relative;width:min(100%,490px);max-height:min(94dvh,840px);overflow-y:auto;overscroll-behavior:contain;padding:clamp(22px,3vw,32px);border-radius:24px;background:#fff;box-shadow:0 25px 65px rgba(0,18,38,.25);transform:translateY(12px) scale(.98);transition:transform .3s var(--ease-out)}
-  .quote-overlay.is-open .quote-card{transform:translateY(0) scale(1)}
-  .quote-close{position:absolute;right:15px;top:15px;width:40px;height:40px;border:0;border-radius:50%;display:grid;place-items:center;color:var(--color-gray-600);background:var(--color-gray-100);cursor:pointer}
-  .quote-close:hover{background:var(--color-gray-200)}
-  .quote-eyebrow{display:block;color:var(--color-primary);font:800 10px/1.2 var(--font-display);letter-spacing:.1em;margin-bottom:10px}
-  .quote-title{color:var(--color-primary-dark);font:800 clamp(23px,3vw,29px)/1.13 var(--font-display);letter-spacing:-.04em;margin:0 42px 8px 0}
-  .quote-desc{color:var(--color-gray-600);font:400 14px/1.6 var(--font-body);margin-bottom:20px;max-width:350px}
-  .quote-honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
-  .quote-fields{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-  .quote-fields .form-group{min-width:0}
-  .quote-fields .form-label,.quote-more .form-label{display:block;margin-bottom:6px;font-size:12px;font-weight:700;color:var(--color-gray-700)}
-  .quote-fields .form-input,.quote-fields .form-select,.quote-more .form-input{display:block;width:100%;min-width:0;min-height:46px;padding:10px 12px;border:1px solid #cad7e6;border-radius:10px;background:#fff;color:var(--color-dark);font-size:14px;line-height:1.4}
-  .quote-fields .form-input::placeholder,.quote-more .form-input::placeholder{color:#8391a2}
-  .quote-fields .form-select{appearance:auto}
-  .quote-fields .form-input:focus,.quote-fields .form-select:focus,.quote-more .form-input:focus{outline:2px solid #72abe1;outline-offset:1px}
-  .quote-more{border-top:1px solid var(--color-gray-200);margin-top:18px;padding-top:13px}
-  .quote-more summary{display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:10px;color:var(--color-primary);font:700 13px/1.5 var(--font-body);list-style:none}
-  .quote-more summary::-webkit-details-marker{display:none}
-  .quote-more summary span{font-size:20px;transition:transform .2s ease}
-  .quote-more[open] summary span{transform:rotate(45deg)}
-  .quote-more .form-group{padding-top:12px}
-  .quote-more textarea{resize:vertical;min-height:74px}
-  .quote-privacy{font:400 11px/1.6 var(--font-body);color:var(--color-gray-500);margin:16px 0}
-  .quote-privacy a{color:var(--color-primary);text-decoration:underline;text-underline-offset:2px}
-  .quote-submit{min-height:50px;justify-content:center;margin:0}
-  .quote-submit svg{height:18px;width:18px}
-  .quote-submit:disabled{opacity:.65;cursor:wait}
-  .quote-feedback{margin:0 0 13px;padding:11px 13px;background:#fff4ed;border:1px solid #efcbb9;border-radius:9px;color:#8a351b;font:600 12px/1.55 var(--font-body)}
-  .quote-feedback[hidden]{display:none}
-  .quote-method{font:400 11px/1.55 var(--font-body);color:var(--color-gray-500);margin:10px 0 0;text-align:center}
-  /* Llamada directa: alternativa visible al formulario, también en móvil. */
-  .quote-call{margin:16px 0 18px}
-  .quote-call__intro{color:var(--color-primary-dark);font:800 12px/1.4 var(--font-display);margin:0 0 9px}
-  .quote-call__link{display:flex;align-items:center;gap:12px;min-height:70px;padding:12px 14px;border:1px solid #9fc3e0;border-radius:14px;background:#edf5fc;color:#002d59;text-decoration:none;transition:background .2s ease,border-color .2s ease,transform .2s ease}
-  .quote-call__link:hover{background:#e3f0fb;border-color:#01488e;transform:translateY(-1px)}
-  .quote-call__link:focus-visible{outline:3px solid #78b7f4;outline-offset:2px}
-  .quote-call__icon{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:50%;background:#01488e;color:#fff}
-  .quote-call__icon svg{width:21px;height:21px}
-  .quote-call__text{flex:1;display:grid;gap:3px;min-width:0}
-  .quote-call__text strong{font:800 13px/1.25 var(--font-display);letter-spacing:-.015em}
-  .quote-call__text small{font:500 11px/1.35 var(--font-body);color:#536d85}
-  .quote-call__arrow{font:800 17px/1 var(--font-display);color:#01488e;flex:none}
-  .quote-call__divider{display:flex;align-items:center;gap:10px;margin:15px 0 0;color:#657789;font:600 11px/1.4 var(--font-body);text-align:center}
-  .quote-call__divider::before,.quote-call__divider::after{content:"";height:1px;flex:1;background:#d5e0ea}
-  .quote-call__divider span{flex:none}
-  @media(max-width:530px){.quote-overlay{padding:8px}.quote-card{padding:24px 18px;border-radius:20px}.quote-fields{grid-template-columns:1fr;gap:10px}.quote-desc{margin-bottom:15px}.quote-title{margin-bottom:8px}.quote-fields .form-input,.quote-fields .form-select{min-height:44px}.quote-more{margin-top:12px}}
-  @media(prefers-reduced-motion:reduce){.quote-overlay,.quote-card,.quote-more summary span{transition:none}}
+  .quote-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(0, 18, 38, 0.72);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  .quote-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .quote-card {
+    position: relative;
+    width: min(100%, 520px);
+    max-height: min(92vh, 800px);
+    overflow-y: auto;
+    padding: 28px 22px;
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+    box-shadow: var(--shadow-xl);
+    transform: translateY(12px) scale(0.97);
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .quote-overlay.is-open .quote-card {
+    transform: translateY(0) scale(1);
+  }
+
+  .quote-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-gray-100);
+    color: var(--color-gray-600);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+  }
+
+  .quote-close:hover {
+    background: var(--color-gray-200);
+  }
+
+  .quote-title {
+    margin: 0 44px 6px 0;
+    color: var(--color-primary);
+    font: 800 22px/1.25 var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  .quote-desc {
+    margin: 0 0 22px;
+    color: var(--color-gray-600);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .quote-submit {
+    margin-top: 4px;
+  }
+
+  .quote-demo-notice {
+    display: none;
+    margin-top: 16px;
+    padding: 14px;
+    border-left: 3px solid var(--color-primary);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: var(--color-primary-light);
+    color: var(--color-gray-700);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .quote-demo-notice.is-visible {
+    display: block;
+  }
+
+  @media (min-width: 769px) {
+    .quote-card {
+      padding: 34px 32px;
+    }
+  }
 </style>
 
 <script>
   const modal = document.getElementById('quoteModal');
   const closeBtn = document.getElementById('quoteCloseBtn');
-  const form = document.getElementById('quoteForm') as HTMLFormElement | null;
-  const category = document.getElementById('quoteProduct') as HTMLSelectElement | null;
-  const details = document.getElementById('quoteDetails') as HTMLTextAreaElement | null;
-  const quoteReference = document.getElementById('quoteReference') as HTMLInputElement | null;
-  const quoteOrigin = document.getElementById('quoteOrigin') as HTMLInputElement | null;
-  const quoteSubject = document.getElementById('quoteSubject') as HTMLInputElement | null;
-  const quoteFeedback = document.getElementById('quoteFeedback');
-  const quoteSubmit = document.getElementById('quoteSubmit') as HTMLButtonElement | null;
-  let isSubmitting = false;
+  const form = document.getElementById('quoteForm') as HTMLFormElement;
+  const productSelect = document.getElementById('quoteProduct') as HTMLSelectElement;
+  const demoNotice = document.getElementById('quoteDemoNotice');
   let previousFocus: HTMLElement | null = null;
 
-  function getCategory(value: string): string {
-    const text = value.toLowerCase();
-    if (text.includes('fosa') || text.includes('séptic') || text.includes('hidrocarbur') || text.includes('oxidación') || text.includes('biológic')) return 'Fosa séptica';
-    if (text.includes('piscina')) return 'Piscina';
-    if (text.includes('cuba') || text.includes('cisterna') || text.includes('remolque')) return 'Cuba o cisterna';
-    if (text.includes('depósito') || text.includes('deposito') || text.includes('vertical') || text.includes('horizontal') || text.includes('vaso') || text.includes('rectangular')) return 'Depósito';
-    return 'Otra consulta';
-  }
-
-  function openQuoteModal(product?: string, note?: string) {
+  function openQuoteModal(product?: string) {
     previousFocus = document.activeElement as HTMLElement;
-    if (quoteReference) quoteReference.value = product?.trim() || '';
-    if (quoteOrigin) quoteOrigin.value = window.location.href;
-    if (product && category) category.value = getCategory(product);
-    if (note && details && !details.value.includes(note)) details.value = [details.value.trim(), note].filter(Boolean).join('\n');
-    if (quoteFeedback) { quoteFeedback.textContent = ''; quoteFeedback.hidden = true; }
+
+    if (product && productSelect) {
+      const option = Array.from(productSelect.options).find(
+        (opt) => opt.value === product
+      );
+      if (option) productSelect.value = option.value;
+    }
+
     modal?.classList.add('is-open');
-    modal?.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
-    requestAnimationFrame(() => (document.getElementById('quoteName') as HTMLInputElement | null)?.focus());
+
+    // Foco al botón de cerrar
+    requestAnimationFrame(() => closeBtn?.focus());
   }
 
   function closeQuoteModal() {
     modal?.classList.remove('is-open');
-    modal?.setAttribute('aria-hidden','true');
     document.body.style.overflow = '';
-    previousFocus?.focus();
+    if (previousFocus?.focus) previousFocus.focus();
   }
 
-  document.querySelectorAll<HTMLElement>('.open-quote-trigger').forEach(trigger => {
+  // Abrir desde cualquier botón con la clase trigger
+  document.querySelectorAll('.open-quote-trigger').forEach((trigger) => {
     trigger.addEventListener('click', () => {
-      document.querySelectorAll('.mobile-panel.is-open').forEach(panel => panel.classList.remove('is-open'));
-      openQuoteModal(trigger.dataset.product, trigger.dataset.note);
+      const product = (trigger as HTMLElement).dataset.product || '';
+      // Cerrar paneles móviles si están abiertos
+      document.querySelectorAll('.mobile-panel.is-open').forEach((panel) => {
+        panel.classList.remove('is-open');
+      });
+      document.body.style.overflow = '';
+      openQuoteModal(product);
     });
   });
+
+  // Cerrar
   closeBtn?.addEventListener('click', closeQuoteModal);
-  modal?.addEventListener('click', event => { if(event.target === modal) closeQuoteModal(); });
-  document.addEventListener('keydown', event => {
-    if(event.key === 'Escape' && modal?.classList.contains('is-open')) closeQuoteModal();
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeQuoteModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('is-open')) {
+      closeQuoteModal();
+    }
   });
 
-  modal?.addEventListener('keydown', event => {
-    if(event.key !== 'Tab' || !modal.classList.contains('is-open')) return;
-    const targets = Array.from(modal.querySelectorAll<HTMLElement>('button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),a[href],summary'))
-      .filter(el => el.getClientRects().length > 0);
-    if(!targets.length) return;
-    const first = targets[0], last = targets[targets.length - 1];
-    if(event.shiftKey && document.activeElement === first) {event.preventDefault(); last.focus();}
-    else if(!event.shiftKey && document.activeElement === last) {event.preventDefault(); first.focus();}
+  // Trampa de foco
+  modal?.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !modal.classList.contains('is-open')) return;
+    const focusable = Array.from(
+      modal.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href]'
+      )
+    ).filter((el) => el.getClientRects().length > 0);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   });
 
-  // FormSubmit admite la modalidad AJAX documentada para evitar sacar al usuario
-  // de la web. Solo una respuesta JSON de exito habilita la pagina de gracias.
-  // Los datos personales NO se envian a Google Analytics ni al dataLayer.
-  form?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    if (isSubmitting || !form) return;
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-
-    const honeypot = document.getElementById('quoteWebsite') as HTMLInputElement | null;
-    if (honeypot?.value.trim()) return;
-    if (quoteOrigin) quoteOrigin.value = window.location.href;
-    const product = category?.selectedOptions?.[0]?.textContent?.trim() || 'Consulta comercial';
-    if (quoteSubject) quoteSubject.value = `DEPOFIBRA | Nueva solicitud - ${product}`;
-
-    isSubmitting = true;
-    if (quoteSubmit) {
-      quoteSubmit.disabled = true;
-      quoteSubmit.setAttribute('aria-busy', 'true');
-    }
-    if (quoteFeedback) { quoteFeedback.textContent = ''; quoteFeedback.hidden = true; }
-
-    const controller = new AbortController();
-    const timeoutId = window.setTimeout(() => controller.abort(), 25000);
-    try {
-      const formData = new FormData(form);
-      const values: Record<string, string> = {};
-      formData.forEach((value, key) => {
-        if (typeof value === 'string') values[key] = value;
-      });
-      const response = await fetch(form.action, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(values),
-        signal: controller.signal,
-      });
-      const data = await response.json().catch(() => null);
-      // Un 200 sin success no basta: CAPTCHA, activacion o error del servicio.
-      const accepted = response.ok && (data?.success === true || data?.success === 'true');
-      if (!accepted) throw new Error('Solicitud no confirmada por el proveedor');
-
-      // Marcador SOLO local y de un uso. No contiene nombre, telefono ni correo.
-      try { sessionStorage.setItem('depofibra-form-success-v1', '1'); } catch { /* OK */ }
-      // La medicion del evento ocurre tras la navegacion en la pagina de gracias;
-      // no se arriesga a perder el evento por la redireccion inmediata.
-      window.location.assign('/solicitud-enviada/');
-    } catch {
-      if (quoteFeedback) {
-        quoteFeedback.textContent = 'No hemos podido confirmar el envío. No se ha registrado como completado. Revisa tu conexión y vuelve a intentarlo o llámanos al 642 129 233.';
-        quoteFeedback.hidden = false;
-        quoteFeedback.scrollIntoView({behavior:'smooth', block:'nearest'});
-      }
-    } finally {
-      window.clearTimeout(timeoutId);
-      isSubmitting = false;
-      if (quoteSubmit) {
-        quoteSubmit.disabled = false;
-        quoteSubmit.removeAttribute('aria-busy');
-      }
-    }
+  // Submit demostración
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    demoNotice?.classList.add('is-visible');
   });
 </script>

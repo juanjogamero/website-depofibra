@@ -7,36 +7,25 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileNav from '../components/MobileNav.astro';
 import QuoteModal from '../components/QuoteModal.astro';
-import CookieConsent from '../components/CookieConsent.astro';
 
 interface Props {
   title: string;
   description: string;
   canonical?: string;
   ogImage?: string;
-  ogImageAlt?: string;
-  ogType?: 'website' | 'article';
-  indexable?: boolean;
-  activeNav?: 'inicio' | 'depositos' | 'piscinas' | 'fosas' | 'cubas' | 'blog' | 'contacto' | 'sobre';
+  activeNav?: 'inicio' | 'depositos' | 'piscinas' | 'fosas' | 'cubas' | 'blog' | 'contacto';
 }
 
 const {
   title,
   description,
   canonical = Astro.url.href,
-  ogImage = '/images/depofibra_brand_assets/depofibra-og-logo.jpg',
-  ogImageAlt = 'Logotipo oficial de Depofibra',
-  ogType = 'website',
-  indexable = true,
+  ogImage = '/images/og-default.jpg',
   activeNav = 'inicio',
 } = Astro.props;
 
-const isPreview = Astro.site?.hostname !== 'depofibra.com'; // Solo depofibra.com puede indexarse.
-const publicCanonical = isPreview ? Astro.url.href : canonical;
 const siteName = 'Depofibra';
 const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
-const fullOgImage = ogImage ? new URL(ogImage, publicCanonical).href : undefined;
-const robotsContent = isPreview ? 'noindex, nofollow, noarchive' : indexable ? 'index, follow, max-image-preview:large' : 'noindex, follow';
 ---
 
 <!DOCTYPE html>
@@ -46,35 +35,23 @@ const robotsContent = isPreview ? 'noindex, nofollow, noarchive' : indexable ? '
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
-  <meta name="robots" content={robotsContent} />
-  <link rel="canonical" href={publicCanonical} />
+  <link rel="canonical" href={canonical} />
   <meta name="theme-color" content="#01488e" />
 
-  <!-- Favicon Depofibra v0.9.4: fondo orgánico completo y símbolo visible, sin recortes -->
-  <link rel="icon" type="image/x-icon" href="/images/depofibra_brand_assets/favicon-depofibra-humo-v6.ico" />
-  <link rel="shortcut icon" href="/images/depofibra_brand_assets/favicon-depofibra-humo-v6.ico" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/depofibra_brand_assets/favicon-depofibra-humo-v6-16.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/depofibra_brand_assets/favicon-depofibra-humo-v6-32.png" />
-  <link rel="icon" type="image/png" sizes="48x48" href="/images/depofibra_brand_assets/favicon-depofibra-humo-v6-48.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/depofibra_brand_assets/favicon-depofibra-humo-v6-180.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/images/depofibra_brand_assets/favicon-depofibra-humo-v6-192.png" />
-
   <!-- Open Graph -->
-  <meta property="og:type" content={ogType} />
+  <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
   <meta property="og:site_name" content={siteName} />
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
-  <meta property="og:url" content={publicCanonical} />
-  {fullOgImage && <meta property="og:image" content={fullOgImage} />}
-  {fullOgImage && <meta property="og:image:alt" content={ogImageAlt} />}
+  <meta property="og:url" content={canonical} />
+  {ogImage && <meta property="og:image" content={ogImage} />}
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
-  {fullOgImage && <meta name="twitter:image" content={fullOgImage} />}
-  {fullOgImage && <meta name="twitter:image:alt" content={ogImageAlt} />}
+  {ogImage && <meta name="twitter:image" content={ogImage} />}
 
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -103,7 +80,6 @@ const robotsContent = isPreview ? 'noindex, nofollow, noarchive' : indexable ? '
   <Footer />
   <MobileNav activeNav={activeNav} />
   <QuoteModal />
-  <CookieConsent />
 
   <slot name="scripts" />
 </body>

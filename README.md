@@ -1,129 +1,43 @@
-<p align="center">
-  <img src="depofibra-portada.png" alt="DEPOFIBRA · Nueva experiencia web para soluciones en poliéster reforzado con fibra de vidrio" width="100%" />
-</p>
+# Astro Starter Kit: Minimal
 
-<p align="center">
-  <a href="https://depofibra.com/"><b>Web actual</b></a>
-  &nbsp;·&nbsp;
-  <a href="https://demo.depofibra.com/"><b>Vista del proyecto</b></a>
-  &nbsp;·&nbsp;
-  <a href="https://www.instagram.com/depofibra/"><b>Instagram</b></a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/ASTRO-7.4.5-01488e?style=flat-square&labelColor=002d59" alt="Astro 7.4.5" />
-  <img src="https://img.shields.io/badge/ESTADO-EN%20DESARROLLO-f1f6fc?style=flat-square&labelColor=002d59&color=83bbdf" alt="Proyecto en desarrollo" />
-  <img src="https://img.shields.io/badge/DISEÑO-MOBILE%20FIRST-01488e?style=flat-square&labelColor=002d59" alt="Diseño mobile first" />
-</p>
-
-<br />
-
-<h2 align="center">Un catálogo que pone las cosas fáciles.</h2>
-
-<p align="center">
-  Una nueva web para <strong>Depofibra</strong>, negocio de Casariche (Sevilla) especializado en la
-  <strong>comercialización de soluciones de poliéster reforzado con fibra de vidrio (PRFV)</strong>.
-  Diseñada para descubrir productos, entender sus características y solicitar información con claridad.
-</p>
-
-<br />
-
-## El catálogo, en primer plano
-
-<p>
-  <img src="depofibra-catalogo.png" alt="Ilustraciones de las cuatro familias: depósitos, fosas sépticas, piscinas y cubas o cisternas" width="100%" />
-</p>
-
-No queremos una web llena de información dispersa. Queremos que cada visitante encuentre el tipo de producto que busca y avance hacia una ficha útil, con información técnica verificable y una forma sencilla de solicitar presupuesto.
-
-## Pensada para el usuario. Construida para crecer.
-
-<table>
-  <tr>
-    <td width="33%" valign="top">
-      <h3>01 / Claridad</h3>
-      <p>Categorías reconocibles, navegación directa y contenidos fáciles de entender.</p>
-    </td>
-    <td width="33%" valign="top">
-      <h3>02 / Confianza</h3>
-      <p>Fotografías reales, características contrastadas y comunicación comercial transparente.</p>
-    </td>
-    <td width="34%" valign="top">
-      <h3>03 / Rendimiento</h3>
-      <p>Una base ligera y adaptable para una experiencia cómoda en móvil y ordenador.</p>
-    </td>
-  </tr>
-</table>
-
-### La experiencia que queremos construir
-
-<p>
-  <img src="depofibra-experiencia.png" alt="Objetivo del recorrido: explorar, elegir modelo, consultar y pedir presupuesto" width="100%" />
-</p>
-
-## Por dentro
-
-Este proyecto utiliza **Astro 7**, componentes `.astro`, estilos CSS y una arquitectura orientada a crecer desde la página de inicio hacia categorías y fichas individuales.
-
-| Base del proyecto | Enfoque |
-| :-- | :-- |
-| **Astro 7** | Estructura web ligera y basada en componentes |
-| **Plus Jakarta Sans + Inter** | Sistema tipográfico coherente |
-| **Azul `#01488e`** | Identidad visual de Depofibra |
-| **Diseño responsive** | Prioridad a la navegación móvil |
-| **SEO técnico** | Metadatos y estructura semántica con revisión continua |
-
-<details>
-<summary><strong>Desarrollo local · Ver comandos y estructura</strong></summary>
-
-<br />
-
-Requiere **Node.js 22.23.4 o superior**.
-
-```bash
-npm ci
-npm run dev
+```sh
+npm create astro@latest -- --template minimal
 ```
 
-Después, abre `http://localhost:4321`.
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-| Comando | Uso |
-| :-- | :-- |
-| `npm run dev` | Servidor de desarrollo |
-| `npm run build` | Generar la versión de producción |
-| `npm run preview` | Vista previa local de la compilación |
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
 
 ```text
-src/
-├── components/   # Cabecera, pie, navegación, modal…
-├── layouts/      # Diseño compartido
-├── pages/        # Páginas del sitio
-└── styles/       # Estilos globales
-
-public/           # Recursos estáticos
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-</details>
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-## En evolución
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-**Esta es la nueva web de Depofibra, todavía en desarrollo.** La versión de demostración no debe interpretarse como catálogo definitivo ni como un sistema de presupuestos ya operativo.
+Any static assets, like images, can be placed in the `public/` directory.
 
-- [x] Base inicial de la página de inicio, navegación y sistema visual.
-- [ ] Completar las categorías y fichas de producto.
-- [ ] Verificar especificaciones, fotografías y documentación con los proveedores.
-- [ ] Conectar y probar el envío real de solicitudes.
-- [ ] Revisar accesibilidad, rendimiento, SEO y pruebas responsive.
-- [ ] Preparar el lanzamiento y las redirecciones necesarias desde la web anterior.
+## 🧞 Commands
 
-<br />
+All commands are run from the root of the project, from a terminal:
 
----
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-<p align="center">
-  <strong>DEPOFIBRA</strong><br />
-  <sub>Casariche · Sevilla · España</sub><br /><br />
-  <a href="https://depofibra.com/">depofibra.com</a>
-  &nbsp;·&nbsp;
-  <a href="https://demo.depofibra.com/">Ver nueva web</a>
-</p>
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
