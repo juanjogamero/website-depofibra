@@ -1,91 +1,191 @@
 ---
 /**
- * Depofibra - preferencias de cookies/almacenamiento (versión inicial).
- * Sin integración de Analytics, GTM, Clarity o píxeles: no se disparan estadísticas.
- * IMPORTANTE: al conectar un proveedor real, aumentar CONSENT_VERSION,
- * informar de destinatarios/finalidades y volver a pedir consentimiento.
- * No se remiten datos personales ni preferencias al servidor.
+ * DEPOFIBRA · Aviso de cookies compacto (v0.10.1).
+ * Versión actual SIN GA4, GTM, Clarity ni otros scripts de analítica.
+ * Solo guarda la elección en localStorage, sin enviarla a un servidor.
+ *
+ * Integración futura:
+ *  - Aumentar CONSENT_VERSION cuando cambien finalidades/proveedores.
+ *  - Bloquear cualquier script no esencial antes de obtener consentimiento.
+ *  - Escuchar el evento "depofibra:consent" en la integración correspondiente.
+ *  - No enviar datos al futuro VPS hasta definir el tratamiento de datos.
  */
 ---
 
-<section class="dfcc" id="dfcc-banner" aria-label="Preferencias de cookies" hidden>
-  <div class="dfcc__heading">
-    <p class="dfcc__eyebrow">PRIVACIDAD · DEPOFIBRA</p>
-    <h2>Tu privacidad, a tu elección</h2>
-  </div>
-  <p class="dfcc__intro">
-    Guardamos tu elección en este navegador. En esta versión no utilizamos herramientas de
-    analítica ni publicidad. Cuando incorporemos estadísticas, te pediremos permiso nuevamente.
-    <a href="/politica-de-cookies/">Política de cookies</a>.
-  </p>
-  <div class="dfcc__options" id="dfcc-options" hidden>
-    <div class="dfcc__option">
-      <div>
-        <strong>Almacenamiento técnico</strong>
-        <span>Necesario para recordar tus preferencias. Siempre activo.</span>
-      </div>
-      <span class="dfcc__necessary">Siempre activo</span>
+<section class="dfcc" id="dfcc-banner" aria-labelledby="dfcc-title" hidden>
+  <div class="dfcc__main">
+    <div class="dfcc__copy">
+      <h2 id="dfcc-title">Cookies y privacidad</h2>
+      <p>
+        Guardamos tu elección en este navegador. Por ahora no usamos analítica.
+        <a href="/politica-de-cookies/">Ver política</a>
+      </p>
     </div>
-    <label class="dfcc__option" for="dfcc-analytics">
-      <div>
-        <strong>Preferencia de estadísticas</strong>
-        <span>Inactiva: no se recoge actividad en esta versión. Se solicitará nuevo permiso al activarla.</span>
-      </div>
-      <input id="dfcc-analytics" type="checkbox" aria-describedby="dfcc-analytics-note" />
-    </label>
-    <p id="dfcc-analytics-note" class="dfcc__note">Esta preferencia no activa ninguna herramienta ni permite seguimiento futuro sin un nuevo aviso.</p>
+    <div class="dfcc__actions" aria-label="Opciones de cookies">
+      <button type="button" class="dfcc__decision" id="dfcc-reject">Rechazar</button>
+      <button type="button" class="dfcc__decision" id="dfcc-accept">Aceptar</button>
+      <button type="button" class="dfcc__configure" id="dfcc-customize" aria-controls="dfcc-options" aria-expanded="false">Personalizar</button>
+    </div>
   </div>
-  <div class="dfcc__actions">
-    <button type="button" class="dfcc__action" id="dfcc-reject">Rechazar opcionales</button>
-    <button type="button" class="dfcc__action" id="dfcc-accept">Aceptar opcionales</button>
-    <button type="button" class="dfcc__personalize" id="dfcc-customize" aria-controls="dfcc-options" aria-expanded="false">Personalizar</button>
-    <button type="button" class="dfcc__save" id="dfcc-save" hidden>Guardar preferencias</button>
+
+  <div class="dfcc__details" id="dfcc-options" hidden>
+    <div class="dfcc__category">
+      <div>
+        <strong>Almacenamiento necesario</strong>
+        <span>Conserva la elección de cookies en este navegador.</span>
+      </div>
+      <span class="dfcc__permanent">Siempre activo</span>
+    </div>
+    <label class="dfcc__category" for="dfcc-analytics">
+      <div>
+        <strong>Preferencia de analítica</strong>
+        <span>Actualmente inactiva: no se recogen estadísticas. Al activarlas solicitaremos de nuevo tu consentimiento.</span>
+      </div>
+      <input id="dfcc-analytics" type="checkbox" aria-label="Guardar preferencia sobre estadísticas futuras" />
+    </label>
+    <div class="dfcc__detail-bottom">
+      <p>Esta elección no activa herramientas de seguimiento.</p>
+      <button type="button" class="dfcc__save" id="dfcc-save">Guardar elección</button>
+    </div>
   </div>
 </section>
 
 <style>
-  .dfcc[hidden], .dfcc__options[hidden], .dfcc__save[hidden] { display:none !important; }
-  .dfcc { position:fixed; z-index:11000; bottom:18px; left:18px; width:min(540px,calc(100vw - 36px));
-    padding:23px 26px 22px; background:#fff; color:#17324e; border:1px solid #d2e0ef; border-radius:16px;
-    box-shadow:0 10px 38px rgba(0,38,76,.14); font-family:Inter,Arial,sans-serif; }
-  .dfcc__eyebrow { margin:0 0 7px; color:#01488e; font:700 10px/1.4 Inter,Arial,sans-serif; letter-spacing:.11em; }
-  .dfcc h2 { margin:0; color:#002d59; font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif; font-size:19px;
-    font-weight:800; letter-spacing:-.035em; line-height:1.3; }
-  .dfcc__intro { margin:10px 0 18px; color:#456079; font-size:13px; line-height:1.7; }
-  .dfcc a { color:#01488e; font-weight:700; text-underline-offset:3px; }
-  .dfcc__actions { display:flex; flex-wrap:wrap; gap:9px; align-items:center; }
-  .dfcc__action { flex:1 1 175px; min-height:43px; padding:10px 13px; border-radius:7px; border:1px solid #01488e;
-    color:#fff; background:#01488e; font:700 12px/1.4 Inter,Arial,sans-serif; cursor:pointer; }
-  .dfcc__action:hover { background:#002d59; }
-  .dfcc__personalize { padding:9px 5px; border:0; background:none; color:#01488e; font:700 12px Inter,Arial,sans-serif;
-    text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
-  .dfcc__save { min-height:40px; padding:8px 14px; border:1px solid #01488e; background:#eaf2fb; color:#002d59;
-    border-radius:7px; font:700 12px Inter,Arial,sans-serif; cursor:pointer; }
-  .dfcc button:focus-visible, .dfcc a:focus-visible, .dfcc input:focus-visible,
-  :global(.dfcc-footer-link:focus-visible) { outline:3px solid #5eb4e6; outline-offset:3px; }
-  .dfcc__options { border-top:1px solid #e3ebf4; padding:12px 0 0; margin-bottom:14px; }
-  .dfcc__option { display:flex; justify-content:space-between; gap:16px; align-items:center; padding:9px 0; }
-  .dfcc__option div { display:flex; flex-direction:column; gap:4px; }
-  .dfcc__option strong { font-size:12px; color:#002d59; }
-  .dfcc__option span { font-size:11px; line-height:1.5; color:#657a90; }
-  .dfcc__necessary { flex:none; }
-  .dfcc__option input { width:19px; height:19px; accent-color:#01488e; flex:none; }
-  .dfcc__note { margin:4px 0 0; color:#687d91; font-size:11px; line-height:1.5; }
-  :global(.dfcc-footer-link) { background:transparent; border:0; padding:0; margin:0; color:inherit; cursor:pointer;
-    font:inherit; text-decoration:underline; text-underline-offset:3px; }
-  @media (max-width:740px) {
-    .dfcc { left:12px; width:calc(100vw - 24px); bottom:calc(var(--bottom-nav-height, 76px) + env(safe-area-inset-bottom, 0px) + 12px);
-      padding:19px 18px 17px; border-radius:14px; max-height:70vh; overflow-y:auto; }
-    .dfcc h2 { font-size:17px; }
-    .dfcc__intro { font-size:12px; }
-    .dfcc__action { flex:1 1 135px; font-size:11px; }
+  .dfcc[hidden], .dfcc__details[hidden] { display:none !important; }
+  .dfcc {
+    position:fixed;
+    z-index:11000;
+    bottom:16px;
+    left:16px;
+    right:16px;
+    width:min(980px,calc(100vw - 32px));
+    margin:0 auto;
+    max-height:min(80vh,calc(100dvh - 32px));
+    overflow-y:auto;
+    border:1px solid #cbdbe9;
+    border-radius:13px;
+    background:#fff;
+    color:#17324e;
+    box-shadow:0 6px 24px rgba(0,38,76,.15);
+    font-family:Inter,Arial,sans-serif;
   }
-  @media (prefers-reduced-motion:reduce) { .dfcc, .dfcc button { scroll-behavior:auto; transition:none; } }
+  .dfcc__main {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:20px;
+    align-items:center;
+    padding:12px 17px;
+  }
+  .dfcc__copy { min-width:0; }
+  .dfcc h2 {
+    margin:0 0 3px;
+    font:750 13px/1.35 'Plus Jakarta Sans',Inter,Arial,sans-serif;
+    letter-spacing:-.025em;
+    color:#002d59;
+  }
+  .dfcc__copy p {
+    margin:0;
+    color:#526a80;
+    font-size:11.5px;
+    line-height:1.45;
+  }
+  .dfcc a { color:#01488e; font-weight:700; text-underline-offset:2px; white-space:nowrap; }
+  .dfcc__actions { display:flex; align-items:center; gap:8px; flex-wrap:nowrap; }
+  .dfcc button { cursor:pointer; font-family:Inter,Arial,sans-serif; }
+  .dfcc__decision {
+    flex:none;
+    min-width:87px;
+    min-height:40px;
+    padding:8px 12px;
+    background:#01488e;
+    color:#fff;
+    border:1px solid #01488e;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:700;
+    line-height:1.25;
+  }
+  .dfcc__decision:hover { background:#002d59; border-color:#002d59; }
+  .dfcc__configure {
+    min-height:40px;
+    padding:8px 6px;
+    color:#01488e;
+    background:transparent;
+    border:1px solid transparent;
+    font-size:12px;
+    line-height:1.25;
+    font-weight:700;
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+  .dfcc__configure:hover { color:#002d59; }
+  .dfcc__details { border-top:1px solid #e2eaf2; padding:7px 17px 13px; }
+  .dfcc__category {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:9px 0;
+  }
+  .dfcc__category + .dfcc__category { border-top:1px solid #edf1f5; }
+  .dfcc__category > div { display:flex; flex-direction:column; gap:3px; }
+  .dfcc__category strong { color:#002d59; font-size:12px; font-weight:700; }
+  .dfcc__category span { color:#61778c; font-size:11px; line-height:1.45; }
+  .dfcc__permanent { white-space:nowrap; font-size:11px; }
+  .dfcc__category input { width:19px; height:19px; flex:none; accent-color:#01488e; }
+  .dfcc__detail-bottom { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:5px; }
+  .dfcc__detail-bottom p { margin:0; color:#61778c; font-size:11px; line-height:1.4; }
+  .dfcc__save {
+    flex:none;
+    padding:9px 14px;
+    border:1px solid #01488e;
+    border-radius:7px;
+    background:#eaf2fb;
+    color:#002d59;
+    font-size:12px;
+    font-weight:700;
+    min-height:40px;
+  }
+  .dfcc button:focus-visible,.dfcc a:focus-visible,.dfcc input:focus-visible,
+  :global(.dfcc-footer-link:focus-visible) { outline:3px solid #65b8f0; outline-offset:2px; }
+  :global(.dfcc-footer-link) {
+    background:transparent;
+    color:inherit;
+    border:0;
+    margin:0;
+    padding:0;
+    font:inherit;
+    cursor:pointer;
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+  @media (max-width:740px) {
+    .dfcc {
+      bottom:calc(var(--bottom-nav-height, 76px) + env(safe-area-inset-bottom,0px) + 9px);
+      left:10px;
+      right:10px;
+      width:calc(100vw - 20px);
+      max-height:calc(100dvh - var(--bottom-nav-height, 76px) - env(safe-area-inset-bottom,0px) - 30px);
+      border-radius:12px;
+    }
+    .dfcc__main { display:flex; flex-direction:column; align-items:stretch; gap:10px; padding:12px; }
+    .dfcc h2 { font-size:12.5px; margin-bottom:3px; }
+    .dfcc__copy p { font-size:11px; line-height:1.45; }
+    .dfcc__actions { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; width:100%; }
+    .dfcc__decision { min-width:0; width:100%; padding:8px 5px; font-size:12px; min-height:41px; }
+    .dfcc__configure { min-width:0; padding:8px 2px; font-size:11.5px; min-height:41px; }
+    .dfcc__details { padding:6px 12px 12px; }
+    .dfcc__detail-bottom { flex-wrap:wrap; }
+    .dfcc__save { margin-left:auto; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .dfcc { scroll-behavior:auto; }
+  }
 </style>
 
 <script>
-  // Versión de consentimiento: NO reutilizar la elección para nuevos servicios
-  // estadísticos sin actualizar el texto, categoría y versión del consentimiento.
+  // Conservamos la versión de consentimiento existente: el diseño NO cambia
+  // qué datos se recogen y no debe volver a preguntar a usuarios ya decididos.
   const CONSENT_VERSION = 'depofibra-cookies-v1-no-analytics';
   const STORAGE_KEY = 'depofibra-cookie-preferences';
 
@@ -97,42 +197,53 @@
   const saveBtn = document.getElementById('dfcc-save');
   const rejectBtn = document.getElementById('dfcc-reject');
   const acceptBtn = document.getElementById('dfcc-accept');
+  let reopenedByFooter = false;
 
   function currentChoice(): CookieChoice | null {
     try {
       const item = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
       if (item && item.version === CONSENT_VERSION && typeof item.analytics === 'boolean') return item;
-    } catch { /* Si el navegador impide almacenamiento, pedir de nuevo en otra visita */ }
+    } catch { /* Si localStorage no está disponible, se volverá a preguntar en otra visita */ }
     return null;
   }
 
   function announce(choice:CookieChoice | null) {
-    // Se entrega el estado a futuras integraciones, sin cargar trackers.
-    window.dispatchEvent(new CustomEvent('depofibra:consent', {detail:{necessary:true,analytics:choice?.analytics === true,consentVersion:CONSENT_VERSION}}));
+    // Evento local disponible para futuros servicios, SIN cargar trackers.
+    window.dispatchEvent(new CustomEvent('depofibra:consent', {
+      detail:{necessary:true,analytics:choice?.analytics === true,consentVersion:CONSENT_VERSION}
+    }));
+  }
+
+  function collapseOptions() {
+    if (options) options.hidden = true;
+    customize?.setAttribute('aria-expanded','false');
   }
 
   function hideBanner() {
     if (banner) banner.hidden = true;
-    if (options) options.hidden = true;
-    if (saveBtn) saveBtn.hidden = true;
-    customize?.setAttribute('aria-expanded','false');
-    document.querySelector<HTMLElement>('.dfcc-footer-link')?.focus({preventScroll:true});
+    collapseOptions();
+    if (reopenedByFooter) {
+      document.querySelector<HTMLElement>('.dfcc-footer-link')?.focus({preventScroll:true});
+      reopenedByFooter = false;
+    }
   }
 
   function storeChoice(analytics:boolean) {
     const choice:CookieChoice = {version:CONSENT_VERSION,necessary:true,analytics,savedAt:new Date().toISOString()};
-    try {localStorage.setItem(STORAGE_KEY,JSON.stringify(choice));} catch { /* El sitio sigue funcionando sin localStorage */ }
+    try { localStorage.setItem(STORAGE_KEY,JSON.stringify(choice)); } catch { /* Sin almacenamiento el sitio funciona igualmente */ }
     announce(choice);
     hideBanner();
   }
 
-  function showBanner() {
+  function showBanner(openDetails=false) {
     if (!banner) return;
     banner.hidden = false;
     if (analyticsBox) analyticsBox.checked = currentChoice()?.analytics === true;
+    if (options) options.hidden = !openDetails;
+    customize?.setAttribute('aria-expanded',String(openDetails));
   }
 
-  // Enlace discreto dentro del pie de página existente, sin modificar Footer.astro.
+  // Acceso permanente y discreto desde el pie de página ya aprobado.
   const footerNav = document.querySelector('footer nav[aria-label="Información legal"]');
   if (footerNav && !footerNav.querySelector('.dfcc-footer-link')) {
     const control = document.createElement('button');
@@ -140,7 +251,8 @@
     control.className = 'dfcc-footer-link';
     control.textContent = 'Configurar cookies';
     control.addEventListener('click', () => {
-      showBanner();
+      reopenedByFooter = true;
+      showBanner(true);
       customize?.focus({preventScroll:true});
     });
     footerNav.appendChild(control);
@@ -150,17 +262,18 @@
   acceptBtn?.addEventListener('click',()=>storeChoice(true));
   customize?.addEventListener('click',()=>{
     if (!options) return;
-    options.hidden = !options.hidden;
-    customize.setAttribute('aria-expanded',String(!options.hidden));
-    if (saveBtn) saveBtn.hidden = options.hidden;
-    if (!options.hidden) analyticsBox?.focus();
+    const open = options.hidden;
+    options.hidden = !open;
+    customize.setAttribute('aria-expanded',String(open));
+    if (open) analyticsBox?.focus({preventScroll:true});
   });
   saveBtn?.addEventListener('click',()=>storeChoice(analyticsBox?.checked===true));
+
   window.addEventListener('keydown',(event)=>{
-    if(event.key==='Escape' && banner && !banner.hidden && currentChoice()) hideBanner();
+    if (event.key==='Escape' && banner && !banner.hidden && currentChoice()) hideBanner();
   });
 
   const initial = currentChoice();
   if (initial) announce(initial);
-  else { announce(null); showBanner(); }
+  else { announce(null); showBanner(false); }
 </script>

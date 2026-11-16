@@ -1,3 +1,17 @@
+## v0.10.1 — 2026-11-16 — Preparada para revisión y publicación
+
+**Tipo:** Corrección de experiencia de usuario en el aviso de cookies.
+
+- Rediseñado exclusivamente `src/components/CookieConsent.astro`: aviso compacto y responsive, con **Aceptar**, **Rechazar** y **Personalizar** accesibles sin ocupar gran parte de la pantalla.
+- Opciones avanzadas plegadas por defecto; panel detallado solo bajo petición del visitante.
+- Conservados el identificador de consentimiento, las preferencias locales y el evento `depofibra:consent`, sin volver a solicitar permiso innecesariamente a usuarios que ya eligieron.
+- Conservado el enlace permanente «Configurar cookies» en el pie de página. Al abrirlo, se muestran directamente las preferencias.
+- Sin GA4, GTM, Clarity ni envío de eventos a servidor: **esta versión no crea un sistema de estadísticas ni registra consentimientos de forma centralizada**.
+- Documentada la arquitectura futura de `cookies.depofibra.com` con autenticación, seguridad y privacidad, **sin desplegar todavía el panel**.
+- Sin cambios en fotos, fichas, formularios, textos comerciales, favicon, documentos legales ni configuración del dominio.
+
+**Validación:** sintaxis y estructura comprobadas; pendiente de compilación y prueba visual en producción tras `Push origin`.
+
 ## v0.10.0 — 2026-11-13 — Preparada para publicación, pendiente de integración
 
 **Tipo:** Funcionalidad y preparación de migración.
