@@ -56,7 +56,7 @@ const waHref = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(w
             <div><span>Instalación</span><strong>En superficie</strong></div>
           </div>
           <div class="cap-actions">
-            <a class="cap-btn cap-btn--primary" href={contactHref}>Pedir presupuesto <span aria-hidden="true">↗</span></a>
+            <button class="cap-btn cap-btn--primary open-quote-trigger" type="button" data-product={`Depósito vertical de base plana de ${formatNumber(landing.liters)} litros`} data-note={`Capacidad solicitada: ${formatNumber(landing.liters)} litros (${landing.cubicMeters} m³). Indica uso previsto, localidad y código postal para estudiar el transporte.`}>Pedir presupuesto <span aria-hidden="true">↗</span></button>
             <a class="cap-btn cap-btn--secondary" href={waHref} target={waNumber ? '_blank' : undefined} rel={waNumber ? 'noopener noreferrer' : undefined}>Consultar por WhatsApp <span aria-hidden="true">↗</span></a>
           </div>
           <p class="cap-small">Presupuesto sujeto a modelo, uso y lugar de entrega. Transporte estándar sin descarga incluida.</p>
@@ -139,7 +139,7 @@ const waHref = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(w
   .cap-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border-block:1px solid #e2e9f1;padding:19px 0;margin:28px 0}
   .cap-facts div{display:grid;gap:4px}.cap-facts span{font:500 11px/1.4 var(--font-body);color:#758599}.cap-facts strong{font:750 13px/1.4 var(--font-body);color:#193653}
   .cap-actions{display:flex;gap:10px;flex-wrap:wrap}.cap-btn{display:inline-flex;gap:14px;align-items:center;justify-content:center;padding:14px 20px;min-height:49px;border-radius:999px;font:800 12px/1.4 var(--font-display);text-decoration:none;transition:background .2s}
-  .cap-btn--primary{background:var(--color-primary);color:#fff}.cap-btn--primary:hover{background:var(--color-primary-dark)}
+  .cap-btn--primary{background:var(--color-primary);color:#fff}.cap-btn--primary:hover{background:var(--color-primary-dark)}.cap-actions button.cap-btn{border:0;cursor:pointer}.cap-actions button.cap-btn:focus-visible{outline:3px solid #78b7f4;outline-offset:3px}
   .cap-btn--secondary{border:1px solid #bad0e4;color:var(--color-primary-dark)}.cap-btn--secondary:hover{background:#eaf2fb}
   .cap-small{font:400 11px/1.65 var(--font-body);color:#738294;margin-top:13px;max-width:57ch}
   .cap-hero__photo{margin:0;min-width:0}.cap-hero__photo img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;background:#f4f7fb;border-radius:16px}
