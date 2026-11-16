@@ -11,11 +11,15 @@
  * - Las imágenes de Unsplash son contextuales/ambientales, con licencia verificable.
  */
 import Layout from '../layouts/Layout.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
+import CategoryShowcase from '../components/CategoryShowcase.astro';
 ---
 
 <Layout
   title="Depósitos de poliéster para agua y riego | Depofibra"
-  description="Depósitos de poliéster PRFV para agua y riego: modelos verticales, horizontales y enterrables. También piscinas, fosas y cisternas. Consulta presupuesto con entrega."
+  description="Depósitos de poliéster para agua y riego: consulta modelos verticales, horizontales y enterrables. También piscinas, fosas y cubas, con presupuesto según destino."
+  ogImage="/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp"
+  ogImageAlt="Depósito vertical blanco de poliéster con escala de nivel, fotografía de referencia"
   activeNav="inicio"
 >
   <Fragment slot="head">
@@ -28,6 +32,8 @@ import Layout from '../layouts/Layout.astro';
           "name": "Depofibra",
           "url": "https://depofibra.com/",
           "description": "Comercialización de depósitos de poliéster reforzado con fibra de vidrio (PRFV), piscinas prefabricadas, fosas sépticas, cubas y cisternas.",
+          "telephone": "+34 642 129 233",
+          "email": "depofibra21@gmail.com",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Casariche",
@@ -36,7 +42,7 @@ import Layout from '../layouts/Layout.astro';
           },
           "sameAs": [
             "https://www.instagram.com/depofibra/",
-            "https://www.facebook.com/p/Juan-Depofibra-61589376342997/"
+            "https://www.facebook.com/profile.php?id=61589529128415"
           ]
         },
         {
@@ -72,220 +78,66 @@ import Layout from '../layouts/Layout.astro';
   </Fragment>
 
   <!-- ═══════════════════════════════════════════════
-       SECCIÓN 1 — HERO PRINCIPAL
+       SECCIÓN 1 — HERO DE CATEGORÍAS (CARRUSEL)
        ═══════════════════════════════════════════════ -->
-  <section class="hero" aria-label="Presentación de Depofibra">
-    <div class="hero__bg" aria-hidden="true">
-      <img
-        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80"
-        alt=""
-        fetchpriority="high"
-        width="1600"
-        height="900"
-      />
-    </div>
-    <div class="hero__overlay" aria-hidden="true"></div>
-    <div class="hero__content container">
-      <h1 class="hero__title">
-        Depósitos de poliéster<br />para agua, riego y otros usos
-      </h1>
-      <p class="hero__desc">
-        Comercializamos depósitos de poliéster reforzado con fibra de vidrio (PRFV), piscinas prefabricadas, fosas sépticas y cisternas. Explora las categorías y solicita presupuesto con transporte para tu localidad.
-      </p>
-      <div class="hero__actions">
-        <a href="#catalogo" class="btn btn--white">
-          Ver productos
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
-        </a>
-        <button class="btn btn--secondary hero__cta-quote open-quote-trigger" type="button">
-          Pedir presupuesto
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
-        </button>
-      </div>
-    </div>
-  </section>
+  <HeroCarousel />
 
+
+  <!-- CATÁLOGO VISUAL — 4 familias verificadas -->
+  <CategoryShowcase />
 
   <!-- ═══════════════════════════════════════════════
-       SECCIÓN 2 — CATÁLOGO DE 4 FAMILIAS
+       SECCIÓN 3 — DEPÓSITOS PRIORITARIOS
        ═══════════════════════════════════════════════ -->
-  <section class="catalog section" id="catalogo" aria-labelledby="catalog-heading">
-    <div class="container">
-      <header class="section-header section-header--center">
-        <span class="eyebrow">Catálogo de productos PRFV</span>
-        <h2 class="heading-lg" id="catalog-heading">
-          Depósitos, piscinas, fosas sépticas y cubas
-        </h2>
-        <p class="body-lg" style="max-width:800px;margin-inline:auto;">
-          Encuentra tu producto PRFV, consulta las características y solicita un presupuesto ajustado a tu localidad.
-        </p>
-      </header>
-
-      <div class="catalog__grid">
-        <!-- Depósitos -->
-        <a href="/depositos/" class="catalog-card" id="card-depositos">
-          <div class="catalog-card__image">
-            <img
-              src="/images/productos/depositos-tipos.jpg"
-              alt="Depósitos de poliéster: verticales de base plana, horizontales con cunas y vertical con patas"
-              loading="lazy"
-              width="600"
-              height="400"
-            />
-          </div>
-          <div class="catalog-card__body">
-            <h3 class="catalog-card__title">Depósitos</h3>
-            <p class="catalog-card__subtitle">Verticales, horizontales y enterrables</p>
-            <span class="catalog-card__cta">
-              Ver depósitos
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
-            </span>
-          </div>
-        </a>
-
-        <!-- Piscinas -->
-        <a href="/piscinas/" class="catalog-card" id="card-piscinas">
-          <div class="catalog-card__image">
-            <img
-              src="/images/productos/piscina-poliester.jpg"
-              alt="Piscina de poliéster prefabricada instalada en un patio con escaleras interiores"
-              loading="lazy"
-              width="600"
-              height="400"
-            />
-          </div>
-          <div class="catalog-card__body">
-            <h3 class="catalog-card__title">Piscinas</h3>
-            <p class="catalog-card__subtitle">Prefabricadas de poliéster</p>
-            <span class="catalog-card__cta">
-              Explorar piscinas
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
-            </span>
-          </div>
-        </a>
-
-        <!-- Fosas sépticas -->
-        <a href="/fosas-septicas/" class="catalog-card" id="card-fosas">
-          <div class="catalog-card__image catalog-card__image--illustration">
-            <div class="catalog-card__art" aria-hidden="true">
-              <svg viewBox="0 0 320 230">
-                <ellipse cx="160" cy="180" fill="#cbd5e1" opacity=".5" rx="110" ry="10"></ellipse>
-                <path d="M61 98c-24 0-24 65 0 65h198c24 0 24-65 0-65z" fill="#fff" stroke="#01488e" stroke-width="3"></path>
-                <path d="M96 98c9 13 9 52 0 65m47-65c9 13 9 52 0 65m47-65c9 13 9 52 0 65m47-65c9 13 9 52 0 65" fill="none" stroke="#9bb9d7" stroke-width="2"></path>
-                <path d="M82 98V72h26v26m101 0V67h27v31" fill="#eaf2fb" stroke="#01488e" stroke-width="3"></path>
-                <ellipse cx="95" cy="72" fill="#fff" rx="13" ry="4" stroke="#01488e" stroke-width="2"></ellipse>
-                <ellipse cx="222.5" cy="67" fill="#fff" rx="13.5" ry="4" stroke="#01488e" stroke-width="2"></ellipse>
-              </svg>
-            </div>
-          </div>
-          <div class="catalog-card__body">
-            <h3 class="catalog-card__title">Fosas sépticas</h3>
-            <p class="catalog-card__subtitle">Estancas, filtro biológico y oxidación total</p>
-            <span class="catalog-card__cta">
-              Ver opciones
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
-            </span>
-          </div>
-        </a>
-
-        <!-- Cubas y cisternas -->
-        <a href="/cubas-cisternas/" class="catalog-card" id="card-cubas">
-          <div class="catalog-card__image">
-            <img
-              src="/images/productos/deposito-horizontal.jpg"
-              alt="Depósito horizontal de poliéster con patas de apoyo, exterior en campo"
-              loading="lazy"
-              width="600"
-              height="400"
-            />
-          </div>
-          <div class="catalog-card__body">
-            <h3 class="catalog-card__title">Cubas y cisternas</h3>
-            <p class="catalog-card__subtitle">Cubas agrícolas y depósitos cisterna</p>
-            <span class="catalog-card__cta">
-              Consultar cubas
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
-            </span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════
-       SECCIÓN 3 — TIPOS DE DEPÓSITOS
-       ═══════════════════════════════════════════════ -->
-  <section class="capacities section section--alt" id="tipos-de-depositos" aria-labelledby="capacities-heading">
+  <section class="capacities section" id="depositos-5000-10000-15000" aria-labelledby="capacities-heading">
     <div class="container">
       <div class="capacities__layout">
         <div class="capacities__intro">
-          <span class="eyebrow">Distintas formas y capacidades</span>
-          <h2 class="heading-lg" id="capacities-heading">
-            Depósitos de poliéster para diferentes necesidades
-          </h2>
+          <span class="eyebrow">Tres ejemplos de capacidad · Catálogo completo</span>
+          <h2 class="heading-lg" id="capacities-heading">Tres capacidades habituales. <span class="capacities__highlight">Muchas más opciones.</span></h2>
           <p class="body-lg">
-            No todos los proyectos necesitan el mismo depósito. Comercializamos <strong>modelos verticales, horizontales, enterrables y de formato compacto</strong>, con distintas capacidades y configuraciones según la referencia. Elige la familia que mejor se adapte al espacio y al uso previsto.
+            Los depósitos verticales de base plana se pueden consultar en distintas capacidades. <strong>5.000, 10.000 y 15.000 litros son solo tres ejemplos frecuentes, no las únicas opciones.</strong> Si necesitas otro volumen, lo estudiamos según modelo, uso y espacio disponible.
           </p>
-          <a href="/depositos/" class="btn btn--ghost btn--sm">
-            Ver todos los tipos de depósitos
-            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          <a href="/depositos/" class="capacities__explore">
+            Explorar depósitos verticales
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </a>
         </div>
 
-        <div class="capacities__table" role="list" aria-label="Tipos de depósitos de poliéster">
+        <div class="capacities__table" role="list" aria-label="Comparativa de depósitos de 5.000, 10.000 y 15.000 litros">
           <div class="capacities__row" role="listitem">
             <div class="capacities__amount">
-              <strong>Verticales</strong>
-              <span>De base plana o con patas</span>
+              <strong>5.000 <span>L</span></strong>
+              <span>5 m³ de capacidad nominal</span>
             </div>
-            <p>Para instalaciones en superficie, con distintas alturas, diámetros y capacidades según el modelo.</p>
-            <button class="btn btn--secondary btn--sm open-quote-trigger" data-product="Depósito vertical de poliéster" type="button">
-              Consultar <span aria-hidden="true">↗</span>
-            </button>
+            <p>Consulta dimensiones, altura de instalación y posición de las conexiones.</p>
           </div>
 
           <div class="capacities__row" role="listitem">
             <div class="capacities__amount">
-              <strong>Horizontales</strong>
-              <span>Con cunas de apoyo</span>
+              <strong>10.000 <span>L</span></strong>
+              <span>10 m³ de capacidad nominal</span>
             </div>
-            <p>Una alternativa de superficie cuando conviene aprovechar el espacio en horizontal.</p>
-            <button class="btn btn--secondary btn--sm open-quote-trigger" data-product="Depósito horizontal con cunas" type="button">
-              Consultar <span aria-hidden="true">↗</span>
-            </button>
+            <p>Comprueba diámetro, accesos de entrega y conexiones según el uso.</p>
           </div>
 
           <div class="capacities__row" role="listitem">
             <div class="capacities__amount">
-              <strong>Enterrables</strong>
-              <span>Modelos específicos</span>
+              <strong>15.000 <span>L</span></strong>
+              <span>15 m³ de capacidad nominal</span>
             </div>
-            <p>Diseñados para instalarse bajo tierra, siempre de acuerdo con las condiciones técnicas de cada referencia.</p>
-            <button class="btn btn--secondary btn--sm open-quote-trigger" data-product="Depósito horizontal enterrable" type="button">
-              Consultar <span aria-hidden="true">↗</span>
-            </button>
+            <p>Revisa el espacio para la instalación y los medios de descarga necesarios.</p>
           </div>
-
-          <div class="capacities__row" role="listitem">
-            <div class="capacities__amount">
-              <strong>Compactos</strong>
-              <span>Tipo vaso y rectangulares</span>
-            </div>
-            <p>Formatos para necesidades de menor volumen y espacios con requisitos de forma concretos.</p>
-            <button class="btn btn--secondary btn--sm open-quote-trigger" data-product="Depósito compacto tipo vaso o rectangular" type="button">
-              Consultar <span aria-hidden="true">↗</span>
-            </button>
-          </div>
-
-          <p class="capacities__note">
-            Las capacidades, dimensiones, configuraciones y condiciones de suministro se comprueban para cada modelo con el proveedor.
-          </p>
+          <p class="capacities__note">Estos ejemplos no representan el catálogo completo. Dimensiones, equipamiento y condiciones sujetos a confirmación de cada referencia.</p>
+          <button class="capacities__quote open-quote-trigger" data-product="Depósito vertical de base plana" type="button">
+            <span>Consultar capacidad y pedir presupuesto</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </button>
+          <a class="capacities__all" href="/depositos/">¿Buscas otra capacidad? Explora todos los tipos de depósitos <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </div>
   </section>
-
 
   <!-- ═══════════════════════════════════════════════
        SECCIÓN 4 — LOGÍSTICA Y ENTREGA
@@ -293,951 +145,922 @@ import Layout from '../layouts/Layout.astro';
   <section class="logistics section" id="logistica" aria-labelledby="logistics-heading">
     <div class="container">
       <div class="logistics__header">
-        <span class="eyebrow">Logística y entrega</span>
-        <h2 class="heading-lg" id="logistics-heading">
-          Presupuesto con entrega según destino
-        </h2>
-        <p class="body-lg">
-          Atendemos solicitudes para España y Portugal cuando el modelo y las condiciones logísticas lo permiten. El transporte se consulta según las dimensiones del producto, el código postal y los accesos de entrega.
-        </p>
+        <div class="logistics__heading">
+          <span class="eyebrow">Transporte y entrega</span>
+          <h2 class="heading-lg" id="logistics-heading">Transporte de depósitos de poliéster: presupuesto según destino</h2>
+        </div>
+        <p class="body-lg">¿Necesitas un depósito de agua con entrega en tu localidad? Estudiamos el transporte de depósitos de poliéster en España y Portugal según el modelo, sus dimensiones, el código postal y los accesos. <strong>La descarga no está incluida en el transporte estándar.</strong></p>
       </div>
 
       <div class="logistics__visual">
         <img
-          src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1400&q=80"
-          alt="Paisaje agrícola como contexto de uso para soluciones de almacenamiento de agua"
+          src="/images/depositos/horizontal-con-cunas/deposito-poliester-horizontal-con-cunas-blanco-en-transporte.webp"
+          alt="Depósito horizontal de poliéster cargado en un vehículo de transporte"
           loading="lazy"
-          width="1400"
-          height="600"
+          decoding="async"
+          width="1448"
+          height="1448"
         />
-        <div class="logistics__visual-overlay"></div>
+        <div class="logistics__visual-overlay" aria-hidden="true"></div>
         <div class="logistics__visual-card">
-          <span class="logistics__visual-eyebrow">Depósitos de poliéster</span>
-          <h3>¿Necesitas un depósito para tu proyecto?</h3>
-          <p>Cuéntanos qué capacidad, tipo de depósito y destino necesitas. Revisaremos las opciones y las condiciones del transporte.</p>
-          <button class="btn btn--primary btn--sm open-quote-trigger" data-product="Depósito de poliéster" type="button">
-            Consultar opciones
-            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          <span class="logistics__visual-eyebrow">Consulta de transporte</span>
+          <h3>Tu depósito, con el destino claro desde el principio</h3>
+          <p>Dinos qué modelo buscas y dónde hay que entregarlo. Comprobaremos las opciones de suministro y las condiciones logísticas antes de preparar el presupuesto.</p>
+          <button class="logistics__photo-cta open-quote-trigger" type="button">
+            Consultar precio con entrega
+            <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </button>
         </div>
+        <span class="logistics__photo-note">Fotografía de un depósito en transporte · No implica transporte propio de Depofibra</span>
       </div>
 
       <div class="logistics__details">
-        <div class="logistics__info">
-          <h3 class="heading-sm">Qué debes comprobar antes de recibir un depósito</h3>
-          <p class="body-md">
-            Para calcular el transporte necesitamos el modelo, el destino y los accesos. El transporte estándar no incluye la descarga: organiza con antelación los medios adecuados.
-          </p>
-          <ul class="logistics__facts">
-            <li>España y Portugal según viabilidad logística</li>
-            <li>El presupuesto depende del producto y código postal</li>
-            <li>Descarga no incluida en el transporte estándar</li>
-          </ul>
+        <div class="logistics__details-intro">
+          <span class="eyebrow">Antes de solicitar presupuesto</span>
+          <h3 class="heading-sm">Tres datos que facilitan la entrega</h3>
+          <p class="body-md">Con esta información podemos estudiar el transporte y evitar incidencias al recibir el depósito.</p>
+          <div class="logistics__progress" aria-hidden="true">
+            <div class="logistics__progress-counter"><strong data-logistics-current>01</strong><span>/ 03</span></div>
+            <div class="logistics__progress-track"><span data-logistics-progress></span></div>
+            <span class="logistics__progress-caption">Desliza para descubrir los tres pasos</span>
+          </div>
         </div>
-        <div class="logistics__cta-box">
-          <span class="eyebrow" style="margin-bottom:8px;">¿Necesitas calcular el transporte?</span>
-          <p class="body-md">Indícanos el modelo o capacidad y la localidad con código postal.</p>
-          <button class="btn btn--primary btn--full open-quote-trigger" type="button">
-            Consultar precio con transporte
-            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
-          </button>
-        </div>
+        <ol class="logistics__steps" data-logistics-steps>
+          <li data-logistics-step class="is-active">
+            <span class="logistics__step-number" aria-hidden="true">01</span>
+            <div><h4>Modelo y capacidad</h4><p>Indica el tipo de depósito y sus litros. Las medidas de la referencia concreta condicionan el transporte.</p></div>
+          </li>
+          <li data-logistics-step>
+            <span class="logistics__step-number" aria-hidden="true">02</span>
+            <div><h4>Localidad y accesos</h4><p>Facilita el código postal y cualquier limitación de acceso para el vehículo de entrega.</p></div>
+          </li>
+          <li data-logistics-step>
+            <span class="logistics__step-number" aria-hidden="true">03</span>
+            <div><h4>Medios de descarga</h4><p>El transporte estándar no incluye descarga: prepara los medios adecuados conforme al producto y las indicaciones del fabricante.</p></div>
+          </li>
+        </ol>
       </div>
     </div>
   </section>
 
-
   <!-- ═══════════════════════════════════════════════
-       SECCIÓN 5 — GUÍA PARA ELEGIR
+       SECCIÓN 5 — GUÍA PARA ELEGIR: orientación práctica
        ═══════════════════════════════════════════════ -->
   <section class="guide section" id="guia-eleccion" aria-labelledby="guide-heading">
     <div class="container">
       <div class="guide__layout">
         <div class="guide__content">
-          <span class="eyebrow">Guía para elegir</span>
-          <h2 class="heading-lg" id="guide-heading">
-            Cómo elegir un depósito de poliéster <span style="color:var(--color-primary)">sin equivocarte</span>
-          </h2>
-          <p class="body-lg">
-            La elección depende de lo que vas a almacenar, dónde se instalará el depósito y cómo llegará a la parcela o nave.
+          <span class="eyebrow">Antes de elegir tu depósito</span>
+          <h2 class="heading-lg" id="guide-heading">Cómo elegir un depósito de poliéster para tu instalación</h2>
+          <p class="body-lg guide__intro">
+            Antes de comparar precios, conviene definir <strong>qué vas a almacenar, cuántos litros necesitas y dónde lo instalarás</strong>. Estos cuatro puntos te ayudarán a identificar el modelo adecuado y solicitar un presupuesto más preciso.
           </p>
 
           <ol class="guide__steps">
             <li class="guide__step">
               <span class="guide__step-num" aria-hidden="true">01</span>
               <div>
-                <h3>Uso del depósito y líquido a almacenar</h3>
-                <p>No todos los depósitos son aptos para los mismos líquidos. Para agua de consumo humano, productos químicos o usos especiales, la referencia debe contar con la compatibilidad y documentación correspondientes.</p>
+                <h3>¿Qué líquido vas a almacenar?</h3>
+                <p>Para agua de riego, consumo humano o líquidos especiales pueden exigirse características distintas. Consulta la compatibilidad y la documentación del modelo.</p>
               </div>
             </li>
             <li class="guide__step">
               <span class="guide__step-num" aria-hidden="true">02</span>
               <div>
-                <h3>Vertical, horizontal o enterrable</h3>
-                <p>En superficie puedes valorar depósitos verticales de base plana u horizontales con apoyos. Para enterrar necesitas un modelo específicamente diseñado para ello.</p>
+                <h3>¿Qué capacidad necesitas?</h3>
+                <p>Valora el consumo y la autonomía que buscas. Los litros son solo el punto de partida: comprueba también las medidas y el espacio disponible.</p>
               </div>
             </li>
             <li class="guide__step">
               <span class="guide__step-num" aria-hidden="true">03</span>
               <div>
-                <h3>Entradas, salidas y entrega en destino</h3>
-                <p>Define el diámetro y posición de las conexiones, el código postal de entrega y los accesos. La descarga no está incluida en el transporte estándar.</p>
+                <h3>¿Vertical, horizontal o enterrable?</h3>
+                <p>El formato depende de la ubicación y las condiciones de apoyo. Para enterrar, elige únicamente una referencia diseñada específicamente para ello.</p>
+              </div>
+            </li>
+            <li class="guide__step">
+              <span class="guide__step-num" aria-hidden="true">04</span>
+              <div>
+                <h3>¿Cómo serán las conexiones y la entrega?</h3>
+                <p>Revisa entradas y salidas, accesos y código postal. El transporte estándar no incluye la descarga: habrá que prever los medios adecuados.</p>
               </div>
             </li>
           </ol>
 
           <div class="guide__actions">
-            <button class="btn btn--primary open-quote-trigger" type="button">
-              Consultar mi caso
-              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+            <button class="guide__quote open-quote-trigger" type="button">
+              <span>Consultar mi caso</span>
+              <span class="guide__quote-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </span>
             </button>
-            <a href="/depositos/" class="btn btn--secondary">Comparar tipos de depósito →</a>
+            <a class="guide__explore" href="/depositos/">Comparar tipos de depósitos <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 
-        <figure class="guide__visual">
+        <aside class="guide__visual" aria-label="Formatos de depósitos de poliéster">
+          <div class="guide__visual-heading">
+            <span class="guide__visual-kicker">Formatos y configuraciones</span>
+            <strong>Distintas formas para distintas necesidades</strong>
+          </div>
           <img
-            src="https://images.unsplash.com/photo-1767022094253-e24308b8947e?auto=format&fit=crop&w=800&q=80"
-            alt="Olivar en una ladera de Andalucía, como ejemplo del entorno agrícola en el que puede necesitarse almacenamiento de agua"
+            src="/images/productos/depositos-tipos.jpg"
+            alt="Ilustración orientativa de depósitos de poliéster verticales y horizontales en diferentes configuraciones"
             loading="lazy"
-            width="800"
-            height="1000"
+            decoding="async"
+            width="1478"
+            height="1064"
           />
-          <figcaption>
-            Fotografía ilustrativa · <a href="https://unsplash.com/photos/YOlMK-_PM50" target="_blank" rel="noopener noreferrer">Unsplash</a>
-          </figcaption>
-        </figure>
+          <div class="guide__visual-foot">
+            <a href="/depositos/">01 <strong>Verticales</strong><span aria-hidden="true">↗</span></a>
+            <a href="/depositos/">02 <strong>Horizontales</strong><span aria-hidden="true">↗</span></a>
+            <a href="/depositos/">03 <strong>Otros formatos</strong><span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="guide__visual-caption">Ilustración orientativa. Las medidas, accesorios y configuraciones deben verificarse para cada referencia.</p>
+        </aside>
       </div>
     </div>
   </section>
-
 
   <!-- ═══════════════════════════════════════════════
        SECCIÓN 6 — PREGUNTAS FRECUENTES
        ═══════════════════════════════════════════════ -->
-  <section class="faq section section--alt" id="preguntas-frecuentes" aria-labelledby="faq-heading">
+  <section class="faq section" id="preguntas-frecuentes" aria-labelledby="faq-heading">
     <div class="container">
       <div class="faq__layout">
         <div class="faq__intro">
           <span class="eyebrow">Preguntas frecuentes</span>
-          <h2 class="heading-lg" id="faq-heading">Resolvemos tus dudas antes de elegir</h2>
-          <p class="body-md">
-            Respuestas prácticas a las consultas habituales antes de comprar un depósito de agua de poliéster.
+          <h2 class="heading-lg" id="faq-heading">Lo que necesitas saber antes de comprar</h2>
+          <p class="body-lg">
+            Aclaramos las dudas más habituales sobre depósitos de poliéster, capacidades,
+            instalación y transporte. Información útil para elegir con criterio.
           </p>
         </div>
 
-        <div class="faq__list">
-          <details class="faq__item">
-            <summary>¿Dónde comprar depósitos de poliéster para riego?</summary>
-            <div class="faq__answer">
-              <p>En Depofibra puedes consultar depósitos de poliéster reforzado con fibra de vidrio (PRFV), también llamados depósitos de fibra de vidrio, para riego y otros usos compatibles. Atendemos consultas desde Casariche (Sevilla); el suministro depende del modelo y del destino.</p>
-            </div>
+        <div class="faq__list" aria-label="Preguntas frecuentes sobre depósitos y transporte">
+          <div class="faq__column">
+          <details class="faq__item" name="depofibra-home-faq" open>
+            <summary><span>¿Dónde comprar depósitos de poliéster para riego?</span></summary>
+            <div class="faq__answer"><p>En Depofibra puedes consultar depósitos de poliéster reforzado con fibra de vidrio (PRFV), también llamados depósitos de fibra de vidrio, para riego y otros usos compatibles. Atendemos consultas desde Casariche (Sevilla); el suministro depende del modelo y del destino.</p></div>
           </details>
-
-          <details class="faq__item">
-            <summary>¿Qué capacidades y tipos de depósitos de poliéster hay?</summary>
-            <div class="faq__answer">
-              <p>Existen referencias de diferentes capacidades y formatos: depósitos verticales, horizontales, enterrables, tipo vaso y rectangulares. El modelo adecuado depende del volumen, el uso, el espacio disponible y las condiciones de instalación.</p>
-            </div>
+          <details class="faq__item" name="depofibra-home-faq">
+            <summary><span>¿Qué depósito de agua elegir: 5.000, 10.000 o 15.000 litros?</span></summary>
+            <div class="faq__answer"><p>La capacidad debe ajustarse al volumen de agua que necesitas almacenar. Además de los litros, compara diámetro, altura, base de apoyo, accesos y configuración de conexiones.</p></div>
           </details>
-
-          <details class="faq__item">
-            <summary>¿Qué diferencia hay entre un depósito vertical y uno horizontal?</summary>
-            <div class="faq__answer">
-              <p>El depósito vertical de base plana se instala en superficie sobre una base adecuada; el horizontal de superficie utiliza apoyos o cunas. La elección depende de la altura y superficie disponibles.</p>
-            </div>
+          <details class="faq__item" name="depofibra-home-faq">
+            <summary><span>¿Qué diferencia hay entre un depósito vertical y uno horizontal?</span></summary>
+            <div class="faq__answer"><p>El depósito vertical de base plana se instala en superficie sobre una base adecuada; el horizontal de superficie utiliza apoyos o cunas. La elección depende de la altura y superficie disponibles.</p></div>
           </details>
-
-          <details class="faq__item">
-            <summary>¿Puedo pedir precio con transporte incluido?</summary>
-            <div class="faq__answer">
-              <p>Sí. Indica la capacidad o el modelo, el uso previsto y la localidad con código postal. El coste del transporte se consulta según las dimensiones del depósito, el destino y los accesos.</p>
-            </div>
+          <details class="faq__item" name="depofibra-home-faq">
+            <summary><span>¿Puedo pedir precio con transporte incluido?</span></summary>
+            <div class="faq__answer"><p>Sí. Indica la capacidad o el modelo, el uso previsto y la localidad con código postal. El coste del transporte se consulta según las dimensiones del depósito, el destino y los accesos.</p></div>
           </details>
-
-          <details class="faq__item">
-            <summary>¿Se puede enterrar un depósito de poliéster?</summary>
-            <div class="faq__answer">
-              <p>Solo si es un modelo expresamente previsto para enterramiento. Un depósito horizontal de superficie no debe instalarse bajo tierra sin una especificación técnica que lo autorice.</p>
-            </div>
+          </div>
+          <div class="faq__column">
+          <details class="faq__item" name="depofibra-home-faq">
+            <summary><span>¿Se puede enterrar un depósito de poliéster?</span></summary>
+            <div class="faq__answer"><p>Solo si es un modelo expresamente previsto para enterramiento. Un depósito horizontal de superficie no debe instalarse bajo tierra sin una especificación técnica que lo autorice.</p></div>
           </details>
-
-          <details class="faq__item">
-            <summary>¿Todos los depósitos son aptos para agua potable?</summary>
-            <div class="faq__answer">
-              <p>No. Para almacenar agua destinada al consumo humano debes solicitar un modelo apto y documentación específica. No basta con que el material sea de poliéster.</p>
-            </div>
+          <details class="faq__item" name="depofibra-home-faq">
+            <summary><span>¿Todos los depósitos son aptos para agua potable?</span></summary>
+            <div class="faq__answer"><p>No. Para almacenar agua destinada al consumo humano debes solicitar un modelo apto y documentación específica. No basta con que el material sea de poliéster.</p></div>
           </details>
-
-          <details class="faq__item">
-            <summary>¿El transporte incluye la descarga?</summary>
-            <div class="faq__answer">
-              <p>No. El transporte estándar no incluye la descarga. Antes de la entrega es necesario prever accesos y medios de descarga adecuados.</p>
-            </div>
+          <details class="faq__item" name="depofibra-home-faq">
+            <summary><span>¿El transporte incluye la descarga?</span></summary>
+            <div class="faq__answer"><p>No. El transporte estándar no incluye la descarga. Antes de la entrega es necesario prever accesos y medios de descarga adecuados.</p></div>
           </details>
-
-          <details class="faq__item">
-            <summary>¿Depofibra entrega en España y Portugal?</summary>
-            <div class="faq__answer">
-              <p>Podemos estudiar suministros en España y Portugal según la referencia, el destino, el tamaño del producto y las condiciones del transporte. La viabilidad se confirma para cada solicitud.</p>
-            </div>
+          <details class="faq__item" name="depofibra-home-faq">
+            <summary><span>¿Depofibra entrega en España y Portugal?</span></summary>
+            <div class="faq__answer"><p>Podemos estudiar suministros en España y Portugal según la referencia, el destino, el tamaño del producto y las condiciones del transporte. La viabilidad se confirma para cada solicitud.</p></div>
           </details>
+          </div>
         </div>
+          <div class="faq__help">
+            <span class="faq__help-index">01 / 02</span>
+            <p>¿Tu instalación tiene condiciones especiales? <strong>Cuéntanos tu caso.</strong></p>
+            <button class="faq__help-link open-quote-trigger" type="button">
+              Consultar mi caso
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+            </button>
+          </div>
       </div>
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════════════
-       SECCIÓN 7 — CTA COMERCIAL FINAL
-       ═══════════════════════════════════════════════ -->
-  <section class="final-cta section" id="solicitar-presupuesto" aria-labelledby="final-cta-heading">
-    <div class="container">
-      <div class="final-cta__panel">
-        <div class="final-cta__content">
-          <span class="final-cta__eyebrow">Atención comercial desde Casariche (Sevilla)</span>
-          <h2 class="final-cta__title" id="final-cta-heading">
-            Pide presupuesto de tu depósito o producto PRFV
-          </h2>
-          <p class="final-cta__copy">
-            Cuéntanos qué modelo o capacidad necesitas, para qué se utilizará y a qué localidad hay que entregarlo. Consultaremos las opciones y el transporte.
-          </p>
-        </div>
-        <div class="final-cta__actions">
-          <button class="btn btn--white open-quote-trigger" type="button">
-            Solicitar presupuesto
-            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
 </Layout>
 
 <style>
   /* ═══════════════════════════════════════════════
-     HERO
+     CAPACIDADES — Editorial + comparativa accesible
      ═══════════════════════════════════════════════ */
-  .hero {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    min-height: 85svh;
-    padding: 100px 0 40px;
-    overflow: hidden;
-    background: #04284a;
-    isolation: isolate;
-  }
-
-  .hero__bg {
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-  }
-
-  .hero__bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .hero__overlay {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 24, 51, 0.55) 0%,
-      rgba(1, 45, 89, 0.15) 35%,
-      rgba(0, 20, 41, 0.65) 70%,
-      rgba(0, 15, 31, 0.88) 100%
-    );
-  }
-
-  .hero__content {
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero__title {
-    max-width: 700px;
-    margin: 0 0 18px;
-    color: var(--color-white);
-    font: 800 clamp(2.1rem, 8vw, 4rem)/1.06 var(--font-display);
-    letter-spacing: -0.04em;
-    text-shadow: 0 3px 18px rgba(0, 18, 38, 0.4);
-  }
-
-  .hero__desc {
-    max-width: 600px;
-    margin: 0 0 28px;
-    color: rgba(255, 255, 255, 0.92);
-    font-size: 15px;
-    line-height: 1.7;
-    text-shadow: 0 1px 6px rgba(0, 18, 38, 0.5);
-  }
-
-  .hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .hero__cta-quote {
-    color: rgba(255, 255, 255, 0.9) !important;
-    border-color: rgba(255, 255, 255, 0.4) !important;
-  }
-
-  .hero__cta-quote:hover {
-    color: var(--color-white) !important;
-    border-color: var(--color-white) !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-  }
-
-  @media (min-width: 769px) {
-    .hero {
-      min-height: min(780px, 90svh);
-      padding: 160px 0 60px;
-    }
-
-    .hero__desc {
-      font-size: 16px;
-    }
-  }
-
-
-  /* ═══════════════════════════════════════════════
-     CATÁLOGO
-     ═══════════════════════════════════════════════ */
-  .catalog {
-    background: var(--color-gray-50);
-  }
-
-  .catalog__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .catalog-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border: 1px solid var(--color-gray-200);
-    border-radius: var(--radius-xl);
-    background: var(--color-white);
-    text-decoration: none;
-    color: var(--color-dark);
-    transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
-  }
-
-  .catalog-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-  }
-
-  .catalog-card__image {
-    position: relative;
-    height: 220px;
-    overflow: hidden;
-    background: var(--color-primary-light);
-  }
-
-  .catalog-card__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s var(--ease-out);
-  }
-
-  .catalog-card:hover .catalog-card__image img {
-    transform: scale(1.04);
-  }
-
-  .catalog-card__image--illustration {
-    display: grid;
-    place-items: center;
-    padding: 20px;
-  }
-
-  .catalog-card__art {
-    max-width: 260px;
-    color: var(--color-primary);
-  }
-
-  .catalog-card__body {
-    padding: 20px;
-  }
-
-  .catalog-card__badge {
-    display: inline-block;
-    margin-bottom: 8px;
-    padding: 4px 10px;
-    border-radius: var(--radius-pill);
-    background: var(--color-primary-light);
-    color: var(--color-primary);
-    font: 800 9px/1.3 var(--font-display);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .catalog-card__title {
-    margin: 0 0 4px;
-    font: 800 20px/1.2 var(--font-display);
-    letter-spacing: -0.025em;
-  }
-
-  .catalog-card__subtitle {
-    margin: 0 0 14px;
-    color: var(--color-gray-500);
-    font-size: 13px;
-    line-height: 1.5;
-  }
-
-  .catalog-card__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding-top: 12px;
+  .capacities {
+    background: #fff;
     border-top: 1px solid var(--color-gray-200);
-    color: var(--color-primary);
-    font-size: 13px;
-    font-weight: 700;
-    width: 100%;
   }
 
-  .catalog-card__cta svg {
-    width: 14px;
-    height: 14px;
-    transition: transform var(--transition-fast);
-  }
-
-  .catalog-card:hover .catalog-card__cta svg {
-    transform: translateX(4px);
-  }
-
-  @media (min-width: 600px) {
-    .catalog__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .catalog__grid {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .catalog-card__image {
-      height: 240px;
-    }
-  }
-
-
-  /* ═══════════════════════════════════════════════
-     CAPACIDADES
-     ═══════════════════════════════════════════════ */
   .capacities__layout {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(34px, 4vw, 64px);
+    align-items: start;
   }
 
-  .capacities__intro h2 {
-    margin: 12px 0 14px;
+  .capacities__intro { min-width: 0; }
+
+  .capacities__intro .heading-lg {
+    margin: 18px 0 20px;
+    max-width: 650px;
+    text-wrap: balance;
   }
 
-  .capacities__intro strong {
-    color: var(--color-dark);
+  .capacities__intro .body-lg {
+    max-width: 610px;
+    margin-bottom: 22px;
+    font-size: 16px;
+    line-height: 1.8;
   }
 
-  .capacities__table {
-    border-top: 3px solid var(--color-primary);
+  .capacities__intro strong { color: var(--color-dark); font-weight: 700; }
+
+  .capacities__explore {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    color: var(--color-primary);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(1,72,142,.28);
+    transition: border-color .22s ease;
   }
+
+  .capacities__explore svg {
+    width: 18px;
+    height: 18px;
+    transition: transform .25s ease;
+  }
+  .capacities__explore:hover { border-color: var(--color-primary); }
+  .capacities__explore:hover svg { transform: translateX(4px); }
+
+  .capacities__table { min-width: 0; border-top: 2px solid var(--color-primary); }
 
   .capacities__row {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0,1fr);
     gap: 10px;
-    padding: 20px 0;
+    align-items: center;
+    padding: 24px 0;
     border-bottom: 1px solid var(--color-gray-200);
   }
 
-  .capacities__amount {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
+  .capacities__amount { display: flex; flex-direction: column; gap: 5px; }
   .capacities__amount strong {
+    display: block;
     color: var(--color-primary-dark);
-    font: 800 22px/1.15 var(--font-display);
-    letter-spacing: -0.02em;
+    font: 800 clamp(24px,2vw,29px)/1.16 var(--font-display);
+    letter-spacing: -0.035em;
+    white-space: nowrap;
   }
-
-  .capacities__amount span {
+  .capacities__amount strong span { font: inherit; }
+  .capacities__amount > span {
     color: var(--color-gray-500);
-    font-size: 12px;
-  }
-
-  .capacities__row p {
-    color: var(--color-gray-600);
     font-size: 13px;
-    line-height: 1.6;
+    line-height: 1.5;
   }
-
-  .capacities__note {
-    margin-top: 14px;
-    color: var(--color-gray-500);
-    font-size: 12px;
+  .capacities__row p {
+    margin: 0;
+    max-width: 440px;
+    color: var(--color-gray-600);
+    font-size: 15px;
     line-height: 1.65;
   }
 
-  @media (min-width: 769px) {
+  .capacities__quote {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: max-content;
+    min-height: 48px;
+    padding: 12px 18px;
+    border: 1px solid var(--color-primary);
+    border-radius: 999px;
+    color: var(--color-primary);
+    background: #fff;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background .25s ease, color .25s ease, transform .25s ease;
+  }
+  .capacities__quote svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    transition: transform .25s ease;
+  }
+  .capacities__quote:hover {
+    background: var(--color-primary);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .capacities__quote:hover svg { transform: translateX(4px) rotate(-20deg); }
+  .capacities__quote:active { transform: translateY(0); }
+
+  .capacities__note {
+    margin: 17px 0 0;
+    color: var(--color-gray-500);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  @media (min-width: 960px) {
     .capacities__layout {
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: clamp(40px, 5vw, 80px);
-      align-items: start;
+      grid-template-columns: minmax(0, .83fr) minmax(0, 1.17fr);
+      gap: clamp(42px,5vw,76px);
     }
-
     .capacities__row {
-      grid-template-columns: minmax(120px, 0.6fr) 1fr auto;
-      align-items: center;
-      gap: 16px;
+      grid-template-columns: minmax(136px,.64fr) minmax(145px,1fr);
+      gap: 14px 20px;
     }
   }
 
-
-  /* ═══════════════════════════════════════════════
-     LOGÍSTICA
-     ═══════════════════════════════════════════════ */
-  .logistics {
-    background: var(--color-gray-50);
+  @media (min-width: 600px) and (max-width: 959px) {
+    .capacities__row { grid-template-columns: minmax(140px,.55fr) minmax(0,1fr); gap: 14px 22px; }
   }
 
-  .logistics__header {
-    margin-bottom: 28px;
+  /* Un único CTA, fuera de las filas, con espacio propio. */
+  .capacities__table > .capacities__quote {
+    margin-top: 20px;
+    margin-bottom: 12px;
+    padding-inline: 23px;
+    color: #fff;
+    background: var(--color-primary);
+  }
+  .capacities__table > .capacities__quote:hover {
+    background: var(--color-primary-dark);
   }
 
-  .logistics__header h2 {
-    margin: 12px 0 10px;
+  @media (max-width: 599px) {
+    .capacities__row { padding: 17px 0 18px; gap: 8px; }
+    .capacities__row p { font-size: 14px; }
+    .capacities__table > .capacities__quote { width: 100%; white-space: normal; text-align:center; }
+    .capacities__intro .body-lg { font-size: 15px; line-height:1.7; }
   }
+
+  @media (min-width:769px) and (max-height:800px) {
+    .capacities.section { padding-block: clamp(46px,6svh,72px); }
+    .capacities__intro .heading-lg { margin-block: 13px 14px; }
+    .capacities__intro .body-lg { line-height:1.7; }
+    .capacities__row { padding-block:18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .capacities__explore svg,
+    .capacities__quote,
+    .capacities__quote svg { transition: none; }
+  }
+
+
+  /* ═══════════════════════════════════════
+     LOGÍSTICA — sección editorial, mobile-first
+     ═══════════════════════════════════════ */
+  .logistics { background: var(--color-gray-50); }
+  .logistics__header { display: grid; gap: 15px; margin-bottom: 30px; }
+  .logistics__header h2 { margin: 12px 0 0; max-width: 750px; text-wrap: balance; }
+  .logistics__header .body-lg { max-width: 810px; margin: 0; color: var(--color-gray-600); }
+  .logistics__header .body-lg strong { color: var(--color-gray-700); font-weight: 650; }
 
   .logistics__visual {
     position: relative;
-    width: 100%;
-    height: 380px;
-    margin-bottom: 28px;
+    display: flex;
+    align-items: flex-end;
+    min-height: 530px;
     overflow: hidden;
     border-radius: var(--radius-xl);
-    background: #1e293b;
+    background: #ccd8e2;
+    isolation: isolate;
   }
-
   .logistics__visual img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 40%;
+    position: absolute; inset: 0; z-index: -2;
+    width: 100%; height: 100%; object-fit: cover; object-position: 53% center;
   }
-
   .logistics__visual-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,18,38,0.16) 45%, rgba(0,18,38,0.72) 100%);
+    position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,28,54,.06) 18%, rgba(0,23,47,.24) 48%, rgba(0,23,47,.82) 100%);
   }
-
   .logistics__visual-card {
-    position: absolute;
-    left: 16px;
-    bottom: 16px;
-    right: 16px;
-    padding: 20px;
-    border-radius: var(--radius-lg);
-    background: rgba(255, 255, 255, 0.96);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+    width: 100%; margin: 0 17px 47px;
+    padding: 25px; border: 1px solid rgba(255,255,255,.8);
+    border-radius: 18px; background: rgba(255,255,255,.97);
   }
-
   .logistics__visual-eyebrow {
-    display: inline-block;
-    margin-bottom: 6px;
-    color: var(--color-primary);
-    font: 800 10px/1.4 var(--font-display);
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
+    display: inline-block; margin-bottom: 10px;
+    color: var(--color-primary); font: 800 11px/1.4 var(--font-display);
+    letter-spacing: .075em; text-transform: uppercase;
   }
-
   .logistics__visual-card h3 {
-    margin: 0 0 8px;
-    font: 800 18px/1.25 var(--font-display);
-    letter-spacing: -0.02em;
-    color: var(--color-dark);
+    margin: 0 0 10px; color: var(--color-dark);
+    font: 800 clamp(1.35rem,2.3vw,1.85rem)/1.22 var(--font-display);
+    letter-spacing: -.03em;
   }
-
   .logistics__visual-card p {
-    margin: 0 0 14px;
-    color: var(--color-gray-600);
-    font-size: 13px;
-    line-height: 1.6;
+    margin: 0 0 19px; color: var(--color-gray-600);
+    font-size: 15px; line-height: 1.7;
+  }
+  .logistics__photo-cta {
+    display: inline-flex; align-items: center; justify-content: space-between;
+    gap: 20px; min-height: 51px; padding: 7px 8px 7px 20px;
+    border: 1px solid var(--color-primary); border-radius: 999px;
+    background: var(--color-primary); color: #fff;
+    font: 700 13px/1.35 var(--font-body); cursor: pointer;
+    transition: background .23s ease, transform .23s ease;
+  }
+  .logistics__photo-cta > span {
+    display: grid; place-items: center; flex: 0 0 auto;
+    width: 35px; height: 35px; border-radius: 50%; background: rgba(255,255,255,.17);
+  }
+  .logistics__photo-cta svg { width: 17px; height: 17px; transition: transform .23s ease; }
+  .logistics__photo-cta:hover { background: var(--color-primary-dark); transform: translateY(-2px); }
+  .logistics__photo-cta:hover svg { transform: translateX(3px) rotate(-13deg); }
+  .logistics__photo-cta:focus-visible { outline: 3px solid #70b7ff; outline-offset: 3px; }
+  .logistics__photo-note {
+    position: absolute; right: 19px; bottom: 15px;
+    color: rgba(255,255,255,.9); font-size: 10px; line-height: 1.4;
+    text-shadow: 0 1px 3px rgba(0,0,0,.4);
   }
 
+  /* V17 — scroll editorial: números protagonistas, sin tarjetas ni ornamentación. */
   .logistics__details {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding-top: 24px;
+    gap: 32px;
+    padding-top: 44px;
+    margin-top: 31px;
     border-top: 1px solid var(--color-gray-200);
   }
-
-  .logistics__info h3 {
-    margin-bottom: 10px;
+  .logistics__details-intro h3 {
+    margin: 12px 0;
+    max-width: 24ch;
+    font: 800 clamp(24px, 2.5vw, 34px)/1.16 var(--font-display);
+    letter-spacing: -.04em;
+    color: var(--color-dark);
   }
-
-  .logistics__facts {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 14px;
+  .logistics__details-intro p { max-width: 425px; color: var(--color-gray-600); }
+  .logistics__progress { display: none; }
+  .logistics__steps { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--color-gray-200); }
+  .logistics__steps li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 60px minmax(0, 1fr);
+    gap: 18px;
+    padding: 25px 0;
+    border-bottom: 1px solid var(--color-gray-200);
   }
-
-  .logistics__facts li {
-    padding-left: 14px;
-    border-left: 2px solid var(--color-gray-300);
-    color: var(--color-gray-700);
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1.5;
+  .logistics__step-number {
+    color: var(--color-primary);
+    font: 800 31px/1 var(--font-display);
+    letter-spacing: -.075em;
+    font-variant-numeric: tabular-nums;
   }
-
-  .logistics__cta-box {
-    padding: 24px;
-    border-radius: var(--radius-lg);
-    background: var(--color-primary-light);
+  .logistics__steps h4 {
+    margin: 0 0 9px;
+    color: var(--color-dark);
+    font: 800 clamp(18px, 1.8vw, 23px)/1.25 var(--font-display);
+    letter-spacing: -.035em;
   }
-
-  @media (min-width: 769px) {
-    .logistics__visual {
-      height: clamp(380px, 42vw, 520px);
-    }
-
-    .logistics__visual-card {
-      left: 26px;
-      bottom: 26px;
-      right: auto;
-      width: min(440px, 50%);
-    }
-
+  .logistics__steps p { margin: 0; max-width: 56ch; color: var(--color-gray-600); font-size: 15px; line-height: 1.75; }
+  @media (min-width: 900px) {
+    .logistics__header { grid-template-columns: minmax(0,.92fr) minmax(0,1.08fr); align-items: end; gap: 55px; margin-bottom: 34px; }
+    .logistics__header h2 { margin-bottom: 0; }
+    .logistics__visual { min-height: 495px; }
+    .logistics__visual img { object-position: center 55%; }
+    .logistics__visual-card { width: min(465px, calc(100% - 60px)); margin: 0 0 28px 28px; padding: 27px 29px; }
     .logistics__details {
-      grid-template-columns: 1.3fr 0.85fr;
-      gap: clamp(30px, 4vw, 56px);
+      grid-template-columns: minmax(250px, .82fr) minmax(0, 1.18fr);
+      align-items: start;
+      gap: clamp(45px, 7vw, 120px);
+      padding-top: 32px;
     }
-
-    .logistics__cta-box {
-      border-left: 1px solid var(--color-gray-200);
+    .logistics__details-intro {
+      position: sticky;
+      top: 105px;
+      align-self: start;
+      padding-bottom: 45px;
     }
-
-    .logistics__facts {
-      flex-direction: row;
-      gap: 0;
+    .logistics__progress { display: block; margin-top: 38px; }
+    .logistics__progress-counter { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; }
+    .logistics__progress-counter strong {
+      display: block;
+      color: var(--color-primary-dark);
+      font: 800 clamp(65px, 7vw, 100px)/.92 var(--font-display);
+      letter-spacing: -.08em;
+      font-variant-numeric: tabular-nums;
+      transition: opacity .2s ease;
     }
-
-    .logistics__facts li {
-      padding: 0 16px;
-      border-left: 1px solid var(--color-gray-300);
+    .logistics__progress-counter span { color: var(--color-gray-400); font: 700 15px/1 var(--font-display); }
+    .logistics__progress-track { max-width: 215px; height: 3px; background: #d7e6f5; overflow: hidden; border-radius: 9px; }
+    .logistics__progress-track span { display: block; width: 33.33%; height: 100%; background: var(--color-primary); transition: width .35s var(--ease-out); }
+    .logistics__progress-caption { display: block; margin-top: 10px; font-size: 12px; color: var(--color-gray-500); }
+    .logistics__steps { border-top: 0; }
+    .logistics__steps li {
+      min-height: 174px;
+      grid-template-columns: minmax(90px, .29fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 22px;
+      padding: 23px 0;
+      border-top: 1px solid var(--color-gray-200);
+      border-bottom: 0;
+      opacity: .73;
+      transition: opacity .4s ease;
     }
-
-    .logistics__facts li:first-child {
-      padding-left: 0;
-      border-left: none;
+    .logistics__steps li:last-child { border-bottom: 1px solid var(--color-gray-200); }
+    .logistics__steps li.is-active { opacity: 1; }
+    .logistics__steps li::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--color-primary);
+      transition: width .45s var(--ease-out);
     }
+    .logistics__steps li.is-active::before { width: 80px; }
+    .logistics__step-number {
+      font-size: clamp(45px, 5vw, 70px);
+      color: #a9c6e5;
+      transition: color .4s ease, transform .5s var(--ease-out);
+    }
+    .logistics__steps li.is-active .logistics__step-number { color: var(--color-primary); transform: translateX(5px); }
+    .logistics__steps h4 { font-size: clamp(20px, 2vw, 29px); }
+    .logistics__steps li > div { transform: translateY(6px); transition: transform .45s var(--ease-out); }
+    .logistics__steps li.is-active > div { transform: translateY(0); }
+  }
+  @media (max-width: 600px) {
+    .logistics__header { gap: 12px; }
+    .logistics__visual { min-height: 520px; border-radius: 19px; }
+    .logistics__visual img { object-position: 53% center; }
+    .logistics__visual-card { margin: 0 12px 59px; padding: 21px; border-radius: 15px; }
+    .logistics__visual-card p { font-size: 15px; }
+    .logistics__photo-cta { width: 100%; }
+    .logistics__photo-note { left: 14px; right: 14px; bottom: 17px; font-size: 9px; }
+    .logistics__details { padding-top: 27px; margin-top: 25px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logistics__photo-cta, .logistics__photo-cta svg,
+    .logistics__steps li, .logistics__step-number, .logistics__steps li > div,
+    .logistics__progress-track span { transition: none !important; transform: none !important; }
   }
 
-
-  /* ═══════════════════════════════════════════════
-     GUÍA PARA ELEGIR
-     ═══════════════════════════════════════════════ */
+  /* ═══════════════════════════════════════
+     GUÍA PARA ELEGIR — sección editorial y producto
+     ═══════════════════════════════════════ */
   .guide {
-    background: var(--color-gray-50);
+    background: #fff;
     border-top: 1px solid var(--color-gray-200);
   }
 
   .guide__layout {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+    align-items: start;
   }
 
+  .guide__content { min-width: 0; }
   .guide__content h2 {
-    margin: 12px 0 14px;
+    margin: 15px 0 18px;
+    max-width: 660px;
+    text-wrap: balance;
   }
+  .guide__intro { max-width: 700px; }
+  .guide__intro strong { font-weight: 700; color: var(--color-dark); }
 
   .guide__steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin: 24px 0;
-  }
-
-  .guide__step {
-    display: grid;
-    grid-template-columns: 40px 1fr;
-    gap: 14px;
-    padding: 18px 0;
+    margin: 30px 0 27px;
+    padding: 0;
+    list-style: none;
     border-top: 1px solid var(--color-gray-200);
   }
-
+  .guide__step {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 17px;
+    padding: 18px 0 19px;
+    border-bottom: 1px solid var(--color-gray-200);
+  }
   .guide__step-num {
     display: grid;
     place-items: center;
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-md);
+    width: 38px;
+    height: 38px;
+    border: 1px solid #d7e5f3;
+    border-radius: 11px;
     background: var(--color-primary-light);
     color: var(--color-primary);
     font: 800 12px/1 var(--font-display);
   }
-
   .guide__step h3 {
     margin: 0 0 6px;
-    font: 700 15px/1.35 var(--font-display);
-    letter-spacing: -0.01em;
     color: var(--color-dark);
+    font: 750 clamp(15px, 1.2vw, 17px)/1.4 var(--font-display);
+    letter-spacing: -.02em;
   }
-
   .guide__step p {
     margin: 0;
     color: var(--color-gray-600);
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.7;
   }
-
   .guide__actions {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
   }
+  .guide__quote {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    min-height: 52px;
+    padding: 8px 9px 8px 20px;
+    border: 1px solid var(--color-primary);
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .guide__quote-icon {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.16);
+    transition: transform .25s ease, background .25s ease;
+  }
+  .guide__quote-icon svg { width: 16px; height: 16px; }
+  .guide__quote:hover { background: var(--color-primary-dark); transform: translateY(-1px); }
+  .guide__quote:hover .guide__quote-icon { transform: translateX(2px) rotate(-12deg); background: rgba(255,255,255,.24); }
+  .guide__explore {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 48px;
+    color: var(--color-primary);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    text-underline-offset: 5px;
+  }
+  .guide__explore:hover { text-decoration: underline; }
+  .guide__explore span { transition: transform .2s ease; }
+  .guide__explore:hover span { transform: translate(2px,-2px); }
 
   .guide__visual {
-    position: relative;
-    min-height: 300px;
-    overflow: hidden;
-    border-radius: var(--radius-xl);
+    min-width: 0;
     margin: 0;
+    padding: clamp(18px, 2.5vw, 30px);
+    border: 1px solid #d9e6f2;
+    border-radius: var(--radius-xl);
+    background: #f3f7fb;
+    overflow: hidden;
   }
-
-  .guide__visual img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    min-height: 300px;
-  }
-
-  .guide__visual figcaption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 28px 16px 12px;
-    color: rgba(255, 255, 255, 0.85);
-    background: linear-gradient(180deg, transparent, rgba(0, 25, 49, 0.6));
+  .guide__visual-heading { display: grid; gap: 8px; }
+  .guide__visual-kicker {
+    color: var(--color-primary);
     font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .085em;
+    text-transform: uppercase;
   }
-
-  .guide__visual figcaption a {
-    color: var(--color-white);
-    text-underline-offset: 3px;
-    text-decoration: underline;
-  }
-
-  @media (min-width: 769px) {
-    .guide__layout {
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: clamp(40px, 6vw, 80px);
-      align-items: center;
-    }
-
-    .guide__visual {
-      min-height: 540px;
-      order: 1;
-    }
-
-    .guide__content {
-      order: 0;
-    }
-
-    .guide__actions {
-      flex-direction: row;
-    }
-  }
-
-
-  /* ═══════════════════════════════════════════════
-     FAQ
-     ═══════════════════════════════════════════════ */
-  .faq__layout {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  .faq__intro h2 {
-    margin: 12px 0 12px;
-  }
-
-  .faq__list {
-    border-top: 1px solid var(--color-gray-200);
-  }
-
-  .faq__item {
-    border-bottom: 1px solid var(--color-gray-200);
-  }
-
-  .faq__item summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    min-height: 64px;
-    padding: 16px 0;
+  .guide__visual-heading strong {
+    max-width: 440px;
     color: var(--color-dark);
-    font: 700 14px/1.45 var(--font-display);
+    font: 800 clamp(21px,2vw,29px)/1.2 var(--font-display);
+    letter-spacing: -.035em;
+  }
+  .guide__visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.28;
+    margin: 24px auto 16px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+  }
+  .guide__visual-foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px 16px;
+    padding: 16px 0;
+    border-top: 1px solid #d9e6f2;
+    border-bottom: 1px solid #d9e6f2;
+  }
+  .guide__visual-foot span {
+    position: relative;
+    padding-left: 12px;
+    color: var(--color-gray-700);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .guide__visual-foot span::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: .55em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-primary);
+  }
+  .guide__visual-caption {
+    margin: 13px 0 0;
+    color: var(--color-gray-500);
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  @media (min-width: 960px) {
+    .guide__layout {
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+      align-items: center;
+      gap: clamp(42px, 5vw, 82px);
+    }
+  }
+  @media (max-width: 599px) {
+    .guide__content h2 { margin-top: 12px; }
+    .guide__steps { margin-top: 23px; }
+    .guide__step { gap: 12px; padding-block: 17px; }
+    .guide__step p { font-size: 14px; }
+    .guide__actions { flex-direction: column; align-items: stretch; gap: 8px; }
+    .guide__quote { width: 100%; }
+    .guide__explore { justify-content: center; }
+    .guide__visual { padding: 18px; border-radius: 18px; }
+    .guide__visual img { margin-block: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .guide__quote, .guide__quote-icon, .guide__explore span { transition: none; }
+  }
+
+  /* ═══════════════════════════════════════
+     PREGUNTAS FRECUENTES — dos columnas editoriales y acordeones accesibles
+     ═══════════════════════════════════════ */
+  .faq { background: #fff; }
+  .faq__layout { display: grid; grid-template-columns: 1fr; gap: 29px; }
+  .faq__intro { max-width: 830px; margin-inline: auto; text-align: center; }
+  .faq__intro .eyebrow { justify-content: center; }
+  .faq__intro h2 { margin: 14px auto 14px; max-width: 830px; text-wrap: balance; }
+  .faq__intro > .body-lg { margin-inline: auto; max-width: 670px; font-size: 16px; line-height: 1.8; }
+  .faq__list { display: grid; grid-template-columns: 1fr; gap: 12px 24px; }
+  .faq__column { display: grid; grid-auto-rows: min-content; align-content: start; gap: 10px; min-width: 0; }
+  .faq__item { min-width: 0; border-radius: 12px; border: 1px solid #e5ebf2; background: #f5f7fa; overflow: clip; transition: border-color .2s ease, background .2s ease; }
+  .faq__item summary {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr) 34px;
+    gap: 10px;
+    min-height: 66px;
+    align-items: center;
+    padding: 12px 14px;
+    font: 750 14px/1.4 var(--font-display);
+    letter-spacing: -.012em;
+    color: var(--color-dark);
     cursor: pointer;
     list-style: none;
   }
-
-  .faq__item summary::-webkit-details-marker {
-    display: none;
-  }
-
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__item summary::before { content: '•'; font: 800 16px/1 var(--font-display); color: var(--color-primary); text-align: center; }
   .faq__item summary::after {
-    content: "+";
+    content: '+';
     display: grid;
     place-items: center;
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-    border: 1px solid var(--color-gray-200);
+    justify-self: end;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
+    border: 1px solid #cbddec;
     color: var(--color-primary);
-    font: 500 18px/1 var(--font-body);
-    transition: transform var(--transition-fast),
-                background var(--transition-fast),
-                color var(--transition-fast);
+    background: #fff;
+    font: 500 22px/1 var(--font-body);
+    transition: background .2s ease, transform .2s ease, color .2s ease;
+  }
+  .faq__item summary:focus-visible { outline: 3px solid #6bb3ed; outline-offset: -3px; }
+  .faq__item summary:hover { color: var(--color-primary); }
+  .faq__item summary:hover::after { transform: rotate(90deg); }
+  .faq__item[open] { background: #f3f7fb; border-color: #b9d2e9; }
+  .faq__item[open] summary { background: var(--color-primary); color: #fff; }
+  .faq__item[open] summary::before { color: #c9e7ff; }
+  .faq__item[open] summary::after { content: '−'; color: var(--color-primary); background: #fff; border-color: #fff; }
+  .faq__item[open] summary:hover { color: #fff; }
+  .faq__answer { padding: 17px 18px 20px; color: var(--color-gray-600); }
+  .faq__answer p { max-width: 75ch; font-size: 14px; line-height: 1.8; }
+  .faq__help {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+    padding: 20px 0 0;
+    border-top: 1px solid var(--color-gray-200);
+    text-align: center;
+    align-items: center;
+  }
+  .faq__help-index { display: none; }
+  .faq__help p { margin: 0; color: var(--color-gray-600); font-size: 14px; line-height: 1.6; }
+  .faq__help p strong { color: var(--color-dark); }
+  .faq__help-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 3px 0 0;
+    padding: 5px 2px;
+    border: 0;
+    border-bottom: 1px solid currentColor;
+    background: transparent;
+    color: var(--color-primary);
+    font: 750 13px/1.5 var(--font-display);
+    cursor: pointer;
+  }
+  .faq__help-link svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; transition: transform .2s ease; }
+  .faq__help-link:hover svg { transform: translateX(3px); }
+  .faq__help-link:focus-visible { outline: 3px solid #6bb3ed; outline-offset: 4px; }
+  @media (min-width: 820px) {
+    .faq__layout { gap: 39px; }
+    .faq__list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 22px; }
+    .faq__item summary { font-size: 14px; }
+    .faq__help { flex-direction: row; justify-content: center; gap: 24px; }
+  }
+  @media (max-width: 599px) {
+    .faq__layout { gap: 22px; }
+    .faq__intro h2 { margin: 12px auto; }
+    .faq__item summary { grid-template-columns: 18px minmax(0,1fr) 32px; gap: 8px; padding: 12px 10px; font-size: 13px; }
+    .faq__answer { padding: 16px 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faq__item, .faq__item summary::after, .faq__help-link svg { transition: none; }
   }
 
-  .faq__item[open] summary::after {
-    content: "−";
-    color: var(--color-white);
-    background: var(--color-primary);
-    border-color: var(--color-primary);
+  /* V18 — clarificar que estas capacidades son una muestra, no todo el catálogo. */
+  .capacities__highlight { color: var(--color-primary); }
+  .capacities__all {
+    display: inline-flex; align-items: center; gap: 12px; margin-top: 22px;
+    color: var(--color-primary); font: 800 14px/1.5 var(--font-display);
+    text-decoration: none; border-bottom: 1px solid #b8d2ea; padding-bottom: 7px;
   }
+  .capacities__all:hover { border-bottom-color: var(--color-primary); }
 
-  .faq__answer {
-    padding: 0 0 20px;
-    color: var(--color-gray-600);
-    font-size: 14px;
-    line-height: 1.75;
-  }
-
-  .faq__answer p {
-    margin: 0;
-  }
-
-  @media (min-width: 769px) {
-    .faq__layout {
-      grid-template-columns: 0.75fr 1.25fr;
-      gap: clamp(40px, 6vw, 80px);
-    }
-
-    .faq__intro {
-      position: sticky;
-      top: 140px;
-      align-self: start;
-    }
-
-    .faq__item summary {
-      font-size: 15px;
-    }
-  }
-
-
-  /* ═══════════════════════════════════════════════
-     CTA FINAL
-     ═══════════════════════════════════════════════ */
-  .final-cta {
-    background: var(--color-white);
-    padding-bottom: 40px;
-  }
-
-  .final-cta__panel {
+  /* V18 — guía editorial más visual, sin el recuadro azul genérico. */
+  .guide__visual {
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: clamp(28px, 5vw, 56px);
-    overflow: hidden;
-    border-radius: var(--radius-xl);
-    color: var(--color-white);
-    background: linear-gradient(120deg, #01488e 0%, #00386f 58%, #002d59 100%);
-    isolation: isolate;
+    overflow: visible;
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+  .guide__visual-heading { border-left: 3px solid var(--color-primary); padding: 3px 0 4px 20px; }
+  .guide__visual-heading strong { max-width: 470px; font-size: clamp(24px,2.4vw,35px); line-height: 1.15; }
+  .guide__visual img {
+    width: 100%; max-height: 460px; aspect-ratio: 1.35;
+    margin: 21px 0 0; object-fit: contain;
+    background: #f2f6fb; border-radius: 20px 20px 0 0;
+    mix-blend-mode: normal;
+  }
+  .guide__visual-foot {
+    display: grid; grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 0; padding: 0; margin: 0; border: 1px solid #d8e5ef;
+    border-top: 0; border-radius: 0 0 20px 20px; overflow: hidden;
+  }
+  .guide__visual-foot a {
+    display: grid; grid-template-columns: 1fr auto; gap: 7px;
+    padding: 16px 13px; text-decoration: none;
+    color: var(--color-primary); font: 800 11px/1.4 var(--font-display);
+    background: #fff; border-right: 1px solid #e1ebf3;
+    transition: background .2s ease;
+  }
+  .guide__visual-foot a:last-child { border-right: 0; }
+  .guide__visual-foot a strong { grid-column: 1 / -1; font: 700 13px/1.4 var(--font-display); color: var(--color-dark); }
+  .guide__visual-foot a span { grid-column: 2; grid-row: 1; }
+  .guide__visual-foot a:hover { background: #eaf2fb; }
+  .guide__visual-foot span::before { display: none; }
+  .guide__visual-caption { margin: 13px 0 0; }
+  .guide__step { transition: padding-left .24s ease, border-color .24s ease; }
+  .guide__step:hover { padding-left: 10px; border-color: #bdd6ee; }
+  @media (max-width: 599px) {
+    .guide__visual img { margin-top: 14px; border-radius: 15px 15px 0 0; }
+    .guide__visual-foot { border-radius: 0 0 15px 15px; }
+    .guide__visual-foot a { padding: 12px 7px; font-size: 10px; }
+    .guide__visual-foot a strong { font-size: 11px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .guide__step, .guide__visual-foot a { transition: none !important; }
   }
 
-  .final-cta__panel::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: -100px;
-    right: 10%;
-    width: 300px;
-    height: 300px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.03),
-                0 0 0 65px rgba(255, 255, 255, 0.02);
-    pointer-events: none;
-  }
-
-  .final-cta__eyebrow {
-    display: inline-block;
-    margin-bottom: 10px;
-    color: #cfe4ff;
-    font: 800 10px/1.4 var(--font-display);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .final-cta__title {
-    margin: 0 0 12px;
-    font: 800 clamp(1.6rem, 3.5vw, 2.8rem)/1.1 var(--font-display);
-    letter-spacing: -0.04em;
-  }
-
-  .final-cta__copy {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 14px;
-    line-height: 1.7;
-    max-width: 650px;
-  }
-
-  @media (min-width: 769px) {
-    .final-cta__panel {
-      grid-template-columns: 1fr auto;
-      align-items: center;
-    }
-
-    .final-cta__actions {
-      display: flex;
-      justify-content: flex-end;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .final-cta {
-      padding-bottom: 20px;
-    }
-  }
 </style>
 
 <script type="application/ld+json" set:html={JSON.stringify({
@@ -1270,3 +1093,64 @@ import Layout from '../layouts/Layout.astro';
     }
   ]
 })} />
+
+<!-- V17 · Progreso por scroll en «Tres datos que facilitan la entrega» -->
+<script>
+  const stepList = document.querySelector<HTMLOListElement>('[data-logistics-steps]');
+  if (stepList) {
+    const steps = Array.from(stepList.querySelectorAll<HTMLElement>('[data-logistics-step]'));
+    const current = document.querySelector<HTMLElement>('[data-logistics-current]');
+    const progress = document.querySelector<HTMLElement>('[data-logistics-progress]');
+    const desktop = window.matchMedia('(min-width: 900px)');
+    let lastActive = -1;
+    let pending = false;
+
+    const paintStep = () => {
+      pending = false;
+      if (!desktop.matches || !steps.length) return;
+      const targetY = Math.max(210, Math.min(window.innerHeight * 0.46, 460));
+      let active = 0;
+      let bestDistance = Number.POSITIVE_INFINITY;
+      steps.forEach((step, index) => {
+        const rect = step.getBoundingClientRect();
+        const midpoint = rect.top + rect.height * 0.5;
+        const distance = Math.abs(midpoint - targetY);
+        if (distance < bestDistance) { bestDistance = distance; active = index; }
+      });
+      if (active === lastActive) return;
+      lastActive = active;
+      steps.forEach((step, index) => step.classList.toggle('is-active', index === active));
+      if (current) current.textContent = String(active + 1).padStart(2, '0');
+      if (progress) progress.style.width = `${((active + 1) / steps.length) * 100}%`;
+    };
+    const requestPaint = () => {
+      if (!pending) { pending = true; window.requestAnimationFrame(paintStep); }
+    };
+    const onBreakpointChange = () => {
+      if (!desktop.matches) {
+        steps.forEach(step => step.classList.remove('is-active'));
+        lastActive = -1;
+      } else { requestPaint(); }
+    };
+    window.addEventListener('scroll', requestPaint, { passive: true });
+    window.addEventListener('resize', requestPaint, { passive: true });
+    desktop.addEventListener('change', onBreakpointChange);
+    requestPaint();
+  }
+</script>
+
+
+<!-- V20 · FAQ: un solo acordeón abierto entre las dos columnas. -->
+<script>
+  const faqItems = Array.from(document.querySelectorAll<HTMLDetailsElement>('#preguntas-frecuentes .faq__item'));
+  // `name` permite el comportamiento nativo; este listener sirve de refuerzo
+  // en navegadores que aún no gestionan grupos de <details>.
+  faqItems.forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      faqItems.forEach((other) => {
+        if (other !== item && other.open) other.open = false;
+      });
+    });
+  });
+</script>
