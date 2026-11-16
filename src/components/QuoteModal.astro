@@ -256,8 +256,8 @@
 
       // Marcador SOLO local y de un uso. No contiene nombre, telefono ni correo.
       try { sessionStorage.setItem('depofibra-form-success-v1', '1'); } catch { /* OK */ }
-      // Evento de diagnostico sin PII; no marcar como generate_lead en GTM.
-      (window as any).dataLayer?.push({event: 'quote_form_provider_accepted'});
+      // La medicion del evento ocurre tras la navegacion en la pagina de gracias;
+      // no se arriesga a perder el evento por la redireccion inmediata.
       window.location.assign('/solicitud-enviada/');
     } catch {
       if (quoteFeedback) {
