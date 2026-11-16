@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-const title = 'Solicitud registrada | Depofibra';
-const description = 'Información de confirmación para solicitudes enviadas desde el formulario comercial de Depofibra.';
+const title = 'Confirmación de consulta | Depofibra';
+const description = 'Información sobre la solicitud de presupuesto desde el formulario de Depofibra.';
 ---
 <Layout title={title} description={description} canonical="https://depofibra.com/solicitud-enviada/" activeNav="contacto" indexable={false}>
   <meta slot="head" name="googlebot" content="noindex, nofollow, noarchive, nosnippet" />
@@ -12,9 +12,9 @@ const description = 'Información de confirmación para solicitudes enviadas des
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7" /></svg>
         </div>
         <p class="confirmation-eyebrow">CONTACTO COMERCIAL · DEPOFIBRA</p>
-        <h1>Gracias por tu consulta.</h1>
-        <p>Si acabas de enviar el formulario, tu solicitud se ha registrado para su revisión. Estudiaremos la información facilitada y nos pondremos en contacto contigo a través de los datos que nos hayas indicado.</p>
-        <p class="confirmation-hint">Esta confirmación no constituye un presupuesto ni supone una reserva de producto. Si necesitas hablar con nosotros, llama al <a href="tel:+34642129233">642 129 233</a>.</p>
+        <h1 id="confirmationTitle">Solicitar presupuesto</h1>
+        <p id="confirmationMessage">Esta página se muestra después de enviar una consulta desde nuestra web. Si has llegado aquí directamente, puedes abrir el formulario desde cualquiera de las páginas de productos.</p>
+        <p class="confirmation-hint">La aceptación del envío por el servicio de formularios no garantiza la entrega del correo. No se ha generado ningún presupuesto ni se ha reservado ningún producto. Para consultas urgentes, llama al <a href="tel:+34642129233">642 129 233</a>.</p>
         <div class="confirmation-actions">
           <a href="/" class="confirmation-button confirmation-button--main">Volver al inicio <span aria-hidden="true">↗</span></a>
           <a href="/depositos/" class="confirmation-button">Ver depósitos <span aria-hidden="true">↗</span></a>
@@ -40,3 +40,18 @@ const description = 'Información de confirmación para solicitudes enviadas des
   .confirmation-button--main:hover{background:#002d59}
   @media(max-width:550px){.confirmation-page{padding:30px 0 60px}}
 </style>
+<script>
+  // Unicamente la respuesta AJAX positiva del formulario de ESTA web coloca
+  // el marcador de una sola visita. La URL publica por si sola NO confirma nada.
+  let accepted = false;
+  try {
+    accepted = sessionStorage.getItem('depofibra-form-success-v1') === '1';
+    sessionStorage.removeItem('depofibra-form-success-v1');
+  } catch { /* En navegadores sin storage se mostrara el texto neutro */ }
+  if (accepted) {
+    const heading = document.getElementById('confirmationTitle');
+    const paragraph = document.getElementById('confirmationMessage');
+    if (heading) heading.textContent = 'Gracias por tu consulta.';
+    if (paragraph) paragraph.textContent = 'El servicio de envío ha aceptado tu solicitud. Revisaremos la información que nos has facilitado y nos pondremos en contacto contigo cuando podamos atenderla.';
+  }
+</script>
