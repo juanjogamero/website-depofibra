@@ -53,5 +53,18 @@ const description = 'Información sobre la solicitud de presupuesto desde el for
     const paragraph = document.getElementById('confirmationMessage');
     if (heading) heading.textContent = 'Gracias por tu consulta.';
     if (paragraph) paragraph.textContent = 'El servicio de envío ha aceptado tu solicitud. Revisaremos la información que nos has facilitado y nos pondremos en contacto contigo cuando podamos atenderla.';
+
+    // Un único evento si el proveedor confirmó el envío y las cookies analíticas
+    // están aceptadas. La landing por URL directa nunca produce este evento.
+    const announceAccepted = () => {
+      try {
+        const pref = JSON.parse(localStorage.getItem('depofibra-cookie-preferences') || 'null');
+        if (pref?.version !== 'depofibra-cookies-v2-ga4-consent' || pref.analytics !== true) return;
+        const layer = (window as any).dataLayer;
+        if (Array.isArray(layer)) layer.push({event: 'quote_form_provider_accepted'});
+      } catch { /* La web funciona sin analítica si no hay acceso al almacenamiento */ }
+    };
+    if (document.readyState === 'complete') announceAccepted();
+    else window.addEventListener('load', announceAccepted, {once: true});
   }
 </script>
