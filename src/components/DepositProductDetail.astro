@@ -166,6 +166,12 @@ const contactHref = `/contacto/?producto=${encodeURIComponent(product.quoteProdu
                 </article>
               ))}
             </div>
+            <nav class="product-featured__links" aria-label="Fichas de depósitos verticales por capacidad">
+              <span>Consultar cada capacidad:</span>
+              {featuredLiters.map(liters => (
+                <a href={`/depositos/vertical-base-plana/${liters}-litros/`}>{formatDimension(liters)} litros <span aria-hidden="true">↗</span></a>
+              ))}
+            </nav>
           </div>
         )}
       </section>
@@ -513,6 +519,10 @@ const contactHref = `/contacto/?producto=${encodeURIComponent(product.quoteProdu
   .product-featured__grid span{display:block;color:#01488e;font:800 14px var(--font-display);margin-bottom:6px}
   .product-featured__grid strong{display:block;font:700 13px var(--font-display);color:#152a40}
   .product-featured__grid p{margin:4px 0 0;color:#677b8a;font:400 12px/1.55 var(--font-body)}
+  .product-featured__links{display:flex;flex-wrap:wrap;align-items:center;gap:9px 17px;margin-top:17px}
+  .product-featured__links>span{font:600 12px/1.5 var(--font-body);color:#536477}
+  .product-featured__links a{font:750 12px/1.5 var(--font-body);color:#01488e;text-decoration:underline;text-underline-offset:3px}
+  .product-featured__links a:focus-visible{outline:2px solid #01488e;outline-offset:3px;border-radius:2px}
   @media(max-width:900px){.product-quickhelp__lead,.product-featured__head{grid-template-columns:1fr;gap:12px}.product-quickhelp__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-featured__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media(max-width:580px){.product-quickhelp{margin-top:25px;padding-top:23px}.product-quickhelp__grid{gap:10px 16px}.product-quickhelp__grid strong{font-size:14px}.product-featured__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.product-featured__grid article{padding:12px 10px}.product-featured__head h3{font-size:22px}}
 </style>
