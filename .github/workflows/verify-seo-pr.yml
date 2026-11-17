@@ -1,0 +1,27 @@
+name: Verificar SEO sin publicar
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Compilar Astro sin publicar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener código del PR
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Comprobar compilación
+        run: npm run build
+        env:
+          DEPOFIBRA_SITE_URL: https://depofibra.com
