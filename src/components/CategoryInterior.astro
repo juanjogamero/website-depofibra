@@ -31,6 +31,9 @@ interface Props {
   eyebrow: string;
   description: string;
   seoTitle?: string;
+  canonicalPath?: string;
+  breadcrumb?: string;
+  localLink?: { href: string; label: string };
   intro: string;
   items: Item[];
   note: string;
@@ -40,9 +43,9 @@ interface Props {
   faqs: FAQ[];
   feature?: Feature;
 }
-const {nav,title,eyebrow,description,seoTitle,intro,items,note,guideTitle,guideDescription,guideRows,faqs,feature}=Astro.props;
-const path = nav === 'piscinas' ? '/piscinas/' : nav === 'fosas' ? '/fosas-septicas/' : '/cubas-cisternas/';
-const crumbs = nav === 'piscinas' ? 'Piscinas' : nav === 'fosas' ? 'Fosas sépticas' : 'Cubas y cisternas';
+const {nav,title,eyebrow,description,seoTitle,canonicalPath,breadcrumb,localLink,intro,items,note,guideTitle,guideDescription,guideRows,faqs,feature}=Astro.props;
+const path = canonicalPath ?? (nav === 'piscinas' ? '/piscinas/' : nav === 'fosas' ? '/fosas-septicas/' : '/cubas-cisternas/');
+const crumbs = breadcrumb ?? (nav === 'piscinas' ? 'Piscinas' : nav === 'fosas' ? 'Fosas sépticas' : 'Cubas y cisternas');
 const categoryShort = nav === 'piscinas' ? 'modelos de referencia' : nav === 'fosas' ? 'sistemas' : 'configuraciones';
 const activeNav = nav as 'piscinas' | 'fosas' | 'cubas';
 const socialImage = nav === 'piscinas' ? (items[0]?.image ?? '/images/productos/categoria-piscinas.jpg') : nav === 'fosas' ? '/images/productos/categoria-fosas.jpg' : '/images/productos/deposito-horizontal.jpg';
@@ -151,6 +154,7 @@ const catalogItems = items.map(item => ({
           <span class="eyebrow">INFORMACIÓN PARA DECIDIR</span>
           <h2 class="heading-lg" id="df-guide-title">{guideTitle}</h2>
           <p class="body-lg">{guideDescription}</p>
+          {localLink && <a href={localLink.href} class="df-guide__contact">{localLink.label} <span aria-hidden="true">↗</span></a>}
           <a href="/contacto/" class="df-guide__contact">¿Tienes dudas? Hablemos <span aria-hidden="true">↗</span></a>
         </div>
         <div class="df-guide__rows">

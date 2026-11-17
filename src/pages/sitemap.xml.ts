@@ -5,7 +5,7 @@ import { poolModels } from '../data/poolModels';
 import { secondaryProducts } from '../data/secondaryProducts';
 import { blogArticles } from '../data/blogArticles';
 
-const fixedRoutes = ['/', '/depositos/', '/piscinas/', '/fosas-septicas/', '/cubas-cisternas/', '/blog/', '/contacto/', '/sobre-depofibra/'];
+const fixedRoutes = ['/', '/depositos/', '/piscinas/', '/fosas-septicas/', '/fosas-septicas/sevilla/', '/cubas-cisternas/', '/blog/', '/contacto/', '/sobre-depofibra/'];
 const allPaths = [
   ...fixedRoutes,
   ...depositFamilies.map(item => `/depositos/${item.slug}/`),
