@@ -108,8 +108,8 @@ const formats = [
 
 const questions = [
   {
-    q: '¿Qué tipo de depósito de poliéster necesito?',
-    a: 'Depende del líquido, el volumen, el espacio disponible y el tipo de instalación. Elige primero el formato en el catálogo y después revisamos contigo la referencia y sus dimensiones.',
+    q: '¿Qué depósito de poliéster elegir para agua de riego?',
+    a: 'Depende de los litros que quieras reservar, el espacio disponible, el tipo de apoyo y los accesos. Los verticales de base plana se estudian para instalación en superficie; si la altura es limitada, conviene comparar otras geometrías. Confirmaremos medidas y conexiones según la referencia.',
   },
   {
     q: '¿Solo trabajáis con 5.000, 10.000 y 15.000 litros?',
@@ -126,6 +126,10 @@ const questions = [
   {
     q: '¿Puedo pedir presupuesto con transporte?',
     a: 'Sí, se puede estudiar según el depósito y el destino. Indícanos el código postal y si existen dificultades de acceso. El transporte estándar no incluye la descarga salvo condición expresamente confirmada.',
+  },
+  {
+    q: '¿Cuánto cuesta un depósito de poliéster para agua?',
+    a: 'El precio depende de la capacidad, el formato, las conexiones y el lugar de entrega. Indícanos para qué lo necesitas, los litros aproximados y tu código postal para consultar una propuesta con el transporte correspondiente.',
   },
 ];
 // Comparte la misma fotografía principal que su ficha individual.
@@ -149,8 +153,8 @@ const categoryFaqs = questions.map(item => ({ question: item.q, answer: item.a }
 ---
 
 <Layout
-  title="Depósitos de poliéster: verticales y horizontales | Depofibra"
-  description="Explora los tipos de depósitos de poliéster que comercializa Depofibra. Encuentra modelos verticales, horizontales, enterrables y especiales, y solicita presupuesto según uso y destino."
+  title="Depósitos de poliéster: modelos y capacidades | Depofibra"
+  description="Depósitos de poliéster para agua y riego. Compara modelos verticales, horizontales y enterrables, conoce sus usos y solicita presupuesto según destino."
   canonical="https://depofibra.com/depositos/"
   ogImage="/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp"
   ogImageAlt="Depósito vertical blanco de poliéster de base plana y medidor frontal"
@@ -180,7 +184,7 @@ const categoryFaqs = questions.map(item => ({ question: item.q, answer: item.a }
     <CategoryCatalog
       title="Depósitos de poliéster"
       eyebrow="CATÁLOGO DE DEPÓSITOS"
-      description="Verticales, horizontales, enterrables y otros formatos de PRFV. Encuentra el depósito que necesitas y consulta opciones según capacidad, uso y destino."
+      description="Depósitos de poliéster (PRFV) para agua de riego y otros usos compatibles. Compara modelos verticales, horizontales y enterrables, y solicita presupuesto según destino."
       breadcrumb="Depósitos"
       items={catalogItems}
       note="Fotografías de referencia de distintas unidades y configuraciones. Las medidas, accesorios, documentación y condiciones se confirman para cada modelo."
@@ -194,7 +198,7 @@ const categoryFaqs = questions.map(item => ({ question: item.q, answer: item.a }
         <div class="dep-guide__intro">
           <span class="eyebrow">Antes de elegir</span>
           <h2 class="heading-lg" id="dep-guide-heading">Cada instalación necesita un formato distinto.</h2>
-          <p class="body-lg">Los depósitos de poliéster reforzado con fibra de vidrio se presentan en distintas configuraciones. Estas son las principales diferencias para encontrar una referencia adecuada, sin perder tiempo comparando modelos que no encajan.</p>
+          <p class="body-lg">Los depósitos de poliéster reforzado con fibra de vidrio (PRFV) permiten estudiar distintas opciones para almacenar agua de riego y otros líquidos compatibles. Compara aquí los formatos de superficie y enterrables antes de elegir una capacidad.</p>
           <div class="dep-guide__checklist" aria-label="Datos prácticos para elegir depósito">
             <span class="dep-guide__checklist-title">Los cuatro datos que más ayudan</span>
             <ul>
@@ -224,7 +228,7 @@ const categoryFaqs = questions.map(item => ({ question: item.q, answer: item.a }
           <h2 class="heading-lg" id="dep-help-title">Lo importante no es solo cuántos litros necesitas.</h2>
         </div>
         <div class="dep-help__content">
-          <p class="body-lg">Para agua de riego, reserva de agua y otras aplicaciones compatibles hay que revisar también el espacio de instalación, las entradas y salidas y las condiciones de entrega. En el caso de agua potable, la aptitud y la documentación deben comprobarse para el modelo concreto.</p>
+          <p class="body-lg">Al elegir un depósito de agua de poliéster para riego o almacenamiento, revisa la capacidad, las dimensiones, las conexiones y las condiciones de entrega. Un depósito vertical de superficie no equivale a uno enterrable. Para agua potable, verifica la aptitud y la documentación del modelo concreto.</p>
           <p class="body-lg">Atendemos consultas desde <strong>Casariche (Sevilla)</strong> para distintas zonas de España y Portugal, según producto y logística. Para preparar un presupuesto con transporte, indícanos el modelo aproximado, la capacidad, el código postal y los accesos.</p>
           <button class="btn btn--primary open-quote-trigger" type="button">Consultar mi depósito <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
         </div>
