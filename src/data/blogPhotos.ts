@@ -90,4 +90,11 @@ export const blogPhotos: Record<string, BlogPhoto> = {
     credit: "Dr Photographer",
     creditUrl: "https://www.pexels.com/photo/36251665/",
   },
+  "normativa-fosas-septicas-2026-permisos-documentacion": {
+    src: "https://images.pexels.com/photos/12634302/pexels-photo-12634302.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    alt: "Vista aérea de infraestructura de tratamiento de aguas, imagen ilustrativa",
+    fallback: "/images/productos/saneamiento-referencia.jpg",
+    credit: "Jakob Schlothane",
+    creditUrl: "https://www.pexels.com/photo/12634302/",
+  },
 };
