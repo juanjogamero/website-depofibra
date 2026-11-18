@@ -27,6 +27,7 @@ const errors = [];
 let checkedLinks = 0;
 let checkedFragments = 0;
 let checkedSitemapUrls = 0;
+let checkedMediaAssets = 0;
 
 function content(file) {
   if (!contentCache.has(file)) contentCache.set(file, readFileSync(file, 'utf8'));
@@ -84,10 +85,35 @@ function checkLink(href, source) {
   }
 }
 
+function checkMediaAsset(value, source) {
+  const href = decodeAttribute(value);
+  const route = '/' + path.relative(output, source).replaceAll(path.sep, '/')
+    .replace(/(?:^|\/)index\.html$/, '').replace(/\/$/, '/');
+  const url = localUrl(href, route);
+  if (!url) return; // Imágenes externas o data: no se comprueban desde dist.
+  checkedMediaAssets += 1;
+  if (!targetFile(url.pathname)) {
+    errors.push(`${path.relative(output, source)}: imagen local sin archivo: ${href}`);
+  }
+}
+
 for (const file of htmlFiles) {
   const html = content(file);
   for (const match of html.matchAll(/<a\b[^>]*?\bhref\s*=\s*(["'])(.*?)\1/gi)) {
     checkLink(match[2], file);
+  }
+  // La prueba anterior verificaba enlaces <a>, pero una imagen rota pasaba CI.
+  // Revisar <img src>, <img srcset> y <source srcset> sin depender de red.
+  for (const tag of html.matchAll(/<(?:img|source)\b[^>]*>/gi)) {
+    for (const attr of tag[0].matchAll(/(?:^|\s)(src|srcset)\s*=\s*(["'])(.*?)\2/gi)) {
+      if (attr[1].toLowerCase() === 'src') checkMediaAsset(attr[3], file);
+      else if (!/^\s*data:/i.test(attr[3])) {
+        for (const candidate of attr[3].split(',')) {
+          const src = candidate.trim().split(/\s+/)[0];
+          if (src) checkMediaAsset(src, file);
+        }
+      }
+    }
   }
 }
 
@@ -103,7 +129,7 @@ else {
   }
 }
 
-const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedSitemapUrls} URLs del sitemap`;
+const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
   process.exit(1);
