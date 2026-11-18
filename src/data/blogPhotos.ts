@@ -83,4 +83,11 @@ export const blogPhotos: Record<string, BlogPhoto> = {
     credit: "Musa Ortaç",
     creditUrl: "https://www.pexels.com/photo/17591079/",
   },
+  "que-es-prfv-depositos-fibra-vidrio": {
+    src: "https://images.pexels.com/photos/36251665/pexels-photo-36251665.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    alt: "Conducción de agua en una instalación agrícola, imagen editorial ilustrativa",
+    fallback: "/images/productos/tipos-depositos-referencia.jpg",
+    credit: "Dr Photographer",
+    creditUrl: "https://www.pexels.com/photo/36251665/",
+  },
 };
