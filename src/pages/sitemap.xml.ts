@@ -4,6 +4,7 @@ import { capacityLandings } from '../data/capacityLandings';
 import { poolModels } from '../data/poolModels';
 import { secondaryProducts } from '../data/secondaryProducts';
 import { blogArticles } from '../data/blogArticles';
+import { depositLocalLandings } from '../data/depositLocalLandings';
 
 const fixedRoutes = ['/', '/depositos/', '/piscinas/', '/fosas-septicas/', '/fosas-septicas/sevilla/', '/cubas-cisternas/', '/blog/', '/contacto/', '/sobre-depofibra/'];
 const allPaths = [
@@ -13,6 +14,7 @@ const allPaths = [
   ...poolModels.map(item => `/piscinas/${item.slug}/`),
   ...secondaryProducts.map(item => `/${item.family === 'fosas' ? 'fosas-septicas' : 'cubas-cisternas'}/${item.slug}/`),
   ...blogArticles.map(item => `/blog/${item.slug}/`),
+  ...depositLocalLandings.map(item => `/depositos/${item.slug}/`),
 ];
 const escapeXml = (str: string) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 

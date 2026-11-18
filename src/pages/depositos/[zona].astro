@@ -1,0 +1,14 @@
+---
+import DepositLocalLanding from '../../components/DepositLocalLanding.astro';
+import { depositLocalLandings, type DepositLocalLanding as DepositLocalLandingData } from '../../data/depositLocalLandings';
+
+export function getStaticPaths() {
+  return depositLocalLandings.map(landing => ({
+    params: { zona: landing.slug },
+    props: { landing }
+  }));
+}
+interface Props { landing: DepositLocalLandingData }
+const {landing}=Astro.props;
+---
+<DepositLocalLanding landing={landing} />
