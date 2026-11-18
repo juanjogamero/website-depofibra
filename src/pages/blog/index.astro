@@ -3,9 +3,11 @@ import Layout from '../../layouts/Layout.astro';
 import BlogCard from '../../components/BlogCard.astro';
 import { blogArticles } from '../../data/blogArticles';
 import { blogPhotos } from '../../data/blogPhotos';
-const featured = blogArticles[0];
+// Las guías se numeran por orden editorial; mostramos primero la última publicada.
+const articlesNewestFirst = [...blogArticles].sort((a, b) => Number(b.number) - Number(a.number));
+const featured = articlesNewestFirst[0];
 const featurePhoto = blogPhotos[featured.slug];
-const sideArticles = [blogArticles[1], blogArticles[2], blogArticles[4], blogArticles[5]];
+const sideArticles = articlesNewestFirst.slice(1, 5);
 const categoryOptions = [
   { label: 'Todas las guías', value: 'todos' },
   { label: 'Depósitos', value: 'depositos' },
@@ -25,7 +27,7 @@ function getGroup(category: string) {
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context':'https://schema.org', '@type':'Blog', name:'Blog de Depofibra',
       url:'https://depofibra.com/blog/', inLanguage:'es-ES',
-      blogPost:blogArticles.map(a=>({ '@type':'BlogPosting',headline:a.title,url:`https://depofibra.com/blog/${a.slug}/` }))
+      blogPost:articlesNewestFirst.map(a=>({ '@type':'BlogPosting',headline:a.title,url:`https://depofibra.com/blog/${a.slug}/` }))
     })}/>
   </Fragment>
   <div class="db-page">
@@ -75,7 +77,7 @@ function getGroup(category: string) {
         </div>
         <div class="db-library__meta"><span id="db-blog-count" aria-live="polite">{blogArticles.length} artículos</span><span>Lecturas prácticas · Actualizamos las guías cuando cambian los datos verificados</span></div>
         <div class="db-grid">
-          {blogArticles.map(article=><div class="db-grid__cell" data-blog-group={getGroup(article.category)}><BlogCard article={article}/></div>)}
+          {articlesNewestFirst.map(article=><div class="db-grid__cell" data-blog-group={getGroup(article.category)}><BlogCard article={article}/></div>)}
         </div>
         <p class="db-empty" hidden>No hay artículos en este tema.</p>
       </section>
