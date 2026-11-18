@@ -10,7 +10,19 @@ interface Props {article:BlogArticle}
 const {article}=Astro.props;
 const canonical=`https://depofibra.com/blog/${article.slug}/`;
 const photo=blogPhotos[article.slug];
-const others=blogArticles.filter(a=>a.slug!==article.slug).slice(0,3);
+// Selección editorial: mismas familias primero y novedades después. No cambia el diseño.
+const familyOf = (category: string): string => {
+  if (/piscin/i.test(category)) return 'piscinas';
+  if (/cuba|cisterna/i.test(category)) return 'cubas';
+  if (/fosa|saneamiento/i.test(category)) return 'saneamiento';
+  return 'depositos';
+};
+const recentGuides = [...blogArticles]
+  .filter(item => item.slug !== article.slug)
+  .sort((a, b) => Number(b.number) - Number(a.number));
+const sameFamily = recentGuides.filter(item => familyOf(item.category) === familyOf(article.category));
+const otherFamilies = recentGuides.filter(item => familyOf(item.category) !== familyOf(article.category));
+const others = [...sameFamily, ...otherFamilies].slice(0, 3);
 let headingIndex=0;
 const contents:{id:string;title:string}[]=[];
 const articleHtml=article.html.replace(/<h2>([\s\S]*?)<\/h2>/g, (_match,contentsHtml:string)=>{
