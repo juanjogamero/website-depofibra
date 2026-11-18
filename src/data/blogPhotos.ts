@@ -62,4 +62,25 @@ export const blogPhotos: Record<string, BlogPhoto> = {
     credit: "Giant Asparagus",
     creditUrl: "https://www.pexels.com/photo/35425762/",
   },
+  "calcular-capacidad-deposito-agua-riego": {
+    src: "https://images.pexels.com/photos/3351909/pexels-photo-3351909.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    alt: "Riego por aspersión sobre cultivo verde, fotografía ilustrativa",
+    fallback: "/images/productos/categoria-depositos.jpg",
+    credit: "Q. Hưng Phạm",
+    creditUrl: "https://www.pexels.com/photo/3351909/",
+  },
+  "conexiones-y-accesorios-depositos-poliester": {
+    src: "https://images.pexels.com/photos/36251665/pexels-photo-36251665.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    alt: "Agua saliendo de una conducción agrícola, fotografía ilustrativa de tubería",
+    fallback: "/images/productos/tipos-depositos-referencia.jpg",
+    credit: "Dr Photographer",
+    creditUrl: "https://www.pexels.com/photo/36251665/",
+  },
+  "mantenimiento-piscina-poliester": {
+    src: "https://images.pexels.com/photos/17591079/pexels-photo-17591079.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    alt: "Piscina exterior en un jardín, imagen de contexto",
+    fallback: "/images/productos/piscina-poliester.jpg",
+    credit: "Musa Ortaç",
+    creditUrl: "https://www.pexels.com/photo/17591079/",
+  },
 };
