@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Página no encontrada (404) | Depofibra"
+  description="La página que buscas no está disponible. Vuelve al inicio o encuentra depósitos de poliéster, piscinas, fosas y otras soluciones en Depofibra."
+  canonical="https://depofibra.com/404.html"
+  indexable={false}
+  activeNav="inicio"
+>
+  <section class="not-found" aria-labelledby="not-found-title">
+    <div class="container not-found__inner">
+      <span class="not-found__code" aria-label="Error 404">404 · PÁGINA NO ENCONTRADA</span>
+      <h1 id="not-found-title">Esta página no está disponible.</h1>
+      <p class="not-found__description">
+        Puede que el enlace haya cambiado o que la dirección no sea correcta.
+        Te ayudamos a seguir buscando lo que necesitas.
+      </p>
+
+      <nav class="not-found__actions" aria-label="Dónde continuar">
+        <a class="not-found__primary" href="/">Volver al inicio <span aria-hidden="true">→</span></a>
+        <a class="not-found__secondary" href="/depositos/">Ver depósitos de poliéster</a>
+      </nav>
+
+      <div class="not-found__more">
+        <p>También puedes consultar:</p>
+        <nav class="not-found__links" aria-label="Otros apartados de Depofibra">
+          <a href="/fosas-septicas/">Fosas sépticas</a>
+          <a href="/piscinas/">Piscinas</a>
+          <a href="/blog/">Guías y consejos</a>
+          <a href="/contacto/">Contacto y presupuestos</a>
+        </nav>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .not-found {
+    background: #fff;
+    color: #002d59;
+  }
+  .not-found__inner {
+    max-width: 920px;
+    padding-top: clamp(70px, 9vw, 126px);
+    padding-bottom: clamp(90px, 11vw, 150px);
+  }
+  .not-found__code {
+    color: #01488e;
+    font: 800 12px/1.4 var(--font-display);
+    letter-spacing: .11em;
+  }
+  .not-found h1 {
+    margin: 18px 0 22px;
+    max-width: 750px;
+    font: 800 clamp(35px, 5.5vw, 62px)/1.1 var(--font-display);
+    letter-spacing: -.05em;
+  }
+  .not-found__description {
+    max-width: 660px;
+    color: #52657a;
+    font: 400 clamp(16px, 1.7vw, 18px)/1.8 var(--font-body);
+  }
+  .not-found__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .not-found__actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 48px;
+    padding: 11px 22px;
+    border: 1px solid #01488e;
+    border-radius: 8px;
+    font: 700 14px/1.4 var(--font-display);
+    text-decoration: none;
+    transition: background .2s ease, color .2s ease;
+  }
+  .not-found__primary {
+    background: #01488e;
+    color: #fff;
+  }
+  .not-found__primary:hover {
+    background: #002d59;
+    border-color: #002d59;
+  }
+  .not-found__secondary {
+    background: #fff;
+    color: #01488e;
+  }
+  .not-found__secondary:hover {
+    background: #eaf2fb;
+  }
+  .not-found__more {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid #e3e9f0;
+  }
+  .not-found__more p {
+    margin-bottom: 14px;
+    color: #5f7083;
+    font: 500 14px/1.5 var(--font-body);
+  }
+  .not-found__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+  .not-found__links a {
+    color: #01488e;
+    font: 700 14px/1.6 var(--font-body);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .not-found__links a:hover { color: #002d59; }
+  .not-found a:focus-visible {
+    outline: 3px solid #69aaf3;
+    outline-offset: 4px;
+  }
+  @media (max-width: 640px) {
+    .not-found__inner { padding-top: 64px; padding-bottom: 88px; }
+    .not-found__actions { flex-direction: column; }
+    .not-found__actions a { width: 100%; }
+    .not-found__more { margin-top: 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .not-found__actions a { transition: none; }
+  }
+</style>
