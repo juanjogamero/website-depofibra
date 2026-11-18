@@ -26,11 +26,27 @@ const contactHref = `/contacto/?producto=${encodeURIComponent(product.quoteProdu
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://depofibra.com/' },
-        { '@type': 'ListItem', position: 2, name: 'Depósitos', item: 'https://depofibra.com/depositos/' },
-        { '@type': 'ListItem', position: 3, name: product.shortName, item: canonical },
+      '@graph': [
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${canonical}#breadcrumb`,
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://depofibra.com/' },
+            { '@type': 'ListItem', position: 2, name: 'Depósitos', item: 'https://depofibra.com/depositos/' },
+            { '@type': 'ListItem', position: 3, name: product.shortName, item: canonical },
+          ],
+        },
+        {
+          '@type': 'WebPage',
+          '@id': canonical,
+          url: canonical,
+          name: product.name,
+          description: product.metaDescription,
+          inLanguage: 'es-ES',
+          breadcrumb: { '@id': `${canonical}#breadcrumb` },
+          isPartOf: { '@type': 'WebSite', name: 'Depofibra', url: 'https://depofibra.com/' },
+          primaryImageOfPage: { '@type': 'ImageObject', url: new URL(firstImage.src, canonical).href },
+        },
       ],
     })} />
   </Fragment>

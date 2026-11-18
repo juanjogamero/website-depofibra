@@ -46,7 +46,7 @@ export const depositFamilies: DepositFamily[] = [
       {src:'/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verdes-conjunto-diferentes-tamanos.webp',alt:'Varios depósitos verticales verdes de distintas alturas colocados en línea',kind:'Fotografía de referencia'},
     ],
     titleSeo: 'Depósitos verticales de poliéster base plana | Depofibra',
-    metaDescription:'Depósitos verticales de poliéster de base plana para riego. Compara capacidades de 5.000, 10.000 y 15.000 litros y solicita presupuesto según destino.',
+    metaDescription:'Depósitos verticales de poliéster de base plana para riego. Compara capacidades, equipamiento, colores y conexiones. Presupuesto según destino.',
     highlights:[
       {title:'Capacidades para comparar',text:'Consulta las fichas de 5.000, 10.000 y 15.000 litros. Otros volúmenes se estudian según referencia.'},
       {title:'Medidas y accesos',text:'Comprueba diámetro exterior, altura total, portones y superficie de apoyo antes del pedido.'},
@@ -55,6 +55,7 @@ export const depositFamilies: DepositFamily[] = [
     description:[
       'Un depósito vertical de poliéster de base plana es una opción para almacenar agua de riego en superficie cuando se dispone de una base adecuada y altura suficiente. A diferencia del formato horizontal, su geometría concentra el volumen en un espacio de apoyo diferente; conviene comparar diámetro y altura, no solo los litros.',
       'Para elegir entre 5.000, 10.000 y 15.000 litros, calcula el consumo previsto y cada cuánto podrás reponer el agua. Después revisa el espacio disponible, las conexiones y el acceso del transporte. Las medidas de las tablas son orientativas: el modelo y el equipamiento se verifican con el proveedor antes de presupuestar.',
+      'En los verticales de base plana se contemplan tapadera superior, rebosadero, medidor de capacidad y anillas de elevación. Depofibra también permite estudiar colores y conexiones en posición y diámetro según la instalación; la configuración definitiva, el refuerzo estructural y cualquier suplemento se concretan por referencia.',
     ],
     installationPoints:[
       {title:'Instalación en superficie',text:'El depósito debe apoyarse sobre una base adecuada al modelo y dejar espacio para acceso y mantenimiento. No es un depósito concebido para enterrar.'},
@@ -67,6 +68,8 @@ export const depositFamilies: DepositFamily[] = [
       {q:'¿Necesito medidas exactas antes de pedir precio?',a:'Para una primera consulta basta con indicar uso, capacidad aproximada, código postal y posibles límites de acceso. Confirmaremos las dimensiones exteriores y las conexiones de la referencia que se presupuestará.'},
       {q:'¿Se puede enterrar un depósito vertical de base plana?',a:'No debe enterrarse un depósito diseñado para superficie sin documentación expresa que autorice ese uso. Consulta las referencias específicamente enterrables para instalaciones bajo tierra.'},
       {q:'¿El presupuesto incluye transporte y descarga?',a:'Podemos estudiar el transporte según el modelo y el lugar de entrega. La descarga no forma parte del transporte estándar salvo que se acuerde y confirme expresamente.'},
+      {q:'¿Qué equipamiento y opciones de personalización tienen los verticales de base plana?',a:'La oferta de la familia contempla tapadera, rebosadero, medidor de capacidad y anillas de elevación. Se pueden estudiar colores de la gama y entradas y salidas según diámetro y ubicación solicitados. Cada elemento y posible suplemento se confirman en el presupuesto del modelo concreto.'},
+      {q:'¿Los refuerzos y la garantía son iguales en todos los tamaños?',a:'Depofibra comunica refuerzos estructurales mejorados y garantía para esta familia, pero el alcance técnico y las condiciones aplicables deben verificarse por referencia y recogerse por escrito antes del pedido. No se afirma una resistencia superior a la competencia.'},
     ],
     capacityChoices: [
       { label: '5.000 L', product: 'Depósito vertical de base plana 5.000 L' },
@@ -79,7 +82,7 @@ export const depositFamilies: DepositFamily[] = [
     name:'Depósito horizontal con cunas',
     shortName:'Horizontal con cunas',
     eyebrow:'Depósitos · Instalación en superficie',
-    intro:'Formato horizontal con apoyos para instalaciones donde interesa limitar la altura y aprovechar el espacio longitudinal.',
+    intro:'Depósitos horizontales de poliéster con cunas para instalación en superficie. Compara capacidad, número de apoyos y longitud, y consulta opciones de color y conexiones antes de presupuestar.',
     installation:'En superficie', geometry:'Horizontal · Con apoyos', application:'Almacenamiento según uso',
     quoteProduct:'Depósito horizontal con cunas',
     gallery:[
@@ -88,16 +91,17 @@ export const depositFamilies: DepositFamily[] = [
       {src:'/images/depositos/horizontal-con-cunas/deposito-poliester-horizontal-con-cunas-verde-vista-extremo.webp',alt:'Depósito horizontal verde con cunas de apoyo visto desde un extremo',kind:'Fotografía de referencia'},
       {src:'/images/depositos/horizontal-con-cunas/deposito-poliester-horizontal-con-cunas-blanco-en-transporte.webp',alt:'Depósito horizontal blanco con soportes durante el transporte en camión',kind:'Fotografía de referencia'},
     ],
-    titleSeo:'Depósitos horizontales con cunas | Depofibra',
-    metaDescription:'Consulta depósitos horizontales de poliéster con cunas para instalación en superficie. Características, condiciones de apoyo y presupuesto por destino.',
+    titleSeo:'Depósitos horizontales de poliéster con cunas | Depofibra',
+    metaDescription:'Depósitos horizontales de poliéster con cunas para superficie. Consulta capacidades, apoyos, medidor, colores y conexiones configurables. Presupuesto.',
     highlights:[
       {title:'Formato bajo',text:'Interesante cuando el espacio en altura condiciona la instalación.'},
       {title:'Apoyos específicos',text:'El número y disposición de las cunas se comprueban según modelo.'},
-      {title:'Entrega planificada',text:'La longitud y el acceso al lugar de instalación influyen en la logística.'},
+      {title:'Equipamiento configurable',text:'Se contemplan medidor de capacidad, tapadera, rebosadero y anillas, con colores y conexiones según referencia y presupuesto.'},
     ],
     description:[
       'Los depósitos horizontales con cunas se colocan en superficie sobre apoyos adecuados a su geometría. Son una alternativa a los verticales cuando conviene distribuir el volumen de forma longitudinal.',
       'Para seleccionar la referencia conviene conocer la capacidad, la longitud disponible, las conexiones y las condiciones de descarga. Un depósito horizontal de superficie no debe confundirse con un depósito enterrable.',
+      'La oferta de horizontales con cunas contempla tapadera superior, rebosadero, medidor de capacidad y anillas de elevación. Es posible estudiar colores, diámetros y posiciones de las entradas y salidas; la inclusión efectiva, el refuerzo y los suplementos se confirman para cada referencia.',
     ],
     installationPoints:[
       {title:'Longitud útil',text:'Revisar el espacio horizontal disponible, las distancias de acceso y las posibles interferencias.'},
@@ -108,6 +112,8 @@ export const depositFamilies: DepositFamily[] = [
       {q:'¿Un horizontal con cunas puede enterrarse?',a:'No debe darse por supuesto. Para enterrar un depósito hay que elegir una referencia diseñada expresamente para ese uso.'},
       {q:'¿Las cunas están incluidas?',a:'Los elementos incluidos se confirman al presupuestar la referencia y el conjunto de apoyos correspondiente.'},
       {q:'¿Puedo consultar otra capacidad?',a:'Sí. La capacidad, dimensiones y configuración se verifican según el modelo que se estudie.'},
+      {q:'¿Los horizontales con cunas llevan medidor de capacidad?',a:'Según la oferta de Depofibra, esta familia contempla medidor de capacidad junto con tapadera, rebosadero y anillas de elevación. El equipo concreto y su inclusión deben constar en el presupuesto.'},
+      {q:'¿Se pueden elegir el color y las conexiones de un horizontal con cunas?',a:'Se ofrecen colores de gama y puede estudiarse la ubicación y el diámetro de las tomas para cada instalación. Es necesario confirmar viabilidad técnica y suplementos con el proveedor.'},
     ],
   },
   {
@@ -115,7 +121,7 @@ export const depositFamilies: DepositFamily[] = [
     name:'Depósito horizontal enterrable',
     shortName:'Horizontal enterrable',
     eyebrow:'Depósitos · Instalación enterrada',
-    intro:'Depósitos concebidos específicamente para instalaciones bajo tierra, con requisitos de montaje distintos de los modelos de superficie.',
+    intro:'Depósitos horizontales de poliéster diseñados para enterramiento. Comparte medidas de referencia con los horizontales con cunas, pero es un producto distinto: requiere condiciones de instalación específicas y no lleva medidor de capacidad visible.',
     installation:'Enterrado · Bajo proyecto',geometry:'Horizontal · Enterrable',application:'Agua y otros usos compatibles',
     quoteProduct:'Depósito horizontal para enterrar',
     gallery:[
@@ -124,16 +130,17 @@ export const depositFamilies: DepositFamily[] = [
       {src:'/images/depositos/horizontal-enterrable/deposito-poliester-horizontal-enterrable-gris-vista-frontal.webp',alt:'Vista frontal de depósito horizontal gris con boca de acceso superior',kind:'Fotografía de referencia'},
       {src:'/images/depositos/horizontal-enterrable/deposito-poliester-horizontal-enterrable-gris-en-zanja-instalacion.webp',alt:'Depósito horizontal gris colocado en una zanja con boca de acceso superior',kind:'Fotografía de referencia'},
     ],
-    titleSeo:'Depósitos horizontales enterrables | Depofibra',
-    metaDescription:'Depósitos horizontales de poliéster aptos para enterramiento según referencia. Consulta condiciones de instalación, capacidades y presupuesto.',
+    titleSeo:'Depósitos horizontales enterrables de poliéster | Depofibra',
+    metaDescription:'Depósitos horizontales de poliéster para enterrar. Consulta dimensiones, condiciones del terreno, conexiones a medida y presupuesto según destino.',
     highlights:[
       {title:'Uso enterrado',text:'La elección debe partir de un modelo diseñado expresamente para enterramiento.'},
       {title:'Terreno y cargas',text:'Condiciones del suelo y profundidad requieren verificación técnica.'},
-      {title:'Accesos al depósito',text:'Se deben prever las conexiones y las necesidades de inspección y mantenimiento.'},
+      {title:'Sin medidor visible',text:'El modelo enterrable no incorpora el medidor externo de capacidad previsto en los modelos de superficie; consulta accesos y conexiones.'},
     ],
     description:[
       'Las referencias enterrables permiten estudiar instalaciones donde no interesa ocupar espacio visible en superficie. No son intercambiables con los depósitos horizontales con cunas.',
       'El terreno, la profundidad, la presencia de agua subterránea y las cargas previstas condicionan la solución. La instalación debe seguir la documentación y las prescripciones técnicas aplicables al modelo.',
+      'Según las tablas facilitadas, las referencias enterrables comparten parejas de diámetro y longitud con los horizontales con cunas, pero no son el mismo depósito ni llevan sus apoyos de superficie. En el enterrable no se incluye medidor de capacidad visible. Se estudian tapadera, rebosadero, anillas, colores y conexiones personalizadas según viabilidad técnica de la referencia y las exigencias del enterramiento.',
     ],
     installationPoints:[
       {title:'Comprobar el terreno',text:'Identificar condiciones del suelo, nivel freático y cargas del entorno.'},
@@ -144,6 +151,9 @@ export const depositFamilies: DepositFamily[] = [
       {q:'¿Puedo enterrar un depósito horizontal convencional?',a:'No se debe hacer. Solo debe enterrarse una referencia diseñada y validada para ese uso.'},
       {q:'¿El precio incluye excavación e instalación?',a:'No se presuponen esos trabajos. Se concretarán por separado si correspondiese, y siempre según condiciones acordadas.'},
       {q:'¿Es obligatorio un proyecto?',a:'Los requisitos técnicos y administrativos dependen del uso y la instalación. Deben revisarse para cada caso.'},
+      {q:'¿Los depósitos horizontales enterrables llevan medidor de capacidad?',a:'No llevan el medidor de capacidad visible que se contempla en los verticales y los horizontales con cunas. La forma de acceso, inspección y mantenimiento debe estudiarse según el modelo y la instalación enterrada.'},
+      {q:'¿Tienen las mismas medidas que los horizontales con cunas?',a:'La documentación facilitada recoge las mismas combinaciones de diámetro y longitud, pero no son productos intercambiables. El enterrable debe estar diseñado y validado específicamente para las condiciones del suelo y las cargas del proyecto.'},
+      {q:'¿Se pueden personalizar las entradas y salidas de un enterrable?',a:'Se estudian las conexiones en el diámetro y la posición necesarios, pero su viabilidad y estanqueidad deben confirmarse para la referencia y las condiciones de instalación enterrada.'},
     ],
   },
   {
