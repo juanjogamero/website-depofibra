@@ -6,7 +6,14 @@
  * La base estrecha y los anillos de tapa son ILUSTRATIVOS porque no hay
  * despiece dimensional; el aro superior marca el diámetro exterior tabulado.
  */
-export function buildVasoGlb({ diameterMm, heightMm }) {
+const FINISHES = {
+  verde: [0.033, 0.245, 0.18, 1],
+  blanco: [0.91, 0.92, 0.91, 1],
+  gris: [0.41, 0.45, 0.48, 1],
+  negro: [0.07, 0.076, 0.083, 1],
+};
+export function buildVasoGlb({ diameterMm, heightMm, color = 'blanco' }) {
+  if (!(color in FINISHES)) throw new Error('Acabado no admitido: ' + color);
   if (!Number.isFinite(diameterMm) || !Number.isFinite(heightMm) || diameterMm <= 0 || heightMm <= 0) {
     throw new Error('Dimensiones de vaso no válidas');
   }
@@ -53,12 +60,14 @@ export function buildVasoGlb({ diameterMm, heightMm }) {
   }
   // Perfil fotográfico ligeramente troncocónico: el diámetro inferior no se
   // afirma como medición, pues la ficha solo facilita un diámetro por modelo.
-  const innerBottom=radius*0.79;
+  // Conicidad visual orientativa: forma más suave y próxima a la foto de referencia.
+  const innerBottom=radius*0.845;
   const upperBody=radius*0.967;
   lathe(groups[0], [
     {r:innerBottom*0.98,y:0,nr:1,ny:0},
     {r:innerBottom,y:Math.min(0.022,height*0.028),nr:1,ny:0},
-    {r:upperBody,y:height*0.88,nr:0.99,ny:-0.13},
+    {r:innerBottom*1.02,y:Math.min(0.035,height*0.043),nr:1,ny:-0.04},
+    {r:upperBody*0.996,y:height*0.88,nr:0.995,ny:-0.10},
     {r:upperBody,y:height*0.914,nr:1,ny:0},
   ]);
   disk(groups[0], innerBottom*0.98, 0, -1);
@@ -72,7 +81,9 @@ export function buildVasoGlb({ diameterMm, heightMm }) {
   // Cubierta horizontal con una leve depresión visual en la zona intermedia.
   lathe(groups[2], [
     {r:radius*0.978,y:height*0.971,nr:0,ny:1},
-    {r:radius*0.70,y:height*0.969,nr:0,ny:1},
+    {r:radius*0.86,y:height*0.963,nr:0,ny:1},
+    {r:radius*0.69,y:height*0.968,nr:0,ny:1},
+    {r:radius*0.50,y:height*0.966,nr:0,ny:1},
     {r:radius*0.35,y:height*0.972,nr:0,ny:1},
     {r:radius*0.32,y:height*0.980,nr:1,ny:0},
   ]);
@@ -84,7 +95,7 @@ export function buildVasoGlb({ diameterMm, heightMm }) {
   disk(groups[3], radius*0.29, height, 1);
 
   const mats=[
-    {name:'PRFV blanco ilustrativo', rgba:[0.91,0.92,0.91,1],roughness:0.55},
+    {name:'PRFV configurable '+color, rgba:FINISHES[color],roughness:0.47},
     {name:'Borde blanco satinado', rgba:[0.95,0.96,0.95,1],roughness:0.36},
     {name:'Tapa blanca',rgba:[0.925,0.935,0.93,1],roughness:0.44},
   ];

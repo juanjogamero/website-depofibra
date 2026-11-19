@@ -7,7 +7,7 @@
  * Se producen tres GLB distintos para que Scene Viewer/Quick Look respeten el color:
  * cambiar materiales exclusivamente en el navegador NO se propaga a todos los visores AR.
  */
-export const AR_COLORS = ['blanco', 'verde', 'gris'];
+export const AR_COLORS = ['blanco', 'verde', 'gris', 'negro'];
 
 const FINISHES = {
   blanco: {
@@ -30,6 +30,13 @@ const FINISHES = {
     stripe: [0.89, 0.93, 0.92, 1],
     ink: [0.98, 0.98, 0.94, 1],
     accent: [0.83, 0.95, 0.65, 1],
+  },
+  negro: {
+    body: [0.06, 0.066, 0.076, 1],
+    seam: [0.04, 0.045, 0.052, 1],
+    stripe: [0.83, 0.87, 0.90, 1],
+    ink: [0.97, 0.98, 0.99, 1],
+    accent: [0.63, 0.83, 1.0, 1],
   },
 };
 

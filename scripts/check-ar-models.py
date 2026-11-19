@@ -10,7 +10,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 MODELS = ROOT / 'dist/models/ar/verticales'
 TOLERANCE_M = 0.00004
-COLORS = ("blanco", "verde", "gris")
+COLORS = ("blanco", "verde", "gris", "negro")
 REQUIRED = {"Deposito", "Tapadera", "FranjaIndicadora", "Numeracion",
             "NumeracionDestacada", "BocasMetalicas", "InteriorBocas"}
 
@@ -117,7 +117,7 @@ def main(full):
             check_usdz(usdz, full)
     assert len({tuple(x) for x in appearances.values()}) == 3
     assert set(MODELS.iterdir()) == expected
-    print('51 modelos GLB + 51 USDZ, 17 medidas x 3 acabados; geometría, cotas y accesorios verificados.')
+    print('68 modelos GLB + 68 USDZ, 17 medidas x 4 acabados; geometría, cotas y accesorios verificados.')
 
 
 if __name__ == '__main__':
