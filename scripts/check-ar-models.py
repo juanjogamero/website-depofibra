@@ -115,7 +115,7 @@ def main(full):
             appearances.setdefault(color, material)
             assert material == appearances[color]
             check_usdz(usdz, full)
-    assert len({tuple(x) for x in appearances.values()}) == 3
+    assert len({tuple(x) for x in appearances.values()}) == len(COLORS)
     assert set(MODELS.iterdir()) == expected
     print('68 modelos GLB + 68 USDZ, 17 medidas x 4 acabados; geometría, cotas y accesorios verificados.')
 
