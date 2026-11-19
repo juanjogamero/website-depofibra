@@ -44,13 +44,19 @@ interface Props {
   feature?: Feature;
 }
 const {nav,title,eyebrow,description,seoTitle,canonicalPath,breadcrumb,localLink,intro,items,note,guideTitle,guideDescription,guideRows,faqs,feature}=Astro.props;
-const path = canonicalPath ?? (nav === 'piscinas' ? '/piscinas/' : nav === 'fosas' ? '/fosas-septicas/' : '/cubas-cisternas/');
-const crumbs = breadcrumb ?? (nav === 'piscinas' ? 'Piscinas' : nav === 'fosas' ? 'Fosas sépticas' : 'Cubas y cisternas');
-const categoryShort = nav === 'piscinas' ? 'modelos de referencia' : nav === 'fosas' ? 'sistemas' : 'configuraciones';
-const activeNav = nav as 'piscinas' | 'fosas' | 'cubas';
-const socialImage = nav === 'piscinas' ? (items[0]?.image ?? '/images/productos/categoria-piscinas.jpg') : nav === 'fosas' ? '/images/productos/categoria-fosas.jpg' : '/images/productos/deposito-horizontal.jpg';
-const socialImageAlt = nav === 'piscinas' ? 'Piscina prefabricada de poliéster de referencia' : nav === 'fosas' ? 'Equipos de saneamiento de referencia; fotografía representativa de la familia' : 'Cuba blanca horizontal de poliéster con apoyos azules; fotografía de referencia';
-const selectionTips = nav === 'piscinas'
+const path = canonicalPath ?? (nav === 'depositos' ? '/depositos/' : nav === 'piscinas' ? '/piscinas/' : nav === 'fosas' ? '/fosas-septicas/' : '/cubas-cisternas/');
+const crumbs = breadcrumb ?? (nav === 'depositos' ? 'Depósitos' : nav === 'piscinas' ? 'Piscinas' : nav === 'fosas' ? 'Fosas sépticas' : 'Cubas y cisternas');
+const categoryShort = nav === 'depositos' ? 'capacidades' : nav === 'piscinas' ? 'modelos de referencia' : nav === 'fosas' ? 'sistemas' : 'configuraciones';
+const activeNav = nav as 'depositos' | 'piscinas' | 'fosas' | 'cubas';
+const socialImage = nav === 'depositos' ? (items[0]?.image ?? '/images/productos/depositos-tipos.jpg') : nav === 'piscinas' ? (items[0]?.image ?? '/images/productos/categoria-piscinas.jpg') : nav === 'fosas' ? '/images/productos/categoria-fosas.jpg' : '/images/productos/deposito-horizontal.jpg';
+const socialImageAlt = nav === 'depositos' ? 'Depósito vertical de poliéster de referencia para riego, sin atribución a una capacidad exacta' : nav === 'piscinas' ? 'Piscina prefabricada de poliéster de referencia' : nav === 'fosas' ? 'Equipos de saneamiento de referencia; fotografía representativa de la familia' : 'Cuba blanca horizontal de poliéster con apoyos azules; fotografía de referencia';
+const selectionTips = nav === 'depositos'
+  ? [
+      ['Consumo y autonomía', 'Indica cuántos litros gastas y cada cuánto repones agua.'],
+      ['Espacio y conexiones', 'Comprueba superficie de apoyo, altura, diámetro y tomas.'],
+      ['Destino y descarga', 'Facilita código postal, accesos y medios para descargar.'],
+    ]
+  : nav === 'piscinas'
   ? [
       ['Espacio y medidas', 'Mide el hueco disponible y los accesos a la parcela.'],
       ['Profundidad y equipamiento', 'Confirma escalera, accesorios y dimensiones finales.'],
@@ -102,7 +108,7 @@ const catalogItems = items.map(item => ({
       items={catalogItems}
       note={note}
       countLabel={categoryShort}
-      squarePhotos={nav === 'piscinas'}
+      squarePhotos={nav === 'piscinas' || nav === 'depositos'}
     />
 
     <section class="df-details" aria-labelledby="df-details-heading">

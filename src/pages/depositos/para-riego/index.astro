@@ -1,0 +1,118 @@
+---
+/**
+ * Landing de aplicación comercial: almacenamiento de agua de riego.
+ * Complementa la categoría general y el artículo didáctico; no garantiza
+ * stock, certificaciones, compatibilidad ni dimensiones definitivas.
+ * Usa el diseño compartido de categorías, sin CSS propio.
+ */
+import CategoryInterior from '../../../components/CategoryInterior.astro';
+
+const page = {
+  nav: 'depositos',
+  title: 'Depósitos de poliéster para agua de riego',
+  seoTitle: 'Depósitos de poliéster para riego: 5.000–15.000 L | Depofibra',
+  canonicalPath: '/depositos/para-riego/',
+  breadcrumb: 'Depósitos para riego',
+  eyebrow: 'RIEGO AGRÍCOLA · ALMACENAMIENTO EN SUPERFICIE',
+  description: 'Compara depósitos de poliéster para agua de riego de 5.000, 10.000 y 15.000 litros. Calcula una reserva orientativa y consulta modelo, conexiones, entrega y descarga.',
+  intro: '¿Necesitas reservar agua para regar una finca o instalación? Depofibra comercializa depósitos de poliéster reforzado con fibra de vidrio (PRFV) de fabricantes externos. Compara capacidades para instalación en superficie y prepara los datos que necesitamos para estudiar un presupuesto de producto y transporte.',
+  items: [
+    {
+      id: 'riego-5000',
+      href: '/depositos/vertical-base-plana/5000-litros/',
+      name: 'Depósito para riego de 5.000 litros',
+      subtitle: '5 m³ nominales · modelo vertical de base plana en superficie',
+      image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-compacto-escala.webp',
+      mediaCaption: 'Foto de familia, no de una unidad de 5.000 L confirmada',
+      tags: ['riego', 'superficie'],
+      specification: '5.000 L · 5 m³',
+      quoteProduct: 'Depósito vertical de base plana de 5.000 litros',
+      quoteNote: 'Uso previsto: agua de riego; capacidad consultada: 5.000 litros.',
+      detail: 'Opción a comparar cuando la necesidad es una reserva de unos 5 m³ nominales. La documentación de referencia incluye dos geometrías para esta capacidad; antes de elegir hay que verificar medidas, pasos de acceso y la unidad presupuestada.'
+    },
+    {
+      id: 'riego-10000',
+      href: '/depositos/vertical-base-plana/10000-litros/',
+      name: 'Depósito para riego de 10.000 litros',
+      subtitle: '10 m³ nominales · modelo vertical de base plana en superficie',
+      image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp',
+      mediaCaption: 'Foto de familia, no de una unidad de 10.000 L confirmada',
+      tags: ['riego', 'superficie'],
+      specification: '10.000 L · 10 m³',
+      quoteProduct: 'Depósito vertical de base plana de 10.000 litros',
+      quoteNote: 'Uso previsto: agua de riego; capacidad consultada: 10.000 litros.',
+      detail: 'Puede estudiarse para necesidades teóricas de almacenamiento próximas a 10 m³. La elección depende de cuánto se consume entre llenados, el espacio de apoyo, las conexiones, la referencia disponible y las condiciones de descarga.'
+    },
+    {
+      id: 'riego-15000',
+      href: '/depositos/vertical-base-plana/15000-litros/',
+      name: 'Depósito para riego de 15.000 litros',
+      subtitle: '15 m³ nominales · modelo vertical de base plana en superficie',
+      image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verde-escala-en-exterior.webp',
+      mediaCaption: 'Foto de familia, no de una unidad de 15.000 L confirmada',
+      tags: ['riego', 'superficie'],
+      specification: '15.000 L · 15 m³',
+      quoteProduct: 'Depósito vertical de base plana de 15.000 litros',
+      quoteNote: 'Uso previsto: agua de riego; capacidad consultada: 15.000 litros.',
+      detail: 'Una reserva nominal de 15 m³ exige comprobar especialmente la altura y el diámetro finales, los accesos del vehículo, la base de apoyo y los medios de descarga. La disponibilidad y las cotas se confirman por modelo.'
+    }
+  ],
+  filterGroups: [],
+  note: 'Las fotografías muestran depósitos de la familia, no unidades identificadas con cada capacidad. Las cotas definitivas, equipamiento, compatibilidad, disponibilidad y transporte se comprueban para la referencia ofertada. El transporte estándar no incluye descarga.',
+  guideTitle: 'Cómo elegir la reserva para regar',
+  guideDescription: 'La superficie de la finca, por sí sola, no determina los litros necesarios. Parte de tu consumo real y de cuánto tiempo necesitas regar entre reposiciones de agua.',
+  guideRows: [
+    {
+      title: '1. Calcula litros y autonomía',
+      detail: 'Multiplica los litros de agua que utilizas al día por los días que quieres cubrir sin reposición. Por ejemplo, 2.000 L/día durante 3 días son 6.000 L de necesidad teórica. Un depósito nominal de 5.000 L no cubriría ese cálculo sin reponer agua; conviene comparar 10.000 L u otras capacidades, sujeto al volumen útil y a la instalación.'
+    },
+    {
+      title: '2. Comprueba cómo se llena',
+      detail: 'Indica si el agua viene de pozo, red, captación autorizada u otra fuente, con qué caudal puede reponerse y en qué horarios. No se debe confundir la capacidad nominal del depósito con el agua útil disponible ni con la autonomía real del sistema de riego.'
+    },
+    {
+      title: '3. Revisa espacio y conexiones',
+      detail: 'Para un depósito vertical de base plana se necesita una superficie de apoyo adecuada y espacio para dimensiones exteriores, tapa, entradas, salidas y mantenimiento. Comprobaremos geometría y conexiones de la referencia. Un depósito de superficie no debe enterrarse sin autorización específica del fabricante.'
+    },
+    {
+      title: '4. Planifica transporte y descarga',
+      detail: 'Facilita municipio, código postal, anchura de accesos, posibles obstáculos y medios para recibir la unidad. El transporte estándar no incluye descarga. La descarga, las maniobras y la instalación requieren organización y confirmación por separado.'
+    },
+    {
+      title: '5. Pide el presupuesto con datos concretos',
+      detail: 'Dinos capacidad aproximada, litros de consumo y frecuencia de reposición, uso del agua, localidad, limitaciones de acceso y tomas necesarias. Depofibra estudia el suministro de fabricantes externos; no se presuponen stock, plazo, precio ni servicios de montaje.'
+    }
+  ],
+  localLink: {
+    href: '/blog/como-elegir-deposito-poliester-riego/',
+    label: 'Leer la guía práctica para calcular capacidad y elegir depósito'
+  },
+  faqs: [
+    {
+      question: '¿Qué depósito necesito para 2.000 litros de riego al día durante tres días?',
+      answer: 'El cálculo inicial es 2.000 × 3 = 6.000 litros teóricos. Un depósito nominal de 5.000 litros no cubre esa reserva completa sin relleno; puedes comparar 10.000 litros u otro volumen. El consumo real, el volumen útil y las reposiciones deben comprobarse antes de elegir.'
+    },
+    {
+      question: '¿Un depósito de 5.000, 10.000 o 15.000 litros sirve para una finca?',
+      answer: 'La capacidad adecuada no depende solamente de los metros cuadrados o del cultivo. Necesitamos conocer el consumo, cuándo puedes reponer el agua y las condiciones del lugar. Las fichas individuales ayudan a comparar medidas orientativas y requisitos de entrega.'
+    },
+    {
+      question: '¿Un depósito de agua de riego aporta presión al sistema de goteo?',
+      answer: 'Almacenar agua no garantiza por sí solo la presión requerida en los goteros. La altura disponible, el bombeo y la instalación hidráulica deben estudiarse por el profesional responsable del sistema de riego.'
+    },
+    {
+      question: '¿Se puede utilizar para agua potable o para enterrarlo?',
+      answer: 'No debe suponerse que un depósito para riego es apto para agua de consumo humano ni para enterramiento. Esos usos requieren una referencia adecuada y documentación específica del fabricante.'
+    },
+    {
+      question: '¿El transporte del depósito incluye la descarga en mi finca?',
+      answer: 'El transporte estándar no incluye la descarga, salvo acuerdo confirmado para el pedido. Antes de presupuestar hay que verificar destino, accesos, dimensiones de la unidad y medios necesarios para recibirla.'
+    },
+    {
+      question: '¿Puedo pedir presupuesto desde Sevilla o desde otra provincia?',
+      answer: 'Depofibra atiende consultas comerciales desde Casariche (Sevilla). La posibilidad de suministro a otros destinos de España o Portugal depende del modelo, su tamaño y la logística; no anunciamos una tarifa ni disponibilidad uniforme.'
+    }
+  ]
+};
+---
+<CategoryInterior {...page} />
