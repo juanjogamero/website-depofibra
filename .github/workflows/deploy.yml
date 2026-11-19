@@ -30,6 +30,9 @@ jobs:
           # activa producción creando la variable del repositorio en GitHub.
           DEPOFIBRA_SITE_URL: ${{ vars.DEPOFIBRA_SITE_URL || 'https://demo.depofibra.com' }}
 
+      - name: Comprobar modelos AR de verticales y dimensiones métricas
+        run: python3 scripts/check-ar-models.py
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
