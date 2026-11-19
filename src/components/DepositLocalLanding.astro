@@ -89,7 +89,7 @@ const capacityUrl = (liters: number) => `/depositos/vertical-base-plana/${liters
       <div class="container">
         <span class="eyebrow">CATÁLOGO PRIORITARIO</span>
         <h2 id="dl-capacity-heading">{landing.choiceHeading}</h2>
-        <p class="dl-subnote">Las siguientes son capacidades nominales de referencia para comparar, no recomendaciones por zona ni disponibilidad confirmada. Las medidas, el volumen útil y el equipamiento se revisan en la ficha elegida.</p>
+        <p class="dl-subnote">Estas tres capacidades son solo ejemplos con fichas propias, no los únicos modelos ni tamaños que se pueden estudiar. Consulta también los verticales, horizontales y otros formatos del catálogo; volumen útil, medidas, equipamiento y disponibilidad se verifican por referencia.</p>
         <div class="dl-capacities">
           {landing.capacityNotes.map(item=><article class="dl-capacity">
             <h3>{number(item.liters)} <span>litros</span></h3>
@@ -97,7 +97,7 @@ const capacityUrl = (liters: number) => `/depositos/vertical-base-plana/${liters
             <a href={capacityUrl(item.liters)}>Consultar ficha de {number(item.liters)} L <span aria-hidden="true">↗</span></a>
           </article>)}
         </div>
-        <p class="dl-secondary-links">¿Todavía estás calculando los litros? Consulta nuestra <a href="/blog/calcular-capacidad-deposito-agua-riego/">guía para estimar consumo y días de reserva</a>. También puedes comparar los <a href="/depositos/horizontal-con-cunas/">modelos horizontales con cunas</a> o los <a href="/depositos/horizontal-enterrable/">horizontales enterrables</a>, que son referencias distintas.</p>
+        <p class="dl-secondary-links">¿Todavía estás calculando los litros? Consulta nuestra <a href="/blog/calcular-capacidad-deposito-agua-riego/">guía para estimar consumo y días de reserva</a> o el <a href="/depositos/">catálogo completo de modelos y capacidades</a>. También puedes comparar los <a href="/depositos/horizontal-con-cunas/">modelos horizontales con cunas</a> o los <a href="/depositos/horizontal-enterrable/">horizontales enterrables</a>, que son referencias distintas.</p>
       </div>
     </section>
 
