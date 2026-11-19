@@ -3,7 +3,7 @@ export function buildTankGlb({ diameterMm, longitudinalMm }) {
   const radius = diameterMm / 2000;
   const height = longitudinalMm / 1000;
   const edge = Math.min(radius, height) * 0.014;
-  const segments = 64;
+  const segments = 96;
   const positions = [];
   const normals = [];
   const indices = [];
@@ -59,7 +59,8 @@ export function buildTankGlb({ diameterMm, longitudinalMm }) {
     scene: 0, scenes: [{ nodes: [0] }], nodes: [{ name: 'Deposito', mesh: 0 }],
     meshes: [{ primitives: [{ attributes: { POSITION: 0, NORMAL: 1 }, indices: 2, material: 0 }] }],
     materials: [{ name: 'PRFV blanco ilustrativo', pbrMetallicRoughness: {
-      baseColorFactor: [0.78, 0.80, 0.78, 1], metallicFactor: 0, roughnessFactor: 0.39,
+      // Acabado blanco satinado ilustrativo, sin fingir un color autorizado de fábrica.
+      baseColorFactor: [0.91, 0.93, 0.95, 1], metallicFactor: 0, roughnessFactor: 0.46,
     } }],
     buffers: [{ byteLength: binary.length }], bufferViews,
     accessors: [
