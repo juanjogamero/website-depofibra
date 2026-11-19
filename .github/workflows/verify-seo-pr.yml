@@ -27,5 +27,7 @@ jobs:
           DEPOFIBRA_SITE_URL: https://depofibra.com
       - name: Verificar mallas 3D, escala en metros y 17 pares GLB/USDZ
         run: python3 scripts/check-ar-models.py
+      - name: Comprobar los 8 depósitos tipo vaso en GLB y USDZ
+        run: python3 scripts/check-vaso-models.py
       - name: Verificar enlaces, anclas y sitemap internos
         run: npm run check:links
