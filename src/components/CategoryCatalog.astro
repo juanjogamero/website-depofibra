@@ -83,21 +83,7 @@ const { title, eyebrow, description, breadcrumb, items, note, countLabel = 'mode
   </section>
 </div>
 
-<script>
-  // Los botones usan el formulario compartido; la selección de producto se maneja allí.
-  // La referencia concreta queda incluida en las notas cuando varias fichas comparten familia.
-  document.querySelectorAll<HTMLButtonElement>('.pc-product__quote').forEach(button => {
-    button.addEventListener('click', () => {
-      const note = button.dataset.note?.trim();
-      if (!note) return;
-      const detail = document.querySelector<HTMLTextAreaElement>('#quoteDetails');
-      if (detail) {
-        const prefix = `Referencia consultada: ${note}`;
-        if (!detail.value.includes(prefix)) detail.value = [prefix, detail.value.trim()].filter(Boolean).join('\n');
-      }
-    });
-  });
-</script>
+
 
 <style>
   .pc-catalog{background:#fff;color:var(--color-dark)}

@@ -177,17 +177,7 @@ const catalogItems = items.map(item => ({
   </div>
 </Layout>
 
-<script>
-  document.querySelectorAll<HTMLButtonElement>('.df-special .open-quote-trigger').forEach(button => {
-    button.addEventListener('click', () => {
-      const note = button.dataset.note?.trim();
-      const details = document.querySelector<HTMLTextAreaElement>('#quoteDetails');
-      if (note && details && !details.value.includes(note)) {
-        details.value = [`Referencia consultada: ${note}`, details.value.trim()].filter(Boolean).join('\n');
-      }
-    });
-  });
-</script>
+
 
 <style>
   .df-catalog {background:#fff;color:var(--color-dark)}
