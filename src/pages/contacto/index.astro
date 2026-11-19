@@ -73,11 +73,9 @@ import Layout from '../../layouts/Layout.astro';
       context.hidden = false;
     }
     if (capacity) {
-      trigger.addEventListener('click', () => {
-        const notes = document.querySelector<HTMLTextAreaElement>('#quoteDetails');
-        const message = `Capacidad orientativa: ${capacity}.`;
-        if (notes && !notes.value.includes(message)) notes.value = [message, notes.value.trim()].filter(Boolean).join('\n');
-      }, { capture: true });
+      // El formulario centralizado incorpora y retira esta nota automática
+      // al cambiar de consulta, sin borrar las observaciones del visitante.
+      trigger.dataset.note = `Capacidad orientativa: ${capacity}.`;
     }
   }
 </script>
