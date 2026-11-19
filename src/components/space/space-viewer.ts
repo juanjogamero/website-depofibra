@@ -18,7 +18,9 @@ const support = get('space-support');
 const openChrome = get<HTMLAnchorElement>('space-open-chrome');
 const copyLink = get<HTMLButtonElement>('space-copy-link');
 // La app de Google puede abrir una pestaña integrada que no ofrece la misma AR que Chrome/Safari.
-const googleApp = /(?:^|[\\s;(])GSA\\/|GoogleApp\\/|googlequicksearchbox|; wv[);]/i.test(navigator.userAgent);
+const agent = navigator.userAgent;
+const googleApp = agent.includes('GSA/') || agent.includes('GoogleApp/') ||
+  agent.toLowerCase().includes('googlequicksearchbox') || agent.includes('; wv)') || agent.includes('; wv;');
 const android = /Android/i.test(navigator.userAgent);
 const ios = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 const handoff = get<HTMLDetailsElement>('space-handoff');
