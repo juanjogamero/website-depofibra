@@ -162,6 +162,10 @@
   const quoteSubmit = document.getElementById('quoteSubmit') as HTMLButtonElement | null;
   let isSubmitting = false;
   let previousFocus: HTMLElement | null = null;
+  const quoteDescription = document.getElementById('quoteModalDesc');
+  const defaultQuoteDescription = quoteDescription?.textContent?.trim() || '';
+  let lastAutomaticNote = '';
+  let lastAutomaticCategory = '';
 
   function getCategory(value: string): string {
     const text = value.toLowerCase();
@@ -174,10 +178,41 @@
 
   function openQuoteModal(product?: string, note?: string) {
     previousFocus = document.activeElement as HTMLElement;
-    if (quoteReference) quoteReference.value = product?.trim() || '';
+    const selectedProduct = product?.trim() || '';
+    const selectedNote = note?.trim() || '';
+
+    // Elimina únicamente la nota añadida automáticamente por el CTA anterior.
+    // Conserva las observaciones que el visitante haya escrito manualmente.
+    if (details && lastAutomaticNote) {
+      details.value = details.value.split('\n')
+        .filter(line => line.trim() !== lastAutomaticNote)
+        .join('\n')
+        .trim();
+    }
+    lastAutomaticNote = '';
+    if (quoteReference) quoteReference.value = selectedProduct;
     if (quoteOrigin) quoteOrigin.value = window.location.href;
-    if (product && category) category.value = getCategory(product);
-    if (note && details && !details.value.includes(note)) details.value = [details.value.trim(), note].filter(Boolean).join('\n');
+
+    if (category) {
+      if (selectedProduct) {
+        category.value = getCategory(selectedProduct);
+        lastAutomaticCategory = category.value;
+      } else {
+        // Un botón genérico no debe heredar la selección automática de una ficha.
+        if (lastAutomaticCategory && category.value === lastAutomaticCategory) category.value = '';
+        lastAutomaticCategory = '';
+      }
+    }
+    if (selectedNote && details) {
+      details.value = [details.value.trim(), selectedNote].filter(Boolean).join('\n');
+      lastAutomaticNote = selectedNote;
+    }
+    if (quoteDescription) {
+      quoteDescription.textContent = selectedProduct
+        ? `Consulta sobre: ${selectedProduct}. Indícanos tus datos para estudiar el presupuesto.`
+        : defaultQuoteDescription;
+    }
+
     if (quoteFeedback) { quoteFeedback.textContent = ''; quoteFeedback.hidden = true; }
     modal?.classList.add('is-open');
     modal?.setAttribute('aria-hidden','false');
