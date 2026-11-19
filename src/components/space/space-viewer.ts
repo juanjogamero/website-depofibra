@@ -31,6 +31,7 @@ let customHex = '#ad724b';
 let model: ModelViewerElement | null = null;
 let ready = false;
 let visible = false;
+let activeModelIsCustom = false;
 let sequence = 0;
 let loadTimeout: number | undefined;
 let arTimeout: number | undefined;
@@ -165,6 +166,8 @@ async function loadModel() {
   loadIndicator.textContent='Cargando el modelo 3D…';
   retry.hidden=true;
   const stem=modelStem();
+  const builtForCustom = custom();
+  activeModelIsCustom = false;
   try {
     if (!canRender()) throw new Error('WebGL no disponible');
     if (!customElements.get('model-viewer')) {
@@ -196,7 +199,7 @@ async function loadModel() {
     current.addEventListener('load',()=>{
       if (token!==sequence) return;
       window.clearTimeout(loadTimeout);
-      try { applyCustomColor(current); }
+      try { applyCustomColor(current); activeModelIsCustom = builtForCustom; }
       catch { failures('No se ha podido aplicar este color. Elige otro o vuelve a intentarlo.');return; }
       loadIndicator.hidden=true;
       retry.hidden=true;
@@ -267,7 +270,7 @@ customInput.addEventListener('input',()=>{
   customHex=hex;shade='personalizado';
   syncColors();history.replaceState(null,'','#'+hash());
   window.clearTimeout(colorTimeout);
-  if (wasCustom && ready && model) {
+  if (wasCustom && ready && model && activeModelIsCustom) {
     applyCustomColor(model);
     colorTimeout=window.setTimeout(()=>updateDetails(false),140);
   } else {
@@ -276,7 +279,7 @@ customInput.addEventListener('input',()=>{
 });
 customInput.addEventListener('change',()=>{
   window.clearTimeout(colorTimeout);
-  if (ready && custom() && model) {
+  if (ready && custom() && model && activeModelIsCustom) {
     applyCustomColor(model);updateDetails(false);
   } else updateDetails();
 });
