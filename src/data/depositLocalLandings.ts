@@ -1,9 +1,9 @@
 /**
- * Landings locales de depósitos: solo mercados con evidencia de GSC.
+ * Landings territoriales para captar intención comercial; el contexto no acredita demanda GSC.
  * No son tiendas/sedes. No se ofrece transporte o aptitud sin confirmación.
  */
 export interface DepositLocalLanding {
-  slug: 'murcia' | 'valencia' | 'sevilla';
+  slug: 'murcia' | 'valencia' | 'sevilla' | 'palencia' | 'soria';
   province: string;
   eyebrow: string;
   seoTitle: string;
@@ -179,4 +179,156 @@ export const depositLocalLandings: DepositLocalLanding[] = [
     sourceUrl: 'https://www.juntadeandalucia.es/organismos/agriculturapescaaguaydesarrollorural/areas/desarrollo-rural/grupos-desarrollo-rural/paginas/gdr-sevilla-estepa-sierrasur-2023-2027.html',
     quoteContext: 'Consulta de depósito PRFV con destino en Sevilla; confirmar capacidad, uso, código postal, accesos, transporte externo y descarga.',
   },
+  {
+    "slug": "palencia",
+    "province": "provincia de Palencia",
+    "eyebrow": "PALENCIA · DEPÓSITOS DE POLIÉSTER PARA AGUA Y RIEGO",
+    "seoTitle": "Depósitos de poliéster en Palencia para riego | Depofibra",
+    "metaDescription": "Depósitos PRFV para fincas y riego en Palencia. Compara verticales, horizontales y capacidades; solicita presupuesto de transporte según modelo y accesos.",
+    "h1": "Depósitos de poliéster para agua y riego en Palencia",
+    "lead": "¿Estás buscando un depósito de poliéster reforzado con fibra de vidrio para almacenar agua de riego o reserva en Palencia? En Depofibra puedes consultar diferentes geometrías y capacidades del catálogo, y preparar el presupuesto según tu uso, el municipio y las condiciones de entrega.",
+    "regionHeading": "Depósito para riego en Palencia: reserva útil y reposición del agua",
+    "regionParagraphs": [
+      "En la demarcación del Duero existen distintas unidades de demanda agraria, documentadas por la Confederación Hidrográfica del Duero. La presencia de regadío no determina por sí sola qué depósito necesita una explotación: la capacidad depende de las aportaciones de agua autorizadas, del consumo y de los intervalos entre reposiciones.",
+      "Para una finca que recibe agua por turnos, estima primero litros consumidos por jornada y días sin reposición. Por ejemplo, una demanda de 2.000 litros diarios durante cuatro días supone 8.000 litros teóricos antes de considerar volumen útil, reservas de seguridad o limitaciones de instalación. No es una recomendación cerrada de modelo ni modifica derechos de captación o uso del agua.",
+      "Si el espacio permite instalación en superficie, compara verticales de base plana y horizontales con cunas. Para enterrar es imprescindible una referencia específica de enterramiento y las condiciones del fabricante; compartir dimensiones no hace que un modelo de superficie sea enterrable."
+    ],
+    "zoneHeading": "Tres situaciones habituales que conviene comprobar en Palencia",
+    "localCases": [
+      {
+        "place": "Palencia capital y entorno del Carrión",
+        "need": "Si el destino está en una nave o parcela próxima a vías urbanas, comunica altura de entrada, anchura de accesos, ubicación de la base y espacio de descarga. El vehículo y el horario se acuerdan según la operación."
+      },
+      {
+        "place": "Tierra de Campos y fincas agrícolas",
+        "need": "Para reservas de riego en fincas, informa del consumo real, distancia entre llenados y condición del camino hasta el punto de colocación. Un terreno aparentemente amplio no garantiza acceso de un camión."
+      },
+      {
+        "place": "Aguilar de Campoo y Montaña Palentina",
+        "need": "En emplazamientos con pendientes, maniobra limitada o climatología condicionante, conviene comprobar con especial atención firme, gálibos, ruta y disponibilidad de medios adecuados de descarga."
+      }
+    ],
+    "choiceHeading": "Fichas orientativas y otros volúmenes para Palencia",
+    "capacityNotes": [
+      {
+        "liters": 5000,
+        "note": "Una referencia para comparar alternativas compactas de reserva; la tabla histórica contempla más de una geometría de este volumen, a confirmar por proveedor."
+      },
+      {
+        "liters": 10000,
+        "note": "Compara la autonomía teórica con el calendario de aportaciones y verifica dimensiones exteriores y necesidades de colocación."
+      },
+      {
+        "liters": 15000,
+        "note": "Una referencia para consumos superiores; antes de presupuestar confirma base, altura libre, tipo de camión y descarga."
+      }
+    ],
+    "logisticsHeading": "Presupuesto de depósito con entrega en Palencia",
+    "logisticsParagraphs": [
+      "Depofibra comercializa productos PRFV de fabricantes externos y atiende desde Casariche (Sevilla). No dispone de fábrica ni almacén propios en Palencia. La salida de cada mercancía depende del proveedor y del modelo elegido; no debe darse por hecho que un producto salga físicamente de Casariche.",
+      "Para valorar transporte externo, indica población y código postal, capacidad aproximada, uso del líquido, accesos y medios de descarga. El porte estándar no incluye descarga salvo confirmación escrita de un servicio específico. El coste y el plazo se consultan por operación; no prometemos una ruta regular, instalación ni disponibilidad inmediata.",
+      "Además de las fichas de 5.000, 10.000 y 15.000 litros, el catálogo incluye diferentes tipos verticales, horizontales, enterrables y otras capacidades de referencia; la viabilidad, las tomas y la documentación se verifican por modelo."
+    ],
+    "faq": [
+      {
+        "question": "¿Vendéis depósitos de poliéster para riego con destino Palencia?",
+        "answer": "Podemos estudiar el suministro a Palencia de referencias PRFV de fabricantes externos según uso, modelo y logística disponible. Para cotizar hacen falta localidad, código postal y condiciones de descarga; el suministro no está garantizado antes de confirmar condiciones."
+      },
+      {
+        "question": "¿Qué depósito conviene para una finca de Tierra de Campos?",
+        "answer": "La localidad no fija la capacidad. Calcula consumo y frecuencia de reposición y compara volumen útil, diámetro, longitud, espacio de apoyo y conexiones de modelos aptos para el uso concreto."
+      },
+      {
+        "question": "¿El precio incluye transporte y descarga?",
+        "answer": "No existe una tarifa única provincial. Se consulta el porte vigente según origen real de carga, dimensiones y destino. La descarga no forma parte del transporte estándar salvo acuerdo expreso."
+      },
+      {
+        "question": "¿Puedo comprar capacidades mayores de 15.000 litros?",
+        "answer": "Sí se pueden estudiar otras capacidades documentadas en el catálogo, sujetas a disponibilidad y validación por referencia. Las tres capacidades enlazadas son ejemplos con ficha propia, no el límite de gama."
+      },
+      {
+        "question": "¿Todos los depósitos permiten agua potable o enterramiento?",
+        "answer": "No. La aptitud para consumo humano requiere documentación específica, y para enterramiento debe seleccionarse un modelo diseñado para esa instalación y seguir las instrucciones del fabricante."
+      }
+    ],
+    "sourceName": "Confederación Hidrográfica del Duero — unidades de demanda agraria",
+    "sourceUrl": "https://datos.chduero.es/dataset/demandas-agrarias",
+    "quoteContext": "Consulta de depósito PRFV para Palencia. Confirmar modelo, uso, CP, origen del transporte, accesos y descarga."
+  },
+  {
+    "slug": "soria",
+    "province": "provincia de Soria",
+    "eyebrow": "SORIA · DEPÓSITOS PARA FINCAS Y RESERVA DE AGUA",
+    "seoTitle": "Depósitos de agua de poliéster en Soria | Depofibra",
+    "metaDescription": "Consulta depósitos de poliéster para fincas, riego y reserva de agua en Soria. Compara formatos PRFV y pide presupuesto según capacidad y destino.",
+    "h1": "Depósitos de poliéster para agua en Soria",
+    "lead": "Si necesitas reservar agua para riego o para una instalación compatible en Soria, consulta depósitos PRFV verticales, horizontales y modelos específicos para enterramiento. Depofibra comercializa referencias de fabricantes externos y estudia cada presupuesto con el destino y los accesos reales.",
+    "regionHeading": "Reserva de agua en Soria: caudal, turnos y autonomía",
+    "regionParagraphs": [
+      "La Confederación Hidrográfica del Duero documenta en su planificación zonas regables y unidades agrarias de la provincia de Soria, como el entorno de Almazán y del río Ucero. Esto no permite estimar la demanda de depósitos ni escoger capacidad solo por municipio: hay que comparar consumo, caudal disponible e intervalos de suministro.",
+      "Cuando una instalación recibe el agua de forma intermitente, calcula cuántos litros necesita acumular entre aportaciones. Si el suministro es continuo, quizá convenga otra configuración. También importan la altura disponible, el apoyo, las conexiones y el recorrido entre el camión y el lugar definitivo de colocación.",
+      "Un depósito para superficie puede ser vertical de base plana u horizontal con cunas si la referencia admite el uso previsto. Para enterrarlo se necesita un modelo enterrable concreto; la elección del recipiente no sustituye el proyecto ni autoriza captaciones de agua."
+    ],
+    "zoneHeading": "Puntos de entrega que requieren comprobaciones diferentes en Soria",
+    "localCases": [
+      {
+        "place": "Almazán y su entorno agrícola",
+        "need": "Para depósitos de reserva vinculados a riego, prepara consumo aproximado, periodicidad de llenado, tipo de base y accesos del vehículo. Valora conexiones y salida hacia la red existente."
+      },
+      {
+        "place": "El Burgo de Osma y valle del Ucero",
+        "need": "Si el equipo se colocará en una finca, verifica la anchura del camino, giros, tendidos y si existe espacio para una descarga segura. Son variables decisivas antes del transporte."
+      },
+      {
+        "place": "Ágreda, Ólvega y el este provincial",
+        "need": "En instalaciones con naves, patios o espacios de paso restringidos, aporta el gálibo de las entradas y las dimensiones máximas admisibles, no solo la capacidad nominal."
+      }
+    ],
+    "choiceHeading": "Comparar referencias de depósito para Soria sin limitarse a tres tamaños",
+    "capacityNotes": [
+      {
+        "liters": 5000,
+        "note": "Referencia inicial para reservas acotadas; calcula días de autonomía y comprueba qué geometría se adapta realmente al acceso."
+      },
+      {
+        "liters": 10000,
+        "note": "Opción de comparación para almacenamiento intermedio; confirma la altura total con boca y las conexiones que necesita la instalación."
+      },
+      {
+        "liters": 15000,
+        "note": "Para mayor volumen nominal, revisa apoyos, diámetros, longitud y medios de elevación y descarga antes del presupuesto."
+      }
+    ],
+    "logisticsHeading": "Cómo estudiar una entrega de depósito PRFV en Soria",
+    "logisticsParagraphs": [
+      "Depofibra atiende comercialmente desde Casariche (Sevilla), pero no es fabricante ni tiene fábrica o almacén en Soria. La mercancía puede salir de un proveedor externo, por lo que el origen de carga y la ruta se confirman al seleccionar referencia. No ofrecemos por defecto una tarifa cerrada para toda Soria.",
+      "Indica capacidad, uso, municipio y código postal, dimensiones disponibles, acceso de camión y cómo se realizará la descarga. El transporte externo estándar no incorpora descarga salvo que figure expresamente en la propuesta. No afirmar entrega inmediata, instalación incluida ni servicios de grúa sin cotización específica.",
+      "Se pueden estudiar capacidades distintas de 5.000, 10.000 y 15.000 litros y varias geometrías del catálogo. Si se requieren prestaciones especiales, agua de consumo humano o instalación enterrada, la documentación del modelo debe revisarse previamente."
+    ],
+    "faq": [
+      {
+        "question": "¿Depofibra puede presupuestar depósitos de agua con destino Soria?",
+        "answer": "Podemos estudiar una propuesta para Soria según el modelo y la viabilidad logística. Necesitamos uso, capacidad y código postal, además de condiciones de acceso y descarga. No confirmamos transporte o fecha antes de recibir la oferta correspondiente."
+      },
+      {
+        "question": "¿Es mejor un depósito vertical u horizontal para una finca en Soria?",
+        "answer": "Depende del espacio, del apoyo, de la capacidad y de la maniobra de entrega. Un vertical ocupa una huella diferente; el horizontal con cunas necesita espacio longitudinal y apoyos adecuados. Confirmamos cotas reales por modelo."
+      },
+      {
+        "question": "¿Los depósitos para riego pueden enterrarse?",
+        "answer": "Solo cuando se seleccione una referencia específicamente diseñada para enterramiento y se sigan las condiciones técnicas de fabricación e instalación; no por coincidir con las medidas de un modelo de superficie."
+      },
+      {
+        "question": "¿Cuánto cuesta transportar un depósito a Almazán o El Burgo de Osma?",
+        "answer": "No existe un precio garantizado para esos municipios. Se cotiza según referencia, fábrica de origen, medidas, peso, acceso y servicio. La descarga no está incluida por defecto."
+      },
+      {
+        "question": "¿Puedo consultar depósitos de más de 15.000 litros?",
+        "answer": "Sí, hay otras capacidades históricas en distintas familias que se pueden estudiar. La ficha y disponibilidad vigentes se verifican antes de confirmar una propuesta."
+      }
+    ],
+    "sourceName": "Confederación Hidrográfica del Duero — Plan Hidrológico vigente",
+    "sourceUrl": "https://www.chduero.es/plan-hidrol%C3%B3gico-del-duero-vigente-",
+    "quoteContext": "Consulta de depósito PRFV con destino en Soria. Confirmar capacidad, uso, CP, accesos, transporte externo y descarga."
+  }
 ];
