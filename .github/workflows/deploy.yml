@@ -33,6 +33,9 @@ jobs:
       - name: Comprobar modelos AR de verticales y dimensiones métricas
         run: python3 scripts/check-ar-models.py
 
+      - name: Comprobar geometrías de depósitos tipo vaso en metros
+        run: python3 scripts/check-vaso-models.py
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
