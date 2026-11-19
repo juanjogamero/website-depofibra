@@ -3,7 +3,7 @@
  * No son tiendas/sedes. No se ofrece transporte o aptitud sin confirmación.
  */
 export interface DepositLocalLanding {
-  slug: 'murcia' | 'valencia';
+  slug: 'murcia' | 'valencia' | 'sevilla';
   province: string;
   eyebrow: string;
   seoTitle: string;
@@ -104,5 +104,79 @@ export const depositLocalLandings: DepositLocalLanding[] = [
     sourceName:'Confederación Hidrográfica del Júcar — actividad agraria y regadíos',
     sourceUrl:'https://www.chj.es/es-es/medioambiente/cuencahidrografica/Paginas/CaracteristicasSocioeconomicas.aspx',
     quoteContext:'Consulta de depósito para provincia de Valencia; confirmar referencia, transporte y descarga a código postal de destino.',
+  },
+  {
+    slug: 'sevilla',
+    province: 'Sevilla',
+    eyebrow: 'SEVILLA · DEPÓSITOS DE POLIÉSTER',
+    seoTitle: 'Depósitos de poliéster en Sevilla: capacidades y entrega | Depofibra',
+    metaDescription: 'Depósitos de poliéster para agua y riego en Sevilla. Atención desde Casariche, comparación de 5.000, 10.000 y 15.000 litros y presupuesto según destino.',
+    h1: 'Depósitos de poliéster para agua en Sevilla',
+    lead: 'Depofibra atiende consultas comerciales desde Casariche, en la provincia de Sevilla. Si necesitas un depósito de agua de poliéster reforzado con fibra de vidrio (PRFV) para riego u otro uso compatible, compara las capacidades y aclara cómo se hará la entrega antes de pedir precio.',
+    regionHeading: 'Comprar un depósito desde Casariche: capacidad, uso y condiciones reales',
+    regionParagraphs: [
+      'Casariche forma parte de las comarcas de Osuna, Estepa y Sierra Sur de Sevilla, identificadas por la Junta de Andalucía como ámbito de desarrollo rural. Atender desde esta localidad es un dato de origen comercial, no una promesa de fábrica, almacén, tienda presencial o transporte propio.',
+      'Para una finca de riego, un depósito puede servir como reserva entre reposiciones de agua. Para otro uso, antes debemos comprobar que el modelo y sus materiales sean compatibles. La decisión depende de litros consumidos, frecuencia de llenado, base disponible, conexiones y accesos. No existe una capacidad universal por municipio ni por cultivo.',
+    ],
+    zoneHeading: 'Tres situaciones a valorar dentro de la provincia',
+    localCases: [
+      {
+        place: 'Casariche, Estepa y Sierra Sur',
+        need: 'Para consultas cercanas al punto de atención de Depofibra, confirma el modelo y la modalidad de entrega. La cercanía no garantiza recogida presencial, disponibilidad inmediata ni transporte incluido.',
+      },
+      {
+        place: 'Osuna, Écija y la campiña sevillana',
+        need: 'Si el depósito irá a una finca, indica si hay carriles estrechos, entradas con altura limitada o caminos de tierra. Las condiciones del acceso influyen en la viabilidad del transporte y la descarga.',
+      },
+      {
+        place: 'Sevilla capital, Vega y Bajo Guadalquivir',
+        need: 'En parcelas, naves o instalaciones con espacio de maniobra limitado, conviene comprobar dimensiones exteriores, posición de conexiones, lugar de apoyo y medios previstos para descargar.',
+      },
+    ],
+    choiceHeading: 'Comparar 5.000, 10.000 y 15.000 litros para Sevilla',
+    capacityNotes: [
+      {
+        liters: 5000,
+        note: '5 m³ nominales. La documentación de referencia incluye dos geometrías distintas: revisa diámetros, altura real y accesos antes de elegir el modelo.',
+      },
+      {
+        liters: 10000,
+        note: '10 m³ nominales. Una opción que conviene valorar según consumo y reposiciones de agua; confirma las cotas, las conexiones y el transporte.',
+      },
+      {
+        liters: 15000,
+        note: '15 m³ nominales. Antes de presupuestar comprueba superficie de apoyo, altura libre, accesos del vehículo y medios seguros de descarga.',
+      },
+    ],
+    logisticsHeading: 'Cómo solicitar un presupuesto de depósito para Sevilla',
+    logisticsParagraphs: [
+      'Depofibra comercializa depósitos de fabricantes externos y atiende desde Casariche (Sevilla). El modelo, las dimensiones definitivas y la disponibilidad se consultan para cada solicitud. El transporte se organiza con operadores externos y se cotiza según referencia y destino; estar en la misma provincia no supone entrega inmediata ni portes gratuitos.',
+      'Indica población y código postal de Sevilla, capacidad aproximada, uso del agua o líquido, medidas del acceso y conexiones necesarias. El transporte estándar no incluye descarga salvo acuerdo expreso. No se presupone instalación, grúa, recogida presencial ni otro servicio adicional sin confirmarlo previamente.',
+    ],
+    faq: [
+      {
+        question: '¿Depofibra fabrica depósitos de poliéster en Sevilla?',
+        answer: 'No. Depofibra es una comercializadora de depósitos PRFV de fabricantes externos. Atendemos consultas desde Casariche (Sevilla), pero no anunciamos fábrica, flota ni almacén propios.',
+      },
+      {
+        question: '¿Puedo recoger un depósito directamente en Casariche?',
+        answer: 'No se debe dar por disponible una recogida presencial o una visita a instalaciones. La modalidad de suministro, el lugar de entrega y el transportista se confirman para el modelo y la operación concreta.',
+      },
+      {
+        question: '¿Qué depósito conviene para una finca de Sevilla: 5.000, 10.000 o 15.000 litros?',
+        answer: 'Depende de los litros consumidos, los días entre reposiciones y el volumen útil del equipo, además del espacio para colocarlo. Las tres fichas permiten comparar alternativas; no se recomienda una capacidad solo por la localidad.',
+      },
+      {
+        question: '¿Qué precio tiene un depósito de 10.000 litros con transporte a Sevilla?',
+        answer: 'No hay un precio único para toda la provincia. Se revisan modelo, equipamiento, accesos, localidad y condiciones de transporte antes de entregar un presupuesto; la descarga no está incluida por defecto.',
+      },
+      {
+        question: '¿Los depósitos anunciados sirven para agua potable o para enterrarlos?',
+        answer: 'No se presupone ninguna de esas aptitudes. El uso para consumo humano exige documentación específica y el enterramiento requiere una referencia diseñada y autorizada para esa instalación.',
+      },
+    ],
+    sourceName: 'Junta de Andalucía — comarcas de Osuna, Estepa y Sierra Sur de Sevilla',
+    sourceUrl: 'https://www.juntadeandalucia.es/organismos/agriculturapescaaguaydesarrollorural/areas/desarrollo-rural/grupos-desarrollo-rural/paginas/gdr-sevilla-estepa-sierrasur-2023-2027.html',
+    quoteContext: 'Consulta de depósito PRFV con destino en Sevilla; confirmar capacidad, uso, código postal, accesos, transporte externo y descarga.',
   },
 ];
