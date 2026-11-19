@@ -30,7 +30,7 @@ export const depositFamilies: DepositFamily[] = [
     name: 'Depósitos verticales de poliéster de base plana',
     shortName: 'Vertical de base plana',
     eyebrow: 'Depósitos · Instalación en superficie',
-    intro: 'Depósitos verticales de poliéster (PRFV) de base plana para almacenamiento en superficie. La familia dispone de referencias históricas de distintas capacidades, no solo 5.000, 10.000 y 15.000 litros. Compara volumen, diámetro, espacio de apoyo, conexiones y entrega antes de elegir.'
+    intro: 'Depósitos verticales de poliéster (PRFV) de base plana para almacenamiento en superficie. La familia dispone de referencias históricas de distintas capacidades, no solo 5.000, 10.000 y 15.000 litros. Compara volumen, diámetro, espacio de apoyo, conexiones y entrega antes de elegir.',
     installation: 'En superficie',
     geometry: 'Vertical · Base plana',
     application: 'Agua y riego, según referencia',
