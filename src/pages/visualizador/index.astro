@@ -4,113 +4,86 @@ import { verticalTanksAR } from '../../data/verticalTanksAR';
 import { vasosAR } from '../../data/vasosAR';
 import '../../components/space/space.css';
 
-const first = verticalTanksAR.find(t => t.liters === 10000) ?? verticalTanksAR[0];
-const title = 'Depofibra en tu espacio · Visualizador 3D y realidad aumentada';
-const description = 'Elige un depósito vertical o tipo vaso, explóralo en 3D y visualízalo en tu patio, nave o finca con realidad aumentada.';
+const initial = verticalTanksAR.find(t => t.liters === 10000) ?? verticalTanksAR[0];
+const title = 'Depofibra en tu espacio | Visualizador 3D';
+const description = 'Visualiza un depósito vertical o tipo vaso en 3D y colócalo a escala orientativa en tu espacio con realidad aumentada.';
 ---
 <Layout {title} {description} indexable={false} activeNav="depositos">
   <div class="space-page">
-    <section class="space-hero" aria-labelledby="space-title">
-      <div class="space-container space-hero-inner">
-        <div class="space-hero-content">
-          <p class="space-hero-eyebrow"><span aria-hidden="true" class="space-hero-dot"></span> DEPOFIBRA · HERRAMIENTA INTERACTIVA</p>
-          <h1 id="space-title">Depofibra <span>en tu espacio.</span></h1>
-          <p class="space-hero-lead">Elige el producto, comprueba sus proporciones y colócalo virtualmente donde quieres instalarlo. Sin aplicaciones ni conocimientos técnicos.</p>
-          <a href="#space-elige" class="space-hero-link">Empezar a explorar <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-        </div>
-        <div class="space-hero-visual" aria-hidden="true">
-          <svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="240" cy="254" rx="189" ry="13" stroke="white" stroke-opacity=".19"/>
-            <path d="M70 247h344" stroke="white" stroke-opacity=".27" stroke-dasharray="4 9"/>
-            <g stroke="white" stroke-width="2.1" stroke-linejoin="round">
-              <path d="M95 89C95 67 135 55 169 55s74 12 74 34v143c0 20-33 30-74 30s-74-10-74-30V89Z" fill="#FFFFFF" fill-opacity=".10"/>
-              <path d="M95 90c0 22 35 33 74 33s74-11 74-33M95 231c0 21 34 31 74 31s74-10 74-31" stroke-opacity=".85"/>
-              <path d="M142 57c0-9 11-16 27-16s27 7 27 16m-43-16v-8c0-8 32-8 32 0v8" stroke-opacity=".8"/>
-              <path d="M177 128v104" stroke="#9DC9F6" stroke-width="7"/>
-              <path d="M320 122c3-13 35-19 65-19s65 6 68 19l-20 109c-2 15-25 24-48 24s-46-9-48-24l-17-109Z" fill="white" fill-opacity=".10"/>
-              <ellipse cx="385" cy="121" rx="68" ry="20" fill="#fff" fill-opacity=".12"/>
-              <ellipse cx="385" cy="115" rx="22" ry="5" fill="#fff" fill-opacity=".24"/>
-            </g>
-            <path d="M69 87h-37m37 175H32m6-175v175" stroke="#9DC9F6" stroke-width="1.8" stroke-dasharray="3 6"/>
-            <path d="m33 95 5-8 5 8m-10 159 5 8 5-8" stroke="#9DC9F6" stroke-width="1.8"/>
-            <circle cx="286" cy="177" r="7" stroke="#9DC9F6" stroke-width="1.8"/>
-            <path d="M275 177h-13m37 0h-13m0-13v13m0 13v-13" stroke="#9DC9F6" stroke-width="1.5"/>
-          </svg>
-          <div class="space-hero-visual-caption">EXPLORA EN 3D <span aria-hidden="true">·</span> VISUALIZA EN TU LUGAR</div>
-        </div>
-      </div>
-    </section>
-
     <div class="space-container">
       <nav class="space-breadcrumb" aria-label="Ruta de navegación">
-        <a href="/">Inicio</a><span aria-hidden="true">/</span>
-        <a href="/depositos/">Depósitos</a><span aria-hidden="true">/</span>
-        <span aria-current="page">En tu espacio</span>
+        <a href="/depositos/">Depósitos</a><span aria-hidden="true">/</span><span aria-current="page">En tu espacio</span>
       </nav>
-      <section class="space-choose" id="space-elige" aria-labelledby="space-choose-title">
-        <div class="space-section-head">
-          <div>
-            <p class="space-eyebrow">01 / ELIGE UNA FAMILIA</p>
-            <h2 id="space-choose-title">¿Qué quieres visualizar?</h2>
-          </div>
-          <p>Selecciona una familia y después la capacidad. Verás siempre el modelo correspondiente.</p>
+      <header class="space-hero">
+        <div class="space-heading">
+          <p class="space-eyebrow">DEPOFIBRA / VISUALIZADOR 3D</p>
+          <h1>Depofibra <span>en tu espacio.</span></h1>
+        </div>
+        <p>Descubre cómo quedaría tu depósito. Elige un modelo, cambia su color y míralo en tu propio espacio con la cámara.</p>
+      </header>
+
+      <section class="space-choose" aria-labelledby="space-choose-title">
+        <div class="space-section-title">
+          <h2 id="space-choose-title">Elige tu depósito</h2>
+          <span>01 / 02</span>
         </div>
         <div class="space-families" role="group" aria-label="Familia de depósito">
           <button class="space-family is-active" data-space-family="vertical" type="button" aria-pressed="true">
             <span class="space-family-art" aria-hidden="true">
-              <svg viewBox="0 0 110 106">
-                <path d="M27 26C27 16 38 10 55 10s28 6 28 16v58c0 11-13 16-28 16S27 95 27 84V26Z" fill="#eaf2fb" stroke="#01488e" stroke-width="2.6"/>
-                <ellipse cx="55" cy="26" rx="28" ry="11" fill="#eaf2fb" stroke="#01488e" stroke-width="2.6"/>
-                <path d="M44 15v-4c0-7 22-7 22 0v4M53 43v38" stroke="#01488e" stroke-width="2.6" stroke-linecap="round"/>
-                <path d="M33 88c11 10 36 11 46 0" stroke="#01488e" stroke-opacity=".5"/>
-              </svg>
+              <svg viewBox="0 0 112 112"><path d="M25 30c0-13 15-20 31-20s31 7 31 20v57c0 13-15 19-31 19S25 100 25 87V30Z" fill="#edf2f5" stroke="#7895a8" stroke-width="1.8"/><path d="M25 30c0 11 14 19 31 19s31-8 31-19" stroke="#8ca7ba" stroke-width="1.8"/><path d="M42 13v-5c0-7 28-7 28 0v5" fill="none" stroke="#7895a8" stroke-width="2"/><path d="M54 54v43" stroke="#1c6b50" stroke-width="4" /></svg>
             </span>
-            <span class="space-family-copy"><span class="space-family-count">01 · 17 configuraciones</span><strong>Verticales de base plana</strong><small>Para apreciar la altura y el espacio de instalación.</small></span>
+            <span class="space-family-copy">
+              <span>17 CONFIGURACIONES</span>
+              <strong>Verticales de base plana</strong>
+              <small>De 5.000 a 60.000 litros</small>
+            </span>
             <span class="space-family-arrow" aria-hidden="true">↗</span>
           </button>
           <button class="space-family" data-space-family="vasos" type="button" aria-pressed="false">
             <span class="space-family-art" aria-hidden="true">
-              <svg viewBox="0 0 110 106">
-                <path d="M18 27c0-9 16-15 37-15s37 6 37 15L80 84c-2 8-14 13-25 13S32 92 30 84L18 27Z" fill="#eaf2fb" stroke="#01488e" stroke-width="2.6"/>
-                <ellipse cx="55" cy="27" rx="37" ry="11" fill="#eaf2fb" stroke="#01488e" stroke-width="2.6"/>
-                <ellipse cx="55" cy="26" rx="14" ry="4.5" stroke="#01488e" stroke-width="2.1"/>
-                <path d="M30 84c8 12 44 13 50 0" stroke="#01488e" stroke-opacity=".5" stroke-width="2"/>
-              </svg>
+              <svg viewBox="0 0 112 112"><path d="M17 28c0-11 17-17 39-17s39 6 39 17L82 90c-3 10-18 16-26 16s-24-6-26-16L17 28Z" fill="#edf2f5" stroke="#7895a8" stroke-width="1.8"/><ellipse cx="56" cy="28" rx="39" ry="14" fill="#f7f9fa" stroke="#7895a8" stroke-width="1.8"/><ellipse cx="56" cy="23" rx="15" ry="5" fill="#e6edf0" stroke="#7895a8" stroke-width="1.7"/></svg>
             </span>
-            <span class="space-family-copy"><span class="space-family-count">02 · 8 capacidades</span><strong>Depósitos tipo vaso</strong><small>Formato compacto, con cubierta superior.</small></span>
+            <span class="space-family-copy">
+              <span>8 CAPACIDADES</span>
+              <strong>Depósitos tipo vaso</strong>
+              <small>De 110 a 4.000 litros</small>
+            </span>
             <span class="space-family-arrow" aria-hidden="true">↗</span>
           </button>
         </div>
       </section>
 
-      <section class="space-workbench" id="space-studio" aria-label="Visor de producto y realidad aumentada">
+      <section class="space-workbench" id="space-studio" aria-label="Visualizador interactivo">
         <div class="space-viewer-wrap">
-          <div class="space-viewer-heading">
-            <p class="space-eyebrow">02 / EXPLORA EL PRODUCTO</p>
-            <span class="space-live"><span aria-hidden="true"></span> Modelo 3D interactivo</span>
-          </div>
           <figure class="space-stage">
             <div class="space-canvas">
-              <div class="space-stage-tag">VISTA 3D <span aria-hidden="true">·</span> ESCALA ORIENTATIVA</div>
+              <span class="space-stage-tag">VISTA 3D <span aria-hidden="true">·</span> AR DISPONIBLE EN MÓVILES COMPATIBLES</span>
               <div id="space-model-host" class="space-model-host"></div>
-              <p id="space-load" class="space-load" role="status">Preparando el visualizador 3D…</p>
+              <p id="space-load" class="space-load" role="status">Preparando el modelo 3D…</p>
               <button class="space-retry" id="space-retry" type="button" hidden>Reintentar</button>
               <div class="space-zoom" role="group" aria-label="Controles del modelo">
-                <button id="space-zoom-out" type="button" disabled aria-label="Alejar modelo" title="Alejar">−</button>
-                <button id="space-zoom-in" type="button" disabled aria-label="Acercar modelo" title="Acercar">+</button>
-                <button id="space-reset" type="button" disabled aria-label="Restablecer vista" title="Restablecer">↺</button>
+                <button id="space-zoom-out" type="button" disabled aria-label="Alejar modelo">−</button>
+                <button id="space-zoom-in" type="button" disabled aria-label="Acercar modelo">+</button>
+                <button id="space-reset" type="button" disabled aria-label="Restablecer vista">↺</button>
               </div>
             </div>
-            <figcaption><strong id="space-model-title">{first.label}</strong><span>Arrastra para girar · Pellizca para acercar</span></figcaption>
+            <figcaption>
+              <strong id="space-model-title">{initial.label}</strong>
+              <span>Arrastra para girar · Pellizca para ampliar</span>
+            </figcaption>
           </figure>
-          <p class="space-viewer-footnote">Representación aproximada. No sustituye una ficha técnica ni la comprobación de instalación.</p>
         </div>
-        <div class="space-config">
-          <div class="space-config-heading"><span class="space-eyebrow">03 / PREPARA TU VISUALIZACIÓN</span><h2 id="space-config-title">Vertical de base plana</h2><p id="space-config-description">Explora sus dimensiones y comprueba visualmente la ocupación en tu espacio.</p></div>
+        <aside class="space-config" aria-label="Personalización del depósito">
+          <div class="space-config-heading">
+            <p class="space-eyebrow">PERSONALIZA Y VISUALIZA</p>
+            <h2 id="space-config-title">Vertical de base plana</h2>
+            <p id="space-config-description">Elige el tamaño y el acabado.</p>
+          </div>
+
           <div class="space-field">
-            <label for="space-size-vertical" id="space-size-label">Capacidad del depósito</label>
+            <label for="space-size-vertical" id="space-size-label">Capacidad</label>
             <select id="space-size-vertical">
-              {verticalTanksAR.map(t => <option value={t.id} selected={t.id===first.id}
+              {verticalTanksAR.map(t => <option value={t.id} selected={t.id===initial.id}
                 data-src={t.url} data-diameter={t.diameter} data-height={t.longitudinal} data-note={t.note}
                 data-large={t.longitudinalMm >= 6000 ? 'true':'false'}>{t.label}</option>)}
             </select>
@@ -119,47 +92,46 @@ const description = 'Elige un depósito vertical o tipo vaso, explóralo en 3D y
                 data-height={t.height} data-note={t.note}>{t.label}</option>)}
             </select>
           </div>
+
           <fieldset class="space-colors" id="space-color-field">
-            <legend>Acabado visual</legend>
-            <div class="space-color-row" role="group" aria-label="Acabado del depósito">
-              <button type="button" data-space-color="blanco" class="space-color is-active" aria-pressed="true"><span class="space-color-swatch white" aria-hidden="true"></span>Blanco</button>
-              <button type="button" data-space-color="verde" class="space-color" aria-pressed="false"><span class="space-color-swatch green" aria-hidden="true"></span>Verde</button>
+            <legend>Color</legend>
+            <div class="space-color-row" role="group" aria-label="Acabado visual">
+              <button type="button" data-space-color="verde" class="space-color is-active" aria-pressed="true"><span class="space-color-swatch green" aria-hidden="true"></span>Verde</button>
+              <button type="button" data-space-color="blanco" class="space-color" aria-pressed="false"><span class="space-color-swatch white" aria-hidden="true"></span>Blanco</button>
               <button type="button" data-space-color="gris" class="space-color" aria-pressed="false"><span class="space-color-swatch gray" aria-hidden="true"></span>Gris</button>
+              <button type="button" data-space-color="negro" class="space-color" aria-pressed="false"><span class="space-color-swatch black" aria-hidden="true"></span>Negro</button>
+              <label class="space-color custom" id="space-color-custom-label">
+                <input id="space-custom-color" type="color" value="#ad724b" aria-label="Escoger un color personalizado" />
+                A medida
+              </label>
             </div>
-            <p>Colores de simulación. Consultar disponibilidad real por referencia.</p>
           </fieldset>
+
           <dl class="space-dimensions" aria-live="polite" aria-atomic="true">
-            <div><dt>Diámetro de ficha</dt><dd id="space-diameter">{first.diameter}</dd></div>
-            <div><dt id="space-height-label">Cota longitudinal de ficha</dt><dd id="space-height">{first.longitudinal}</dd></div>
+            <div><dt>Diámetro de ficha</dt><dd id="space-diameter">{initial.diameter}</dd></div>
+            <div><dt id="space-height-label">Cota longitudinal de ficha</dt><dd id="space-height">{initial.longitudinal}</dd></div>
           </dl>
+
           <button type="button" class="space-button-primary" id="space-launch" disabled>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H4v4m12-4h4v4M4 17v4h4m12-4v4h-4M7 9l5-3 5 3v6l-5 3-5-3Zm0 0 5 3 5-3m-5 3v6"/></svg>
             Ver en mi espacio
           </button>
-          <button type="button" class="space-button-secondary open-quote-trigger" id="space-quote" data-product="Depósito" data-note={first.note}>
-            Pedir presupuesto de este modelo <span aria-hidden="true">↗</span>
-          </button>
-          <p class="space-support" id="space-support" role="status">Comprobando compatibilidad con tu dispositivo…</p>
+          <p class="space-support" id="space-support" role="status">Comprobando compatibilidad con tu móvil…</p>
           <details class="space-handoff" id="space-handoff">
-            <summary>¿Estás en un ordenador? Abrir en el móvil</summary>
-            <div class="space-qr"><img id="space-qr-img" width="120" height="120" alt="Código QR de la referencia elegida"/><p>Escanea el QR con el móvil para abrir esta misma capacidad y acabado.</p></div>
+            <summary>Enviar esta selección al móvil</summary>
+            <div class="space-qr"><img id="space-qr-img" width="120" height="120" alt="Código QR de esta selección"/><p>Escanea el código con el móvil.</p></div>
           </details>
-          <p class="space-far" id="space-distance" hidden>Es un depósito alto. En realidad aumentada busca una zona despejada y aléjate para verlo entero.</p>
-        </div>
+          <button type="button" class="space-button-secondary open-quote-trigger" id="space-quote" data-product="Depósito" data-note={initial.note}>
+            Pedir presupuesto <span aria-hidden="true">↗</span>
+          </button>
+          <p class="space-far" id="space-distance" hidden>Para verlo completo, colócate en una zona despejada y aléjate unos pasos.</p>
+        </aside>
       </section>
 
-      <section class="space-steps" aria-labelledby="space-steps-title">
-        <div><p class="space-eyebrow">CÓMO FUNCIONA</p><h2 id="space-steps-title">Tres gestos. Una idea mucho más clara.</h2></div>
-        <ol>
-          <li><span>01</span><strong>Selecciona</strong><p>Elige el tipo de depósito y los litros que necesitas.</p></li>
-          <li><span>02</span><strong>Observa</strong><p>Gira el modelo 3D y revisa las dimensiones de ficha.</p></li>
-          <li><span>03</span><strong>Visualiza</strong><p>Desde un móvil compatible, enfoca el suelo y colócalo virtualmente.</p></li>
-        </ol>
-      </section>
-      <aside class="space-disclaimer" aria-label="Información sobre las dimensiones">
-        <strong>Antes de instalar, confirma las medidas reales.</strong>
-        <p>Los modelos 3D sirven para hacerse una idea del volumen. En los verticales, la cota longitudinal no confirma por sí sola la altura exterior total; tapa, bocas y graduación son ilustrativas. En los vasos, los diámetros y alturas proceden de la tabla facilitada, mientras que la inclinación de las paredes y la geometría de la tapa se interpretan a partir de una fotografía. No se garantiza compatibilidad de accesorios, disponibilidad de colores ni espacio para descarga o montaje.</p>
-      </aside>
+      <details class="space-disclaimer">
+        <summary>¿Son exactas las medidas?</summary>
+        <p>La escala es orientativa. El diámetro y la altura de los vasos proceden de la tabla facilitada; su perfil y tapa se han interpretado a partir de fotografías. En los depósitos verticales, bocas, tapa y graduación son ilustrativas. Consulta dimensiones exteriores y acabados disponibles antes de instalar.</p>
+      </details>
     </div>
   </div>
   <script>import '../../components/space/space-viewer';</script>

@@ -9,10 +9,10 @@ export function getStaticPaths() {
     params: { id: 'vertical-' + tank.id + '-' + color },
     props: { family: 'vertical', id: tank.id, color },
   })));
-  const vasos = vasosAR.map(vaso => ({
-    params: { id: 'vasos-' + vaso.id + '-blanco' },
-    props: { family: 'vasos', id: vaso.id, color: 'blanco' },
-  }));
+  const vasos = vasosAR.flatMap(vaso => AR_COLORS.map(color => ({
+    params: { id: 'vasos-' + vaso.id + '-' + color },
+    props: { family: 'vasos', id: vaso.id, color },
+  })));
   return [...vertical, ...vasos];
 }
 export async function GET({ props: { family, id, color } }) {
