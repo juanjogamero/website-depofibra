@@ -25,5 +25,7 @@ jobs:
         run: npm run build
         env:
           DEPOFIBRA_SITE_URL: https://depofibra.com
+      - name: Verificar mallas 3D, escala en metros y 17 pares GLB/USDZ
+        run: python3 scripts/check-ar-models.py
       - name: Verificar enlaces, anclas y sitemap internos
         run: npm run check:links
