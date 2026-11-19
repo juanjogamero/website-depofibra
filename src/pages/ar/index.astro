@@ -53,6 +53,21 @@ const description = 'Selecciona una capacidad, explora el depósito en 3D y desc
                 data-large={tank.longitudinalMm >= 6000 ? 'true' : 'false'}>{tank.label}</option>
             )}
           </select>
+          <fieldset class="ar-colors" aria-describedby="ar-color-disclaimer">
+            <legend>Acabado visual del depósito</legend>
+            <div class="ar-color-options" role="group" aria-label="Elegir acabado">
+              <button type="button" class="ar-color-option is-active" data-ar-color="blanco" aria-pressed="true">
+                <span class="ar-color-dot ar-color-dot--blanco" aria-hidden="true"></span> Blanco
+              </button>
+              <button type="button" class="ar-color-option" data-ar-color="verde" aria-pressed="false">
+                <span class="ar-color-dot ar-color-dot--verde" aria-hidden="true"></span> Verde
+              </button>
+              <button type="button" class="ar-color-option" data-ar-color="gris" aria-pressed="false">
+                <span class="ar-color-dot ar-color-dot--gris" aria-hidden="true"></span> Gris
+              </button>
+            </div>
+            <p id="ar-color-disclaimer">Colores de simulación. Consultar acabados disponibles para cada referencia.</p>
+          </fieldset>
           <dl class="ar-measures" aria-live="polite" aria-atomic="true">
             <div><dt>Diámetro</dt><dd id="ar-diameter">{initial.diameter}</dd></div>
             <div><dt>Cota longitudinal de ficha</dt><dd id="ar-longitudinal">{initial.longitudinal}</dd></div>
@@ -80,7 +95,7 @@ const description = 'Selecciona una capacidad, explora el depósito en 3D y desc
       <aside class="ar-limit" aria-label="Limitaciones de la simulación">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></svg>
         <div><strong>Medidas orientativas</strong>
-          <p>Visualización orientativa basada en las dimensiones documentadas. La altura exterior total, los accesorios y las condiciones de instalación deben confirmarse para cada modelo.</p>
+          <p>Volumen principal basado en las cotas documentadas. Bocas, tapa y medidor graduado son una representación ilustrativa: no indican accesorios incluidos ni lectura de litros calibrada. Las dimensiones exteriores completas, acabados y condiciones de instalación deben confirmarse por modelo.</p>
         </div>
       </aside>
       <noscript><style>.ar-load,.ar-actions,#ar-support{display:none}</style>
