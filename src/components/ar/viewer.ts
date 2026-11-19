@@ -4,6 +4,20 @@ import viewerModuleUrl from '@google/model-viewer/dist/model-viewer.min.js?url';
 const get = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 const selector = get<HTMLSelectElement>('ar-selector');
 const host = get('ar-model-host');
+type Shade = 'blanco' | 'verde' | 'gris';
+const shades: Shade[] = ['blanco', 'verde', 'gris'];
+const shadeButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-ar-color]'));
+let shade: Shade = 'blanco';
+const modelPath = (option: HTMLOptionElement) => option.dataset.url! + (shade === 'blanco' ? '' : '-' + shade);
+const selectionHash = () => selector.value + (shade === 'blanco' ? '' : ':' + shade);
+function setShade(value: Shade) {
+  shade = value;
+  for (const button of shadeButtons) {
+    const isSelected = button.dataset.arColor === shade;
+    button.classList.toggle('is-active', isSelected);
+    button.setAttribute('aria-pressed', String(isSelected));
+  }
+}
 const loadLabel = get('ar-load');
 const retry = get<HTMLButtonElement>('ar-retry');
 const launch = get<HTMLButtonElement>('ar-launch');
@@ -82,10 +96,11 @@ async function loadModel() {
     if (current !== revision) return;
     const model = document.createElement('model-viewer') as ModelViewerElement;
     viewer = model;
-    const version = failedModels.get(option.value);
-    const glb = option.dataset.url + '.glb' + (version ? '?retry=' + version : '');
+    const path = modelPath(option);
+    const version = failedModels.get(path);
+    const glb = path + '.glb' + (version ? '?retry=' + version : '');
     const attributes = {
-      src: glb, 'ios-src': option.dataset.url + '.usdz',
+      src: glb, 'ios-src': path + '.usdz',
       alt: option.dataset.note!, 'camera-controls': '', 'disable-pan': '', 'disable-tap': '',
       'camera-orbit': orbit, 'field-of-view': '30deg', 'touch-action': 'pan-y',
       'camera-target': 'auto auto auto',
@@ -111,7 +126,7 @@ async function loadModel() {
       window.clearTimeout(modelLoadTimeout);
       window.clearTimeout(arDetectionTimer);
       // The renderer caches failed URLs as well. The next request must fetch fresh bytes.
-      failedModels.set(option.value, current);
+      failedModels.set(path, current);
       failure('No se ha podido mostrar el modelo. Puedes consultar sus medidas o volver a intentarlo.');
     });
     model.addEventListener('ar-status', () => {
@@ -143,15 +158,15 @@ function hasWebGL() {
 }
 
 function updateQR() {
-  if (handoff.open) qr.src = '/ar/movil/' + selector.value + '.svg';
+  if (handoff.open) qr.src = '/ar/movil/' + selector.value + (shade === 'blanco' ? '' : '-' + shade) + '.svg';
 }
 
 function updateSelection() {
   const option = selector.selectedOptions[0];
-  get('ar-caption').textContent = option.text;
+  get('ar-caption').textContent = option.text + ' · ' + shade.charAt(0).toUpperCase() + shade.slice(1);
   get('ar-diameter').textContent = option.dataset.diameter!;
   get('ar-longitudinal').textContent = option.dataset.longitudinal!;
-  get('ar-quote').dataset.note = option.dataset.note;
+  get('ar-quote').dataset.note = option.dataset.note + ' Acabado visual elegido: ' + shade + ' (solo simulación; consultar disponibilidad real).';
   get('ar-distance').hidden = option.dataset.large !== 'true';
   updateQR();
   if (inView) void loadModel();
@@ -159,8 +174,10 @@ function updateSelection() {
 
 const defaultId = selector.value;
 function readSelection() {
-  const id = location.hash.slice(1);
+  // Antiguos enlaces #id siguen abriendo el acabado blanco por defecto.
+  const [id, color] = decodeURIComponent(location.hash.slice(1)).split(':');
   selector.value = Array.from(selector.options).some(option => option.value === id) ? id : defaultId;
+  setShade(shades.includes(color as Shade) ? color as Shade : 'blanco');
   updateSelection();
 }
 
@@ -168,12 +185,21 @@ selector.disabled = false;
 readSelection();
 window.addEventListener('hashchange', () => {
   // Scene Viewer uses a temporary fragment when the native app fails to open.
-  if (!location.hash || Array.from(selector.options).some(option => '#' + option.value === location.hash)) readSelection();
+  if (!location.hash || Array.from(selector.options).some(option => option.value === decodeURIComponent(location.hash.slice(1)).split(':')[0])) readSelection();
 });
 selector.addEventListener('change', () => {
-  history.replaceState(null, '', '#' + selector.value);
+  history.replaceState(null, '', '#' + selectionHash());
   updateSelection();
 });
+for (const button of shadeButtons) {
+  button.addEventListener('click', () => {
+    const requested = button.dataset.arColor as Shade;
+    if (!shades.includes(requested) || requested === shade) return;
+    setShade(requested);
+    history.replaceState(null, '', '#' + selectionHash());
+    updateSelection();
+  });
+}
 handoff.addEventListener('toggle', updateQR);
 retry.addEventListener('click', () => { webGLAvailable = undefined; void loadModel(); });
 zoomIn.addEventListener('click', () => viewer?.zoom(1));
