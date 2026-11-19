@@ -36,6 +36,9 @@ jobs:
       - name: Comprobar geometrías de depósitos tipo vaso en metros
         run: python3 scripts/check-vaso-models.py
 
+      - name: Comprobar traspaso de navegador desde Google App
+        run: node --test scripts/test-google-handoff.mjs
+
   deploy:
     needs: build
     runs-on: ubuntu-latest

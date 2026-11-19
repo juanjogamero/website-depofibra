@@ -1,5 +1,6 @@
 import type { ModelViewerElement } from '@google/model-viewer';
 import libraryUrl from '@google/model-viewer/dist/model-viewer.min.js?url';
+import { isGoogleInAppBrowser, createChromeHandoff } from '../../lib/ar/browser-handoff.mjs';
 
 type Family = 'vertical' | 'vasos';
 type Shade = 'verde' | 'blanco' | 'gris' | 'negro' | 'personalizado';
@@ -15,6 +16,12 @@ const retry = get<HTMLButtonElement>('space-retry');
 const launch = get<HTMLButtonElement>('space-launch');
 const quote = get<HTMLButtonElement>('space-quote');
 const support = get('space-support');
+const openChrome = get<HTMLAnchorElement>('space-open-chrome');
+const copyLink = get<HTMLButtonElement>('space-copy-link');
+// La app de Google puede abrir una pestaña integrada que no ofrece la misma AR que Chrome/Safari.
+const googleApp = isGoogleInAppBrowser(navigator.userAgent);
+const android = /Android/i.test(navigator.userAgent);
+const ios = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 const handoff = get<HTMLDetailsElement>('space-handoff');
 const qr = get<HTMLImageElement>('space-qr-img');
 const zoomIn = get<HTMLButtonElement>('space-zoom-in');
@@ -32,6 +39,7 @@ let model: ModelViewerElement | null = null;
 let ready = false;
 let visible = false;
 let activeModelIsCustom = false;
+let arFailed = false;
 let sequence = 0;
 let loadTimeout: number | undefined;
 let arTimeout: number | undefined;
@@ -49,6 +57,25 @@ const colorSlug = () => custom() ? 'personalizado-' + customHex.slice(1).toLower
 const hash = () => family + '/' + currentSelect().value + '/' + colorSlug();
 const modelStem = () => chosen().dataset.src! + (custom() || shade==='blanco' ? '' : '-' + shade);
 const modelUrl = () => modelStem() + '.glb';
+
+// Los fragmentos # no pueden colocarse antes de #Intent. El estado se transporta
+// por query y se recupera al llegar a Chrome, conservando familia, tamaño y color.
+const shareableUrl = () => new URL('/visualizador/?seleccion=' + encodeURIComponent(hash()),location.origin).href;
+function updateBrowserLinks() {
+  openChrome.href = createChromeHandoff(shareableUrl());
+}
+function showBrowserFallback() {
+  updateBrowserLinks();
+  const onGoogleAndroid = googleApp && android;
+  const onGoogleIOS = googleApp && ios;
+  // También funciona para otros navegadores integrados en los que falla AR.
+  const otherMobileFailure = (android || ios) && ready && (arFailed || !model?.canActivateAR);
+  launch.hidden = onGoogleAndroid || onGoogleIOS || arFailed;
+  openChrome.hidden = !(android && (onGoogleAndroid || otherMobileFailure));
+  copyLink.hidden = !(onGoogleAndroid || onGoogleIOS || otherMobileFailure);
+  if (onGoogleIOS) copyLink.classList.add('space-button-primary');
+  else copyLink.classList.remove('space-button-primary');
+}
 
 function syncColors() {
   for (const button of colorButtons) {
@@ -101,17 +128,23 @@ function setReady(value: boolean) {
   syncAR();
 }
 function syncAR() {
-  launch.disabled = !(ready && model?.canActivateAR);
-  if (!ready) {
+  const supported = Boolean(ready && model?.canActivateAR && !arFailed);
+  launch.disabled = !supported;
+  showBrowserFallback();
+  if (googleApp && android) {
+    support.textContent = 'La app de Google limita la cámara AR. Abre este mismo modelo en Chrome.';
+  } else if (googleApp && ios) {
+    support.textContent = 'Para usar la cámara, copia el enlace y ábrelo en Safari.';
+  } else if (arFailed) {
+    support.textContent = 'No se pudo iniciar la cámara aquí. Abre el modelo en un navegador compatible.';
+  } else if (!ready) {
     support.textContent = 'Preparando el visor…';
-  } else if (model?.canActivateAR) {
-    support.textContent = custom()
-      ? 'Color personalizado: abre la cámara en iPhone o Android compatible con WebXR.'
-      : 'Apunta al suelo, mueve el móvil y toca para colocar el depósito.';
+  } else if (supported) {
+    support.textContent = 'Apunta al suelo, mueve el móvil y toca para colocar el depósito.';
   } else {
     support.textContent = custom()
-      ? 'El color a medida está disponible en 3D. Para verlo en cámara se necesita Quick Look en iPhone o WebXR en Android.'
-      : 'Para abrir la cámara, utiliza Safari en iPhone o Chrome en Android compatible.';
+      ? 'Color a medida: requiere Safari o Chrome Android con WebXR.'
+      : 'Abre el modelo en Safari o Chrome compatible para usar la cámara.';
   }
 }
 function failures(message: string) {
@@ -158,6 +191,7 @@ function updateDetails(reload = true) {
 }
 async function loadModel() {
   const token=++sequence;
+  arFailed = false;
   window.clearTimeout(loadTimeout); window.clearTimeout(arTimeout);
   host.replaceChildren();
   model=null;
@@ -211,11 +245,11 @@ async function loadModel() {
       brokenModels.set(stem,token);
       failures('No hemos podido cargar este modelo. Prueba de nuevo.');
     });
-    current.addEventListener('ar-status',()=>{
+    current.addEventListener('ar-status',(event)=>{
       if (token!==sequence) return;
-      if (current.getAttribute('ar-status')==='failed')
-        support.textContent='No se ha podido abrir la cámara. Prueba con Safari o Chrome compatible.';
-      else syncAR();
+      const status = (event as CustomEvent<{status?:string}>).detail?.status ?? current.getAttribute('ar-status');
+      if (status==='failed') arFailed = true;
+      syncAR();
     });
     host.replaceChildren(current);
     loadTimeout=window.setTimeout(()=>{
@@ -226,7 +260,9 @@ async function loadModel() {
   }
 }
 function restoreHash() {
-  const [requestedFamily,id,color] = decodeURIComponent(location.hash.slice(1)).split('/');
+  const fromQuery = new URLSearchParams(location.search).get('seleccion') || '';
+  const fromHash = location.hash.slice(1);
+  const [requestedFamily,id,color] = decodeURIComponent(fromHash || fromQuery).split('/');
   family=requestedFamily==='vasos'?'vasos':'vertical';
   if (choices.includes(color as Shade)) shade=color as Shade;
   else if (/^personalizado-[0-9a-f]{6}$/i.test(color||'')) {
@@ -236,6 +272,9 @@ function restoreHash() {
   if (Array.from(sel.options).some(opt=>opt.value===id)) sel.value=id;
   syncFamily();
   updateDetails();
+  if (!fromHash && fromQuery && id && Array.from(sel.options).some(opt => opt.value === id)) {
+    history.replaceState(null,'',location.pathname+'#'+hash());
+  }
 }
 restoreHash();
 window.addEventListener('hashchange',()=>{
@@ -297,8 +336,30 @@ launch.addEventListener('click',()=>{
   if (!ready || !model?.canActivateAR) {syncAR();return;}
   // El gesto directo del usuario es necesario para Quick Look y WebXR.
   void model.activateAR().catch(()=>{
-    support.textContent='No se pudo abrir la cámara. Puedes seguir con el visor 3D.';
+    arFailed = true;
+    syncAR();
   });
+});
+copyLink.addEventListener('click',()=>{
+  const url = shareableUrl();
+  const fallBackCopy = () => {
+    const input = document.createElement('textarea');
+    input.value = url; input.readOnly = true;
+    input.style.position='fixed';input.style.opacity='0';
+    document.body.append(input);input.select();
+    const success = document.execCommand('copy');input.remove();
+    if (!success) window.prompt('Copia este enlace y ábrelo en Chrome o Safari:',url);
+    return success;
+  };
+  if (navigator.clipboard?.writeText) {
+    void navigator.clipboard.writeText(url).then(()=>{
+      support.textContent='Enlace copiado. Ábrelo en Chrome o Safari.';
+    }).catch(()=>{
+      if (fallBackCopy()) support.textContent='Enlace copiado. Ábrelo en Chrome o Safari.';
+    });
+  } else if (fallBackCopy()) {
+    support.textContent='Enlace copiado. Ábrelo en Chrome o Safari.';
+  }
 });
 if ('IntersectionObserver' in window) {
   const observer=new IntersectionObserver(entries=>{

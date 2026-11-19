@@ -131,3 +131,13 @@
 @media(prefers-reduced-motion:reduce) {
   .space-family { transition:none; }
 }
+/* Salida accesible de navegadores integrados (Google App / WebView).
+   Conserva una sola acción primaria visible por dispositivo. */
+.space-external-browser { text-align:center; text-decoration:none; margin-top:8px; }
+.space-external-browser:hover { text-decoration:none; color:#fff; }
+.space-copy-browser { min-height:38px; margin-top:8px; font-size:12px; }
+.space-copy-browser.space-button-primary {
+  background:#01488e; border-color:#01488e; color:#fff; min-height:49px;
+  font-size:14px;
+}
+.space-copy-browser.space-button-primary:hover { background:#002d59; }

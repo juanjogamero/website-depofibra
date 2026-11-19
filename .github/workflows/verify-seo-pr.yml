@@ -29,5 +29,7 @@ jobs:
         run: python3 scripts/check-ar-models.py
       - name: Comprobar los 8 depósitos tipo vaso en GLB y USDZ
         run: python3 scripts/check-vaso-models.py
+      - name: Comprobar apertura externa desde Google App y preservación de selección
+        run: node --test scripts/test-google-handoff.mjs
       - name: Verificar enlaces, anclas y sitemap internos
         run: npm run check:links
