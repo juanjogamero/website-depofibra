@@ -98,8 +98,8 @@ async function loadModel() {
       failedModels.set(option.value, current);
       failure('No se ha podido mostrar el modelo. Puedes consultar sus medidas o volver a intentarlo.');
     });
-    model.addEventListener('ar-status', event => {
-      if (current !== revision || event.detail.status !== 'failed') return;
+    model.addEventListener('ar-status', () => {
+      if (current !== revision || model.getAttribute('ar-status') !== 'failed') return;
       syncAR();
       handoff.hidden = false;
       support.textContent = 'No se ha podido iniciar la realidad aumentada. Puedes seguir en 3D o abrir el modelo en otro móvil.';
