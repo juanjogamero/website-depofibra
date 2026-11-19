@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { verticalTanksAR } from '../../data/verticalTanksAR';
+import '../../components/ar/viewer.css';
+
+const initial = verticalTanksAR.find(tank => tank.liters === 10000) ?? verticalTanksAR[0];
+const title = 'Visualiza tu depósito antes de instalarlo';
+const description = 'Selecciona una capacidad, explora el depósito en 3D y descubre cómo ocuparía el espacio en tu finca, patio o instalación.';
+---
+<Layout {title} {description} indexable={false} activeNav="depositos">
+  <div class="ar-page">
+    <div class="ar-container">
+      <nav class="ar-crumbs" aria-label="Ruta de navegación">
+        <a href="/depositos/">Depósitos</a><span aria-hidden="true">/</span>
+        <a href="/depositos/vertical-base-plana/">Verticales de base plana</a><span aria-hidden="true">/</span><span aria-current="page">Visor 3D</span>
+      </nav>
+      <header class="ar-intro">
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </header>
+
+      <div class="ar-workbench">
+        <figure class="ar-stage" aria-label="Vista interactiva del depósito">
+          <div class="ar-canvas">
+            <div class="ar-stage-label">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7Zm0 10 9-5m-9 5L3 7m9 5v10"/></svg>
+              Visor 3D
+            </div>
+            <div id="ar-model-host"></div>
+            <p class="ar-load" id="ar-load" role="status">Cargando el visor 3D…</p>
+            <button class="ar-retry" id="ar-retry" type="button" hidden>Reintentar carga</button>
+            <div class="ar-tools" aria-label="Controles del visor" role="group">
+              <button type="button" id="ar-minus" disabled aria-label="Alejar" title="Alejar">−</button>
+              <button type="button" id="ar-plus" disabled aria-label="Acercar" title="Acercar">+</button>
+              <button type="button" id="ar-reset" disabled aria-label="Restablecer vista" title="Restablecer vista">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 1 1 1.8 7M3 4v6h6"/></svg>
+              </button>
+            </div>
+          </div>
+          <figcaption>
+            <strong id="ar-caption">{initial.label}</strong>
+            <span>Arrastra para girar · Usa el zoom para acercarte</span>
+          </figcaption>
+        </figure>
+
+        <section class="ar-panel" aria-labelledby="ar-family">
+          <h2 id="ar-family">Depósito vertical de base plana</h2>
+          <label for="ar-selector">Capacidad nominal</label>
+          <select id="ar-selector" disabled>
+            {verticalTanksAR.map(tank =>
+              <option value={tank.id} selected={tank.id === initial.id} data-url={tank.url}
+                data-diameter={tank.diameter} data-longitudinal={tank.longitudinal} data-note={tank.note}
+                data-large={tank.longitudinalMm >= 6000 ? 'true' : 'false'}>{tank.label}</option>
+            )}
+          </select>
+          <dl class="ar-measures" aria-live="polite" aria-atomic="true">
+            <div><dt>Diámetro</dt><dd id="ar-diameter">{initial.diameter}</dd></div>
+            <div><dt>Cota longitudinal de ficha</dt><dd id="ar-longitudinal">{initial.longitudinal}</dd></div>
+          </dl>
+          <div class="ar-actions">
+            <button class="ar-primary" id="ar-launch" type="button" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H4v4m12-4h4v4M4 17v4h4m12-4v4h-4M7 9l5-3 5 3v6l-5 3-5-3Zm0 0 5 3 5-3m-5 3v6"/></svg>
+              Ver en mi espacio
+            </button>
+            <button class="ar-secondary open-quote-trigger" id="ar-quote" type="button" data-product="Depósito" data-note={initial.note}>
+              Pedir presupuesto de este depósito <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+            </button>
+          </div>
+          <p class="ar-help" id="ar-support" role="status">Comprobando si tu dispositivo admite realidad aumentada…</p>
+          <details id="ar-handoff" hidden>
+            <summary>Abrir este modelo en el móvil</summary>
+            <div class="ar-qr"><img id="ar-code" width="112" height="112" alt="Código QR de la configuración seleccionada" />
+              <p>Escanea el código con la cámara de un móvil compatible para abrir esta misma configuración.</p>
+            </div>
+          </details>
+          <p class="ar-distance" id="ar-distance" hidden>La cota de este modelo es de 6 m o más. Busca una zona despejada y aléjate para verlo completo.</p>
+        </section>
+      </div>
+
+      <aside class="ar-limit" aria-label="Limitaciones de la simulación">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></svg>
+        <div><strong>Medidas orientativas</strong>
+          <p>Visualización orientativa basada en las dimensiones documentadas. La altura exterior total, los accesorios y las condiciones de instalación deben confirmarse para cada modelo.</p>
+        </div>
+      </aside>
+      <noscript><style>.ar-load,.ar-actions,#ar-support{display:none}</style>
+        <p>Activa JavaScript para utilizar el visor interactivo o <a href="/depositos/vertical-base-plana/">consulta las medidas de los depósitos</a>.</p>
+      </noscript>
+    </div>
+  </div>
+  <script>
+    import '../../components/ar/viewer';
+  </script>
+</Layout>
