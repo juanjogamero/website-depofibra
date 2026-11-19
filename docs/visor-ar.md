@@ -41,3 +41,7 @@ Con `npm run preview`, abrir `/ar/`. Cambiar entre las dos variantes de 5.000 L,
 ## Validación física pendiente
 
 Probar con un Android con ARCore y un iPhone con Quick Look. Marcar en suelo nivelado un diámetro documentado, colocar ambas variantes de 5.000 L y contrastar huella, apoyo y comportamiento del gesto de escala. Probar también el encuadre del modelo de 60.000 L desde una distancia suficiente. Registrar dispositivo, navegador y resultado. La validación de archivos y los enlaces nativos se pueden reproducir en escritorio. La colocación, el seguimiento y la escala percibida requieren esta comprobación física.
+
+## Mejora 19/11/2026: detección AR y acabados
+
+La función watchARCapability consulta de forma acotada la propiedad pública canActivateAR después del evento load para permitir que WebXR, Scene Viewer y Quick Look completen su detección asíncrona. El QR se vincula al dominio comercial depofibra.com aunque Astro.site todavía pueda apuntar a demo. El botón AR usa directamente activateAR() desde el gesto del usuario, sin promesas de compatibilidad universal. Se ha reforzado el control de fallos de carga (20 s), el restablecimiento real de cámara y el acabado ilustrativo blanco satinado con una circunferencia de 96 segmentos. Ni la tabla dimensional ni la envolvente exterior cambian. Revisar en móviles reales antes de declarar conformidad física.

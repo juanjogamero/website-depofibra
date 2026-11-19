@@ -20,15 +20,19 @@ let inView = false;
 let revision = 0;
 let libraryFailures = 0;
 const failedModels = new Map<string, number>();
-let availabilityObserver: ResizeObserver | null = null;
+let arDetectionTimer: number | undefined;
+let modelLoadTimeout: number | undefined;
 
 function syncAR() {
   const available = Boolean(ready && viewer?.canActivateAR);
   launch.disabled = !available;
-  handoff.hidden = available;
-  support.textContent = available
-    ? 'Enfoca el suelo, mueve el móvil suavemente y selecciona el lugar donde quieres visualizar el depósito. La escala es aproximada y depende del visor y del seguimiento.'
-    : 'La realidad aumentada requiere un móvil compatible. Aquí puedes consultar las medidas y, si tu navegador admite 3D, girar el depósito.';
+  // No ofrecer el QR de alternativa mientras se está cargando el modelo.
+  handoff.hidden = !ready || available;
+  support.textContent = !ready
+    ? 'Preparando el modelo y comprobando compatibilidad con tu móvil…'
+    : available
+      ? 'Enfoca el suelo, mueve el móvil suavemente y selecciona el lugar de instalación. La escala depende del seguimiento del dispositivo.'
+      : 'La realidad aumentada no está disponible en este navegador. Puedes girar el modelo en 3D o abrir esta selección en otro móvil.';
 }
 
 function setReady(value: boolean) {
@@ -44,10 +48,22 @@ function failure(message: string) {
   retry.hidden = false;
 }
 
+// La selección del modo AR se resuelve asincrónicamente en model-viewer.
+// Comprobar canActivateAR solo al recibir load puede dejar el botón desactivado
+// de manera indefinida en Safari/Chrome. Se reintenta de forma acotada.
+function watchARCapability(model: ModelViewerElement, current: number, attempt = 0) {
+  if (current !== revision || viewer !== model || !ready) return;
+  syncAR();
+  if (!model.canActivateAR && attempt < 36) {
+    arDetectionTimer = window.setTimeout(() => watchARCapability(model, current, attempt + 1), 250);
+  }
+}
+
 async function loadModel() {
   const current = ++revision;
   const option = selector.selectedOptions[0];
-  availabilityObserver?.disconnect();
+  window.clearTimeout(arDetectionTimer);
+  window.clearTimeout(modelLoadTimeout);
   host.replaceChildren();
   viewer = null;
   setReady(false);
@@ -72,39 +88,45 @@ async function loadModel() {
       src: glb, 'ios-src': option.dataset.url + '.usdz',
       alt: option.dataset.note!, 'camera-controls': '', 'disable-pan': '', 'disable-tap': '',
       'camera-orbit': orbit, 'field-of-view': '30deg', 'touch-action': 'pan-y',
+      'camera-target': 'auto auto auto',
       'interaction-prompt': 'none', 'shadow-intensity': '0.85', 'shadow-softness': '0.85',
       ar: '', 'ar-modes': 'webxr scene-viewer quick-look', 'ar-scale': 'fixed', 'ar-placement': 'floor',
       'environment-image': '/models/ar/estudio.hdr', 'tone-mapping': 'neutral', loading: 'eager',
     };
     for (const [name, value] of Object.entries(attributes)) model.setAttribute(name, value);
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) model.setAttribute('interpolation-decay', '0');
-    // The native AR slot gains a layout box when asynchronous capability detection succeeds.
-    const availability = document.createElement('span');
-    availability.slot = 'ar-button';
-    availability.setAttribute('aria-hidden', 'true');
-    availability.style.cssText = 'display:block;width:1px;height:1px;pointer-events:none';
-    model.append(availability);
-    availabilityObserver = new ResizeObserver(() => { if (current === revision && ready) syncAR(); });
-    availabilityObserver.observe(availability);
+    // El botón incorporado por model-viewer se oculta: usamos el CTA accesible
+    // que permanece fuera del lienzo, junto al selector de la referencia.
+    model.style.setProperty('--ar-button-display', 'none');
     model.addEventListener('load', () => {
       if (current !== revision) return;
+      window.clearTimeout(modelLoadTimeout);
       loadLabel.hidden = true;
       retry.hidden = true;
       setReady(true);
+      watchARCapability(model, current);
     });
     model.addEventListener('error', () => {
       if (current !== revision) return;
+      window.clearTimeout(modelLoadTimeout);
+      window.clearTimeout(arDetectionTimer);
       // The renderer caches failed URLs as well. The next request must fetch fresh bytes.
       failedModels.set(option.value, current);
       failure('No se ha podido mostrar el modelo. Puedes consultar sus medidas o volver a intentarlo.');
     });
     model.addEventListener('ar-status', () => {
-      if (current !== revision || model.getAttribute('ar-status') !== 'failed') return;
+      if (current !== revision) return;
       syncAR();
-      handoff.hidden = false;
-      support.textContent = 'No se ha podido iniciar la realidad aumentada. Puedes seguir en 3D o abrir el modelo en otro móvil.';
+      if (model.getAttribute('ar-status') === 'failed') {
+        handoff.hidden = false;
+        support.textContent = 'No se ha podido iniciar la realidad aumentada. Prueba con Safari en iPhone o Chrome en Android, o utiliza el visor 3D.';
+      }
     });
     host.replaceChildren(model);
+    // Evita un indicador «cargando» permanente cuando una descarga no responde.
+    modelLoadTimeout = window.setTimeout(() => {
+      if (current === revision && !ready) failure('El modelo está tardando demasiado. Comprueba tu conexión y vuelve a intentarlo.');
+    }, 20000);
   } catch {
     if (current === revision) failure('El visor 3D no está disponible. Puedes seleccionar un depósito y consultar sus medidas.');
   }
@@ -159,15 +181,23 @@ zoomOut.addEventListener('click', () => viewer?.zoom(-1));
 reset.addEventListener('click', () => {
   if (!viewer) return;
   // Gestures update the controls internally, leaving the declarative defaults unchanged.
+  viewer.cameraOrbit = orbit;
+  viewer.fieldOfView = '30deg';
+  viewer.cameraTarget = 'auto auto auto';
+  // Las interacciones táctiles cambian los controles internos sin alterar
+  // los atributos originales; forzar su relectura restablece la vista real.
   viewer.requestUpdate('cameraOrbit');
   viewer.requestUpdate('fieldOfView');
+  viewer.requestUpdate('cameraTarget');
   viewer.jumpCameraToGoal();
 });
 launch.addEventListener('click', () => {
   if (!ready || !viewer?.canActivateAR) { syncAR(); return; }
+  // Debe invocarse sin operaciones asíncronas previas: Quick Look y Scene
+  // Viewer necesitan conservar el gesto directo del usuario.
   void viewer.activateAR().catch(() => {
     handoff.hidden = false;
-    support.textContent = 'No se ha podido abrir la cámara. Puedes seguir en 3D o probar con otro móvil.';
+    support.textContent = 'No se ha podido abrir la cámara. Prueba a abrir el enlace en Safari o Chrome, o utiliza el visor 3D.';
   });
 });
 
