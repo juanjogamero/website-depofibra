@@ -143,7 +143,7 @@ function watchAR(current: ModelViewerElement, token: number, n=0) {
     arTimeout=window.setTimeout(()=>watchAR(current,token,n+1),250);
   }
 }
-function updateDetails() {
+function updateDetails(reload = true) {
   const option = chosen();
   if (!option) return;
   const colorName = custom() ? customHex.toUpperCase() : shade;
@@ -153,7 +153,7 @@ function updateDetails() {
   quote.dataset.note=option.dataset.note!+' Color visual elegido: '+colorName+' (simulación, confirmar disponibilidad real).';
   get('space-distance').hidden=option.dataset.large!=='true';
   void updateQR();
-  if (visible) void loadModel();
+  if (visible && reload) void loadModel();
 }
 async function loadModel() {
   const token=++sequence;
@@ -263,13 +263,22 @@ for (const button of colorButtons) {
 customInput.addEventListener('input',()=>{
   const hex=customInput.value.toLowerCase();
   if (!/^#[0-9a-f]{6}$/.test(hex)) return;
+  const wasCustom = custom();
   customHex=hex;shade='personalizado';
   syncColors();history.replaceState(null,'','#'+hash());
   window.clearTimeout(colorTimeout);
-  colorTimeout=window.setTimeout(()=>updateDetails(),200);
+  if (wasCustom && ready && model) {
+    applyCustomColor(model);
+    colorTimeout=window.setTimeout(()=>updateDetails(false),140);
+  } else {
+    colorTimeout=window.setTimeout(()=>updateDetails(),160);
+  }
 });
 customInput.addEventListener('change',()=>{
-  window.clearTimeout(colorTimeout);updateDetails();
+  window.clearTimeout(colorTimeout);
+  if (ready && custom() && model) {
+    applyCustomColor(model);updateDetails(false);
+  } else updateDetails();
 });
 handoff.addEventListener('toggle',()=>void updateQR());
 retry.addEventListener('click',()=>{webGLSupport=undefined;void loadModel();});
