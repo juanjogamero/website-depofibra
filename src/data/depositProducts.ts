@@ -30,7 +30,7 @@ export const depositFamilies: DepositFamily[] = [
     name: 'Depósitos verticales de poliéster de base plana',
     shortName: 'Vertical de base plana',
     eyebrow: 'Depósitos · Instalación en superficie',
-    intro: 'Depósitos verticales de poliéster (PRFV) de base plana para almacenar agua de riego en superficie. Compara opciones de 5.000, 10.000 y 15.000 litros y comprueba espacio, conexiones y entrega antes de decidir.',
+    intro: 'Depósitos verticales de poliéster (PRFV) de base plana para almacenamiento en superficie. La familia dispone de referencias históricas de distintas capacidades, no solo 5.000, 10.000 y 15.000 litros. Compara volumen, diámetro, espacio de apoyo, conexiones y entrega antes de elegir.',
     installation: 'En superficie',
     geometry: 'Vertical · Base plana',
     application: 'Agua y riego, según referencia',
@@ -48,13 +48,13 @@ export const depositFamilies: DepositFamily[] = [
     titleSeo: 'Depósitos verticales de poliéster base plana | Depofibra',
     metaDescription:'Depósitos verticales de poliéster de base plana para riego. Compara capacidades, equipamiento, colores y conexiones. Presupuesto según destino.',
     highlights:[
-      {title:'Capacidades para comparar',text:'Consulta las fichas de 5.000, 10.000 y 15.000 litros. Otros volúmenes se estudian según referencia.'},
+      {title:'Amplia variedad de capacidades',text:'La tabla orientativa recoge varias capacidades entre 5.000 y 60.000 litros. Se verifican las dimensiones y la posibilidad real de suministro por modelo.'},
       {title:'Medidas y accesos',text:'Comprueba diámetro exterior, altura total, portones y superficie de apoyo antes del pedido.'},
       {title:'Uso y conexiones',text:'Indica si almacenarás agua de riego u otro líquido. Entradas, salidas y compatibilidad se verifican por modelo.'},
     ],
     description:[
       'Un depósito vertical de poliéster de base plana es una opción para almacenar agua de riego en superficie cuando se dispone de una base adecuada y altura suficiente. A diferencia del formato horizontal, su geometría concentra el volumen en un espacio de apoyo diferente; conviene comparar diámetro y altura, no solo los litros.',
-      'Para elegir entre 5.000, 10.000 y 15.000 litros, calcula el consumo previsto y cada cuánto podrás reponer el agua. Después revisa el espacio disponible, las conexiones y el acceso del transporte. Las medidas de las tablas son orientativas: el modelo y el equipamiento se verifican con el proveedor antes de presupuestar.',
+      'Para elegir una capacidad, calcula el consumo previsto y cada cuánto podrás reponer el agua. Las tablas de trabajo incluyen diversos volúmenes, también por encima de 15.000 litros. Después revisa el espacio disponible, las conexiones y el acceso del transporte. Las medidas son orientativas: el modelo y el equipamiento se verifican con el proveedor antes de presupuestar.',
       'En los verticales de base plana se contemplan tapadera superior, rebosadero, medidor de capacidad y anillas de elevación. Depofibra también permite estudiar colores y conexiones en posición y diámetro según la instalación; la configuración definitiva, el refuerzo estructural y cualquier suplemento se concretan por referencia.',
     ],
     installationPoints:[
@@ -63,7 +63,7 @@ export const depositFamilies: DepositFamily[] = [
       {title:'Entrega y descarga',text:'Facilita localidad y código postal. La descarga requiere medios adecuados y no está incluida por defecto en el transporte estándar.'},
     ],
     faqs:[
-      {q:'¿Qué capacidad necesito: 5.000, 10.000 o 15.000 litros?',a:'Depende de cuánta agua necesitas entre reposiciones y del espacio disponible. Las tres capacidades tienen fichas individuales, pero no recomendamos una únicamente por el tamaño de la finca: conviene conocer el consumo y la frecuencia de suministro.'},
+      {q:'¿Qué capacidades puedo consultar en los depósitos verticales de base plana?',a:'Las tablas orientativas de esta familia incluyen referencias desde 5.000 hasta 60.000 litros, con diferentes geometrías. Las fichas individuales de 5.000, 10.000 y 15.000 litros son ejemplos, no el límite del catálogo. Para elegir se revisan consumo, reposiciones, espacio, medidas y disponibilidad real del modelo.'},
       {q:'¿Es adecuado para agua potable?',a:'Solo si la referencia concreta es apta para agua de consumo humano y cuenta con la documentación exigible para ese uso.'},
       {q:'¿Necesito medidas exactas antes de pedir precio?',a:'Para una primera consulta basta con indicar uso, capacidad aproximada, código postal y posibles límites de acceso. Confirmaremos las dimensiones exteriores y las conexiones de la referencia que se presupuestará.'},
       {q:'¿Se puede enterrar un depósito vertical de base plana?',a:'No debe enterrarse un depósito diseñado para superficie sin documentación expresa que autorice ese uso. Consulta las referencias específicamente enterrables para instalaciones bajo tierra.'},

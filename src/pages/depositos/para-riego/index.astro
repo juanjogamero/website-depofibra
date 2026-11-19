@@ -10,61 +10,87 @@ import CategoryInterior from '../../../components/CategoryInterior.astro';
 const page = {
   nav: 'depositos',
   title: 'Depósitos de poliéster para agua de riego',
-  seoTitle: 'Depósitos de poliéster para riego: 5.000–15.000 L | Depofibra',
+  seoTitle: 'Depósitos de poliéster para riego: modelos y capacidades | Depofibra',
   canonicalPath: '/depositos/para-riego/',
   breadcrumb: 'Depósitos para riego',
-  eyebrow: 'RIEGO AGRÍCOLA · ALMACENAMIENTO EN SUPERFICIE',
-  description: 'Compara depósitos de poliéster para agua de riego de 5.000, 10.000 y 15.000 litros. Calcula una reserva orientativa y consulta modelo, conexiones, entrega y descarga.',
-  intro: '¿Necesitas reservar agua para regar una finca o instalación? Depofibra comercializa depósitos de poliéster reforzado con fibra de vidrio (PRFV) de fabricantes externos. Compara capacidades para instalación en superficie y prepara los datos que necesitamos para estudiar un presupuesto de producto y transporte.',
+  eyebrow: 'RIEGO AGRÍCOLA · DIFERENTES FORMATOS Y CAPACIDADES',
+  description: 'Compara depósitos de poliéster para riego: verticales, horizontales, con cunas y enterrables. Elige capacidad según consumo, espacio y transporte.',
+  intro: '¿Necesitas almacenar agua para regar una finca o instalación? Depofibra comercializa depósitos PRFV de fabricantes externos en diversas geometrías y capacidades. No estás limitado a tres tamaños: compara formatos verticales, horizontales de superficie y referencias específicas para enterrar, según la instalación. La capacidad, las medidas y la aptitud de cada modelo se verifican antes del presupuesto.',
   items: [
     {
-      id: 'riego-5000',
-      href: '/depositos/vertical-base-plana/5000-litros/',
-      name: 'Depósito para riego de 5.000 litros',
-      subtitle: '5 m³ nominales · modelo vertical de base plana en superficie',
-      image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-compacto-escala.webp',
-      mediaCaption: 'Foto de familia, no de una unidad de 5.000 L confirmada',
-      tags: ['riego', 'superficie'],
-      specification: '5.000 L · 5 m³',
-      quoteProduct: 'Depósito vertical de base plana de 5.000 litros',
-      quoteNote: 'Uso previsto: agua de riego; capacidad consultada: 5.000 litros.',
-      detail: 'Opción a comparar cuando la necesidad es una reserva de unos 5 m³ nominales. La documentación de referencia incluye dos geometrías para esta capacidad; antes de elegir hay que verificar medidas, pasos de acceso y la unidad presupuestada.'
-    },
-    {
-      id: 'riego-10000',
-      href: '/depositos/vertical-base-plana/10000-litros/',
-      name: 'Depósito para riego de 10.000 litros',
-      subtitle: '10 m³ nominales · modelo vertical de base plana en superficie',
+      id: 'vertical-base-plana',
+      href: '/depositos/vertical-base-plana/',
+      name: 'Depósito vertical de base plana',
+      subtitle: 'En superficie · variedad de capacidades según referencia',
       image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp',
-      mediaCaption: 'Foto de familia, no de una unidad de 10.000 L confirmada',
-      tags: ['riego', 'superficie'],
-      specification: '10.000 L · 10 m³',
-      quoteProduct: 'Depósito vertical de base plana de 10.000 litros',
-      quoteNote: 'Uso previsto: agua de riego; capacidad consultada: 10.000 litros.',
-      detail: 'Puede estudiarse para necesidades teóricas de almacenamiento próximas a 10 m³. La elección depende de cuánto se consume entre llenados, el espacio de apoyo, las conexiones, la referencia disponible y las condiciones de descarga.'
+      mediaCaption: 'Imagen orientativa de un modelo de esta familia',
+      tags: ['riego', 'vertical', 'superficie'],
+      specification: 'Vertical · base plana',
+      quoteProduct: 'Depósito vertical de base plana para riego',
+      quoteNote: 'Consulta para agua de riego. Especificar capacidad deseada, espacio disponible y destino de entrega.',
+      detail: 'Los modelos de base plana pueden estudiarse para diferentes reservas nominales. La documentación de referencia incluye múltiples capacidades, con geometrías y cotas distintas; consulta las opciones del catálogo y confirma la configuración concreta.'
     },
     {
-      id: 'riego-15000',
-      href: '/depositos/vertical-base-plana/15000-litros/',
-      name: 'Depósito para riego de 15.000 litros',
-      subtitle: '15 m³ nominales · modelo vertical de base plana en superficie',
-      image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verde-escala-en-exterior.webp',
-      mediaCaption: 'Foto de familia, no de una unidad de 15.000 L confirmada',
-      tags: ['riego', 'superficie'],
-      specification: '15.000 L · 15 m³',
-      quoteProduct: 'Depósito vertical de base plana de 15.000 litros',
-      quoteNote: 'Uso previsto: agua de riego; capacidad consultada: 15.000 litros.',
-      detail: 'Una reserva nominal de 15 m³ exige comprobar especialmente la altura y el diámetro finales, los accesos del vehículo, la base de apoyo y los medios de descarga. La disponibilidad y las cotas se confirman por modelo.'
+      id: 'horizontal-cunas',
+      href: '/depositos/horizontal-con-cunas/',
+      name: 'Depósito horizontal con cunas',
+      subtitle: 'En superficie · forma horizontal con apoyos',
+      image: '/images/depositos/horizontal-con-cunas/deposito-poliester-horizontal-con-cunas-verde-vista-perspectiva.webp',
+      mediaCaption: 'Fotografía representativa de depósito horizontal con apoyos',
+      tags: ['riego', 'horizontal', 'superficie'],
+      specification: 'Horizontal · con cunas',
+      quoteProduct: 'Depósito horizontal con cunas para riego',
+      quoteNote: 'Consulta para agua de riego; confirmar litros, longitud disponible, apoyos y transporte.',
+      detail: 'Alternativa a estudiar cuando la altura de instalación es una limitación o conviene aprovechar el espacio longitudinal. Hay distintas capacidades y sistemas de apoyo documentados como referencia, sujetos a confirmación.'
+    },
+    {
+      id: 'horizontal-enterrable',
+      href: '/depositos/horizontal-enterrable/',
+      name: 'Depósito horizontal enterrable',
+      subtitle: 'Enterrado · instalación y resistencia según ficha del modelo',
+      image: '/images/depositos/horizontal-enterrable/deposito-poliester-horizontal-enterrable-gris-registro-lateral.webp',
+      mediaCaption: 'Fotografía de referencia de la familia enterrable',
+      tags: ['horizontal', 'enterrable'],
+      specification: 'Horizontal · enterrable',
+      quoteProduct: 'Depósito horizontal enterrable para reserva de agua',
+      quoteNote: 'Consultar uso de agua de riego y requisitos de enterramiento; verificar modelo, instalación y documentación.',
+      detail: 'Si el proyecto exige almacenamiento bajo tierra, no sirve dar por enterrable un depósito de superficie. Hay que elegir una referencia diseñada para esa instalación y verificar las condiciones técnicas y el uso previsto.'
+    },
+    {
+      id: 'vertical-patas',
+      href: '/depositos/vertical-con-patas/',
+      name: 'Depósito vertical con patas',
+      subtitle: 'En superficie · estructura elevada según configuración',
+      image: '/images/depositos/vertical-con-patas/deposito-poliester-vertical-con-patas-verde-con-estructura-metalica.webp',
+      mediaCaption: 'Fotografía orientativa de depósito vertical sobre estructura de apoyo',
+      tags: ['vertical', 'con patas'],
+      specification: 'Vertical · con patas',
+      quoteProduct: 'Depósito vertical con patas para almacenamiento',
+      quoteNote: 'Consulta para riego: verificar finalidad, capacidad, estructura de apoyo y altura total.',
+      detail: 'Formato a estudiar si la posición del depósito o de sus salidas condiciona la instalación. Las condiciones de apoyo, la estabilidad y la altura real deben comprobarse para cada modelo; una posición elevada no garantiza presión suficiente en el riego.'
+    },
+    {
+      id: 'rectangular',
+      href: '/depositos/cuadrados-rectangulares/',
+      name: 'Depósito cuadrado o rectangular',
+      subtitle: 'Geometrías alternativas · capacidad y compatibilidad a comprobar',
+      image: '/images/depositos/rectangulares/deposito-poliester-rectangulares-blanco-abierto-vista-interior.webp',
+      mediaCaption: 'Depósito rectangular de referencia; verificar uso y configuración',
+      tags: ['rectangular', 'espacios limitados'],
+      specification: 'Cuadrado o rectangular',
+      quoteProduct: 'Depósito cuadrado o rectangular para almacenamiento',
+      quoteNote: 'Consultar aptitud para agua de riego, geometría, dimensiones y capacidad requerida.',
+      detail: 'Opción para situaciones donde la geometría del hueco dificulta instalar un depósito cilíndrico. Deben confirmarse capacidad, tapa, condiciones de uso y conexiones: no todos los formatos sirven para las mismas aplicaciones.'
     }
   ],
   filterGroups: [],
-  note: 'Las fotografías muestran depósitos de la familia, no unidades identificadas con cada capacidad. Las cotas definitivas, equipamiento, compatibilidad, disponibilidad y transporte se comprueban para la referencia ofertada. El transporte estándar no incluye descarga.',
+  note: 'Las imágenes son representativas, no prueban una capacidad, equipamiento ni disponibilidad concretos. Depofibra comercializa diversas familias y volúmenes; se verifican con el proveedor modelo, medidas, compatibilidad y presupuesto. El transporte estándar no incluye descarga.',
   guideTitle: 'Cómo elegir la reserva para regar',
-  guideDescription: 'La superficie de la finca, por sí sola, no determina los litros necesarios. Parte de tu consumo real y de cuánto tiempo necesitas regar entre reposiciones de agua.',
+  guideDescription: 'Elige primero el formato de instalación y calcula después la reserva necesaria. La superficie de la finca, por sí sola, no determina los litros que necesitas.',
   guideRows: [
     {
       title: '1. Calcula litros y autonomía',
-      detail: 'Multiplica los litros de agua que utilizas al día por los días que quieres cubrir sin reposición. Por ejemplo, 2.000 L/día durante 3 días son 6.000 L de necesidad teórica. Un depósito nominal de 5.000 L no cubriría ese cálculo sin reponer agua; conviene comparar 10.000 L u otras capacidades, sujeto al volumen útil y a la instalación.'
+      detail: 'Multiplica los litros de agua que utilizas al día por los días que quieres cubrir sin reposición. Por ejemplo, 2.000 L/día durante 3 días son 6.000 L de necesidad teórica. Una reserva nominal inferior a 6.000 L no cubriría ese cálculo sin reponer agua. Se puede estudiar cualquier capacidad compatible de la gama, siempre contrastando volumen útil y condiciones de instalación.'
     },
     {
       title: '2. Comprueba cómo se llena',
@@ -93,8 +119,8 @@ const page = {
       answer: 'El cálculo inicial es 2.000 × 3 = 6.000 litros teóricos. Un depósito nominal de 5.000 litros no cubre esa reserva completa sin relleno; puedes comparar 10.000 litros u otro volumen. El consumo real, el volumen útil y las reposiciones deben comprobarse antes de elegir.'
     },
     {
-      question: '¿Un depósito de 5.000, 10.000 o 15.000 litros sirve para una finca?',
-      answer: 'La capacidad adecuada no depende solamente de los metros cuadrados o del cultivo. Necesitamos conocer el consumo, cuándo puedes reponer el agua y las condiciones del lugar. Las fichas individuales ayudan a comparar medidas orientativas y requisitos de entrega.'
+      question: '¿Solo ofrecéis depósitos de 5.000, 10.000 y 15.000 litros?',
+      answer: 'No. Esas capacidades son ejemplos con ficha individual, pero el catálogo contempla otros volúmenes y formatos. En las tablas de referencia de algunas familias aparecen capacidades como 4.000, 6.000, 8.000, 12.000, 20.000, 30.000, 40.000, 50.000 y 60.000 litros. La disponibilidad, medidas y compatibilidad del modelo solicitado deben verificarse con el proveedor.'
     },
     {
       question: '¿Un depósito de agua de riego aporta presión al sistema de goteo?',
