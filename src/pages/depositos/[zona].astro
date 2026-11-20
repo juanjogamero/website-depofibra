@@ -1,8 +1,19 @@
 ---
 import DepositLocalLanding from '../../components/DepositLocalLanding.astro';
 import { depositLocalLandings, type DepositLocalLanding as DepositLocalLandingData } from '../../data/depositLocalLandings';
+import { depositFamilies } from '../../data/depositProducts';
 
 export function getStaticPaths() {
+  const heroPhotos = depositLocalLandings.map(landing => landing.heroImage.src);
+  if (new Set(heroPhotos).size !== heroPhotos.length) {
+    throw new Error('Las páginas territoriales deben utilizar fotografías principales diferentes.');
+  }
+  const catalogPhotoPaths = new Set(depositFamilies.flatMap(family => family.gallery.filter(image => image.kind === 'Fotografía de referencia').map(image => image.src)));
+  for (const landing of depositLocalLandings) {
+    if (!catalogPhotoPaths.has(landing.heroImage.src)) {
+      throw new Error(`Fotografía principal no presente en el catálogo: ${landing.slug}`);
+    }
+  }
   return depositLocalLandings.map(landing => ({
     params: { zona: landing.slug },
     props: { landing }
