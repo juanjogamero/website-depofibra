@@ -24,3 +24,19 @@ export function createChromeHandoff(urlString) {
     ';package=com.android.chrome;action=android.intent.action.VIEW;' +
     'S.browser_fallback_url=' + encodeURIComponent(url.href) + ';end;';
 }
+
+
+/**
+ * Chrome iOS registra googlechromes:// para URLs HTTPS.
+ * Su apertura requiere un clic real; una página no puede forzar Safari
+ * ni comprobar de forma fiable si Chrome está instalado.
+ * Ver: Chromium docs/ios/opening_links.md.
+ */
+export function createIOSChromeHandoff(urlString) {
+  const url = new URL(urlString);
+  if (url.protocol !== 'https:' && url.protocol !== 'http:') {
+    throw new Error('Solo se admiten enlaces web');
+  }
+  const scheme = url.protocol === 'https:' ? 'googlechromes' : 'googlechrome';
+  return scheme + '://' + url.host + url.pathname + url.search + url.hash;
+}
