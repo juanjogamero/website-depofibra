@@ -103,7 +103,7 @@ test('Las capacidades prioritarias permiten identificar la geometría orientativ
     for (const [diameter, secondCota] of geometries) {
       const found = buttons.find(button => button.includes('Diámetro de ficha: ' + diameter + ' mm')
         && button.includes('Segunda cota de ficha: ' + secondCota + ' mm'));
-      assert.ok(found, route + ': no llega la combinación de cotas ' + diameter + ' / ' + secondCota);
+      assert.ok(found, route + ': no llega la combinación de cotas ' + diameter + ' / ' + secondCota + ' ; botones=' + JSON.stringify(buttons));
       assert.match(found, /open-quote-trigger/);
       assert.match(found, /NO altura total verificada/);
     }
