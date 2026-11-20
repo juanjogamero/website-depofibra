@@ -149,6 +149,10 @@ import Layout from '../../layouts/Layout.astro';
         event.preventDefault();
         if (alreadySent || !user || !form.reportValidity()) return;
         const rating = Number(form.elements.rating.value);
+        if (!user.displayName || user.displayName.length > 80) {
+          setStatus('No se ha podido obtener un nombre de Google válido. Contacta con Depofibra.', 'error');
+          return;
+        }
         const comment = String(form.elements.comment.value).trim();
         if (!Number.isInteger(rating) || rating < 1 || rating > 5 || comment.length < 20 || comment.length > 1000 ||
           !document.getElementById('review-consent').checked) {
@@ -160,7 +164,7 @@ import Layout from '../../layouts/Layout.astro';
         try {
           await dbSDK.setDoc(dbSDK.doc(db, 'customerReviews', user.uid), {
             uid: user.uid,
-            author: (user.displayName || 'Cliente').trim().slice(0, 80) || 'Cliente',
+            author: user.displayName || '',
             rating,
             text: comment,
             status: 'pending',
