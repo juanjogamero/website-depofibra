@@ -22,8 +22,8 @@ const whatsappHref = whatsappNumber ? `https://wa.me/${whatsappNumber}?text=${en
   title={product.titleSeo}
   description={product.metaDescription}
   canonical={canonical}
-  ogImage={product.image}
-  ogImageAlt={product.imageAlt}
+  ogImage={isFosa ? '/images/productos/categoria-fosas.jpg' : '/images/productos/deposito-horizontal.jpg'}
+  ogImageAlt={isFosa ? 'Imagen de referencia de equipos de saneamiento de poliéster' : 'Cuba horizontal de poliéster de referencia del catálogo'}
   activeNav={product.family}
 >
   <Fragment slot="head">
@@ -46,8 +46,8 @@ const whatsappHref = whatsappNumber ? `https://wa.me/${whatsappNumber}?text=${en
 
       <section class="secondary-top" aria-labelledby="secondary-name">
         <div class="secondary-photo">
-          <img src={product.image} alt={product.imageAlt} loading="eager" decoding="async" width={isFosa ? 900 : 1600} height={isFosa ? 1220 : 1200} />
-          <p>Fotografía de referencia compartida por la familia de {categoryName.toLowerCase()}. No identifica necesariamente el modelo seleccionado.</p>
+          <img src={product.image} alt={product.imageAlt} loading="eager" decoding="async" width={isFosa ? 740 : 800} height={isFosa ? 500 : 390} />
+          <p>Esquema orientativo de {product.title.toLowerCase()}, no fotografía de una referencia entregada. Las dimensiones, configuración, accesorios y documentación dependen del modelo y fabricante.</p>
         </div>
         <div class="secondary-summary">
           <span class="secondary-eyebrow">{product.eyebrow} · DEPOFIBRA</span>
@@ -60,6 +60,14 @@ const whatsappHref = whatsappNumber ? `https://wa.me/${whatsappNumber}?text=${en
               ? 'La capacidad, los habitantes equivalentes, la documentación del equipo y las condiciones de vertido deben validarse según el proyecto y el fabricante.'
               : 'Las medidas, la capacidad, los apoyos y cualquier accesorio deben confirmarse en el modelo ofertado. El vehículo o remolque no se consideran incluidos.'}
             </p>
+            {product.selectionNotes && (
+              <div class="secondary-notes">
+                <h3>Datos útiles para estudiar tu presupuesto</h3>
+                <ul>
+                  {product.selectionNotes.map(note => <li>{note}</li>)}
+                </ul>
+              </div>
+            )}
           </div>
           <div class="secondary-contact">
             <h2>¿Necesitas un presupuesto?</h2>
@@ -100,6 +108,10 @@ const whatsappHref = whatsappNumber ? `https://wa.me/${whatsappNumber}?text=${en
   .secondary-text{border-top:1px solid #e4eaf0;margin-top:24px;padding-top:21px}
   .secondary-text h2,.secondary-contact h2{margin:0 0 10px;color:#12243a;font:800 18px/1.3 var(--font-display);letter-spacing:-.02em}
   .secondary-text p,.secondary-contact p{margin:0 0 14px;color:#536477;font:400 14px/1.8 var(--font-body)}
+  .secondary-notes{margin-top:17px}
+  .secondary-notes h3{margin:0 0 8px;color:#12243a;font:800 14px/1.5 var(--font-display)}
+  .secondary-notes ul{list-style:disc;padding-left:20px;margin:0 0 8px;color:#536477}
+  .secondary-notes li{font:400 14px/1.65 var(--font-body);margin:5px 0}
   .secondary-contact{border-top:1px solid #e4eaf0;margin-top:23px;padding-top:22px}
   .secondary-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:17px}
   .secondary-button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:13px;padding:11px 18px;border-radius:999px;white-space:normal;font:800 13px/1.3 var(--font-display);cursor:pointer;text-align:center;transition:background .2s ease,color .2s ease}
