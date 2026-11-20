@@ -86,3 +86,26 @@ test('No hay nombres, teléfono, correos ni contenido del formulario en payload 
   assert.match(thanksSource, /layer\.push\(\{event: 'quote_form_provider_accepted'\}\)/);
   assert.ok(!consentSource.includes('formData.forEach('));
 });
+
+
+test('Las capacidades prioritarias permiten identificar la geometría orientativa en cada consulta', () => {
+  const cases = [
+    ['/depositos/vertical-base-plana/5000-litros/', [
+      ['1.700', '2.500'], ['2.050', '1.650']
+    ]],
+    ['/depositos/vertical-base-plana/10000-litros/', [['2.450', '2.500']]],
+    ['/depositos/vertical-base-plana/15000-litros/', [['2.450', '3.650']]],
+  ];
+  for (const [route, geometries] of cases) {
+    const html = compiledHtml(route);
+    const buttons = [...html.matchAll(/<button\b[^>]*class=["'][^"']*cap-measure-cta[^"']*["'][^>]*>/g)].map(m => m[0]);
+    assert.equal(buttons.length, geometries.length, route + ' debe tener consulta por cada geometría documentada');
+    for (const [diameter, secondCota] of geometries) {
+      const found = buttons.find(button => button.includes('Diámetro de ficha: ' + diameter + ' mm')
+        && button.includes('Segunda cota de ficha: ' + secondCota + ' mm'));
+      assert.ok(found, route + ': no llega la combinación de cotas ' + diameter + ' / ' + secondCota);
+      assert.match(found, /open-quote-trigger/);
+      assert.match(found, /NO altura total verificada/);
+    }
+  }
+});
