@@ -1,6 +1,6 @@
 import type { ModelViewerElement } from '@google/model-viewer';
 import libraryUrl from '@google/model-viewer/dist/model-viewer.min.js?url';
-import { isGoogleInAppBrowser, createChromeHandoff } from '../../lib/ar/browser-handoff.mjs';
+import { isGoogleInAppBrowser, createChromeHandoff, createIOSChromeHandoff } from '../../lib/ar/browser-handoff.mjs';
 
 type Family = 'vertical' | 'vasos';
 type Shade = 'verde' | 'blanco' | 'gris' | 'negro' | 'personalizado';
@@ -17,11 +17,16 @@ const launch = get<HTMLButtonElement>('space-launch');
 const quote = get<HTMLButtonElement>('space-quote');
 const support = get('space-support');
 const openChrome = get<HTMLAnchorElement>('space-open-chrome');
+const iosOpenChrome = get<HTMLAnchorElement>('space-ios-open-chrome');
+const iosQuickLook = get<HTMLAnchorElement>('space-ios-quicklook');
 const copyLink = get<HTMLButtonElement>('space-copy-link');
 // La app de Google puede abrir una pestaña integrada que no ofrece la misma AR que Chrome/Safari.
 const googleApp = isGoogleInAppBrowser(navigator.userAgent);
 const android = /Android/i.test(navigator.userAgent);
 const ios = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+// Iniciado desde el enlace profundo tras pulsar AR en Google App iOS.
+// La activación sin gesto puede ser bloqueada: mantenemos botón manual si falla.
+const autoARRequested = ios && !googleApp && new URLSearchParams(location.search).get('iniciarAR') === '1';
 const handoff = get<HTMLDetailsElement>('space-handoff');
 const qr = get<HTMLImageElement>('space-qr-img');
 const zoomIn = get<HTMLButtonElement>('space-zoom-in');
@@ -40,6 +45,9 @@ let ready = false;
 let visible = false;
 let activeModelIsCustom = false;
 let arFailed = false;
+let autoARAttempted = false;
+let autoARInFlight = false;
+let autoARRetryNeeded = false;
 let sequence = 0;
 let loadTimeout: number | undefined;
 let arTimeout: number | undefined;
@@ -60,9 +68,16 @@ const modelUrl = () => modelStem() + '.glb';
 
 // Los fragmentos # no pueden colocarse antes de #Intent. El estado se transporta
 // por query y se recupera al llegar a Chrome, conservando familia, tamaño y color.
-const shareableUrl = () => new URL('/visualizador/?seleccion=' + encodeURIComponent(hash()),location.origin).href;
+const shareableUrl = (startAR = false) => {
+  const url = new URL('/visualizador/', location.origin);
+  url.searchParams.set('seleccion', hash());
+  if (startAR) url.searchParams.set('iniciarAR', '1');
+  return url.href;
+};
 function updateBrowserLinks() {
   openChrome.href = createChromeHandoff(shareableUrl());
+  iosOpenChrome.href = createIOSChromeHandoff(shareableUrl(true));
+  if (!custom()) iosQuickLook.href = modelStem() + '.usdz';
 }
 function showBrowserFallback() {
   updateBrowserLinks();
@@ -72,9 +87,14 @@ function showBrowserFallback() {
   const otherMobileFailure = (android || ios) && ready && (arFailed || !model?.canActivateAR);
   launch.hidden = onGoogleAndroid || onGoogleIOS || arFailed;
   openChrome.hidden = !(android && (onGoogleAndroid || otherMobileFailure));
-  copyLink.hidden = !(onGoogleAndroid || onGoogleIOS || otherMobileFailure);
-  if (onGoogleIOS) copyLink.classList.add('space-button-primary');
-  else copyLink.classList.remove('space-button-primary');
+  // En iPhone de Google, el CTA principal es un enlace de aplicación:
+  // un toque abre Chrome instalado con el mismo modelo y color.
+  iosOpenChrome.hidden = !onGoogleIOS;
+  // Para modelos predefinidos, Quick Look puede funcionar también desde
+  // algunos WebViews de iOS. No ofrecerlo con HEX libre: mostraría blanco.
+  iosQuickLook.hidden = !onGoogleIOS || custom();
+  // Ya no se exige copiar enlace en iPhone.
+  copyLink.hidden = onGoogleIOS || !(onGoogleAndroid || otherMobileFailure);
 }
 
 function syncColors() {
@@ -134,7 +154,11 @@ function syncAR() {
   if (googleApp && android) {
     support.textContent = 'La app de Google limita la cámara AR. Abre este mismo modelo en Chrome.';
   } else if (googleApp && ios) {
-    support.textContent = 'Para usar la cámara, copia el enlace y ábrelo en Safari.';
+    support.textContent = custom()
+      ? 'Se abrirá Chrome con tu color elegido. Si no tienes Chrome, esta versión solo puede verse en 3D aquí.'
+      : 'Se abrirá Chrome con este depósito. También puedes probar AR directamente si tu app de Google lo permite.';
+  } else if (autoARRetryNeeded) {
+    support.textContent = 'Chrome ha abierto el depósito. Pulsa «Ver en mi espacio» para iniciar la cámara.';
   } else if (arFailed) {
     support.textContent = 'No se pudo iniciar la cámara aquí. Abre el modelo en un navegador compatible.';
   } else if (!ready) {
@@ -173,6 +197,26 @@ function applyCustomColor(current: ModelViewerElement) {
 function watchAR(current: ModelViewerElement, token: number, n=0) {
   if (token!==sequence || model!==current || !ready) return;
   syncAR();
+  if (current.canActivateAR && autoARRequested && !autoARAttempted && !autoARRetryNeeded) {
+    autoARAttempted = true;
+    autoARInFlight = true;
+    // Intento único al llegar desde Google a Chrome. iOS puede exigir un
+    // segundo gesto: si lo bloquea, el botón manual continúa disponible.
+    try {
+      void current.activateAR().catch(() => {
+        if (token!==sequence) return;
+        autoARInFlight = false;
+        autoARRetryNeeded = true;
+        arFailed = false;
+        syncAR();
+      });
+    } catch {
+      autoARInFlight = false;
+      autoARRetryNeeded = true;
+      arFailed = false;
+      syncAR();
+    }
+  }
   if (!current.canActivateAR && n<40) {
     arTimeout=window.setTimeout(()=>watchAR(current,token,n+1),250);
   }
@@ -192,6 +236,7 @@ function updateDetails(reload = true) {
 async function loadModel() {
   const token=++sequence;
   arFailed = false;
+  autoARInFlight = false;
   window.clearTimeout(loadTimeout); window.clearTimeout(arTimeout);
   host.replaceChildren();
   model=null;
@@ -248,7 +293,16 @@ async function loadModel() {
     current.addEventListener('ar-status',(event)=>{
       if (token!==sequence) return;
       const status = (event as CustomEvent<{status?:string}>).detail?.status ?? current.getAttribute('ar-status');
-      if (status==='failed') arFailed = true;
+      if (status==='failed' && autoARInFlight) {
+        autoARInFlight = false;
+        autoARRetryNeeded = true;
+        arFailed = false; // Permitir repetir con un toque real en Chrome.
+      } else if (status==='failed') {
+        arFailed = true;
+      } else if (status==='session-started') {
+        autoARInFlight = false;
+        autoARRetryNeeded = false;
+      }
       syncAR();
     });
     host.replaceChildren(current);
