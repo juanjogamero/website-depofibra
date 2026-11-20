@@ -57,18 +57,30 @@ def read_glb(path):
     return doc, groups
 
 
-def check_bounds(groups, diameter, height):
+def check_bounds(groups, diameter, height, reference=False):
     core, _ = groups['Deposito']
     for axis in [0, 2]:
         actual = min(p[axis] for p in core), max(p[axis] for p in core)
         expected = -diameter / 2, diameter / 2
         assert all(math.isclose(a, e, abs_tol=TOLERANCE_M) for a, e in zip(actual, expected)), (actual, expected)
     assert math.isclose(min(p[1] for p in core), 0, abs_tol=TOLERANCE_M)
-    all_points = [p for part, _ in groups.values() for p in part]
+    product_groups = {
+        name: (pts, ix) for name, (pts, ix) in groups.items()
+        if name not in ('Regla1mAzul', 'Regla1mBlanco')
+    }
+    all_points = [p for part, _ in product_groups.values() for p in part]
     assert math.isclose(max(p[1] for p in all_points), height, abs_tol=TOLERANCE_M)
     assert min(p[1] for p in all_points) >= -TOLERANCE_M
     # Los dos racores pueden sobresalir del cilindro, pero no varios decímetros.
     assert max(math.hypot(p[0], p[2]) for p in all_points) <= diameter/2 + 0.19
+    if reference:
+        assert {'Regla1mAzul', 'Regla1mBlanco'} <= groups.keys()
+        bar = groups['Regla1mAzul'][0] + groups['Regla1mBlanco'][0]
+        assert math.isclose(min(p[1] for p in bar), 0, abs_tol=TOLERANCE_M)
+        assert math.isclose(max(p[1] for p in bar), 1.0, abs_tol=TOLERANCE_M)
+        assert min(p[0] for p in bar) > diameter/2
+    else:
+        assert 'Regla1mAzul' not in groups and 'Regla1mBlanco' not in groups
 
 
 def check_usdz(path, full):
@@ -104,20 +116,21 @@ def main(full):
     for row in rows:
         liters, diameter, height = (row[key] for key in ('liters', 'diameterMm', 'longitudinalMm'))
         for color in COLORS:
-            stem = f'{liters}-{diameter}-{height}' + (f'-{color}' if color != 'blanco' else '')
-            glb, usdz = (MODELS / (stem + ext) for ext in ['.glb', '.usdz'])
-            expected.update([glb, usdz])
-            assert glb.is_file() and usdz.is_file()
-            assert glb.stat().st_size < 2_500_000
-            doc, groups = read_glb(glb)
-            check_bounds(groups, diameter/1000, height/1000)
-            material = doc['materials'][0]['pbrMetallicRoughness']['baseColorFactor']
-            appearances.setdefault(color, material)
-            assert material == appearances[color]
-            check_usdz(usdz, full)
+            for reference in (False, True):
+                stem = f'{liters}-{diameter}-{height}' + (f'-{color}' if color != 'blanco' else '') + ('-regla' if reference else '')
+                glb, usdz = (MODELS / (stem + ext) for ext in ['.glb', '.usdz'])
+                expected.update([glb, usdz])
+                assert glb.is_file() and usdz.is_file()
+                assert glb.stat().st_size < 3_000_000
+                doc, groups = read_glb(glb)
+                check_bounds(groups, diameter/1000, height/1000, reference)
+                material = doc['materials'][0]['pbrMetallicRoughness']['baseColorFactor']
+                appearances.setdefault(color, material)
+                assert material == appearances[color]
+                check_usdz(usdz, full)
     assert len({tuple(x) for x in appearances.values()}) == len(COLORS)
     assert set(MODELS.iterdir()) == expected
-    print('68 modelos GLB + 68 USDZ, 17 medidas x 4 acabados; geometría, cotas y accesorios verificados.')
+    print('136 modelos GLB + 136 USDZ, 17 medidas x 4 acabados x 2 modos; regla AR de 1 m y cotas verificadas.')
 
 
 if __name__ == '__main__':

@@ -1,3 +1,4 @@
+import { addOneMeterReference } from '../../../../lib/ar/scale-reference.mjs';
 // Cada acabado tiene archivos independientes para que Quick Look y Scene Viewer
 // conserven el mismo color en realidad aumentada, incluso fuera del navegador.
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -6,18 +7,19 @@ import { verticalTanksAR } from '../../../../data/verticalTanksAR.ts';
 import { AR_COLORS, buildTankGlb } from '../../../../lib/ar/tank-glb.mjs';
 
 export function getStaticPaths() {
-  return verticalTanksAR.flatMap(tank => AR_COLORS.flatMap(color => {
-    // El modelo blanco conserva la URL publicada antes de esta mejora.
-    const stem = tank.id + (color === 'blanco' ? '' : '-' + color);
+  return verticalTanksAR.flatMap(tank => AR_COLORS.flatMap(color => [false,true].flatMap(reference => {
+    // URLs publicadas sin sufijo permanecen inalteradas; -regla es opcional.
+    const stem = tank.id + (color === 'blanco' ? '' : '-' + color) + (reference ? '-regla' : '');
     return ['glb', 'usdz'].map(format => ({
       params: { file: stem + '.' + format },
-      props: { tank, format, color },
+      props: { tank, format, color, reference },
     }));
-  }));
+  })));
 }
 
-export async function GET({ props: { tank, format, color } }) {
-  const glb = buildTankGlb({ ...tank, color });
+export async function GET({ props: { tank, format, color, reference } }) {
+  const base = buildTankGlb({ ...tank, color });
+  const glb = reference ? addOneMeterReference(base, tank.diameterMm/2000) : base;
   if (format === 'glb') return new Response(glb, { headers: { 'Content-Type': 'model/gltf-binary' } });
   const { scene } = await new GLTFLoader().parseAsync(Uint8Array.from(glb).buffer, '');
   scene.updateMatrixWorld(true);

@@ -36,10 +36,12 @@ const familyButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[
 const colorButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-space-color]'));
 const customInput = get<HTMLInputElement>('space-custom-color');
 const customLabel = get('space-color-custom-label');
+const scaleCheck = get<HTMLInputElement>('space-scale-reference');
 
 let family: Family = 'vertical';
 let shade: Shade = 'verde';
 let customHex = '#ad724b';
+let scaleReference = false;
 let model: ModelViewerElement | null = null;
 let ready = false;
 let visible = false;
@@ -62,8 +64,8 @@ const currentSelect = () => selects[family];
 const chosen = () => currentSelect().selectedOptions[0];
 const custom = () => shade === 'personalizado';
 const colorSlug = () => custom() ? 'personalizado-' + customHex.slice(1).toLowerCase() : shade;
-const hash = () => family + '/' + currentSelect().value + '/' + colorSlug();
-const modelStem = () => chosen().dataset.src! + (custom() || shade==='blanco' ? '' : '-' + shade);
+const hash = () => family + '/' + currentSelect().value + '/' + colorSlug() + (scaleReference ? '/regla' : '');
+const modelStem = () => chosen().dataset.src! + (custom() || shade==='blanco' ? '' : '-' + shade) + (scaleReference ? '-regla' : '');
 const modelUrl = () => modelStem() + '.glb';
 
 // Los fragmentos # no pueden colocarse antes de #Intent. El estado se transporta
@@ -77,7 +79,8 @@ const shareableUrl = (startAR = false) => {
 function updateBrowserLinks() {
   openChrome.href = createChromeHandoff(shareableUrl());
   iosOpenChrome.href = createIOSChromeHandoff(shareableUrl(true));
-  if (!custom()) iosQuickLook.href = modelStem() + '.usdz';
+  // La apertura directa sin model-viewer también debe bloquear el escalado.
+  if (!custom()) iosQuickLook.href = modelStem() + '.usdz#allowsContentScaling=0';
 }
 function showBrowserFallback() {
   updateBrowserLinks();
@@ -127,7 +130,7 @@ async function updateQR() {
   const request = ++qrRequest;
   if (!handoff.open) return;
   const familyId = family, selectedId = currentSelect().value, selectedColor = colorSlug();
-  if (!custom()) {
+  if (!custom() && !scaleReference) {
     qr.src = '/visualizador/qr/' + familyId + '-' + selectedId + '-' + selectedColor + '.svg';
     return;
   }
@@ -135,7 +138,7 @@ async function updateQR() {
   try {
     const QRCode = (await import('qrcode')).default;
     if (request !== qrRequest) return;
-    const url = new URL('/visualizador/#'+familyId+'/'+selectedId+'/'+selectedColor,location.origin).href;
+    const url = new URL('/visualizador/#'+hash(),location.origin).href;
     const image = await QRCode.toDataURL(url,{width:232,margin:2,color:{dark:'#002d59',light:'#ffffff'}});
     if (request === qrRequest) qr.src = image;
   } catch {
@@ -164,7 +167,9 @@ function syncAR() {
   } else if (!ready) {
     support.textContent = 'Preparando el visor…';
   } else if (supported) {
-    support.textContent = 'Apunta al suelo, mueve el móvil y toca para colocar el depósito.';
+    support.textContent = scaleReference
+      ? 'La regla a la derecha mide exactamente 1 m. Contrástala con una cinta real en el mismo plano.'
+      : 'Apunta al suelo, mueve el móvil y toca para colocar el depósito.';
   } else {
     support.textContent = custom()
       ? 'Color a medida: requiere Safari o Chrome Android con WebXR.'
@@ -225,7 +230,7 @@ function updateDetails(reload = true) {
   const option = chosen();
   if (!option) return;
   const colorName = custom() ? customHex.toUpperCase() : shade;
-  get('space-model-title').textContent = (family==='vertical'?'Vertical':'Tipo vaso')+' · '+option.text+' · '+colorName;
+  get('space-model-title').textContent = (family==='vertical'?'Vertical':'Tipo vaso')+' · '+option.text+' · '+colorName + (scaleReference ? ' · regla 1 m' : '');
   get('space-diameter').textContent=option.dataset.diameter!;
   get('space-height').textContent=option.dataset.height!;
   quote.dataset.note=option.dataset.note!+' Color visual elegido: '+colorName+' (simulación, confirmar disponibilidad real).';
@@ -316,7 +321,9 @@ async function loadModel() {
 function restoreHash() {
   const fromQuery = new URLSearchParams(location.search).get('seleccion') || '';
   const fromHash = location.hash.slice(1);
-  const [requestedFamily,id,color] = decodeURIComponent(fromHash || fromQuery).split('/');
+  const [requestedFamily,id,color,measure] = decodeURIComponent(fromHash || fromQuery).split('/');
+  scaleReference = measure === 'regla';
+  scaleCheck.checked = scaleReference;
   family=requestedFamily==='vasos'?'vasos':'vertical';
   if (choices.includes(color as Shade)) shade=color as Shade;
   else if (/^personalizado-[0-9a-f]{6}$/i.test(color||'')) {
@@ -375,6 +382,11 @@ customInput.addEventListener('change',()=>{
   if (ready && custom() && model && activeModelIsCustom) {
     applyCustomColor(model);updateDetails(false);
   } else updateDetails();
+});
+scaleCheck.addEventListener('change', () => {
+  scaleReference = scaleCheck.checked;
+  history.replaceState(null, '', '#' + hash());
+  updateDetails();
 });
 handoff.addEventListener('toggle',()=>void updateQR());
 retry.addEventListener('click',()=>{webGLSupport=undefined;void loadModel();});
