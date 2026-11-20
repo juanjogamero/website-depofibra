@@ -1,7 +1,8 @@
 /**
  * Fichas informativas de fosas y cubas: datos comerciales tomados de las
  * categorías actuales de Depofibra. No son fichas técnicas confirmadas.
- * La fotografía de cabecera es compartida deliberadamente por categoría.
+ * Cada ficha muestra un esquema orientativo propio, disponible en el catálogo.
+ * La imagen social rasterizada puede seguir siendo genérica por familia.
  */
 export interface SecondaryProduct {
   slug: string;
@@ -12,13 +13,11 @@ export interface SecondaryProduct {
   details: string;
   image: string;
   imageAlt: string;
+  selectionNotes?: string[];
   quoteProduct: string;
   titleSeo: string;
   metaDescription: string;
 }
-
-const fotoFosas = '/images/productos/categoria-fosas.jpg';
-const fotoCubas = '/images/productos/deposito-horizontal.jpg';
 
 export const secondaryProducts: SecondaryProduct[] = [
   {
@@ -28,8 +27,8 @@ export const secondaryProducts: SecondaryProduct[] = [
     eyebrow: 'ALMACENAMIENTO SIN VERTIDO',
     summary: 'Almacenamiento de aguas residuales sin salida de vertido; requiere vaciado periódico.',
     details: 'Una fosa estanca almacena las aguas residuales para su retirada posterior. Debe estudiarse la capacidad, la frecuencia de vaciado, los accesos para mantenimiento y la documentación de la referencia.',
-    image: fotoFosas,
-    imageAlt: 'Fotografía general de equipos de saneamiento, representativa de la familia de fosas sépticas',
+    image: '/images/fosas-septicas/estanca.svg',
+    imageAlt: 'Esquema ilustrativo de fosa estanca para almacenar aguas residuales sin vertido; no es una ficha técnica',
     quoteProduct: 'Fosa séptica',
   },
   {
@@ -39,8 +38,8 @@ export const secondaryProducts: SecondaryProduct[] = [
     eyebrow: 'TRATAMIENTO BIOLÓGICO',
     summary: 'Sistema que incorpora tratamiento biológico. La selección depende del proyecto y del vertido.',
     details: 'El filtro biológico incorpora una etapa de tratamiento distinta del simple almacenamiento. Es necesario conocer los habitantes equivalentes, caudal previsto y condiciones de vertido.',
-    image: fotoFosas,
-    imageAlt: 'Fotografía general de equipos de saneamiento, representativa de la familia de fosas sépticas',
+    image: '/images/fosas-septicas/filtro-biologico.svg',
+    imageAlt: 'Esquema ilustrativo de fosa con filtro biológico; la configuración real depende del fabricante',
     quoteProduct: 'Fosa séptica',
   },
   {
@@ -50,8 +49,8 @@ export const secondaryProducts: SecondaryProduct[] = [
     eyebrow: 'DEPURACIÓN CON AIREACIÓN',
     summary: 'Tratamiento biológico mediante aireación, con necesidades de electricidad y mantenimiento.',
     details: 'La oxidación total necesita equipos de aireación y mantenimiento según fabricante. El dimensionamiento y las condiciones de vertido dependen del uso y de la normativa aplicable al proyecto.',
-    image: fotoFosas,
-    imageAlt: 'Fotografía general de equipos de saneamiento, representativa de la familia de fosas sépticas',
+    image: '/images/fosas-septicas/oxidacion-total.svg',
+    imageAlt: 'Esquema ilustrativo de depuradora por oxidación total; no representa un equipo certificado concreto',
     quoteProduct: 'Fosa séptica',
   },
   {
@@ -61,8 +60,14 @@ export const secondaryProducts: SecondaryProduct[] = [
     eyebrow: 'APLICACIÓN AGRÍCOLA',
     summary: 'Cuba de poliéster para estudiar su montaje en remolque y los apoyos necesarios.',
     details: 'Conviene confirmar las dimensiones del remolque, la carga admisible, los apoyos y la capacidad necesaria. No se presupone incluido el remolque completo.',
-    image: fotoCubas,
-    imageAlt: 'Cuba horizontal blanca de poliéster con franjas y apoyos azules, fotografía de referencia',
+    selectionNotes: [
+      'Capacidad aproximada y líquido que llevará la cuba.',
+      'Medidas del remolque y carga útil disponible, si se conocen.',
+      'Tipo de apoyo, anclajes y conexiones a estudiar con el fabricante.',
+      'Localidad y código postal de entrega, accesos y medios para descargar.'
+    ],
+    image: '/images/cubas/cuba-remolque.svg',
+    imageAlt: 'Esquema orientativo de cuba de poliéster para montaje en remolque agrícola; remolque no incluido',
     quoteProduct: 'Cuba o cisterna',
   },
   {
@@ -72,8 +77,14 @@ export const secondaryProducts: SecondaryProduct[] = [
     eyebrow: 'PLATAFORMA / CAMIÓN',
     summary: 'Formato para montaje sobre plataforma o caja de vehículo según proyecto.',
     details: 'Debe comprobarse la compatibilidad con el vehículo o plataforma, la distribución de cargas, las sujeciones, los apoyos y las condiciones de circulación aplicables.',
-    image: fotoCubas,
-    imageAlt: 'Cuba horizontal blanca de poliéster con franjas y apoyos azules, fotografía de referencia',
+    selectionNotes: [
+      'Vehículo o plataforma previstos y espacio útil disponible.',
+      'Capacidad, líquido y frecuencia de desplazamientos.',
+      'Requisitos de sujeción, reparto de cargas y montaje que revisará el profesional responsable.',
+      'Accesorios y conexiones necesarios, destino y descarga.'
+    ],
+    image: '/images/cubas/cisterna-camion.svg',
+    imageAlt: 'Esquema orientativo de cisterna de poliéster sobre plataforma; vehículo no incluido',
     quoteProduct: 'Cuba o cisterna',
   },
   {
@@ -83,8 +94,20 @@ export const secondaryProducts: SecondaryProduct[] = [
     eyebrow: 'CONFIGURACIÓN A CONSULTAR',
     summary: 'Configuraciones y accesorios a estudiar según capacidad, uso y soporte.',
     details: 'Los accesorios y detalles como conexiones, escaleras o barandillas dependen de la configuración que confirme el proveedor. No se consideran incluidos por defecto.',
-    image: fotoCubas,
-    imageAlt: 'Cuba horizontal blanca de poliéster con franjas y apoyos azules, fotografía de referencia',
+    selectionNotes: [
+      'Uso previsto, líquido y capacidad aproximada.',
+      'Conexiones, bocas de acceso y accesorios que se solicitan expresamente.',
+      'Necesidades de soporte, acceso o manipulación particulares.',
+      'Destino de entrega y medios disponibles para descargar.'
+    ],
+    image: '/images/cubas/cuba-configurable.svg',
+    imageAlt: 'Esquema ilustrativo de cuba de poliéster configurable; accesorios y medidas por confirmar',
     quoteProduct: 'Cuba o cisterna',
   },
 ];
+
+// Evita volver a asignar una portada idéntica a fichas distintas.
+const images = secondaryProducts.map(item => item.image);
+if (new Set(images).size !== images.length) {
+  throw new Error('Las fichas de fosas y cubas deben usar ilustraciones de portada diferentes.');
+}
