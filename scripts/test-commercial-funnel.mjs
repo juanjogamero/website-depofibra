@@ -120,10 +120,17 @@ test('Las seis fichas de depósitos abren presupuesto in situ y conservan enlace
     '/depositos/tipo-vaso/',
     '/depositos/cuadrados-rectangulares/',
   ];
+  const withDimensionTable = new Set([
+    '/depositos/vertical-base-plana/',
+    '/depositos/horizontal-con-cunas/',
+    '/depositos/horizontal-enterrable/',
+  ]);
   for (const route of familyRoutes) {
     const html = compiledHtml(route);
-    for (const selector of ['data-contact-cta', 'data-contact-measures']) {
-      if (selector === 'data-contact-measures' && !html.includes(selector)) continue;
+    const selectors = withDimensionTable.has(route)
+      ? ['data-contact-cta', 'data-contact-measures']
+      : ['data-contact-cta'];
+    for (const selector of selectors) {
       const anchors = [...html.matchAll(/<a\b[^>]*>/g)].map(m => m[0]).filter(tag => tag.includes(selector));
       assert.equal(anchors.length, 1, route + ': un solo enlace ' + selector);
       const link = anchors[0];
