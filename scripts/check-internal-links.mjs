@@ -155,6 +155,42 @@ else {
   }
 }
 
+// GEO/SEO: identidad comercial verificable y compartida entre portada y Sobre.
+function jsonLdNodes(file) {
+  const html = content(file);
+  const scripts = [...html.matchAll(/<script\b[^>]*\btype=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+  return scripts.flatMap(match => {
+    let block;
+    try { block = JSON.parse(match[1]); }
+    catch { errors.push('GEO: JSON-LD no válido en ' + path.relative(output, file)); return []; }
+    return Array.isArray(block['@graph']) ? block['@graph'] : [block];
+  });
+}
+const homeFile = targetFile('/');
+const aboutFile = targetFile('/sobre-depofibra/');
+if (!homeFile || !aboutFile) errors.push('GEO: falta portada o Sobre Depofibra compilada');
+else {
+  const org = jsonLdNodes(homeFile).find(node => node['@id'] === 'https://depofibra.com/#organization');
+  const website = jsonLdNodes(homeFile).find(node => node['@id'] === 'https://depofibra.com/#website');
+  const about = jsonLdNodes(aboutFile).find(node => node['@type'] === 'AboutPage');
+  const logo = 'https://depofibra.com/images/depofibra_brand_assets/depofibra-logo-stacked-blue.png';
+  if (!org || org['@type'] !== 'Organization') errors.push('GEO: falta identidad Organization en Home');
+  if (org?.logo !== logo || !targetFile(new URL(logo).pathname)) errors.push('GEO: logo oficial del Organization no accesible en dist/');
+  if (!org?.description?.includes('Comercialización')) errors.push('GEO: entidad Depofibra debe describirse como comercializadora');
+  if (org?.address?.addressLocality !== 'Casariche' || org?.address?.addressCountry !== 'ES') {
+    errors.push('GEO: localidad real de la atención comercial no coherente');
+  }
+  if (!website || website.publisher?.['@id'] !== org?.['@id']) errors.push('GEO: WebSite sin publisher enlazado');
+  if (!about || about['@id'] !== 'https://depofibra.com/sobre-depofibra/#webpage' ||
+      about.mainEntity?.['@id'] !== org?.['@id'] || about.isPartOf?.['@id'] !== website?.['@id']) {
+    errors.push('GEO: AboutPage no enlazada a Organization/WebSite');
+  }
+  const aboutHtml = content(aboutFile);
+  for (const href of ['/depositos/', '/depositos/vertical-base-plana/', '/depositos/para-riego/', '/piscinas/', '/fosas-septicas/', '/cubas-cisternas/']) {
+    if (!aboutHtml.includes('href="' + href + '"')) errors.push('SEO: falta enlace de entidad a categoría desde Sobre: ' + href);
+  }
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
