@@ -7,6 +7,19 @@ const canonical = 'https://depofibra.com/sobre-depofibra/';
 const ogImage = '/images/depofibra_brand_assets/depofibra-og-logo.jpg';
 ---
 <Layout title={title} description={description} canonical={canonical} activeNav="sobre" ogImage={ogImage}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      '@id': 'https://depofibra.com/sobre-depofibra/#webpage',
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: 'es-ES',
+      isPartOf: { '@id': 'https://depofibra.com/#website' },
+      mainEntity: { '@id': 'https://depofibra.com/#organization' },
+    })} />
+  </Fragment>
   <div class="about-page">
     <section class="about-hero container">
       <div class="about-hero__copy">
@@ -37,7 +50,7 @@ const ogImage = '/images/depofibra_brand_assets/depofibra-og-logo.jpg';
       </div>
       <div class="about-richtext">
         <p>Depofibra no se presenta como fabricante. Nuestra función es <strong>seleccionar, orientar y presupuestar</strong> productos de poliéster reforzado con fibra de vidrio de acuerdo con la necesidad del cliente, el espacio disponible, el uso previsto y el destino de entrega.</p>
-        <p>Trabajamos especialmente con familias como <strong>depósitos de poliéster</strong>, <strong>piscinas prefabricadas</strong>, <strong>fosas sépticas</strong> y <strong>cubas o cisternas</strong>. Cada consulta se revisa de forma individual para comprobar la referencia, la logística y la información que conviene confirmar antes del pedido.</p>
+        <p>Como comercializadora de productos de fabricantes externos, ayudamos a comparar <a href="/depositos/">depósitos de poliéster</a>, incluidos los <a href="/depositos/vertical-base-plana/">verticales de base plana</a> y los <a href="/depositos/para-riego/">depósitos para riego</a>, además de <a href="/piscinas/">piscinas prefabricadas</a>, <a href="/fosas-septicas/">fosas sépticas</a> y <a href="/cubas-cisternas/">cubas o cisternas</a>. La aptitud para cada uso, las medidas, los accesorios y la documentación se confirman por referencia; la entrega se estudia según destino.</p>
       </div>
     </section>
 
