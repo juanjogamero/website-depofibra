@@ -1,0 +1,216 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout
+  title="Dejar una opinión sobre Depofibra"
+  description="Comparte tu experiencia con Depofibra. Accede con tu cuenta de Google y deja una valoración y un comentario."
+  canonical="https://depofibra.com/opinar/"
+  indexable={false}
+>
+  <section class="opinar section" aria-labelledby="review-title">
+    <div class="container opinar__container">
+      <a class="opinar__back" href="/#valoraciones">← Volver a las opiniones</a>
+      <div class="opinar__panel">
+        <span class="eyebrow">TU EXPERIENCIA IMPORTA</span>
+        <h1 id="review-title">Comparte tu opinión sobre Depofibra</h1>
+        <p class="opinar__lead">Accede con Google, selecciona las estrellas y cuéntanos cómo ha sido tu experiencia. Publicaremos las opiniones tras revisarlas.</p>
+
+        <div id="review-status" class="opinar__status" role="status" aria-live="polite">Comprobando la disponibilidad del formulario…</div>
+
+        <div id="review-login" hidden>
+          <button class="opinar__google" id="review-google" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22">
+              <path fill="#4285F4" d="M21.6 12.23c0-.71-.06-1.4-.18-2.06H12v3.9h5.38a4.6 4.6 0 0 1-2 3.02v2.51h3.24c1.9-1.75 2.98-4.33 2.98-7.37Z"/>
+              <path fill="#34A853" d="M12 22c2.7 0 4.98-.9 6.64-2.4l-3.24-2.51c-.9.6-2.05.97-3.4.97-2.62 0-4.84-1.77-5.63-4.15H3.03v2.6A10 10 0 0 0 12 22Z"/>
+              <path fill="#FBBC05" d="M6.37 13.91a6 6 0 0 1 0-3.82v-2.6H3.03a10 10 0 0 0 0 9.02l3.34-2.6Z"/>
+              <path fill="#EA4335" d="M12 5.94c1.48 0 2.8.51 3.84 1.5l2.87-2.87A9.72 9.72 0 0 0 12 2a10 10 0 0 0-8.97 5.49l3.34 2.6C7.16 7.7 9.38 5.94 12 5.94Z"/>
+            </svg>
+            Continuar con Google
+          </button>
+          <p class="opinar__small">Se utilizará tu cuenta exclusivamente para identificar el envío y evitar reseñas duplicadas. No publicamos tu correo electrónico.</p>
+        </div>
+
+        <div id="review-editor" hidden>
+          <div class="opinar__profile">
+            <span id="review-avatar" class="opinar__avatar" aria-hidden="true">C</span>
+            <span><strong id="review-name">Cliente</strong><small>Cuenta de Google</small></span>
+            <button id="review-logout" type="button" class="opinar__logout">Cerrar sesión</button>
+          </div>
+          <form id="review-form">
+            <fieldset class="opinar__fieldset">
+              <legend>Tu valoración <span aria-hidden="true">*</span></legend>
+              <div class="opinar__stars" role="radiogroup" aria-label="Selecciona de una a cinco estrellas">
+                <label><input type="radio" name="rating" value="1" required/><span aria-hidden="true">★</span><span class="sr-only">1 estrella</span></label>
+                <label><input type="radio" name="rating" value="2"/><span aria-hidden="true">★</span><span class="sr-only">2 estrellas</span></label>
+                <label><input type="radio" name="rating" value="3"/><span aria-hidden="true">★</span><span class="sr-only">3 estrellas</span></label>
+                <label><input type="radio" name="rating" value="4"/><span aria-hidden="true">★</span><span class="sr-only">4 estrellas</span></label>
+                <label><input type="radio" name="rating" value="5"/><span aria-hidden="true">★</span><span class="sr-only">5 estrellas</span></label>
+              </div>
+            </fieldset>
+            <label class="opinar__label" for="review-text">Tu comentario <span aria-hidden="true">*</span></label>
+            <textarea id="review-text" name="comment" rows="5" minlength="20" maxlength="1000" required placeholder="Cuéntanos cómo fue la atención, el producto o la entrega…"></textarea>
+            <p class="opinar__small">Entre 20 y 1.000 caracteres. Evita incluir datos personales o de terceros en el comentario.</p>
+            <label class="opinar__consent">
+              <input type="checkbox" id="review-consent" required/>
+              <span>Autorizo la publicación de mi opinión y mi nombre visible de Google en Depofibra, una vez revisada. He leído la <a href="/politica-de-privacidad/" target="_blank" rel="noopener">política de privacidad</a>. Puedo solicitar la retirada escribiendo a Depofibra.</span>
+            </label>
+            <button id="review-submit" type="submit" class="opinar__submit">Enviar valoración</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+<script type="module" is:inline>
+  const status = document.getElementById('review-status');
+  const login = document.getElementById('review-login');
+  const editor = document.getElementById('review-editor');
+  const form = document.getElementById('review-form');
+  const googleButton = document.getElementById('review-google');
+  const submit = document.getElementById('review-submit');
+  const starLabels = [...document.querySelectorAll('.opinar__stars label')];
+  const setStatus = (msg, type = '') => { status.textContent = msg; status.dataset.type = type; };
+  const setBusy = (busy) => { googleButton.disabled = busy; submit.disabled = busy; };
+  const updateStars = () => {
+    const selected = Number(form.elements.rating.value || 0);
+    starLabels.forEach((label, i) => label.classList.toggle('selected', i < selected));
+  };
+  form.querySelectorAll('input[name="rating"]').forEach(input => input.addEventListener('change', updateStars));
+  async function init() {
+    let config;
+    try {
+      const response = await fetch('/reviews/firebase-config.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Sin configuración');
+      config = await response.json();
+    } catch {
+      setStatus('El formulario aún no está disponible. Puedes contactar con Depofibra para compartir tu experiencia.', 'notice');
+      return;
+    }
+    if (!config.apiKey || !config.authDomain || !config.projectId || !config.appId ||
+        config.apiKey.includes('CONFIGURAR')) {
+      setStatus('Estamos terminando la configuración de las reseñas. Vuelve a intentarlo más adelante.', 'notice');
+      return;
+    }
+    try {
+      const [{ initializeApp }, authSDK, dbSDK] = await Promise.all([
+        import('https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js'),
+        import('https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js'),
+        import('https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js')
+      ]);
+      const app = initializeApp(config, 'depofibra-reviews');
+      const auth = authSDK.getAuth(app);
+      const db = dbSDK.getFirestore(app);
+      const google = new authSDK.GoogleAuthProvider();
+      google.setCustomParameters({ prompt: 'select_account' });
+      let user = null;
+      let alreadySent = false;
+      const showUser = async (current) => {
+        user = current;
+        login.hidden = Boolean(current);
+        editor.hidden = !current;
+        if (!current) {
+          setStatus('Inicia sesión con Google para escribir tu opinión.');
+          form.reset(); updateStars();
+          return;
+        }
+        const googleIdentity = current.providerData?.some(p => p.providerId === 'google.com');
+        if (!googleIdentity || current.emailVerified !== true) {
+          editor.hidden = true;
+          setStatus('Para valorar necesitamos una cuenta de Google con correo verificado.', 'error');
+          return;
+        }
+        const name = (current.displayName || 'Cliente').trim().slice(0, 80) || 'Cliente';
+        document.getElementById('review-name').textContent = name;
+        document.getElementById('review-avatar').textContent = name.charAt(0).toUpperCase();
+        const ref = dbSDK.doc(db, 'customerReviews', current.uid);
+        try {
+          const snapshot = await dbSDK.getDoc(ref);
+          alreadySent = snapshot.exists();
+          form.hidden = alreadySent;
+          setStatus(alreadySent ? 'Ya has enviado una valoración con esta cuenta. Si necesitas modificarla o retirarla, ponte en contacto con Depofibra.' : 'Selecciona tus estrellas y escribe tu opinión.');
+        } catch {
+          form.hidden = true;
+          setStatus('No se pudo comprobar si ya has enviado una opinión. Inténtalo más tarde.', 'error');
+        }
+      };
+      authSDK.onAuthStateChanged(auth, showUser, () => setStatus('No se pudo comprobar la sesión de Google.', 'error'));
+      googleButton.addEventListener('click', async () => {
+        setBusy(true);
+        try {
+          await authSDK.signInWithPopup(auth, google);
+        } catch (err) {
+          setStatus(err?.code === 'auth/popup-closed-by-user' ? 'Has cerrado el acceso con Google.' : 'No ha sido posible iniciar sesión. Comprueba que permites ventanas emergentes y vuelve a intentarlo.', 'error');
+        } finally { setBusy(false); }
+      });
+      document.getElementById('review-logout').addEventListener('click', async () => {
+        await authSDK.signOut(auth);
+      });
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (alreadySent || !user || !form.reportValidity()) return;
+        const rating = Number(form.elements.rating.value);
+        const comment = String(form.elements.comment.value).trim();
+        if (!Number.isInteger(rating) || rating < 1 || rating > 5 || comment.length < 20 || comment.length > 1000 ||
+          !document.getElementById('review-consent').checked) {
+          setStatus('Selecciona entre 1 y 5 estrellas, escribe al menos 20 caracteres y acepta la publicación.', 'error');
+          return;
+        }
+        setBusy(true);
+        setStatus('Enviando tu valoración…');
+        try {
+          await dbSDK.setDoc(dbSDK.doc(db, 'customerReviews', user.uid), {
+            uid: user.uid,
+            author: (user.displayName || 'Cliente').trim().slice(0, 80) || 'Cliente',
+            rating,
+            text: comment,
+            status: 'pending',
+            consentConfirmed: true,
+            createdAt: dbSDK.serverTimestamp()
+          });
+          alreadySent = true;
+          form.hidden = true;
+          setStatus('Gracias. Hemos recibido tu opinión y queda pendiente de revisión antes de publicarla.', 'success');
+        } catch (err) {
+          setStatus(err?.code === 'permission-denied' ? 'Esta cuenta ya tiene una valoración o no cumple los requisitos de envío.' : 'No se pudo enviar la valoración. Inténtalo más tarde.', 'error');
+        } finally { setBusy(false); }
+      });
+    } catch {
+      setStatus('No se pudo conectar con el servicio de valoraciones. Inténtalo más tarde.', 'error');
+    }
+  }
+  init();
+</script>
+<style>
+  .opinar { min-height: 65vh; background: #f7f9fc; }
+  .opinar__container { max-width: 780px; }
+  .opinar__back { display: inline-block; margin-bottom: 24px; color: #01488e; font-size: 14px; font-weight: 650; }
+  .opinar__panel { padding: clamp(24px,5vw,48px); background: #fff; border: 1px solid #dce7f0; border-radius: 14px; }
+  .opinar__panel h1 { font: 800 clamp(25px,4vw,38px)/1.23 var(--font-display); color: #002d59; margin: 12px 0 14px; }
+  .opinar__lead { color: #4e6277; line-height: 1.75; font-size: 15px; }
+  .opinar__status { margin: 22px 0; padding: 14px; border-radius: 8px; background: #eaf2fb; color: #173d65; font-size: 14px; line-height: 1.6; }
+  .opinar__status[data-type="error"] { background: #fff0f0; color: #8b2626; }
+  .opinar__status[data-type="success"] { background: #ecf8ee; color: #155d31; }
+  .opinar__google,.opinar__submit { display: inline-flex; justify-content: center; align-items: center; gap: 12px; border-radius: 7px; padding: 14px 20px; font: 700 14px var(--font-body); cursor: pointer; }
+  .opinar__google { border: 1px solid #c9d8e7; background: #fff; color: #183b60; }
+  .opinar__google:hover { background: #f0f5fc; }
+  .opinar__submit { border: 1px solid #01488e; color: #fff; background: #01488e; margin-top: 22px; }
+  button:disabled { opacity: .6; cursor: wait; }
+  .opinar__small { font-size: 12px; line-height: 1.7; color: #64798d; margin: 12px 0 0; }
+  .opinar__profile { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #e2eaf2; padding: 0 0 20px; margin-bottom: 24px; }
+  .opinar__avatar { width: 43px; height: 43px; border-radius: 50%; display: grid; place-items: center; background: #eaf2fb; color: #01488e; font-weight: 800; }
+  .opinar__profile strong,.opinar__profile small { display: block; }
+  .opinar__profile strong { font-size: 14px; } .opinar__profile small { font-size: 12px; color: #63768a; }
+  .opinar__logout { background: none; color: #01488e; border: 0; margin-left: auto; text-decoration: underline; cursor: pointer; font-size: 12px; }
+  .opinar__fieldset { border: 0; padding: 0; margin: 0 0 25px; }
+  .opinar__fieldset legend,.opinar__label { display: block; font: 750 15px var(--font-display); color: #002d59; margin-bottom: 12px; }
+  .opinar__stars { display: flex; gap: 7px; flex-wrap: wrap; }
+  .opinar__stars label { position: relative; cursor: pointer; color: #a8b5c1; line-height: 1; font-size: clamp(36px,8vw,46px); }
+  .opinar__stars label.selected { color: #db8b1a; }
+  .opinar__stars input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .opinar__stars label:focus-within { outline: 2px solid #01488e; border-radius: 3px; outline-offset: 4px; }
+  .opinar textarea { width: 100%; border: 1px solid #bdccda; border-radius: 7px; padding: 14px; color: #243e54; font: 400 14px/1.65 var(--font-body); resize: vertical; box-sizing: border-box; }
+  .opinar textarea:focus-visible { outline: 2px solid #01488e; outline-offset: 2px; }
+  .opinar__consent { margin-top: 22px; display: flex; gap: 10px; align-items: flex-start; color: #536b80; font: 400 13px/1.7 var(--font-body); }
+  .opinar__consent input { margin-top: 5px; } .opinar__consent a { color: #01488e; text-decoration: underline; }
+  [hidden] { display: none !important; }
+</style>
