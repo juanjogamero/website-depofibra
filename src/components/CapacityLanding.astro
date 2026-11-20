@@ -6,7 +6,7 @@ import { verticalFlatBaseDimensions } from '../data/depositDimensions';
 
 interface Props { landing: CapacityLandingData }
 const { landing } = Astro.props;
-const formatNumber = (n: number) => new Intl.NumberFormat('es-ES').format(n);
+const formatNumber = (n: number) => new Intl.NumberFormat('es-ES', { useGrouping: 'always' }).format(n);
 const measures = verticalFlatBaseDimensions.filter(row => row.liters === landing.liters);
 const otherLandings = capacityLandings.filter(item => item.slug !== landing.slug);
 const pathname = `/depositos/vertical-base-plana/${landing.slug}/`;
