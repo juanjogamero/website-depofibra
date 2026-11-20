@@ -39,6 +39,12 @@ jobs:
       - name: Comprobar traspaso de navegador desde Google App
         run: node --test scripts/test-google-handoff.mjs
 
+      - name: Comprobar enlaces y sitemap antes de publicar
+        run: npm run check:links
+
+      - name: Comprobar contrato de captación sin envíos reales
+        run: node --test scripts/test-commercial-funnel.mjs
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
