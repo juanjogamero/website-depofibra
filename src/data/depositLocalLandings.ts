@@ -31,8 +31,8 @@ export const depositLocalLandings: DepositLocalLanding[] = [
     heroImage: { src: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verde-alto-escala.webp', alt: 'Depósito vertical verde de poliéster con escala de nivel sobre base de hormigón', productHref: '/depositos/vertical-base-plana/', productLabel: 'Ver depósitos verticales' },
     province: 'Región de Murcia',
     eyebrow: 'REGIÓN DE MURCIA · DEPÓSITOS PARA RIEGO',
-    seoTitle: 'Depósitos de agua en Murcia: 5.000, 10.000 y 15.000 L | Depofibra',
-    metaDescription: 'Depósitos de poliéster para agua de riego en Murcia. Compara 5.000, 10.000 y 15.000 litros y solicita transporte a tu localidad según modelo y accesos.',
+    seoTitle: 'Depósitos de poliéster para riego en Murcia | Depofibra',
+    metaDescription: 'Depósitos PRFV para agua de riego en Murcia. Compara modelos verticales y horizontales, distintas capacidades y transporte según destino y accesos.',
     h1: 'Depósitos de agua de poliéster en Murcia',
     lead: '¿Necesitas almacenar agua para una finca, una instalación de riego o una explotación agrícola en la Región de Murcia? Compara depósitos de poliéster (PRFV) y solicita una propuesta ajustada a los litros, al uso y al destino.',
     regionHeading: 'Almacenamiento de agua para instalaciones agrícolas de Murcia',
@@ -46,7 +46,7 @@ export const depositLocalLandings: DepositLocalLanding[] = [
       {place:'Lorca y valle del Guadalentín',need:'Si hay turnos de riego o diferencias de nivel entre la toma y el terreno, indica consumo, desnivel e intervalo de reposición para estudiar capacidad y conexiones.'},
       {place:'Vega del Segura y Altiplano',need:'En parcelas con caminos estrechos o accesos condicionados, conviene enviar código postal, anchura de paso y posibles obstáculos antes de presupuestar transporte.'},
     ],
-    choiceHeading: 'Tres capacidades para comparar antes de solicitar precio en Murcia',
+    choiceHeading: 'Qué modelos y capacidades de depósito comparar en Murcia',
     capacityNotes: [
       {liters:5000,note:'Referencia inicial para consumos moderados o reservas parciales: calcula autonomía a partir de litros por día y volumen útil.'},
       {liters:10000,note:'Punto de comparación cuando los turnos de riego o el consumo exigen más reserva; verifica diámetro y cotas para el acceso.'},
@@ -87,7 +87,7 @@ export const depositLocalLandings: DepositLocalLanding[] = [
       {place:'L’Horta y entorno del Turia',need:'Si el depósito se instalará en una parcela con accesos reducidos, comprueba portones, giro del vehículo y espacio para la colocación y el mantenimiento.'},
       {place:'La Safor y zonas del interior',need:'En fincas con desniveles o ubicación alejada del punto de descarga, documenta pendientes, firme del camino y distancia hasta la base prevista.'},
     ],
-    choiceHeading: 'Comparar depósitos de 5.000, 10.000 y 15.000 litros en Valencia',
+    choiceHeading: 'Elegir formato y capacidad del depósito para Valencia',
     capacityNotes:[
       {liters:5000,note:'Útil como referencia de comparación para reservas fraccionadas o consumos acotados: la autonomía debe calcularse con datos reales.'},
       {liters:10000,note:'Valora esta capacidad si el balance entre riego y reposiciones exige más volumen; revisa las distintas geometrías disponibles.'},
@@ -114,7 +114,7 @@ export const depositLocalLandings: DepositLocalLanding[] = [
     province: 'Sevilla',
     eyebrow: 'SEVILLA · DEPÓSITOS DE POLIÉSTER',
     seoTitle: 'Depósitos de poliéster en Sevilla: capacidades y entrega | Depofibra',
-    metaDescription: 'Depósitos de poliéster para agua y riego en Sevilla. Atención desde Casariche, comparación de 5.000, 10.000 y 15.000 litros y presupuesto según destino.',
+    metaDescription: 'Depósitos PRFV para agua y riego en Sevilla. Compara modelos y capacidades y solicita presupuesto según uso, accesos y destino.',
     h1: 'Depósitos de poliéster para agua en Sevilla',
     lead: 'Depofibra atiende consultas comerciales desde Casariche, en la provincia de Sevilla. Si necesitas un depósito de agua de poliéster reforzado con fibra de vidrio (PRFV) para riego u otro uso compatible, compara las capacidades y aclara cómo se hará la entrega antes de pedir precio.',
     regionHeading: 'Comprar un depósito desde Casariche: capacidad, uso y condiciones reales',
@@ -137,7 +137,7 @@ export const depositLocalLandings: DepositLocalLanding[] = [
         need: 'En parcelas, naves o instalaciones con espacio de maniobra limitado, conviene comprobar dimensiones exteriores, posición de conexiones, lugar de apoyo y medios previstos para descargar.',
       },
     ],
-    choiceHeading: 'Comparar 5.000, 10.000 y 15.000 litros para Sevilla',
+    choiceHeading: 'Qué capacidad y tipo de depósito elegir para Sevilla',
     capacityNotes: [
       {
         liters: 5000,
