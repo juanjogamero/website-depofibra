@@ -191,6 +191,26 @@ else {
   }
 }
 
+// Evita crear falsas valoraciones o marcar reseñas de la propia empresa
+// como Review/AggregateRating en la Home: Google excluye este tipo de marcado
+// cuando la empresa controla las reseñas sobre sí misma.
+const homeHtml = content(targetFile('/'));
+if (!homeHtml.includes('id="valoraciones"') || !homeHtml.includes('OPINIONES DE CLIENTES')) {
+  errors.push('SEO: falta sección de valoraciones reales cerca del final de la Home');
+}
+if (!homeHtml.includes('mailto:depofibra21@gmail.com?subject=Mi%20experiencia%20con%20Depofibra')) {
+  errors.push('SEO: falta invitación rastreable a compartir una experiencia real');
+}
+for (const fragment of homeHtml.matchAll(/<script\b[^>]*\btype=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+  const structured = fragment[1];
+  if (/"@type"\s*:\s*"(?:Review|AggregateRating)"/.test(structured)) {
+    errors.push('SEO: no marcar como Review/AggregateRating las opiniones autogestionadas de la empresa');
+  }
+}
+if (/Comprador verificado|reseñas verificadas|opiniones verificadas/i.test(homeHtml)) {
+  errors.push('SEO: no atribuir verificación de compra sin base documentada');
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
