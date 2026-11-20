@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /customerReviews/{reviewId} {
+      // Publicación moderada: el visitante solo ve las opiniones aprobadas.
+      // Cada cliente autenticado puede consultar también su propio envío.
+      allow get: if resource.data.status == 'approved'
+        || (request.auth != null && request.auth.uid == reviewId);
+      allow list: if resource.data.status == 'approved';
+
+      // Una única opinión por UID. El cliente no puede aprobarse, editarse,
+      // eliminar una opinión ni fingir fecha, puntuación o consentimiento.
+      allow create: if request.auth != null
+        && request.auth.uid == reviewId
+        && request.auth.token.email_verified == true
+        && request.auth.token.firebase.sign_in_provider == 'google.com'
+        && request.resource.data.keys().hasOnly([
+          'uid', 'author', 'rating', 'text', 'status', 'consentConfirmed', 'createdAt'
+        ])
+        && request.resource.data.keys().hasAll([
+          'uid', 'author', 'rating', 'text', 'status', 'consentConfirmed', 'createdAt'
+        ])
+        && request.resource.data.uid == reviewId
+        && request.resource.data.author is string
+        && request.resource.data.author.size() >= 1
+        && request.resource.data.author.size() <= 80
+        && request.resource.data.author == request.auth.token.name
+        && request.resource.data.rating is int
+        && request.resource.data.rating >= 1
+        && request.resource.data.rating <= 5
+        && request.resource.data.text is string
+        && request.resource.data.text.size() >= 20
+        && request.resource.data.text.size() <= 1000
+        && request.resource.data.status == 'pending'
+        && request.resource.data.consentConfirmed == true
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+    }
+
+    // Sin acceso al resto de la base de datos desde la web.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

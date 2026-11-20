@@ -198,7 +198,7 @@ const homeHtml = content(targetFile('/'));
 if (!homeHtml.includes('id="valoraciones"') || !homeHtml.includes('OPINIONES DE CLIENTES')) {
   errors.push('SEO: falta sección de valoraciones reales cerca del final de la Home');
 }
-if (!homeHtml.includes('mailto:depofibra21@gmail.com?subject=Mi%20experiencia%20con%20Depofibra')) {
+if (!homeHtml.includes('href="/opinar/"') && !homeHtml.includes('mailto:depofibra21@gmail.com?subject=Mi%20experiencia%20con%20Depofibra')) {
   errors.push('SEO: falta invitación rastreable a compartir una experiencia real');
 }
 for (const fragment of homeHtml.matchAll(/<script\b[^>]*\btype=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
@@ -232,7 +232,7 @@ if (!reviewsComponentSource.includes('touch-action: pan-x') ||
     !reviewsComponentSource.includes('prefers-reduced-motion: reduce')) {
   errors.push('Accesibilidad: desplazamiento táctil y movimiento reducido deben seguir disponibles');
 }
-if (!reviewsComponentSource.includes('mailto:depofibra21@gmail.com?subject=Mi%20experiencia%20con%20Depofibra')) {
+if (!reviewsComponentSource.includes('href="/opinar/"') && !reviewsComponentSource.includes('mailto:depofibra21@gmail.com?subject=Mi%20experiencia%20con%20Depofibra')) {
   errors.push('SEO: conservar el enlace para recibir opiniones auténticas');
 }
 if (/sampleReviews|customerReviewExamples/.test(reviewsComponentSource)) {
