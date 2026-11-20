@@ -33,3 +33,5 @@ jobs:
         run: node --test scripts/test-google-handoff.mjs
       - name: Verificar enlaces, anclas y sitemap internos
         run: npm run check:links
+      - name: Verificar contrato de contacto y eventos sin enviar formularios
+        run: node --test scripts/test-commercial-funnel.mjs
