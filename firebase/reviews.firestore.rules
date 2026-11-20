@@ -24,6 +24,7 @@ service cloud.firestore {
         && request.resource.data.author is string
         && request.resource.data.author.size() >= 1
         && request.resource.data.author.size() <= 80
+        && request.resource.data.author == request.auth.token.name
         && request.resource.data.rating is int
         && request.resource.data.rating >= 1
         && request.resource.data.rating <= 5
