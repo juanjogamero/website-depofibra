@@ -195,7 +195,7 @@ else {
 // como Review/AggregateRating en la Home: Google excluye este tipo de marcado
 // cuando la empresa controla las reseñas sobre sí misma.
 const homeHtml = content(targetFile('/'));
-if (!homeHtml.includes('id="valoraciones"') || !homeHtml.includes('OPINIONES DE CLIENTES')) {
+if (!homeHtml.includes('id="valoraciones"') || !homeHtml.includes('OPINIONES Y EXPERIENCIAS')) {
   errors.push('SEO: falta sección de valoraciones reales cerca del final de la Home');
 }
 if (!homeHtml.includes('mailto:depofibra21@gmail.com?subject=Mi%20experiencia%20con%20Depofibra')) {
@@ -211,29 +211,46 @@ if (/Comprador verificado|reseñas verificadas|opiniones verificadas/i.test(home
   errors.push('SEO: no atribuir verificación de compra sin base documentada');
 }
 
-// Asegura un carrusel accesible solo cuando existan opiniones auténticas.
-// No publicar en la Home los ejemplos ficticios de una maqueta visual.
+// Las tarjetas ficticias pueden mostrarse SOLO como ejemplos rotulados,
+// sin atribuir autoría real, reseñas Google ni rich results de Review.
 const reviewsComponentSource = readFileSync(path.resolve('src/components/CustomerReviews.astro'), 'utf8');
 const reviewsDataSource = readFileSync(path.resolve('src/data/customerReviews.ts'), 'utf8');
+const examplesDataSource = readFileSync(path.resolve('src/data/customerReviewExamples.ts'), 'utf8');
+const catalogEmpty = /publishedCustomerReviews:\s*ReadonlyArray<CustomerReview>\s*=\s*\[\s*\]/.test(reviewsDataSource);
 if (!reviewsComponentSource.includes('data-customer-reviews-rail') ||
-    !reviewsComponentSource.includes('data-customer-reviews-group') ||
-    !reviewsComponentSource.includes('customer-reviews-scroll')) {
-  errors.push('SEO: el carrusel de valoraciones auténticas no está preparado');
+    !reviewsComponentSource.includes('data-reviews-prev') ||
+    !reviewsComponentSource.includes('data-reviews-next') ||
+    !reviewsComponentSource.includes('rail.scrollBy(')) {
+  errors.push('SEO: el scroll horizontal manual y sus flechas no están preparados');
 }
-if (!reviewsComponentSource.includes("prefers-reduced-motion: reduce") ||
-    !reviewsComponentSource.includes("duplicate.setAttribute('aria-hidden', 'true')") ||
-    !reviewsComponentSource.includes('duplicate.inert = true')) {
-  errors.push('Accesibilidad: duplicado visual del carrusel o reducción de movimiento sin protección');
+if (/customer-reviews-scroll|--review-duration|setInterval\(|requestAnimationFrame\(/.test(reviewsComponentSource)) {
+  errors.push('Experiencia de usuario: no reactivar el carrusel automático continuo');
+}
+if (!reviewsComponentSource.includes('touch-action: pan-x') ||
+    !reviewsComponentSource.includes('prefers-reduced-motion: reduce') ||
+    !reviewsComponentSource.includes("aria-roledescription=\"carrusel horizontal\"")) {
+  errors.push('Accesibilidad: scroll táctil, teclado o movimiento reducido no comprobables');
 }
 if (!reviewsComponentSource.includes('mailto:depofibra21@gmail.com?subject=Mi%20experiencia%20con%20Depofibra')) {
-  errors.push('SEO: el correo para recibir opiniones genuinas debe permanecer disponible');
+  errors.push('SEO: mantener enlace de recepción de opiniones auténticas');
 }
 if (/EJEMPLO FICTICIO|RESEÑA DEMO|RESENA DEMO/i.test(reviewsDataSource)) {
-  errors.push('SEO: no incorporar reseñas inventadas de maquetas a la Home real');
+  errors.push('SEO: no introducir ejemplos de demo en las reseñas reales documentadas');
 }
-if (/publishedCustomerReviews:\s*ReadonlyArray<CustomerReview>\s*=\s*\[\s*\]/.test(reviewsDataSource) &&
-    /<figure\b[^>]*class=["'][^"']*customer-reviews__card/.test(homeHtml)) {
-  errors.push('SEO: no mostrar tarjetas de clientes reales si el catálogo publicado está vacío');
+const exampleCount = [...examplesDataSource.matchAll(/"id": "ejemplo-\d{2}"/g)].length;
+if (exampleCount !== 15) errors.push('Diseño: se necesitan exactamente 15 tarjetas ficticias marcadas como demostración');
+if (catalogEmpty) {
+  const cards = [...homeHtml.matchAll(/class="customer-reviews__card"/g)].length;
+  if (cards !== 15 ||
+      !homeHtml.includes('DEMOSTRACIÓN · 15 EJEMPLOS FICTICIOS.') ||
+      !homeHtml.includes('No son reseñas reales de clientes ni reseñas obtenidas de Google.') ||
+      [...homeHtml.matchAll(/Ejemplo ficticio/g)].length < 15) {
+    errors.push('SEO: ejemplos en Home sin etiquetas explícitas o número incorrecto de tarjetas');
+  }
+} else {
+  if (homeHtml.includes('DEMOSTRACIÓN · 15 EJEMPLOS FICTICIOS.')) {
+    errors.push('SEO: al publicar reseñas verdaderas no mezclar el carrusel con reseñas ficticias');
+  }
 }
 
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
