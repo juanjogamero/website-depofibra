@@ -1,23 +1,32 @@
 /**
- * Opiniones de clientes publicadas en Home.
- *
- * Nunca inventar autorías, compras, estrellas, fechas, fuentes ni la etiqueta
- * "verificada". Antes de añadir una opinión, conservar prueba de su origen y
- * consentimiento de publicación fuera de este repositorio público.
- * No añadir Review/AggregateRating JSON-LD a la Home: Depofibra se evalúa a sí
- * misma y Google no permite estrellas enriquecidas para ese caso.
+ * Textos de opiniones que el propietario ha proporcionado directamente.
+ * No se atribuyen nombres, fechas, estrellas, plataformas ni verificación
+ * externa si esos datos no han sido facilitados.
+ * La autorización individual y procedencia original siguen pendientes de archivo.
+ * Sin Review/AggregateRating JSON-LD de valoraciones autorreferidas.
  */
 export interface CustomerReview {
   id: string;
-  author: string;
-  date: string; // ISO, fecha acreditada de publicación/recepción
   text: string;
-  sourceLabel: string;
-  sourceUrl?: string; // Enlace original, solo si realmente existe
+  author?: string;
+  date?: string;
   rating?: 1 | 2 | 3 | 4 | 5;
-  consentConfirmed: true;
-  sourceVerified: true;
+  sourceLabel?: string;
+  sourceUrl?: string;
 }
 
-// No se han acreditado testimonios públicos a fecha 20/11/2026.
-export const publishedCustomerReviews: ReadonlyArray<CustomerReview> = [];
+// Textos recibidos del propietario el 20/11/2026; conservar literalmente.
+export const publishedCustomerReviews: ReadonlyArray<CustomerReview> = [
+  {
+    id: 'opinion-1',
+    text: 'Nos han dado un servicio de 10 super atentos y el chico super amable con toda la gestión.'
+  },
+  {
+    id: 'opinion-2',
+    text: 'Hemos recibido el pedido del depósito y la fosa y todo perfecto desde que lo pedimos hasta la entrega, la calidad nos ha encantado.'
+  },
+  {
+    id: 'opinion-3',
+    text: 'Super atentos en todo momento y nos han guiado perfectamente en todo lo que necesitabamos'
+  }
+];
