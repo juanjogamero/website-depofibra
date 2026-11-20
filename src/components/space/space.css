@@ -152,3 +152,15 @@
 }
 .space-ios-quicklook:hover { text-decoration: none; }
 .space-ios-quicklook img { width: 1px; height: 1px; flex: none; }
+
+/* Verificación de escala opcional: mínima UI sin alterar el flujo principal. */
+.space-scale-verify {
+  display:flex; align-items:center; gap:11px;
+  margin:-8px 0 18px; padding:9px 2px;
+  color:#174268; cursor:pointer;
+}
+.space-scale-verify input { flex:none; width:19px; height:19px; accent-color:#01488e; cursor:pointer; }
+.space-scale-verify >span { display:grid; gap:2px; }
+.space-scale-verify strong { font:750 12px/1.25 var(--font-display); }
+.space-scale-verify small { color:#708699; font-size:11px; line-height:1.35; }
+.space-scale-verify:focus-within { outline:2px solid #84bee5; outline-offset:3px; border-radius:4px; }
