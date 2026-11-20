@@ -143,7 +143,7 @@ const contactHref = `/contacto/?producto=${encodeURIComponent(product.quoteProdu
                   <span aria-hidden="true">↗</span>
                 </a>
               )}
-              <a class="product-button product-button--contact" href={contactHref} data-contact-cta>
+              <a class="product-button product-button--contact open-quote-trigger" href={contactHref} data-contact-cta data-product={product.quoteProduct}>
                 Pedir presupuesto <span aria-hidden="true">↗</span>
               </a>
             </div>
@@ -249,7 +249,7 @@ const contactHref = `/contacto/?producto=${encodeURIComponent(product.quoteProdu
                   <p class="product-dimensions__disclaimer">Medidas tomadas por equivalencia de la tabla de horizontales con cunas, según indicación de Depofibra. Esto no significa que un depósito de superficie pueda enterrarse: la referencia enterrable y sus condiciones de instalación deben verificarse expresamente.</p>
                 )}
                 <p class="product-dimensions__selected" data-size-selected hidden aria-live="polite"></p>
-                <a class="product-dimensions__quote" href={contactHref} data-contact-measures>Solicitar presupuesto de este depósito <span aria-hidden="true">↗</span></a>
+                <a class="product-dimensions__quote open-quote-trigger" href={contactHref} data-contact-measures data-product={product.quoteProduct}>Solicitar presupuesto de este depósito <span aria-hidden="true">↗</span></a>
               </>
             ) : (
               <>
@@ -381,8 +381,16 @@ const contactHref = `/contacto/?producto=${encodeURIComponent(product.quoteProdu
       const contactUrl = new URL('/contacto/', window.location.origin);
       contactUrl.searchParams.set('producto', base);
       if (productText !== base) contactUrl.searchParams.set('capacidad', productText.replace(base, '').replace(/^\s*[—-]\s*/, '').trim());
-      if (contact) contact.href = contactUrl.pathname + contactUrl.search;
-      if (dimensionsContact) dimensionsContact.href = contactUrl.pathname + contactUrl.search;
+      // Si hay JS abrimos aquí el modal con la referencia seleccionada; el href
+      // a Contacto permanece como alternativa progresiva sin JavaScript.
+      if (contact) {
+        contact.href = contactUrl.pathname + contactUrl.search;
+        contact.dataset.product = productText;
+      }
+      if (dimensionsContact) {
+        dimensionsContact.href = contactUrl.pathname + contactUrl.search;
+        dimensionsContact.dataset.product = productText;
+      }
       if(whatsapp) {
         if(number) {
           const text = `Hola, quisiera solicitar presupuesto de ${productText}. ¿Podéis orientarme sobre la referencia y el transporte? Mi código postal es: `;
