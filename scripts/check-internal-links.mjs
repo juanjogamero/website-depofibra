@@ -120,6 +120,12 @@ for (const file of htmlFiles) {
 const sitemapPath = path.join(output, 'sitemap.xml');
 if (!existsSync(sitemapPath)) errors.push('Falta dist/sitemap.xml');
 else {
+  const sitemapUrls = new Set([...content(sitemapPath).matchAll(/<loc>(.*?)<\/loc>/g)].map(match => decodeAttribute(match[1])));
+  for (const mustInclude of ['/depositos/para-riego/', '/depositos/palencia/', '/depositos/soria/']) {
+    if (!sitemapUrls.has('https://depofibra.com' + mustInclude) && !sitemapUrls.has('https://demo.depofibra.com' + mustInclude)) {
+      errors.push(`Sitemap: falta página comercial rastreable ${mustInclude}`);
+    }
+  }
   for (const match of content(sitemapPath).matchAll(/<loc>(.*?)<\/loc>/g)) {
     const item = localUrl(decodeAttribute(match[1]), '/sitemap.xml');
     if (!item) continue;
