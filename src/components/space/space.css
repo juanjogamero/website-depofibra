@@ -141,3 +141,14 @@
   font-size:14px;
 }
 .space-copy-browser.space-button-primary:hover { background:#002d59; }
+
+/* Google App en iPhone: un clic lleva el modelo a Chrome. Quick Look
+   mantiene un acceso directo secundario solo para acabados predefinidos. */
+.space-ios-quicklook {
+  margin-top: 8px;
+  min-height: 41px;
+  font-size: 12px;
+  text-decoration: none;
+}
+.space-ios-quicklook:hover { text-decoration: none; }
+.space-ios-quicklook img { width: 1px; height: 1px; flex: none; }
