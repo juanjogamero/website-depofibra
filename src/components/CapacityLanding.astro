@@ -78,7 +78,20 @@ const waHref = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(w
             <caption class="sr-only">Cotas orientativas para {formatNumber(landing.liters)} litros</caption>
             <thead><tr><th scope="col">Capacidad</th><th scope="col">Diámetro de ficha</th><th scope="col">Segunda cota*</th></tr></thead>
             <tbody>{measures.map(measure => (
-              <tr><th scope="row">{formatNumber(measure.liters)} L</th><td>{formatNumber(measure.diameterMm)} mm</td><td>{formatNumber(measure.longitudinalMm)} mm</td></tr>
+              <tr>
+                <th scope="row">{formatNumber(measure.liters)} L</th>
+                <td>{formatNumber(measure.diameterMm)} mm</td>
+                <td>
+                  <span>{formatNumber(measure.longitudinalMm)} mm</span>
+                  <button
+                    type="button"
+                    class="cap-measure-cta open-quote-trigger"
+                    data-product={`Depósito vertical de base plana de ${formatNumber(landing.liters)} litros`}
+                    data-note={`Configuración orientativa a estudiar: ${formatNumber(measure.liters)} litros. Diámetro de ficha: ${formatNumber(measure.diameterMm)} mm. Segunda cota de ficha: ${formatNumber(measure.longitudinalMm)} mm (NO altura total verificada). Confirmar modelo, dimensiones reales, uso y transporte según destino.`}
+                    aria-label={`Consultar cotas orientativas de ${formatNumber(measure.liters)} litros, diámetro ${formatNumber(measure.diameterMm)} milímetros y segunda cota ${formatNumber(measure.longitudinalMm)} milímetros`}
+                  >Consultar estas cotas <span aria-hidden="true">↗</span></button>
+                </td>
+              </tr>
             ))}</tbody>
           </table>
           <p>* La tabla original denomina «longitud» a la segunda cota del depósito vertical. <strong>No se considera altura total verificada</strong>; es necesario comprobar altura exterior, tapa y accesorios con el proveedor.</p>
@@ -150,6 +163,9 @@ const waHref = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(w
   .cap-section__heading h2,.cap-bottom h2{font:800 clamp(1.6rem,2.7vw,2.35rem)/1.15 var(--font-display);letter-spacing:-.04em;color:#111d30;margin:12px 0 17px}
   .cap-section__heading p,.cap-bottom p{font:400 14px/1.8 var(--font-body);color:#536477;margin:0 0 12px}
   .cap-measures{min-width:0}.cap-measures table{border-collapse:collapse;width:100%;font:600 13px/1.5 var(--font-body);color:#203a55;text-align:left}.cap-measures th,.cap-measures td{padding:14px 12px;border-bottom:1px solid #e1e9f0;text-align:left}.cap-measures thead{background:#eaf2fb}.cap-measures tbody th{font-weight:800}.cap-measures p{margin-top:14px;color:#708196;font:400 12px/1.7 var(--font-body)}
+  .cap-measure-cta{display:block;margin-top:6px;padding:4px 0;border:0;background:transparent;color:var(--color-primary);font:750 11px/1.5 var(--font-body);text-align:left;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+  .cap-measure-cta:hover{color:var(--color-primary-dark)}
+  .cap-measure-cta:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:3px}
   .cap-checklist{border-top:1px solid #e1e9f0}.cap-checklist h3{padding:15px 0;font:800 15px/1.4 var(--font-display)}.cap-checklist ol{margin:0;padding:0;list-style:none}.cap-checklist li{display:grid;grid-template-columns:35px 1fr;gap:13px;padding:14px 0;border-top:1px solid #e8edf4}.cap-checklist li>span{font:800 12px/1.7 var(--font-display);color:var(--color-primary)}.cap-checklist strong{font:750 14px/1.5 var(--font-display);color:#1d3249}.cap-checklist li p{font:400 13px/1.6 var(--font-body);color:#617286;margin:4px 0 0}
   .cap-faq{border-top:1px solid #e1e9f0}.cap-faq details{border-bottom:1px solid #e1e9f0}.cap-faq summary{list-style:none;cursor:pointer;padding:18px 2px;display:flex;align-items:center;justify-content:space-between;gap:20px;font:750 14px/1.5 var(--font-display);color:#1a344e}.cap-faq summary::-webkit-details-marker{display:none}.cap-faq summary span{font-size:22px;font-weight:400;color:var(--color-primary)}.cap-faq details[open] summary span{transform:rotate(45deg)}.cap-faq details p{font:400 13px/1.75 var(--font-body);color:#536477;margin:0 0 18px;max-width:65ch}
   .cap-bottom{border-top:1px solid #e1e9f0;padding-top:clamp(40px,5vw,70px);display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,5vw,80px)}
