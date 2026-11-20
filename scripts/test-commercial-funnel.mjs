@@ -1,0 +1,88 @@
+/**
+ * Pruebas sin enviar formularios ni cargar etiquetas externas.
+ * Revisa el contrato técnico del embudo comercial, no el estado real de GTM/GA4
+ * ni la aceptación de correos por FormSubmit.
+ * Ejecutar DESPUÉS de npm run build.
+ */
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { existsSync, readFileSync } from 'node:fs';
+import path from 'node:path';
+
+const root = process.cwd();
+const read = file => readFileSync(path.resolve(root, file), 'utf8');
+const modalSource = read('src/components/QuoteModal.astro');
+const consentSource = read('src/components/CookieConsent.astro');
+const thanksSource = read('src/pages/solicitud-enviada/index.astro');
+
+const commercialPages = [
+  '/','/depositos/','/depositos/para-riego/','/depositos/murcia/',
+  '/depositos/valencia/','/depositos/sevilla/','/depositos/palencia/',
+  '/depositos/soria/','/cubas-cisternas/','/cubas-cisternas/cuba-remolque/',
+  '/cubas-cisternas/cisterna-camion/','/fosas-septicas/','/piscinas/','/contacto/'
+];
+
+function compiledHtml(urlPath) {
+  const file = path.resolve(root, 'dist', urlPath.slice(1), 'index.html');
+  assert.ok(existsSync(file), 'Página comercial no compilada: ' + urlPath);
+  return readFileSync(file, 'utf8');
+}
+
+test('Todas las páginas comerciales principales incluyen formulario y CTA funcional por clase', () => {
+  for (const route of commercialPages) {
+    const html = compiledHtml(route);
+    assert.match(html, /id=["']quoteModal["']/, route + ' modal');
+    assert.match(html, /id=["']quoteForm["']/, route + ' formulario');
+    assert.match(html, /class=["'][^"']*\bopen-quote-trigger\b/, route + ' botón');
+    assert.match(html, /id=["']quoteOrigin["']/, route + ' origen de consulta');
+    assert.match(html, /id=["']quoteReference["']/, route + ' referencia del producto');
+    assert.match(html, /href=["']tel:\+34642129233["']/, route + ' alternativa de llamada');
+  }
+});
+
+test('La solicitud AJAX usa contrato de FormSubmit y no anuncia éxito con solo HTTP 200', () => {
+  assert.match(modalSource, /action=["']https:\/\/formsubmit\.co\/ajax\/[^"']+["']/);
+  assert.match(modalSource, /headers:\s*\{\s*'Content-Type':\s*'application\/json',\s*'Accept':\s*'application\/json'/);
+  assert.match(modalSource, /event\.preventDefault\(\)/);
+  assert.match(modalSource, /if\s*\(!form\.checkValidity\(\)\)/);
+  assert.match(modalSource, /const accepted = response\.ok && \(data\?\.success === true \|\| data\?\.success === 'true'\)/);
+  const accepted = modalSource.indexOf('const accepted = response.ok');
+  const reject = modalSource.indexOf('if (!accepted) throw', accepted);
+  const session = modalSource.indexOf("sessionStorage.setItem('depofibra-form-success-v1', '1')", accepted);
+  const navigate = modalSource.indexOf("window.location.assign('/solicitud-enviada/')", accepted);
+  assert.ok(accepted >= 0 && reject > accepted && session > reject && navigate > session,
+    'Sin confirmación explícita no debe mostrarse la página de gracias');
+  assert.match(modalSource, /quoteOrigin\.value = window\.location\.href/);
+  assert.match(modalSource, /quoteReference\.value = selectedProduct/);
+});
+
+test('La página de gracias no contabiliza visitas directas como consultas aceptadas', () => {
+  const marker = "sessionStorage.getItem('depofibra-form-success-v1')";
+  const used = thanksSource.indexOf(marker);
+  const consumed = thanksSource.indexOf("sessionStorage.removeItem('depofibra-form-success-v1')");
+  const success = thanksSource.indexOf('if (accepted) {');
+  const event = thanksSource.indexOf("event: 'quote_form_provider_accepted'");
+  assert.ok(used >= 0 && consumed > used && success > consumed && event > success);
+  assert.match(thanksSource, /pref\.analytics !== true\) return/);
+  assert.match(thanksSource, /pref\?\.version !== 'depofibra-cookies-v2-ga4-consent'/);
+});
+
+test('Eventos de intención separados de aceptación y respetando la elección analítica', () => {
+  assert.match(consentSource, /const initial = currentChoice\(\);[\s\S]*if \(initial\.analytics\) enableMeasurement\(\)/);
+  assert.match(consentSource, /if \(analytics\) enableMeasurement\(\)/);
+  assert.match(consentSource, /function pushEvent\(name: string\) \{\s*if \(!gtmLoaded\) return;/);
+  for (const name of ['contact_phone','contact_whatsapp','quote_form_open','quote_form_submit_attempt']) {
+    assert.ok(consentSource.includes("pushEvent('" + name + "')"), 'Falta evento: ' + name);
+  }
+  assert.ok(!consentSource.includes("pushEvent('quote_form_provider_accepted')"),
+    'El éxito del proveedor no debe atribuirse a un simple click/submit');
+  assert.match(consentSource, /dataLayer\?\.push\(\{event:name\}\)/);
+  assert.match(consentSource, /gtm\.js\?id=GTM-/);
+});
+
+test('No hay nombres, teléfono, correos ni contenido del formulario en payload de medición', () => {
+  const allowed = [...consentSource.matchAll(/dataLayer\?\.push\(([^)]*)\)/g)].map(m => m[1]);
+  assert.deepEqual(allowed, ['{event:name}']);
+  assert.match(thanksSource, /layer\.push\(\{event: 'quote_form_provider_accepted'\}\)/);
+  assert.ok(!consentSource.includes('formData.forEach('));
+});
