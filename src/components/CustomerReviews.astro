@@ -117,8 +117,7 @@ const autoplayDuration = Math.max(38, reviews.length * 6);
   }
   .customer-reviews__rail:focus-visible { outline: 2px solid var(--color-primary); }
   .customer-reviews__track { display: flex; width: max-content; }
-  .customer-reviews__group { display: flex; flex: none; gap: 17px; padding-right: 17px; padding-left: 0; }
-  .customer-reviews__group:first-child { padding-left: max(18px, calc((100vw - 1180px) / 2)); }
+  .customer-reviews__group { display: flex; flex: none; gap: 17px; padding-right: 17px; padding-left: max(18px, calc((100vw - 1180px) / 2)); }
 
   .customer-reviews__card {
     box-sizing: border-box;
