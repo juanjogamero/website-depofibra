@@ -4,6 +4,7 @@
  */
 export interface DepositLocalLanding {
   slug: 'murcia' | 'valencia' | 'sevilla' | 'palencia' | 'soria';
+  heroImage: { src: string; alt: string; productHref: string; productLabel: string };
   province: string;
   eyebrow: string;
   seoTitle: string;
@@ -27,6 +28,7 @@ export interface DepositLocalLanding {
 export const depositLocalLandings: DepositLocalLanding[] = [
   {
     slug: 'murcia',
+    heroImage: { src: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verde-alto-escala.webp', alt: 'Depósito vertical verde de poliéster con escala de nivel sobre base de hormigón', productHref: '/depositos/vertical-base-plana/', productLabel: 'Ver depósitos verticales' },
     province: 'Región de Murcia',
     eyebrow: 'REGIÓN DE MURCIA · DEPÓSITOS PARA RIEGO',
     seoTitle: 'Depósitos de agua en Murcia: 5.000, 10.000 y 15.000 L | Depofibra',
@@ -67,6 +69,7 @@ export const depositLocalLandings: DepositLocalLanding[] = [
   },
   {
     slug: 'valencia',
+    heroImage: { src: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-instalado.webp', alt: 'Depósito vertical blanco de poliéster con escala sobre una plataforma de obra', productHref: '/depositos/vertical-base-plana/', productLabel: 'Ver depósitos verticales' },
     province: 'provincia de Valencia',
     eyebrow: 'PROVINCIA DE VALENCIA · DEPÓSITOS DE POLIÉSTER',
     seoTitle: 'Depósitos de poliéster en Valencia: agua y riego | Depofibra',
@@ -107,6 +110,7 @@ export const depositLocalLandings: DepositLocalLanding[] = [
   },
   {
     slug: 'sevilla',
+    heroImage: { src: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp', alt: 'Depósito vertical blanco de poliéster con base plana y escala de nivel frontal', productHref: '/depositos/vertical-base-plana/', productLabel: 'Ver depósitos verticales' },
     province: 'Sevilla',
     eyebrow: 'SEVILLA · DEPÓSITOS DE POLIÉSTER',
     seoTitle: 'Depósitos de poliéster en Sevilla: capacidades y entrega | Depofibra',
@@ -181,6 +185,7 @@ export const depositLocalLandings: DepositLocalLanding[] = [
   },
   {
     "slug": "palencia",
+    heroImage: { src: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verdes-conjunto-diferentes-tamanos.webp', alt: 'Varios depósitos verticales verdes de distintas alturas colocados en línea', productHref: '/depositos/vertical-base-plana/', productLabel: 'Ver depósitos verticales' },
     "province": "provincia de Palencia",
     "eyebrow": "PALENCIA · DEPÓSITOS DE POLIÉSTER PARA AGUA Y RIEGO",
     "seoTitle": "Depósitos de poliéster en Palencia para riego | Depofibra",
@@ -257,6 +262,7 @@ export const depositLocalLandings: DepositLocalLanding[] = [
   },
   {
     "slug": "soria",
+    heroImage: { src: '/images/depositos/horizontal-con-cunas/deposito-poliester-horizontal-con-cunas-verde-vista-perspectiva.webp', alt: 'Depósito horizontal verde de poliéster con apoyos visto en perspectiva', productHref: '/depositos/horizontal-con-cunas/', productLabel: 'Ver depósitos horizontales' },
     "province": "provincia de Soria",
     "eyebrow": "SORIA · DEPÓSITOS PARA FINCAS Y RESERVA DE AGUA",
     "seoTitle": "Depósitos de agua de poliéster en Soria | Depofibra",
