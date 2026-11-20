@@ -195,7 +195,7 @@ else {
 // como Review/AggregateRating en la Home: Google excluye este tipo de marcado
 // cuando la empresa controla las reseñas sobre sí misma.
 const homeHtml = content(targetFile('/'));
-if (!homeHtml.includes('id="valoraciones"') || !homeHtml.includes('OPINIONES DE CLIENTES')) {
+if (!homeHtml.includes('id="valoraciones"') || !homeHtml.includes('OPINIONES Y EXPERIENCIAS')) {
   errors.push('SEO: falta sección de valoraciones reales cerca del final de la Home');
 }
 if (!homeHtml.includes('mailto:depofibra21@gmail.com?subject=Mi%20experiencia%20con%20Depofibra')) {
