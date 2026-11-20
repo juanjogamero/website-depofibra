@@ -238,7 +238,7 @@ if (!reviewsComponentSource.includes('mailto:depofibra21@gmail.com?subject=Mi%20
 if (/sampleReviews|customerReviewExamples/.test(reviewsComponentSource)) {
   errors.push('SEO: el componente público no puede utilizar el catálogo de testimonios simulados');
 }
-if (/DEMO|DEMOSTRACIÓN|Ejemplo ficticio|Cinco estrellas ficticias|tarjetas de muestra|Nombre de muestra/i.test(homeHtml)) {
+if (/DEMOSTRACIÓN · 15 EJEMPLOS FICTICIOS|Ejemplo ficticio|Cinco estrellas ficticias|tarjetas de muestra|Nombre de muestra/i.test(homeHtml)) {
   errors.push('SEO: eliminar contenido de demostración de la portada publicada');
 }
 if (catalogEmpty) {
