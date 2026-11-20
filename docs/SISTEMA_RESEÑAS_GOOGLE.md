@@ -10,7 +10,7 @@ No equivale a reseñas verificadas de Google Maps ni a compras verificadas.
 - El cliente selecciona de 1 a 5 estrellas, texto entre 20 y 1000 caracteres y consentimiento explícito.
 - Cada envío guarda estado `pending`, con sello horario del servidor. El cliente no puede aprobar, editar ni borrar desde la web.
 - El administrador revisa en **Firebase Console → Firestore → customerReviews**, comprueba autenticidad, consentimiento y privacidad; cambia `status` a `approved` únicamente desde la consola con privilegios de administración. Las reseñas no se publican automáticamente.
-- La Home conserva el carrusel existente; integrar reseñas aprobadas dinámicas en una fase posterior, cuando se haya validado el flujo. Este PR no cambia las tres opiniones ya publicadas en la Home.
+- La Home conserva el carrusel existente y añade dinámicamente las reseñas con estado `approved` mediante lectura pública limitada en Firestore. Si Firebase no está configurado o falla, se conservan las tres opiniones estáticas existentes.
 
 ## Configuración necesaria por la dirección (no facilitar contraseñas ni claves privadas al asistente)
 1. Crear o seleccionar proyecto en https://console.firebase.google.com/ en una cuenta empresarial controlada por Depofibra. Revisar antes el plan, cuotas y posible facturación.
@@ -39,6 +39,6 @@ No equivale a reseñas verificadas de Google Maps ni a compras verificadas.
 ```
 
 ## Estado de visualización
-La ruta `/opinar/` muestra un aviso de **no disponible** mientras faltan parámetros; no se presenta un inicio de sesión falso. Las tres opiniones facilitadas previamente por dirección siguen siendo estáticas en la Home. La integración del carrusel con Firestore queda expresamente pendiente.
+La ruta `/opinar/` muestra un aviso de **no disponible** mientras faltan parámetros; no se presenta un inicio de sesión falso. Las tres opiniones facilitadas previamente por dirección siguen siendo estáticas en la Home. La integración del carrusel de Home con Firestore está implementada en código, pero no será operativa hasta activar Firebase y verificar el despliegue.
 
 Fuentes: documentación oficial Firebase Authentication Google y reglas de Firestore. Versión de importación web Firebase SDK 13.4.0 (16/11/2026).
