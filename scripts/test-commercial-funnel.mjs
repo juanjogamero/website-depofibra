@@ -109,3 +109,41 @@ test('Las capacidades prioritarias permiten identificar la geometría orientativ
     }
   }
 });
+
+
+test('Las seis fichas de depósitos abren presupuesto in situ y conservan enlace a Contacto sin JS', () => {
+  const familyRoutes = [
+    '/depositos/vertical-base-plana/',
+    '/depositos/horizontal-con-cunas/',
+    '/depositos/horizontal-enterrable/',
+    '/depositos/vertical-con-patas/',
+    '/depositos/tipo-vaso/',
+    '/depositos/cuadrados-rectangulares/',
+  ];
+  const withDimensionTable = new Set([
+    '/depositos/vertical-base-plana/',
+    '/depositos/horizontal-con-cunas/',
+    '/depositos/horizontal-enterrable/',
+  ]);
+  for (const route of familyRoutes) {
+    const html = compiledHtml(route);
+    const selectors = withDimensionTable.has(route)
+      ? ['data-contact-cta', 'data-contact-measures']
+      : ['data-contact-cta'];
+    for (const selector of selectors) {
+      const anchors = [...html.matchAll(/<a\b[^>]*>/g)].map(m => m[0]).filter(tag => tag.includes(selector));
+      assert.equal(anchors.length, 1, route + ': un solo enlace ' + selector);
+      const link = anchors[0];
+      assert.match(link, /open-quote-trigger/, route);
+      assert.match(link, /href=["']\/contacto\//, route + ' alternativa sin JavaScript');
+      assert.match(link, /data-product=["'][^"']+["']/, route + ' referencia del artículo');
+    }
+  }
+  assert.match(modalSource, /trigger\.matches\('\[data-contact-cta\], \[data-contact-measures\]'\)/);
+  assert.match(modalSource, /event\.preventDefault\(\)/);
+  const source = read('src/components/DepositProductDetail.astro');
+  assert.match(source, /contact\.dataset\.product = productText/);
+  assert.match(source, /dimensionsContact\.dataset\.product = productText/);
+  assert.match(source, /contact\.href = contactUrl\.pathname \+ contactUrl\.search/);
+  assert.match(source, /dimensionsContact\.href = contactUrl\.pathname \+ contactUrl\.search/);
+});

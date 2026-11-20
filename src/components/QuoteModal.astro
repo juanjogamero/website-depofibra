@@ -228,7 +228,12 @@
   }
 
   document.querySelectorAll<HTMLElement>('.open-quote-trigger').forEach(trigger => {
-    trigger.addEventListener('click', () => {
+    trigger.addEventListener('click', event => {
+      // Solo los dos enlaces comerciales de las fichas de depósito abren el
+      // modal in situ; su href sigue disponible si JavaScript está desactivado.
+      if (trigger instanceof HTMLAnchorElement && trigger.matches('[data-contact-cta], [data-contact-measures]')) {
+        event.preventDefault();
+      }
       document.querySelectorAll('.mobile-panel.is-open').forEach(panel => panel.classList.remove('is-open'));
       openQuoteModal(trigger.dataset.product, trigger.dataset.note);
     });
