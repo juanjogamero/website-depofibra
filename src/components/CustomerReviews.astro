@@ -72,8 +72,7 @@ const reviews = publishedCustomerReviews.filter((review) => review.text.trim().l
       <h3>¿Has tenido una experiencia con Depofibra?</h3>
       <p>Queremos conocerla. Puedes compartirla directamente con nosotros.</p>
     </div>
-    <a href="mailto:depofibra21@gmail.com?subject=Mi%20experiencia%20con%20Depofibra"
-      class="customer-reviews__link">Compartir mi experiencia <span aria-hidden="true">↗</span></a>
+    <a href="/opinar/" class="customer-reviews__link">Dejar una valoración <span aria-hidden="true">↗</span></a>
   </div>
 </section>
 
@@ -101,6 +100,67 @@ const reviews = publishedCustomerReviews.filter((review) => review.text.trim().l
       update();
     }
   }
+</script>
+
+
+<script type="module" is:inline>
+  // Se añaden únicamente reseñas moderadas y aprobadas en Firestore.
+  // No se permite HTML suministrado por usuarios: solo textContent.
+  async function loadApprovedReviews() {
+    const section = document.getElementById('valoraciones');
+    if (!section) return;
+    let config;
+    try {
+      const response = await fetch('/reviews/firebase-config.json');
+      if (!response.ok) return;
+      config = await response.json();
+      if (!config.apiKey || !config.authDomain || !config.projectId || !config.appId) return;
+      const [{initializeApp}, sdk] = await Promise.all([
+        import('https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js'),
+        import('https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js')
+      ]);
+      const app = initializeApp(config, 'depofibra-public-reviews');
+      const db = sdk.getFirestore(app);
+      const q = sdk.query(sdk.collection(db, 'customerReviews'), sdk.where('status','==','approved'), sdk.limit(30));
+      const snapshot = await sdk.getDocs(q);
+      if (snapshot.empty) return;
+      let rail = section.querySelector('[data-customer-reviews-rail]');
+      let track = section.querySelector('.customer-reviews__track');
+      if (!track) {
+        const wrap = document.createElement('div'); wrap.className = 'customer-reviews__scroll-wrap';
+        rail = document.createElement('div'); rail.className = 'customer-reviews__rail'; rail.setAttribute('data-customer-reviews-rail','');
+        rail.setAttribute('role','region'); rail.setAttribute('aria-label','Opiniones de clientes de Depofibra'); rail.tabIndex = 0;
+        track = document.createElement('div'); track.className = 'customer-reviews__track';
+        rail.append(track); wrap.append(rail);
+        const head = section.querySelector('.customer-reviews__head');
+        head.after(wrap);
+        const empty = section.querySelector('.customer-reviews__empty'); if (empty) empty.hidden = true;
+      }
+      for (const record of snapshot.docs) {
+        const review = record.data();
+        if (!Number.isInteger(review.rating) || review.rating < 1 || review.rating > 5 ||
+          typeof review.text !== 'string' || typeof review.author !== 'string') continue;
+        const card = document.createElement('article'); card.className = 'customer-reviews__card';
+        const cardHead = document.createElement('div'); cardHead.className = 'customer-reviews__card-head';
+        const avatar = document.createElement('div'); avatar.className = 'customer-reviews__avatar'; avatar.setAttribute('aria-hidden','true');
+        avatar.textContent = (review.author.trim() || 'C').charAt(0).toUpperCase();
+        const identity = document.createElement('div'); identity.className = 'customer-reviews__identity';
+        const name = document.createElement('strong'); name.textContent = review.author;
+        const source = document.createElement('span'); source.textContent = 'Opinión enviada desde la web';
+        identity.append(name, source); cardHead.append(avatar,identity);
+        const rating = document.createElement('div'); rating.className = 'customer-reviews__rating';
+        const stars = document.createElement('span'); stars.className = 'customer-reviews__stars';
+        stars.textContent = '★'.repeat(review.rating); stars.setAttribute('aria-label', review.rating + ' estrellas de 5');
+        rating.append(stars);
+        const quote = document.createElement('p'); quote.className = 'customer-reviews__quote'; quote.textContent = '«' + review.text + '»';
+        card.append(cardHead,rating,quote); track.append(card);
+      }
+    } catch (error) {
+      // Fallo de red: conservar la sección estática, sin exponer datos al público.
+      console.warn('Las opiniones online no están disponibles.');
+    }
+  }
+  loadApprovedReviews();
 </script>
 
 <style>
