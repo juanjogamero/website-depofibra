@@ -160,6 +160,7 @@ const catalogItems = items.map(item => ({
           <span class="eyebrow">INFORMACIÓN PARA DECIDIR</span>
           <h2 class="heading-lg" id="df-guide-title">{guideTitle}</h2>
           <p class="body-lg">{guideDescription}</p>
+          <slot name="related-destinations" />
           {localLink && <a href={localLink.href} class="df-guide__contact">{localLink.label} <span aria-hidden="true">↗</span></a>}
           <a href="/contacto/" class="df-guide__contact">¿Tienes dudas? Hablemos <span aria-hidden="true">↗</span></a>
         </div>
