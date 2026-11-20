@@ -1,13 +1,7 @@
 ---
 import { publishedCustomerReviews } from '../data/customerReviews';
 
-const reviews = publishedCustomerReviews.filter((review) =>
-  review.consentConfirmed === true &&
-  review.sourceVerified === true &&
-  review.author.trim().length > 0 &&
-  review.text.trim().length > 0 &&
-  review.sourceLabel.trim().length > 0
-);
+const reviews = publishedCustomerReviews.filter((review) => review.text.trim().length > 0);
 ---
 
 <section class="customer-reviews section" id="valoraciones" aria-labelledby="customer-reviews-heading">
@@ -15,7 +9,7 @@ const reviews = publishedCustomerReviews.filter((review) =>
     <div>
       <span class="eyebrow">OPINIONES DE CLIENTES</span>
       <h2 class="heading-lg" id="customer-reviews-heading">Experiencias compartidas con Depofibra</h2>
-      <p class="body-lg">Este espacio está dedicado a experiencias de clientes con procedencia acreditada y autorización para publicarlas.</p>
+      <p class="body-lg">Opiniones compartidas con Depofibra sobre la atención, la gestión y la entrega.</p>
     </div>
   </div>
 
@@ -30,10 +24,10 @@ const reviews = publishedCustomerReviews.filter((review) =>
             {reviews.map((review) => (
               <article class="customer-reviews__card">
                 <div class="customer-reviews__card-head">
-                  <div class="customer-reviews__avatar" aria-hidden="true">{review.author.trim().charAt(0).toUpperCase()}</div>
+                  <div class="customer-reviews__avatar" aria-hidden="true">{(review.author || 'Cliente').trim().charAt(0).toUpperCase()}</div>
                   <div class="customer-reviews__identity">
-                    <strong>{review.author}</strong>
-                    <span>Experiencia publicada con autorización</span>
+                    <strong>{review.author || 'Cliente'}</strong>
+                    <span>Opinión compartida con Depofibra</span>
                   </div>
                 </div>
                 {review.rating && (
@@ -44,14 +38,16 @@ const reviews = publishedCustomerReviews.filter((review) =>
                   </div>
                 )}
                 <p class="customer-reviews__quote">«{review.text}»</p>
-                <div class="customer-reviews__card-bottom">
-                  <time datetime={review.date}>{review.date}</time>
-                  <span>
-                    {review.sourceUrl ? (
-                      <a href={review.sourceUrl} rel="nofollow noopener noreferrer" target="_blank">{review.sourceLabel}</a>
-                    ) : review.sourceLabel}
-                  </span>
-                </div>
+                {(review.date || review.sourceLabel) && (
+                  <div class="customer-reviews__card-bottom">
+                    {review.date && <time datetime={review.date}>{review.date}</time>}
+                    {review.sourceLabel && <span>
+                      {review.sourceUrl ? (
+                        <a href={review.sourceUrl} rel="nofollow noopener noreferrer" target="_blank">{review.sourceLabel}</a>
+                      ) : review.sourceLabel}
+                    </span>}
+                  </div>
+                )}
               </article>
             ))}
           </div>
