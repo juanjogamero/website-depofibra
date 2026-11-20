@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/normalizar-legacy-seo.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "check:links": "node scripts/check-internal-links.mjs"
