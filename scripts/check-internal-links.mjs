@@ -211,6 +211,31 @@ if (/Comprador verificado|reseñas verificadas|opiniones verificadas/i.test(home
   errors.push('SEO: no atribuir verificación de compra sin base documentada');
 }
 
+// Asegura un carrusel accesible solo cuando existan opiniones auténticas.
+// No publicar en la Home los ejemplos ficticios de una maqueta visual.
+const reviewsComponentSource = readFileSync(path.resolve('src/components/CustomerReviews.astro'), 'utf8');
+const reviewsDataSource = readFileSync(path.resolve('src/data/customerReviews.ts'), 'utf8');
+if (!reviewsComponentSource.includes('data-customer-reviews-rail') ||
+    !reviewsComponentSource.includes('data-customer-reviews-group') ||
+    !reviewsComponentSource.includes('customer-reviews-scroll')) {
+  errors.push('SEO: el carrusel de valoraciones auténticas no está preparado');
+}
+if (!reviewsComponentSource.includes("prefers-reduced-motion: reduce") ||
+    !reviewsComponentSource.includes("duplicate.setAttribute('aria-hidden', 'true')") ||
+    !reviewsComponentSource.includes('duplicate.inert = true')) {
+  errors.push('Accesibilidad: duplicado visual del carrusel o reducción de movimiento sin protección');
+}
+if (!reviewsComponentSource.includes('mailto:depofibra21@gmail.com?subject=Mi%20experiencia%20con%20Depofibra')) {
+  errors.push('SEO: el correo para recibir opiniones genuinas debe permanecer disponible');
+}
+if (/EJEMPLO FICTICIO|RESEÑA DEMO|RESENA DEMO/i.test(reviewsDataSource)) {
+  errors.push('SEO: no incorporar reseñas inventadas de maquetas a la Home real');
+}
+if (/publishedCustomerReviews:\s*ReadonlyArray<CustomerReview>\s*=\s*\[\s*\]/.test(reviewsDataSource) &&
+    /<figure\b[^>]*class=["'][^"']*customer-reviews__card/.test(homeHtml)) {
+  errors.push('SEO: no mostrar tarjetas de clientes reales si el catálogo publicado está vacío');
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
