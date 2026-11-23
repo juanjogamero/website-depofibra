@@ -1,0 +1,142 @@
+---
+/**
+ * SEO: aplicación comercial PRFV para acumulación de agua de pozo.
+ * No se atribuye mejora de rendimiento de captación ni aptitud para agua potable.
+ */
+import CategoryInterior from '../../../components/CategoryInterior.astro';
+const page = {
+  "nav": "depositos",
+  "title": "Depósitos para almacenar agua de pozo en fincas",
+  "seoTitle": "Depósitos para agua de pozo y riego | Depofibra",
+  "canonicalPath": "/depositos/agua-de-pozo/",
+  "breadcrumb": "Depósitos para agua de pozo",
+  "eyebrow": "POZOS CON CAUDAL LIMITADO · RESERVA AGRÍCOLA · BOMBEO",
+  "description": "Depósitos de poliéster para almacenar agua de pozo en fincas y riego. Calcula reserva según caudal, compara verticales y horizontales y consulta presupuesto.",
+  "intro": "Si el pozo de tu finca entrega agua más despacio de lo que la instalación necesita durante el riego, puede interesarte una reserva intermedia. Un depósito de poliéster reforzado con fibra de vidrio (PRFV) permite acumular el agua disponible y usarla cuando haga falta, siempre dentro del caudal y del volumen de extracción autorizados. Depofibra comercializa depósitos de fabricantes externos: estudiaremos la geometría y la capacidad de una referencia compatible, sin vender ni dimensionar el pozo, la bomba o la instalación hidráulica.",
+  "items": [
+    {
+      "id": "pozo-vertical",
+      "href": "/depositos/vertical-base-plana/",
+      "name": "Depósito vertical de base plana",
+      "subtitle": "Reserva en superficie · distintas capacidades por confirmar",
+      "image": "/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp",
+      "mediaCaption": "Fotografía de referencia de un depósito vertical; no corresponde a un pozo concreto",
+      "tags": [
+        "superficie",
+        "vertical",
+        "reserva"
+      ],
+      "specification": "En superficie · vertical",
+      "quoteProduct": "Depósito vertical de base plana",
+      "quoteNote": "Reserva para agua de pozo agrícola: verificar caudal real, capacidad y modelo.",
+      "detail": "Formato a estudiar si dispones de altura suficiente y una superficie de apoyo adecuada. La geometría, capacidad útil, entrada desde la bomba, salida al riego y accesorios deben comprobarse en el modelo exacto. No se presume que su altura proporcione presión suficiente."
+    },
+    {
+      "id": "pozo-horizontal",
+      "href": "/depositos/horizontal-con-cunas/",
+      "name": "Depósito horizontal con cunas",
+      "subtitle": "Reserva en superficie · valorar longitud y altura",
+      "image": "/images/depositos/horizontal-con-cunas/deposito-poliester-horizontal-con-cunas-verde-vista-perspectiva.webp",
+      "mediaCaption": "Depósito horizontal de referencia con apoyos de superficie",
+      "tags": [
+        "superficie",
+        "horizontal",
+        "reserva"
+      ],
+      "specification": "En superficie · horizontal",
+      "quoteProduct": "Depósito horizontal con cunas",
+      "quoteNote": "Almacenamiento de agua de pozo para riego; verificar medidas y apoyos.",
+      "detail": "Alternativa para instalar una reserva donde la altura libre sea limitada. Se revisan las cunas, el espacio longitudinal, la conexión de la entrada y la salida, el apoyo y las condiciones de transporte antes de elegir una referencia."
+    },
+    {
+      "id": "pozo-enterrable",
+      "href": "/depositos/horizontal-enterrable/",
+      "name": "Aljibe o depósito horizontal enterrable",
+      "subtitle": "Bajo tierra · únicamente modelos diseñados para enterrar",
+      "image": "/images/depositos/horizontal-enterrable/deposito-poliester-horizontal-enterrable-gris-registro-lateral.webp",
+      "mediaCaption": "Fotografía representativa de la familia enterrable, no de una instalación en pozo",
+      "tags": [
+        "enterrable",
+        "horizontal"
+      ],
+      "specification": "Enterrado · horizontal",
+      "quoteProduct": "Depósito horizontal enterrable",
+      "quoteNote": "Aljibe de agua de pozo; confirmar uso agrícola, terreno, cargas y acceso.",
+      "detail": "Un aljibe prefabricado enterrable puede estudiarse cuando interesa liberar la superficie. Debe ser un depósito expresamente preparado para enterramiento, con documentación para la profundidad, el terreno, las cargas, el nivel freático y los accesos de inspección. Un depósito horizontal con cunas no es enterrable por defecto."
+    }
+  ],
+  "filterGroups": [],
+  "note": "El depósito no mejora el caudal sostenible del pozo ni garantiza agua disponible cuando la extracción total es insuficiente. La captación, las autorizaciones, la bomba, las tuberías, la presión del riego, el uso del agua y la capacidad útil deben revisarse para cada proyecto. El transporte estándar no incluye descarga; no se presuponen existencias, certificados o accesorios.",
+  "guideTitle": "Cómo calcular la reserva si el pozo da poco caudal",
+  "guideDescription": "La clave está en diferenciar los litros que el pozo puede aportar durante el día de los litros que necesitas concentrar en pocas horas. La reserva ayuda a coordinar ambos ritmos, pero no crea agua.",
+  "guideRows": [
+    {
+      "title": "1. Mide el caudal sostenible, no solo el de arranque",
+      "detail": "Anota cuántos litros por hora entrega realmente el pozo durante el tiempo autorizado y viable de extracción, considerando las bajadas de nivel y los cambios estacionales. No utilices únicamente el caudal nominal de la bomba: la producción sostenible debe contrastarla el profesional responsable de la captación."
+    },
+    {
+      "title": "2. Calcula el agua que puede reponerse",
+      "detail": "Como ejemplo orientativo, un caudal sostenible de 800 L/h durante 5 horas permite extraer teóricamente 4.000 L ese día (800 × 5), siempre que el título de uso, la disponibilidad y el equipo lo permitan. Si la finca demanda más que eso de forma continuada, aumentar el depósito no resuelve el déficit total."
+    },
+    {
+      "title": "3. Distingue consumo diario y pico de riego",
+      "detail": "Puede que el sistema necesite 3.000 litros concentrados en una franja de riego, aunque el pozo los vaya aportando durante varias horas. La reserva permite desacoplar captación y consumo; el tamaño exacto depende de cuándo entra y sale el agua, el volumen no aprovechable y los márgenes de operación. No recomendamos una capacidad basándonos en un ejemplo aislado."
+    },
+    {
+      "title": "4. Comprueba bombeo, automatismos y presión",
+      "detail": "Si utilizas bombeo solar, el horario de producción también condiciona el llenado. Un depósito no sustituye al cálculo hidráulico de bombas, nivel, válvulas, flotadores, rebosadero, filtros o presión de los goteros. Esos componentes no se dan por incluidos en el suministro de Depofibra."
+    },
+    {
+      "title": "5. Confirma el uso legal y las características del agua",
+      "detail": "Almacenar agua no concede permisos adicionales para extraerla. Comprueba con el organismo de cuenca el derecho de uso, los límites y las condiciones de la captación. El agua de pozo no se considera automáticamente apta para beber: los materiales y la documentación del depósito se verifican por modelo y uso."
+    },
+    {
+      "title": "6. Compara formatos y calcula la entrega",
+      "detail": "Para superficie puedes comparar verticales de base plana y horizontales con cunas; para enterrar, solo referencias específicas. Revisa dimensiones exteriores, terreno, accesos de camión, punto de descarga y código postal. Depofibra estudia el transporte con operadores externos y la descarga no va incluida por defecto."
+    },
+    {
+      "title": "7. Pide un presupuesto de depósito, no una estimación a ciegas",
+      "detail": "Indícanos capacidad aproximada, finalidad del agua (por ejemplo riego), caudal medido del pozo, horas disponibles de extracción, consumo previsto, tipo de espacio, municipio/código postal y condiciones de acceso. Con esos datos se puede estudiar la familia de depósito y contrastar el modelo con el proveedor; la bomba y el sistema de riego requieren valoración especializada aparte."
+    }
+  ],
+  "localLink": {
+    "href": "/blog/calcular-capacidad-deposito-agua-riego/",
+    "label": "Calcular los litros que necesita el riego por jornada"
+  },
+  "faqs": [
+    {
+      "question": "¿Un depósito arregla un pozo que da poco caudal?",
+      "answer": "No aumenta el agua disponible ni el caudal sostenible del pozo. Puede acumular durante varias horas una reserva que se utilice en periodos cortos de demanda, siempre que el balance total de entradas y salidas sea viable y la extracción esté autorizada."
+    },
+    {
+      "question": "¿Qué depósito necesito si el pozo entrega 800 litros por hora?",
+      "answer": "Depende de cuántas horas puede bombear legal y técnicamente, de los litros que consume la finca y de cuándo los necesita. Como ejemplo, 800 L/h durante 5 horas son 4.000 L teóricos diarios, pero eso no determina por sí solo la capacidad nominal del depósito."
+    },
+    {
+      "question": "¿Se puede llenar el depósito con una bomba solar?",
+      "answer": "Se puede estudiar una instalación con bombeo solar, depósito y riego, pero hay que dimensionar por separado el sistema eléctrico e hidráulico. Depofibra no presupone la venta o instalación de la bomba con el depósito."
+    },
+    {
+      "question": "¿Qué diferencia hay entre un depósito de superficie y un aljibe enterrable?",
+      "answer": "El primero se apoya en una superficie preparada; un aljibe enterrable debe estar diseñado y documentado específicamente para enterramiento y las condiciones del terreno. No conviene enterrar un depósito de superficie por su apariencia."
+    },
+    {
+      "question": "¿Se puede utilizar agua de pozo para consumo humano?",
+      "answer": "Su procedencia no garantiza que sea potable. Se requieren controles y tratamiento apropiados, y el depósito debe tener documentación específica para el uso de agua de consumo. No se debe atribuir esa aptitud de forma general al catálogo."
+    },
+    {
+      "question": "¿Depofibra vende bombas, paneles solares y sistemas completos de riego?",
+      "answer": "Esta página trata sobre selección y suministro comercial de depósitos PRFV. Bombas, paneles, controles y montaje no se consideran incluidos ni servicios propios; habría que concretar y verificar cualquier accesorio aparte."
+    },
+    {
+      "question": "¿Se incluye la descarga en la finca?",
+      "answer": "El transporte estándar con operadores externos no incluye la descarga salvo acuerdo específico verificado. Para valorar la entrega necesitaremos código postal, dimensiones, accesos y medios disponibles en destino."
+    }
+  ]
+};
+---
+<CategoryInterior {...page}>
+  <p slot="related-destinations" class="body-lg">
+    El <a href="https://www.mapa.gob.es/es/desarrollo-rural/temas/gestion-sostenible-regadios/tecnologiadelregadio" target="_blank" rel="noopener noreferrer">Ministerio de Agricultura</a> describe los depósitos como elementos para equilibrar la oferta y la demanda de agua en riego. El <a href="https://www.miteco.gob.es/es/agua/temas/concesiones-y-autorizaciones/regulacion-usos-aprovechamiento/concesiones.html" target="_blank" rel="noopener noreferrer">MITECO</a> explica que los aprovechamientos requieren el título o régimen aplicable y que una concesión no garantiza el caudal disponible. Si el agua de tu instalación procede de canalones, consulta la <a href="/depositos/agua-de-lluvia/">guía de depósitos para recoger lluvia</a>. Para el dimensionamiento del consumo de riego, visita los <a href="/depositos/para-riego/">depósitos y formatos para riego</a>.
+  </p>
+</CategoryInterior>
