@@ -249,6 +249,30 @@ if (catalogEmpty) {
   }
 }
 
+// Regresión SEO comercial: la gama general no puede volver a parecer limitada a tres tamaños.
+const depositCatalogFile = targetFile('/depositos/');
+const verticalFamilyFile = targetFile('/depositos/vertical-base-plana/');
+if (!depositCatalogFile || !verticalFamilyFile) {
+  errors.push('SEO comercial: no existe catálogo o familia vertical compilada');
+} else {
+  const catalogHtml = content(depositCatalogFile);
+  const familyHtml = content(verticalFamilyFile);
+  if (!catalogHtml.includes('Depósitos de poliéster de 100 a 60.000 L')) {
+    errors.push('SEO comercial: título del catálogo sin amplitud 100-60.000 L');
+  }
+  if (!catalogHtml.includes('Venta de depósitos de poliéster') || !catalogHtml.includes('href="/depositos/para-riego/"')) {
+    errors.push('SEO comercial: catálogo sin intención de compra o enlazado a riego');
+  }
+  if (!familyHtml.includes('GAMA DE ESTA FAMILIA') || !familyHtml.includes('Capacidades recogidas en la tabla orientativa') || !familyHtml.includes('60.000 L')) {
+    errors.push('SEO comercial: verticales sin la amplitud de referencias que consta en la tabla');
+  }
+  if (familyHtml.includes('Tres ejemplos de capacidad')) {
+    errors.push('SEO comercial: no presentar solamente tres tarjetas como catálogo completo');
+  }
+}
+if (!homeHtml.includes('De 100 a 60.000 L.') || !homeHtml.includes('href="/depositos/para-riego/"')) {
+  errors.push('SEO comercial: Home sin gama amplia o enlace a depósitos para riego');
+}
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
