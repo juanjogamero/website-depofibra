@@ -1,0 +1,82 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { depositLocalLandings } from '../../../data/depositLocalLandings';
+
+const newZones = depositLocalLandings.filter(zone => zone.slug === 'avila' || zone.slug === 'salamanca');
+const otherZones = depositLocalLandings.filter(zone => zone.slug !== 'avila' && zone.slug !== 'salamanca');
+---
+<Layout title="Depósitos de poliéster por provincias | Depofibra"
+  description="Consulta depósitos de poliéster PRFV para fincas, riego y granjas por provincia. Compara usos y prepara un presupuesto con modelo, código postal y descarga."
+  canonical="https://depofibra.com/depositos/zonas/"
+  activeNav="depositos"
+  ogImage="/images/productos/deposito-vertical.jpg"
+  ogImageAlt="Depósito de poliéster vertical de referencia">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context':'https://schema.org', '@type':'BreadcrumbList',
+      itemListElement:[
+        {'@type':'ListItem',position:1,name:'Inicio',item:'https://depofibra.com/'},
+        {'@type':'ListItem',position:2,name:'Depósitos de poliéster',item:'https://depofibra.com/depositos/'},
+        {'@type':'ListItem',position:3,name:'Provincias',item:'https://depofibra.com/depositos/zonas/'}
+      ]
+    })}/>
+  </Fragment>
+  <div class="zn-page">
+    <div class="container zn-wrap">
+      <nav aria-label="Migas de pan" class="zn-crumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/depositos/">Depósitos</a><span aria-hidden="true">/</span><span>Provincias</span></nav>
+      <header class="zn-hero">
+        <span class="eyebrow">DEPÓSITOS PRFV · ZONAS DE CONSULTA</span>
+        <h1>Depósitos de poliéster por provincias</h1>
+        <p>¿Necesitas un depósito para reserva de agua, una finca o una explotación ganadera? Trabajamos con depósitos de <strong>100 a 60.000 litros según familia y modelo</strong>. Aquí puedes consultar situaciones de instalación y entrega en diferentes zonas, sin confundir una página provincial con una tienda o delegación local.</p>
+        <p><strong>Depofibra comercializa desde Casariche, Sevilla, referencias de fabricantes externos.</strong> No son sucursales ni indicamos stock o transporte garantizado en estas provincias: todo presupuesto depende del modelo, lugar de carga, destino y acceso.</p>
+        <a href="/contacto/" class="zn-cta">Solicitar presupuesto según destino <span aria-hidden="true">↗</span></a>
+      </header>
+      <section aria-labelledby="zn-new-title" class="zn-section">
+        <span class="eyebrow">NUEVAS ZONAS DE ESTUDIO</span>
+        <h2 id="zn-new-title">Ávila y Salamanca: fincas, granjas y regadío</h2>
+        <p>La documentación pública de la Junta de Castilla y León permite identificar actividad agraria y ganadera. Eso no equivale a clientes asegurados ni a poca competencia. Para estos destinos distinguimos consumo, modo de reserva y requisitos de descarga antes de elegir un depósito.</p>
+        <ul class="zn-links">
+          {newZones.map(zone => <li><a href={`/depositos/${zone.slug}/`}>{zone.province}<span aria-hidden="true">↗</span></a><span>{zone.slug === 'avila' ? 'Granjas, fincas y accesos rurales' : 'La Armuña, regadío y ganadería'}</span></li>)}
+        </ul>
+      </section>
+      <section aria-labelledby="zn-other-title" class="zn-section">
+        <span class="eyebrow">OTRAS PROVINCIAS CON GUÍAS</span>
+        <h2 id="zn-other-title">Consultar las zonas ya estudiadas</h2>
+        <p>Las páginas existentes describen usos agrícolas o de almacenamiento y qué información facilita un presupuesto. No indican depósitos disponibles de inmediato en cada localidad.</p>
+        <ul class="zn-links zn-links--others">{otherZones.map(zone => <li><a href={`/depositos/${zone.slug}/`}>{zone.province}<span aria-hidden="true">↗</span></a></li>)}</ul>
+      </section>
+      <section aria-labelledby="zn-logistics-title" class="zn-section">
+        <span class="eyebrow">CÓMO PREPARAR LA CONSULTA</span>
+        <h2 id="zn-logistics-title">El coste puesto en destino depende de más que los kilómetros</h2>
+        <div class="zn-columns">
+          <div><h3>1. Tipo de depósito y uso</h3><p>Indica si necesitas vertical de base plana, horizontal, enterrable u otra familia, y para qué agua o producto. Aptitud, volumen útil, medidas y accesorios se verifican para la referencia concreta.</p></div>
+          <div><h3>2. Código postal y accesos</h3><p>Comunica municipio, código postal, anchura y altura libres, firme y giros de acceso. El punto de origen de carga depende del fabricante y no se debe presuponer que todos los transportes parten de Casariche.</p></div>
+          <div><h3>3. Descarga y presupuesto</h3><p>El transporte estándar no incluye descarga. Conviene identificar el equipo de descarga disponible antes de confirmar el precio final. No se prometen fechas, rutas o tarifas sin cotización.</p></div>
+        </div>
+        <p>También puedes revisar los <a href="/depositos/vertical-base-plana/">verticales de base plana</a>, los <a href="/depositos/horizontal-con-cunas/">horizontales de superficie</a> y los <a href="/depositos/horizontal-enterrable/">enterrables</a>. El <a href="/depositos/">catálogo de depósitos</a> reúne el resto de familias.</p>
+      </section>
+    </div>
+  </div>
+</Layout>
+<style>
+  .zn-page{background:#fff;color:var(--color-dark);padding-bottom:70px}
+  .zn-wrap{max-width:1110px}
+  .zn-crumb{display:flex;flex-wrap:wrap;gap:12px;padding:24px 0 34px;color:#6a7c8d;font:600 12px/1.5 var(--font-body)}
+  .zn-crumb a{color:var(--color-primary-dark)}
+  .zn-hero{max-width:920px;padding:12px 0 50px}
+  .zn-hero h1{font:800 clamp(36px,5vw,62px)/1.08 var(--font-display);letter-spacing:-.045em;color:var(--color-primary-dark);margin:18px 0 22px}
+  .zn-hero p,.zn-section>p,.zn-section div p{font:400 15px/1.85 var(--font-body);color:#4c6074;margin:0 0 17px}
+  .zn-cta{display:inline-flex;align-items:center;gap:22px;margin-top:12px;padding:13px 21px;border-radius:30px;background:var(--color-primary);color:#fff;font:800 13px/1.4 var(--font-body)}
+  .zn-cta:hover{background:var(--color-primary-dark)}
+  .zn-section{padding:41px 0;border-top:1px solid #d9e4ed}
+  .zn-section h2{font:800 clamp(24px,3vw,35px)/1.2 var(--font-display);letter-spacing:-.03em;color:var(--color-primary-dark);margin:12px 0 17px}
+  .zn-links{list-style:none;margin:23px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:35px}
+  .zn-links li{border-top:1px solid #d9e4ed;padding:14px 0}
+  .zn-links li a{display:flex;align-items:center;justify-content:space-between;gap:10px;font:750 15px/1.55 var(--font-body);color:var(--color-primary);text-decoration:none}
+  .zn-links li a:hover{text-decoration:underline}
+  .zn-links li>span{display:block;color:#64788a;font:400 13px/1.6 var(--font-body);margin-top:4px}
+  .zn-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:26px 0}
+  .zn-columns h3{font:750 16px/1.5 var(--font-body);color:var(--color-primary-dark);margin-bottom:9px}
+  .zn-section a{color:var(--color-primary)}
+  @media(max-width:700px){.zn-links,.zn-columns{grid-template-columns:1fr}.zn-hero{padding-bottom:34px}.zn-section{padding:30px 0}}
+</style>
