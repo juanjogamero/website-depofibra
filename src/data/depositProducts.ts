@@ -30,7 +30,7 @@ export const depositFamilies: DepositFamily[] = [
     name: 'Depósitos verticales de poliéster de base plana',
     shortName: 'Vertical de base plana',
     eyebrow: 'Depósitos · Instalación en superficie',
-    intro: 'Depósitos verticales de poliéster (PRFV) de base plana para almacenamiento en superficie. La familia dispone de referencias históricas de distintas capacidades, no solo 5.000, 10.000 y 15.000 litros. Compara volumen, diámetro, espacio de apoyo, conexiones y entrega antes de elegir.',
+    intro: 'Depósitos verticales de poliéster (PRFV) de base plana para almacenamiento en superficie. La tabla orientativa de esta familia recoge referencias de 5.000 a 60.000 litros. Compara el volumen, diámetro, base de apoyo, conexiones y transporte; las características y la disponibilidad real se comprueban por modelo antes del presupuesto.',
     installation: 'En superficie',
     geometry: 'Vertical · Base plana',
     application: 'Agua y riego, según referencia',
@@ -46,7 +46,7 @@ export const depositFamilies: DepositFamily[] = [
       {src:'/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verdes-conjunto-diferentes-tamanos.webp',alt:'Varios depósitos verticales verdes de distintas alturas colocados en línea',kind:'Fotografía de referencia'},
     ],
     titleSeo: 'Depósitos verticales de poliéster base plana | Depofibra',
-    metaDescription:'Depósitos verticales de poliéster de base plana para riego. Compara capacidades, equipamiento, colores y conexiones. Presupuesto según destino.',
+    metaDescription:'Depósitos verticales de poliéster PRFV para riego, con referencias orientativas de 5.000 a 60.000 L. Compara medidas y solicita presupuesto por destino.',
     highlights:[
       {title:'Amplia variedad de capacidades',text:'La tabla orientativa recoge varias capacidades entre 5.000 y 60.000 litros. Se verifican las dimensiones y la posibilidad real de suministro por modelo.'},
       {title:'Medidas y accesos',text:'Comprueba diámetro exterior, altura total, portones y superficie de apoyo antes del pedido.'},
