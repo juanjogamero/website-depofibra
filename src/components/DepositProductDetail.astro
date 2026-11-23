@@ -12,8 +12,10 @@ const firstImage = product.gallery[0];
 const dimensionSheet = getDepositDimensions(product.slug);
 const formatDimension = (value: number) => new Intl.NumberFormat('es-ES').format(value);
 const featuredLiters = [5000, 10000, 15000];
-const featuredRows = dimensionSheet?.rows.filter((row) => featuredLiters.includes(row.liters)) ?? [];
-const hasFeaturedRows = product.slug === 'vertical-base-plana' && featuredRows.length > 0;
+const allVerticalLiters = product.slug === 'vertical-base-plana'
+  ? [...new Set(dimensionSheet?.rows.map(row => row.liters) ?? [])].sort((a,b) => a-b)
+  : [];
+const hasCapacityList = allVerticalLiters.length > 0;
 // Número de contacto publicado para WhatsApp en la web anterior. Se puede sobrescribir en .env.
 const whatsappNumber = String(import.meta.env.PUBLIC_WHATSAPP_NUMBER || '34642129233').replace(/\D/g, '');
 const quoteMessage = (item: string) => `Hola, quisiera solicitar presupuesto de ${item}. ¿Podéis orientarme sobre disponibilidad de referencia y transporte? Mi código postal es: `;
@@ -164,30 +166,27 @@ const contactHref = `/contacto/?producto=${encodeURIComponent(product.quoteProdu
           <article><strong>Destino y acceso</strong><p>El código postal y cualquier limitación de acceso ayudan a valorar el transporte antes del presupuesto.</p></article>
           <article><strong>Instalación</strong><p>Si irá en superficie, enterrado o con necesidades especiales, conviene indicarlo desde el inicio.</p></article>
         </div>
-        {hasFeaturedRows && (
+        {hasCapacityList && (
           <div class="product-featured">
             <div class="product-featured__head">
               <div>
-                <span class="product-eyebrow">CAPACIDADES DE REFERENCIA</span>
-                <h3>Tres ejemplos de capacidad</h3>
+                <span class="product-eyebrow">GAMA DE ESTA FAMILIA</span>
+                <h3>Referencias de {formatDimension(allVerticalLiters[0])} a {formatDimension(allVerticalLiters[allVerticalLiters.length-1])} litros</h3>
               </div>
-              <p>Estas tres capacidades cuentan con fichas individuales, pero la familia recoge otras referencias de volumen en la tabla completa. Las medidas son orientativas y deben confirmarse según modelo antes del pedido.</p>
+              <p>La tabla orientativa de verticales de base plana recoge todos estos volúmenes. Cada capacidad, sus medidas definitivas y el suministro deben confirmarse por modelo antes de presupuestar.</p>
             </div>
-            <div class="product-featured__grid">
-              {featuredRows.map((row) => (
-                <article>
-                  <span>{formatDimension(row.liters)} L</span>
-                  <strong>Ø {formatDimension(row.diameterMm)} mm</strong>
-                  <p>Cota de ficha: {formatDimension(row.longitudinalMm)} mm</p>
-                </article>
+            <p class="product-featured__range" aria-label="Capacidades recogidas en la tabla orientativa">
+              {allVerticalLiters.map((liters, index) => (
+                <span>{formatDimension(liters)} L{index < allVerticalLiters.length - 1 ? ' · ' : ''}</span>
               ))}
-            </div>
-            <nav class="product-featured__links" aria-label="Fichas de depósitos verticales por capacidad">
-              <span>Consultar cada capacidad:</span>
+            </p>
+            <nav class="product-featured__links" aria-label="Fichas individuales de referencia">
+              <span>Fichas propias de ejemplo:</span>
               {featuredLiters.map(liters => (
                 <a href={`/depositos/vertical-base-plana/${liters}-litros/`}>{formatDimension(liters)} litros <span aria-hidden="true">↗</span></a>
               ))}
             </nav>
+            <p class="product-featured__hint">En «Capacidades y medidas» puedes consultar las cotas orientativas de cada referencia.</p>
           </div>
         )}
       </section>
@@ -538,15 +537,13 @@ const contactHref = `/contacto/?producto=${encodeURIComponent(product.quoteProdu
   .product-featured__head{display:grid;grid-template-columns:.8fr 1fr;gap:36px;align-items:end}
   .product-featured__head h3{margin:7px 0 0;color:#13233b;font:800 clamp(21px,2.2vw,29px)/1.2 var(--font-display);letter-spacing:-.035em}
   .product-featured__head p{margin:0;color:#607284;font:400 13px/1.65 var(--font-body)}
-  .product-featured__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
-  .product-featured__grid article{background:#f4f8fc;border:1px solid #dce6ef;padding:15px;border-radius:12px}
-  .product-featured__grid span{display:block;color:#01488e;font:800 14px var(--font-display);margin-bottom:6px}
-  .product-featured__grid strong{display:block;font:700 13px var(--font-display);color:#152a40}
-  .product-featured__grid p{margin:4px 0 0;color:#677b8a;font:400 12px/1.55 var(--font-body)}
+  .product-featured__range{margin:17px 0 0;color:#123653;font:650 14px/1.95 var(--font-body)}
+  .product-featured__range span{white-space:nowrap}
+  .product-featured__hint{margin-top:13px;color:#607284;font:400 12px/1.65 var(--font-body)}
   .product-featured__links{display:flex;flex-wrap:wrap;align-items:center;gap:9px 17px;margin-top:17px}
   .product-featured__links>span{font:600 12px/1.5 var(--font-body);color:#536477}
   .product-featured__links a{font:750 12px/1.5 var(--font-body);color:#01488e;text-decoration:underline;text-underline-offset:3px}
   .product-featured__links a:focus-visible{outline:2px solid #01488e;outline-offset:3px;border-radius:2px}
-  @media(max-width:900px){.product-quickhelp__lead,.product-featured__head{grid-template-columns:1fr;gap:12px}.product-quickhelp__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-featured__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  @media(max-width:580px){.product-quickhelp{margin-top:25px;padding-top:23px}.product-quickhelp__grid{gap:10px 16px}.product-quickhelp__grid strong{font-size:14px}.product-featured__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.product-featured__grid article{padding:12px 10px}.product-featured__head h3{font-size:22px}}
+  @media(max-width:900px){.product-quickhelp__lead,.product-featured__head{grid-template-columns:1fr;gap:12px}.product-quickhelp__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:580px){.product-quickhelp{margin-top:25px;padding-top:23px}.product-quickhelp__grid{gap:10px 16px}.product-quickhelp__grid strong{font-size:14px}.product-featured__head h3{font-size:22px}}
 </style>
