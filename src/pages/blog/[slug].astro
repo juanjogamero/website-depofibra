@@ -36,10 +36,12 @@ const articleHtml=article.html.replace(/<h2>([\s\S]*?)<\/h2>/g, (_match,contents
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context':'https://schema.org','@graph':[
-        {'@type':'BlogPosting',headline:article.title,description:article.description,url:canonical,
-          mainEntityOfPage:canonical,inLanguage:'es-ES',image:photo.src,
-          isAccessibleForFree:true,author:{'@type':'Organization',name:'Depofibra',url:'https://depofibra.com/'},
-          publisher:{'@type':'Organization',name:'Depofibra',url:'https://depofibra.com/'}},
+        {'@type':'BlogPosting','@id':`${canonical}#article`,headline:article.title,description:article.description,url:canonical,
+          mainEntityOfPage:canonical,inLanguage:'es-ES',image:photo.src,articleSection:article.category,
+          isPartOf:{'@id':'https://depofibra.com/blog/#blog'},
+          isAccessibleForFree:true,
+          author:{'@type':'Organization','@id':'https://depofibra.com/#organization',name:'Depofibra',url:'https://depofibra.com/'},
+          publisher:{'@type':'Organization','@id':'https://depofibra.com/#organization',name:'Depofibra',url:'https://depofibra.com/'}},
         {'@type':'BreadcrumbList',itemListElement:[
           {'@type':'ListItem',position:1,name:'Inicio',item:'https://depofibra.com/'},
           {'@type':'ListItem',position:2,name:'Blog',item:'https://depofibra.com/blog/'},
@@ -55,7 +57,7 @@ const articleHtml=article.html.replace(/<h2>([\s\S]*?)<\/h2>/g, (_match,contents
         <span class="ba-kicker">{article.category} · DEPOFIBRA</span>
         <h1>{article.title}</h1>
         <p>{article.description}</p>
-        <div class="ba-meta"><span>Guía de Depofibra</span><span class="ba-meta__dot">·</span><span>{article.reading}</span><span class="ba-meta__dot">·</span><a href={article.productUrl}>Ver productos relacionados ↗</a></div>
+        <div class="ba-meta"><span>Guía de <a href="/sobre-depofibra/">Depofibra</a></span><span class="ba-meta__dot">·</span><span>{article.reading}</span><span class="ba-meta__dot">·</span><a href={article.productUrl}>Ver productos relacionados ↗</a></div>
       </header>
       <figure class="ba-cover">
         <img src={photo.src} alt={photo.alt} data-fallback={photo.fallback} loading="eager" width="1440" height="780" decoding="async" fetchpriority="high"/>
