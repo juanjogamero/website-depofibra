@@ -41,7 +41,7 @@ const articleHtml=article.html.replace(/<h2>([\s\S]*?)<\/h2>/g, (_match,contents
           isPartOf:{'@id':'https://depofibra.com/blog/#blog'},
           isAccessibleForFree:true,
           author:{'@type':'Organization','@id':'https://depofibra.com/#organization',name:'Depofibra',url:'https://depofibra.com/'},
-          publisher:{'@id':'https://depofibra.com/#organization'}},
+          publisher:{'@type':'Organization','@id':'https://depofibra.com/#organization',name:'Depofibra',url:'https://depofibra.com/'}},
         {'@type':'BreadcrumbList',itemListElement:[
           {'@type':'ListItem',position:1,name:'Inicio',item:'https://depofibra.com/'},
           {'@type':'ListItem',position:2,name:'Blog',item:'https://depofibra.com/blog/'},
