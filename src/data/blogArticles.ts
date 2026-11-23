@@ -124,7 +124,7 @@ export const blogArticles: BlogArticle[] = [
   },
   {
     "slug": "conexiones-y-accesorios-depositos-poliester",
-    "seoTitle": "Conexiones y accesorios de depósitos de poliéster | Depofibra",
+    "seoTitle": "Conexiones y accesorios para depósitos | Depofibra",
     "title": "Conexiones y accesorios de depósitos de poliéster: qué pedir",
     "category": "Depósitos de poliéster",
     "description": "Diferencia entradas, salidas, rebosadero, medidor y anillas de un depósito PRFV. Qué diámetros y posiciones concretar antes de solicitar presupuesto.",
