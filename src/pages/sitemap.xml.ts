@@ -6,7 +6,7 @@ import { secondaryProducts } from '../data/secondaryProducts';
 import { blogArticles } from '../data/blogArticles';
 import { depositLocalLandings } from '../data/depositLocalLandings';
 
-const fixedRoutes = ['/', '/depositos/', '/depositos/para-riego/', '/piscinas/', '/fosas-septicas/', '/fosas-septicas/sevilla/', '/cubas-cisternas/', '/blog/', '/contacto/', '/sobre-depofibra/'];
+const fixedRoutes = ['/', '/depositos/', '/depositos/para-riego/', '/depositos/para-granjas/', '/piscinas/', '/fosas-septicas/', '/fosas-septicas/sevilla/', '/cubas-cisternas/', '/blog/', '/contacto/', '/sobre-depofibra/'];
 const allPaths = [
   ...fixedRoutes,
   ...depositFamilies.map(item => `/depositos/${item.slug}/`),

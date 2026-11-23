@@ -1,0 +1,136 @@
+---
+/**
+ * Página SEO comercial orientada a la necesidad de reserva de agua en granjas.
+ * No acredita compatibilidad para bebida animal, instalación ni disponibilidad.
+ * Diseño existente: CategoryInterior sin CSS nuevo.
+ */
+import CategoryInterior from '../../../components/CategoryInterior.astro';
+
+const page = {
+  "nav": "depositos",
+  "title": "Depósitos de agua para granjas y explotaciones ganaderas",
+  "seoTitle": "Depósitos de agua para granjas y ganadería | Depofibra",
+  "canonicalPath": "/depositos/para-granjas/",
+  "breadcrumb": "Depósitos para granjas",
+  "eyebrow": "GRANJAS PORCINAS, AVÍCOLAS Y EXPLOTACIONES GANADERAS",
+  "description": "Depósitos de agua para granjas y explotaciones ganaderas. Compara verticales y horizontales, calcula tu reserva y consulta transporte y presupuesto por modelo.",
+  "intro": "¿Necesitas una reserva de agua para una granja porcina, avícola o explotación ganadera? Depofibra comercializa depósitos de poliéster reforzado con fibra de vidrio (PRFV) de fabricantes externos. Podemos estudiar distintas geometrías y capacidades nominales de referencia en función del consumo real, los cortes de suministro, el espacio y la entrega. La aptitud del depósito para el uso concreto del agua, las dimensiones y los equipos se confirman para cada modelo antes de presupuestar.",
+  "items": [
+    {
+      "id": "vertical-granjas",
+      "href": "/depositos/vertical-base-plana/",
+      "name": "Depósito vertical de base plana",
+      "subtitle": "Reserva en superficie · comparar base de apoyo y altura",
+      "image": "/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp",
+      "mediaCaption": "Fotografía representativa de la familia, no de una instalación ganadera",
+      "tags": [
+        "vertical",
+        "superficie",
+        "reserva"
+      ],
+      "specification": "Vertical · base plana",
+      "quoteProduct": "Depósito vertical de base plana",
+      "quoteNote": "Consulta de reserva de agua para granja; verificar uso ganadero, capacidad, accesos y destino.",
+      "detail": "Una alternativa de almacenamiento en superficie para estudiar reservas de diferentes volúmenes. Requiere comprobar solera, diámetro y altura exterior real, tapa, tomas de llenado y vaciado y posibilidades de limpieza. Las cotas y equipamiento de cada referencia están pendientes de confirmación."
+    },
+    {
+      "id": "horizontal-granjas",
+      "href": "/depositos/horizontal-con-cunas/",
+      "name": "Depósito horizontal con cunas",
+      "subtitle": "Reserva en superficie · menor altura relativa, mayor longitud",
+      "image": "/images/depositos/horizontal-con-cunas/deposito-poliester-horizontal-con-cunas-verde-vista-perspectiva.webp",
+      "mediaCaption": "Fotografía de un depósito horizontal de referencia, no una entrega en granja",
+      "tags": [
+        "horizontal",
+        "superficie",
+        "reserva"
+      ],
+      "specification": "Horizontal · con apoyos",
+      "quoteProduct": "Depósito horizontal con cunas",
+      "quoteNote": "Consultar almacenamiento de agua para granja, capacidad nominal, soportes y acceso de vehículo.",
+      "detail": "Conviene comparar este formato cuando la altura disponible es limitada y se dispone de más espacio longitudinal. Antes de elegir hay que confirmar apoyos, maniobra de descarga, conexiones, acceso para mantenimiento y documentación del modelo."
+    },
+    {
+      "id": "vertical-elevado-granjas",
+      "href": "/depositos/vertical-con-patas/",
+      "name": "Depósito vertical con patas",
+      "subtitle": "Instalación elevada · estructura por comprobar",
+      "image": "/images/depositos/vertical-con-patas/deposito-poliester-vertical-con-patas-verde-con-estructura-metalica.webp",
+      "mediaCaption": "Imagen orientativa de una configuración con apoyos, no un proyecto de granja",
+      "tags": [
+        "vertical",
+        "elevado"
+      ],
+      "specification": "Vertical · con patas",
+      "quoteProduct": "Depósito vertical con patas",
+      "quoteNote": "Consultar depósito para granja con apoyos; revisar carga, altura, estabilidad y estructura.",
+      "detail": "Si se contempla un depósito elevado, las patas y su estructura deben dimensionarse y validarse para la instalación real. Una posición elevada no garantiza la presión requerida en bebederos o conducciones: el cálculo hidráulico debe realizarlo el profesional responsable."
+    }
+  ],
+  "filterGroups": [],
+  "note": "Los productos e imágenes son de familias de referencia, no equipos certificados para una granja concreta. El uso del agua para animales, su calidad, la documentación del modelo, los accesorios, el precio y la viabilidad logística se verifican antes del presupuesto. El transporte estándar no incluye la descarga.",
+  "guideTitle": "Cómo planificar la reserva de agua de una granja",
+  "guideDescription": "La pregunta principal no es solo cuántos animales hay, sino cuánta agua consume realmente la explotación, cómo la repone y qué ocurriría si se interrumpe el suministro.",
+  "guideRows": [
+    {
+      "title": "1. Separa el consumo de los animales y el de la explotación",
+      "detail": "Anota el agua destinada a los animales, la limpieza de naves y cualquier otro consumo, usando contadores o registros reales cuando estén disponibles. No existe un número universal de litros por cabeza válido para todas las especies, edades, climas y sistemas de producción; confirma las necesidades de tu explotación con su técnico."
+    },
+    {
+      "title": "2. Calcula una autonomía orientativa ante cortes",
+      "detail": "Como punto de partida, multiplica los litros diarios previstos por los días de reserva. Por ejemplo, si la explotación utiliza 3.000 L al día y quiere cubrir dos días sin reposición, el cálculo teórico inicial es 6.000 L. No equivale automáticamente al volumen útil: revisa niveles mínimos, pérdidas, reposiciones y márgenes exigidos por el proyecto."
+    },
+    {
+      "title": "3. Comprueba calidad del agua y uso autorizado",
+      "detail": "La calidad y la higiene del agua suministrada a los animales requieren gestión de la explotación; no se resuelven solo comprando un depósito. Si se almacena agua para bebida animal, hay que validar material, revestimiento, configuración, limpieza y documentación aplicables al modelo y al uso; no se presupone que cualquier depósito de riego sea adecuado."
+    },
+    {
+      "title": "4. Elige formato y conexiones antes del precio",
+      "detail": "Compara verticales de base plana, horizontales con cunas o referencias con patas según la superficie, altura y longitud disponibles. Revisa tapa, rebosadero, tomas, capacidad de limpieza, base de apoyo y conducción a los puntos de consumo. No se dan por incluidos accesorios o equipos de tratamiento sin confirmación."
+    },
+    {
+      "title": "5. Organiza la entrega sin interrumpir la actividad",
+      "detail": "Facilita el código postal de la granja y las dimensiones de puertas, caminos, curvas y obstáculos aéreos. El transporte lo realizan operadores externos y el estándar no incluye descarga. La maniobra, el equipo de elevación y la puesta en servicio deben planificarse y presupuestarse por separado según modelo."
+    },
+    {
+      "title": "6. Pide presupuesto con los datos imprescindibles",
+      "detail": "Para estudiar una referencia indica tipo de explotación, finalidad del agua, consumo aproximado o autonomía buscada, capacidad orientativa, geometría disponible, código postal y accesos. Si el responsable técnico requiere características higiénicas o documentos determinados, indícalos desde el principio. Depofibra consulta los modelos compatibles a sus proveedores."
+    }
+  ],
+  "localLink": {
+    "href": "/blog/transporte-descarga-depositos-poliester/",
+    "label": "Cómo organizar el transporte y la descarga de depósitos de poliéster"
+  },
+  "faqs": [
+    {
+      "question": "¿Qué depósito de agua necesita una granja de cerdos o de aves?",
+      "answer": "Depende del consumo efectivo, el origen del agua, la autonomía ante interrupciones, el espacio y las condiciones higiénicas de la explotación. Podemos estudiar formatos verticales u horizontales, pero el técnico responsable debe confirmar necesidades y aptitud de la referencia."
+    },
+    {
+      "question": "¿Qué capacidad necesito para dos días sin agua?",
+      "answer": "La orientación inicial es consumo diario multiplicado por dos días. Si son 3.000 litros diarios, la reserva teórica inicial sería de 6.000 litros, sin contar niveles no aprovechables, pérdidas o nuevas aportaciones. No debe confundirse ese cálculo con una capacidad nominal definitiva."
+    },
+    {
+      "question": "¿Los depósitos de poliéster que ofrecéis son aptos para agua de bebida de animales?",
+      "answer": "No podemos generalizarlo. La compatibilidad del material, el revestimiento, las condiciones de higiene y la documentación se confirman por fabricante y modelo para el uso concreto. Una ficha para riego no demuestra aptitud para cualquier uso ganadero."
+    },
+    {
+      "question": "¿Es mejor un depósito vertical o uno horizontal en una granja?",
+      "answer": "Si tienes buena altura y una base adecuada, puede interesarte comparar los verticales de base plana; con restricciones de altura y espacio longitudinal, un horizontal con cunas puede ser más apropiado. La selección final requiere dimensiones y apoyos verificados."
+    },
+    {
+      "question": "¿La reserva de agua garantiza la presión de los bebederos?",
+      "answer": "No. Almacenar litros no asegura caudal ni presión en la red de suministro. El sistema hidráulico, bombas, altura, controles y distribución debe validarlo el técnico de la instalación."
+    },
+    {
+      "question": "¿Podéis entregar depósitos en explotaciones fuera de Andalucía?",
+      "answer": "Depofibra atiende consultas desde Casariche (Sevilla) para destinos de España y determinados pedidos en Portugal. Las posibilidades de transporte, accesos, precio puesto en destino y descarga se confirman según el modelo; no existe una tarifa uniforme."
+    }
+  ]
+};
+---
+<CategoryInterior {...page}>
+  <p slot="related-destinations" class="body-lg">
+    Una explotación ganadera necesita planificar la reserva de agua en función de sus consumos y posibles cortes de suministro. La normativa estatal contempla condiciones específicas según el sector: puedes consultar el <a href="https://www.boe.es/buscar/doc.php?id=BOE-A-2025-8158" target="_blank" rel="noopener noreferrer">Real Decreto 344/2025, que actualiza las normas de ordenación de granjas</a>. Estos requisitos no certifican por sí mismos ningún depósito. Si el proyecto es de <a href="/depositos/para-riego/">riego agrícola</a> y no de suministro ganadero, consulta nuestra guía específica. Para comparar distintas referencias, visita el <a href="/depositos/">catálogo de depósitos</a>.
+  </p>
+</CategoryInterior>
