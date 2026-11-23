@@ -316,7 +316,7 @@ for (const [url, required] of [
   ['/fosas-septicas/', ['Fosas sépticas de poliéster: tipos y documentos', '¿Todas las fosas sépticas de Depofibra están homologadas?', 'href="/blog/fosas-septicas-homologadas-marcado-ce-documentacion/"']],
   ['/fosas-septicas/fosa-estanca/', ['Documentación y requisitos antes de comprar', 'href="/blog/fosas-septicas-homologadas-marcado-ce-documentacion/"']],
   ['/fosas-septicas/fosa-biologica/', ['Fosa séptica con filtro biológico de poliéster', 'Habitantes equivalentes', 'href="/blog/fosas-septicas-homologadas-marcado-ce-documentacion/"']],
-  ['/fosas-septicas/oxidacion-total/', ['Documentación y requisitos antes de comprar', 'necesidades de aireación']],
+  ['/fosas-septicas/oxidacion-total/', ['Documentación y requisitos antes de comprar', 'Necesidades de aireación']],
   ['/blog/fosa-estanca-filtro-biologico-oxidacion-total/', ['href="/fosas-septicas/fosa-estanca/"', 'href="/fosas-septicas/fosa-biologica/"', 'href="/fosas-septicas/oxidacion-total/"']],
 ]) {
   const path = targetFile(url);
