@@ -273,6 +273,25 @@ if (!depositCatalogFile || !verticalFamilyFile) {
 if (!homeHtml.includes('De 100 a 60.000 L.') || !homeHtml.includes('href="/depositos/para-riego/"')) {
   errors.push('SEO comercial: Home sin gama amplia o enlace a depósitos para riego');
 }
+
+// Enlazado editorial hacia aplicaciones comerciales aún pendientes de rastreo GSC.
+// La prueba comprueba HTML real servido, no solo rutas en el sitemap.
+for (const [source, targets] of [
+  ['/blog/que-es-prfv-depositos-fibra-vidrio/', ['/depositos/para-granjas/', '/depositos/agua-de-lluvia/']],
+  ['/blog/deposito-vertical-horizontal-diferencias/', ['/depositos/para-riego/', '/depositos/para-granjas/']],
+  ['/blog/calcular-capacidad-deposito-agua-riego/', ['/depositos/para-riego/', '/depositos/agua-de-pozo/']],
+  ['/depositos/segovia/', ['/depositos/para-granjas/']],
+  ['/depositos/huesca/', ['/depositos/para-granjas/']],
+  ['/depositos/cuenca/', ['/depositos/para-riego/']],
+]) {
+  const file = targetFile(source);
+  if (!file) { errors.push('Enlazado de aplicaciones: falta origen ' + source); continue; }
+  const html = content(file);
+  for (const target of targets) {
+    if (!html.includes('href="' + target + '"')) errors.push('Enlazado de aplicaciones: ' + source + ' no enlaza a ' + target);
+  }
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
