@@ -10,6 +10,12 @@ const heroPhoto = landing.heroImage.src;
 const heroAlt = landing.heroImage.alt;
 const regionNote = landing.quoteContext;
 const isSevilla = landing.slug === 'sevilla';
+const isGranjasArea = landing.slug === 'segovia' || landing.slug === 'huesca';
+const applicationHref = isGranjasArea ? '/depositos/para-granjas/' : '/depositos/para-riego/';
+const applicationLabel = isGranjasArea ? 'depósitos para granjas y explotaciones ganaderas' : 'depósitos para riego agrícola';
+const applicationExplanation = isGranjasArea
+  ? 'Si necesitas autonomía de agua en una explotación ganadera, revisa el consumo, el uso y la documentación del modelo.'
+  : 'Si la reserva se destina a una finca de riego, calcula los litros entre reposiciones y comprueba el origen autorizado del agua.';
 ---
 <Layout title={landing.seoTitle} description={landing.metaDescription} canonical={canonical} ogImage={heroPhoto} ogImageAlt={heroAlt} activeNav="depositos">
   <Fragment slot="head">
@@ -102,6 +108,7 @@ const isSevilla = landing.slug === 'sevilla';
           </ul>
         </nav>
         <p class="dl-secondary-links">Consulta el <a href="/depositos/">catálogo completo de formatos</a> o la <a href="/blog/calcular-capacidad-deposito-agua-riego/">guía para calcular la reserva de agua</a>. Indícanos los litros que necesitas, el uso y el código postal para estudiar la referencia y el transporte.</p>
+        <p class="dl-secondary-links">¿Buscas una solución para tu actividad? Consulta nuestros <a href={applicationHref}>{applicationLabel}</a>. {applicationExplanation} La viabilidad de entrega en {landing.province} se confirma según referencia y código postal.</p>
       </div>
     </section>
 
