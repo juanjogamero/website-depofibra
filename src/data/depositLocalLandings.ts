@@ -3,7 +3,7 @@
  * No son tiendas/sedes. No se ofrece transporte o aptitud sin confirmación.
  */
 export interface DepositLocalLanding {
-  slug: 'murcia' | 'valencia' | 'sevilla' | 'palencia' | 'soria';
+  slug: 'murcia' | 'valencia' | 'sevilla' | 'palencia' | 'soria' | 'huelva' | 'badajoz';
   heroImage: { src: string; alt: string; productHref: string; productLabel: string };
   province: string;
   eyebrow: string;
@@ -336,5 +336,166 @@ export const depositLocalLandings: DepositLocalLanding[] = [
     "sourceName": "Confederación Hidrográfica del Duero — Plan Hidrológico vigente",
     "sourceUrl": "https://www.chduero.es/plan-hidrol%C3%B3gico-del-duero-vigente-",
     "quoteContext": "Consulta de depósito PRFV con destino en Soria. Confirmar capacidad, uso, CP, accesos, transporte externo y descarga."
+  }
+,
+  {
+    "slug": "huelva",
+    "heroImage": {
+      "src": "/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verde-escala-en-exterior.webp",
+      "alt": "Depósito vertical verde de poliéster con escala de nivel en una instalación exterior de referencia",
+      "productHref": "/depositos/vertical-base-plana/",
+      "productLabel": "Comparar verticales de base plana"
+    },
+    "province": "provincia de Huelva",
+    "eyebrow": "PROVINCIA DE HUELVA · RIEGO AGRÍCOLA Y FRUTOS ROJOS",
+    "seoTitle": "Depósitos de poliéster para riego en Huelva | Depofibra",
+    "metaDescription": "Depósitos PRFV para riego en Huelva. Compara capacidades para fincas de frutos rojos y solicita presupuesto según modelo, accesos y transporte.",
+    "h1": "Depósitos de poliéster para agua de riego en Huelva",
+    "lead": "Si tu finca está en Moguer, Almonte, Lepe, Cartaya u otra localidad de Huelva y necesitas una reserva de agua, podemos estudiar un depósito de poliéster (PRFV) conforme al consumo, las aportaciones autorizadas, el espacio y los accesos. No hay una capacidad fija por hectárea ni por cultivo.",
+    "regionHeading": "Riego de frutos rojos: del calendario de aportaciones a los litros de reserva",
+    "regionParagraphs": [
+      "IFAPA dispone de un manual específico de programación del riego para la fresa, frambuesa y arándano en Huelva. En estos cultivos la demanda varía con la fase de desarrollo, la climatología y el sistema de riego; calcular un depósito multiplicando hectáreas por una cifra genérica puede dar un resultado inadecuado. El volumen de reserva se estudia con consumos medidos, turnos de suministro y margen de operación, no por el nombre de la provincia.",
+      "Un depósito PRFV puede servir como almacenamiento intermedio de agua para riego cuando el modelo sea compatible. No sustituye la filtración, los automatismos ni los equipos de bombeo del proyecto. Si se almacena una disolución fertilizante, hay que consultar por separado la compatibilidad química de resinas, revestimientos y conexiones. La disponibilidad legal del agua depende de los derechos y condiciones de captación o suministro, no de instalar un depósito."
+    ],
+    "zoneHeading": "Tres situaciones habituales que conviene distinguir en Huelva",
+    "localCases": [
+      {
+        "place": "Moguer, Palos de la Frontera y Lucena del Puerto",
+        "need": "En explotaciones de frutos rojos, indica el caudal de entrada, las horas de riego y la reserva entre aportaciones. Define entradas y salidas antes de elegir diámetro y volumen."
+      },
+      {
+        "place": "Almonte, Rociana del Condado y Bonares",
+        "need": "Además del consumo, revisa el origen legal del agua y el espacio disponible. Un depósito no amplía concesiones ni modifica restricciones de riego de la zona."
+      },
+      {
+        "place": "Lepe, Cartaya e Isla Cristina",
+        "need": "Cuando la finca tiene caminos agrícolas o parcelas dispersas, documenta el acceso del vehículo, el giro, el firme y el medio de descarga. El municipio por sí solo no fija el precio de transporte."
+      }
+    ],
+    "choiceHeading": "Comparar depósitos de 5.000, 10.000 y 15.000 litros para riego en Huelva",
+    "capacityNotes": [
+      {
+        "liters": 5000,
+        "note": "Ejemplo de reserva parcial o para consumo acotado. Calcula cuántas horas reales de riego puede cubrir según caudal y volumen aprovechable."
+      },
+      {
+        "liters": 10000,
+        "note": "Permite estudiar una reserva mayor entre turnos o reposiciones. Verifica dimensiones del modelo, conexiones y espacio de maniobra en la finca."
+      },
+      {
+        "liters": 15000,
+        "note": "Referencia a contrastar para necesidades de más volumen. Debe verificarse base, accesos, elevación y descarga, sin asumir que es suficiente para una superficie concreta."
+      }
+    ],
+    "logisticsHeading": "Entregar un depósito en Huelva requiere verificar ruta y descarga",
+    "logisticsParagraphs": [
+      "Depofibra comercializa depósitos de fabricantes externos y atiende consultas desde Casariche (Sevilla). No dispone de sede, almacén, fábrica o servicio de instalación propios anunciados en Huelva. Se puede estudiar un envío con transporte externo según la referencia y la dirección exacta, pero ni el origen físico de carga ni el plazo o el precio se garantizan hasta la cotización.",
+      "Para presupuestar necesitamos la capacidad aproximada, el uso real del agua, el municipio y código postal, anchura y altura de paso, dimensiones disponibles y medios de descarga. El transporte estándar no incluye descarga. Cuando el equipo sea grande, se decidirá si hacen falta medios mecánicos adecuados, sin presuponer grúa incluida."
+    ],
+    "faq": [
+      {
+        "question": "¿Qué depósito necesito para fresas o arándanos en Huelva?",
+        "answer": "No existe una capacidad universal para fresas o arándanos. Calcula primero el volumen consumido por ciclo y el intervalo efectivo entre aportaciones; después compara el volumen útil, la geometría y las conexiones del modelo."
+      },
+      {
+        "question": "¿Sirve un depósito de riego para fertilizantes líquidos?",
+        "answer": "No debe presuponerse. Hay que conocer producto, concentración, temperatura y condiciones de operación, y solicitar compatibilidad específica de resina, revestimiento y conexiones al fabricante."
+      },
+      {
+        "question": "¿Podéis valorar un depósito para Moguer, Almonte o Lepe?",
+        "answer": "Podemos estudiar una propuesta según el depósito, la ruta y los accesos de destino. Necesitamos municipio y código postal; no anunciamos stock ni entrega garantizada a esas localidades."
+      },
+      {
+        "question": "¿Incluye instalación o descarga del depósito en Huelva?",
+        "answer": "No se incluye por defecto. Depofibra comercializa productos de fabricantes externos; la descarga no forma parte del transporte estándar salvo acuerdo verificado, y cualquier instalación debe presupuestarse por separado."
+      },
+      {
+        "question": "¿Se pueden pedir capacidades distintas de 5.000, 10.000 y 15.000 litros?",
+        "answer": "Sí. Son referencias comerciales con fichas individuales, no todo el catálogo. Otros modelos y capacidades deben verificarse con el proveedor antes de confirmar sus dimensiones y disponibilidad."
+      }
+    ],
+    "sourceName": "IFAPA (Junta de Andalucía) — Manual de programación del riego de los frutos rojos",
+    "sourceUrl": "https://www.juntadeandalucia.es/agriculturaypesca/ifapa/servifapa/registro-servifapa/dcf255d3-71ea-47b5-aab4-5656e3694452",
+    "quoteContext": "Consulta de depósito PRFV con destino en Huelva: verificar cultivo/uso, consumo y aportaciones, CP, capacidad, accesos, transporte externo y descarga."
+  },
+  {
+    "slug": "badajoz",
+    "heroImage": {
+      "src": "/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-compacto-escala.webp",
+      "alt": "Depósito vertical compacto de poliéster blanco con escala de nivel, fotografía de producto de referencia",
+      "productHref": "/depositos/vertical-base-plana/",
+      "productLabel": "Ver modelos verticales"
+    },
+    "province": "provincia de Badajoz",
+    "eyebrow": "PROVINCIA DE BADAJOZ · RESERVA PARA RIEGO DEL GUADIANA",
+    "seoTitle": "Depósitos de agua de poliéster en Badajoz | Depofibra",
+    "metaDescription": "Depósitos PRFV para riego en Badajoz. Compara litros, turnos de agua, conexiones y transporte antes de pedir presupuesto según el municipio.",
+    "h1": "Depósitos de agua de poliéster en Badajoz",
+    "lead": "Si buscas un depósito de poliéster para una explotación agrícola en Badajoz, compara formatos y capacidades según los días u horas entre aportaciones, el consumo y los accesos. Estudiamos presupuestos de producto y transporte externo sujetos a referencia y destino, sin prometer disponibilidad provincial.",
+    "regionHeading": "Vegas del Guadiana: dimensionar la reserva cuando el riego llega por turnos",
+    "regionParagraphs": [
+      "La Confederación Hidrográfica del Guadiana identifica comunidades de regantes y sistemas como los canales de Orellana, Zújar, Montijo y Lobón. Una explotación puede tener necesidades de almacenamiento distintas según su derecho de uso, intervalo efectivo de entrega y caudal disponible. Las zonas y nombres de canales sirven para comprender el contexto, pero no demuestran por sí solos que una finca concreta tenga suministro autorizado.",
+      "Un depósito PRFV para agua de riego puede estudiarse para desacoplar aportaciones y consumos en una parcela. La reserva necesaria se obtiene del balance real: litros consumidos durante los periodos sin reposición, más el margen operativo que proceda y descontando volumen no aprovechable. El depósito no aumenta la dotación de agua disponible ni sustituye el diseño hidráulico de bombeo, filtración y presión."
+    ],
+    "zoneHeading": "Qué estudiar según la finca y el lugar de entrega en Badajoz",
+    "localCases": [
+      {
+        "place": "Don Benito, Villanueva de la Serena y Vegas Altas",
+        "need": "Cuando el suministro se organiza en turnos, indica los litros y el calendario de aportaciones; revisa si interesa un vertical de superficie u otra geometría según base y altura libre."
+      },
+      {
+        "place": "Montijo, Lobón y Vegas Bajas",
+        "need": "Para regadíos asociados a canalizaciones o sectores, confirma el volumen consumido entre llenados y la ubicación de tomas, rebosadero y desagüe antes de pedir presupuesto."
+      },
+      {
+        "place": "Mérida, Almendralejo y otras fincas del sur",
+        "need": "No uses una tarifa por provincia como referencia cerrada: el código postal, la ruta real desde el fabricante, el acceso a la finca y la descarga pueden cambiar el coste del envío."
+      }
+    ],
+    "choiceHeading": "Elegir capacidad de depósito para riego en Badajoz",
+    "capacityNotes": [
+      {
+        "liters": 5000,
+        "note": "Referencia inicial para una reserva parcial o un sector de consumo limitado; necesita contrastarse con el calendario de suministro y el volumen útil."
+      },
+      {
+        "liters": 10000,
+        "note": "Capacidad intermedia a valorar cuando la reposición llega por turnos; no se presupone una autonomía fija sin conocer el caudal de riego."
+      },
+      {
+        "liters": 15000,
+        "note": "Para un almacenamiento mayor hay que revisar dimensiones reales, base, vías de acceso y medios de descarga; existen otras capacidades por consultar."
+      }
+    ],
+    "logisticsHeading": "Cómo presupuestar el suministro a Badajoz sin confundir precio y entrega",
+    "logisticsParagraphs": [
+      "Depofibra comercializa depósitos PRFV de fabricantes externos y atiende desde Casariche (Sevilla). No tiene fábrica, punto de venta físico, almacén ni flota propia confirmados en Badajoz. Aunque se estudie un transporte externo a la provincia, el origen real de carga depende del proveedor, y el coste, plazo, viabilidad y disponibilidad se verifican por pedido.",
+      "Antes de cotizar necesitamos el código postal y municipio, uso del depósito, capacidad aproximada, dimensiones del espacio, estado y anchura de accesos, presencia de líneas u obstáculos, posición de las conexiones y medios para recibir el producto. El transporte estándar no incorpora la descarga salvo acuerdo confirmado por escrito."
+    ],
+    "faq": [
+      {
+        "question": "¿Qué depósito necesito si recibo agua de riego por turnos en las Vegas del Guadiana?",
+        "answer": "Mide el consumo entre dos aportaciones, el caudal disponible en cada turno y la reserva mínima que necesita la instalación. No basta con conocer el nombre del canal, las hectáreas o la capacidad nominal del depósito."
+      },
+      {
+        "question": "¿Hacéis entrega de depósitos en Don Benito o Montijo?",
+        "answer": "Podemos estudiar la viabilidad según referencia, destino y transporte externo, pero no garantizamos reparto, fecha ni precio sin confirmar el trayecto y las condiciones del vehículo y de descarga."
+      },
+      {
+        "question": "¿Depofibra tiene almacén o fábrica en Badajoz?",
+        "answer": "No. Nuestra actividad es la comercialización de productos de fabricantes externos, con atención desde Casariche (Sevilla). La fabricación y el transporte físico corresponden a terceros según referencia y operación."
+      },
+      {
+        "question": "¿La descarga está incluida en el precio del transporte?",
+        "answer": "El transporte estándar no incluye descarga. Deben confirmarse los medios para descargar de forma segura y presupuestar cualquier servicio adicional antes de comprometer las condiciones."
+      },
+      {
+        "question": "¿También hay depósitos horizontales o capacidades mayores?",
+        "answer": "Se pueden estudiar familias verticales, horizontales con cunas o enterrables específicos y otros volúmenes del catálogo, siempre verificando ficha vigente, dimensiones, uso y disponibilidad con el proveedor."
+      }
+    ],
+    "sourceName": "Confederación Hidrográfica del Guadiana — Junta de explotación occidental y regantes",
+    "sourceUrl": "https://www.chguadiana.es/el-organismo/organos-de-participacion-y-gestion/organo-de-gestion-en-regimen-de-participacion/juntas-de-explotacion/junta-de-explotacion-occidental",
+    "quoteContext": "Consulta de depósito PRFV con destino en Badajoz: verificar fuente de agua autorizada, litros, turnos, CP, accesos, origen fabricante, transporte externo y descarga."
   }
 ];
