@@ -27,17 +27,29 @@ export const secondaryProducts: SecondaryProduct[] = [
     eyebrow: 'ALMACENAMIENTO SIN VERTIDO',
     summary: 'Almacenamiento de aguas residuales sin salida de vertido; requiere vaciado periódico.',
     details: 'Una fosa estanca almacena las aguas residuales para su retirada posterior. Debe estudiarse la capacidad, la frecuencia de vaciado, los accesos para mantenimiento y la documentación de la referencia.',
+    selectionNotes: [
+      'Uso, ocupación prevista y volumen de acumulación que indique el proyecto.',
+      'Gestión y frecuencia prevista de vaciado; acceso para los trabajos de mantenimiento.',
+      'Modelo de la fosa y documentación técnica exigible para esa referencia.',
+      'Código postal de entrega, cotas de acceso y medios de descarga disponibles.'
+    ],
     image: '/images/fosas-septicas/estanca.svg',
     imageAlt: 'Esquema ilustrativo de fosa estanca para almacenar aguas residuales sin vertido; no es una ficha técnica',
     quoteProduct: 'Fosa séptica',
   },
   {
-    slug: 'fosa-biologica', family: 'fosas', title: 'Fosa con filtro biológico',
-    titleSeo: 'Fosa séptica con filtro biológico | Depofibra',
-    metaDescription: 'Fosa con filtro biológico de poliéster: conoce las condiciones generales del tratamiento, los datos del proyecto y cómo pedir presupuesto.',
+    slug: 'fosa-biologica', family: 'fosas', title: 'Fosa séptica con filtro biológico',
+    titleSeo: 'Fosa séptica con filtro biológico de poliéster | Depofibra',
+    metaDescription: 'Fosa séptica con filtro biológico PRFV: compara uso, habitantes equivalentes, documentación exigible y transporte antes de solicitar presupuesto.',
     eyebrow: 'TRATAMIENTO BIOLÓGICO',
     summary: 'Sistema que incorpora tratamiento biológico. La selección depende del proyecto y del vertido.',
     details: 'El filtro biológico incorpora una etapa de tratamiento distinta del simple almacenamiento. Es necesario conocer los habitantes equivalentes, caudal previsto y condiciones de vertido.',
+    selectionNotes: [
+      'Habitantes equivalentes, caudal de diseño y uso estacional o permanente de la instalación.',
+      'Destino del efluente y exigencias de vertido indicadas por proyecto y administración.',
+      'Ficha del modelo, marcado CE y declaración de prestaciones cuando sean exigibles.',
+      'Accesos, emplazamiento, mantenimiento, código postal y descarga prevista.'
+    ],
     image: '/images/fosas-septicas/filtro-biologico.svg',
     imageAlt: 'Esquema ilustrativo de fosa con filtro biológico; la configuración real depende del fabricante',
     quoteProduct: 'Fosa séptica',
@@ -49,6 +61,12 @@ export const secondaryProducts: SecondaryProduct[] = [
     eyebrow: 'DEPURACIÓN CON AIREACIÓN',
     summary: 'Tratamiento biológico mediante aireación, con necesidades de electricidad y mantenimiento.',
     details: 'La oxidación total necesita equipos de aireación y mantenimiento según fabricante. El dimensionamiento y las condiciones de vertido dependen del uso y de la normativa aplicable al proyecto.',
+    selectionNotes: [
+      'Habitantes equivalentes y caudal estimados en proyecto, con variación estacional.',
+      'Necesidades de aireación, energía, mantenimiento y rendimiento a justificar por la referencia.',
+      'Destino del vertido, requisitos administrativos y documentación exigible del equipo.',
+      'Emplazamiento, acceso de transporte, código postal y medios de descarga.'
+    ],
     image: '/images/fosas-septicas/oxidacion-total.svg',
     imageAlt: 'Esquema ilustrativo de depuradora por oxidación total; no representa un equipo certificado concreto',
     quoteProduct: 'Fosa séptica',
