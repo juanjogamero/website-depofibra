@@ -6,12 +6,10 @@ import type { DepositLocalLanding } from '../data/depositLocalLandings';
 interface Props { landing: DepositLocalLanding }
 const {landing} = Astro.props;
 const canonical = `https://depofibra.com/depositos/${landing.slug}/`;
-const number = (liters: number) => new Intl.NumberFormat('es-ES').format(liters);
 const heroPhoto = landing.heroImage.src;
 const heroAlt = landing.heroImage.alt;
 const regionNote = landing.quoteContext;
 const isSevilla = landing.slug === 'sevilla';
-const capacityUrl = (liters: number) => `/depositos/vertical-base-plana/${liters}-litros/`;
 ---
 <Layout title={landing.seoTitle} description={landing.metaDescription} canonical={canonical} ogImage={heroPhoto} ogImageAlt={heroAlt} activeNav="depositos">
   <Fragment slot="head">
@@ -45,6 +43,7 @@ const capacityUrl = (liters: number) => `/depositos/vertical-base-plana/${liters
           <span class="eyebrow">{landing.eyebrow}</span>
           <h1>{landing.h1}</h1>
           <p class="dl-lead">{landing.lead}</p>
+          <p class="dl-range">Depósitos de <strong>100 a 60.000 litros</strong> según familia y modelo. Consúltanos la capacidad que necesitas.</p>
           <p class="dl-disclaimer">{isSevilla ? "Depofibra atiende desde Casariche, en la provincia de Sevilla, y comercializa depósitos de fabricantes externos. No anunciamos fábrica, almacén, visita comercial o transporte propios; cada suministro se confirma según modelo y destino." : `Depofibra comercializa depósitos de fabricantes externos desde Casariche (Sevilla). No tenemos fábrica ni sede en ${landing.province}; las condiciones de suministro se confirman según modelo y dirección de entrega.`}</p>
           <div class="dl-actions">
             <button type="button" class="btn btn--primary open-quote-trigger" data-product="Depósito" data-note={regionNote}>Solicitar presupuesto</button>
@@ -89,17 +88,20 @@ const capacityUrl = (liters: number) => `/depositos/vertical-base-plana/${liters
 
     <section class="dl-section dl-section--soft" aria-labelledby="dl-capacity-heading">
       <div class="container">
-        <span class="eyebrow">CATÁLOGO PRIORITARIO</span>
-        <h2 id="dl-capacity-heading">{landing.choiceHeading}</h2>
-        <p class="dl-subnote">Estas tres capacidades son solo ejemplos con fichas propias, no los únicos modelos ni tamaños que se pueden estudiar. Consulta también los verticales, horizontales y otros formatos del catálogo; volumen útil, medidas, equipamiento y disponibilidad se verifican por referencia.</p>
-        <div class="dl-capacities">
-          {landing.capacityNotes.map(item=><article class="dl-capacity">
-            <h3>{number(item.liters)} <span>litros</span></h3>
-            <p>{item.note}</p>
-            <a href={capacityUrl(item.liters)}>Consultar ficha de {number(item.liters)} L <span aria-hidden="true">↗</span></a>
-          </article>)}
-        </div>
-        <p class="dl-secondary-links">¿Todavía estás calculando los litros? Consulta nuestra <a href="/blog/calcular-capacidad-deposito-agua-riego/">guía para estimar consumo y días de reserva</a> o el <a href="/depositos/">catálogo completo de modelos y capacidades</a>. También puedes comparar los <a href="/depositos/horizontal-con-cunas/">modelos horizontales con cunas</a> o los <a href="/depositos/horizontal-enterrable/">horizontales enterrables</a>, que son referencias distintas.</p>
+        <span class="eyebrow">CAPACIDADES Y TIPOS DE DEPÓSITOS</span>
+        <h2 id="dl-capacity-heading">Depósitos de 100 a 60.000 litros</h2>
+        <p class="dl-subnote">Trabajamos con capacidades desde <strong>100 hasta 60.000 litros</strong>, según la familia, el modelo y el uso. No todas las capacidades están disponibles en todos los formatos: confirmamos medidas, equipamiento y compatibilidad antes de presupuestar.</p>
+        <nav aria-label="Familias de depósitos de poliéster">
+          <ul class="dl-family-list">
+            <li><a href="/depositos/vertical-base-plana/">Verticales de base plana <span aria-hidden="true">↗</span></a></li>
+            <li><a href="/depositos/horizontal-con-cunas/">Horizontales con cunas <span aria-hidden="true">↗</span></a></li>
+            <li><a href="/depositos/horizontal-enterrable/">Horizontales enterrables <span aria-hidden="true">↗</span></a></li>
+            <li><a href="/depositos/vertical-con-patas/">Verticales con patas <span aria-hidden="true">↗</span></a></li>
+            <li><a href="/depositos/tipo-vaso/">Depósitos tipo vaso <span aria-hidden="true">↗</span></a></li>
+            <li><a href="/depositos/cuadrados-rectangulares/">Cuadrados y rectangulares <span aria-hidden="true">↗</span></a></li>
+          </ul>
+        </nav>
+        <p class="dl-secondary-links">Consulta el <a href="/depositos/">catálogo completo de formatos</a> o la <a href="/blog/calcular-capacidad-deposito-agua-riego/">guía para calcular la reserva de agua</a>. Indícanos los litros que necesitas, el uso y el código postal para estudiar la referencia y el transporte.</p>
       </div>
     </section>
 
@@ -142,6 +144,7 @@ const capacityUrl = (liters: number) => `/depositos/vertical-base-plana/${liters
   .dl-breadcrumb a{color:var(--color-primary);text-decoration:underline;text-underline-offset:3px}
   .dl-intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:clamp(28px,5vw,72px);align-items:center;padding:clamp(34px,6vw,82px) 0 clamp(56px,7vw,95px)}
   .dl-intro h1{font:800 clamp(34px,5.1vw,59px)/1.1 var(--font-display);letter-spacing:-.05em;color:var(--color-primary-dark);margin:14px 0 22px}
+  .dl-range{margin-top:14px;font:600 15px/1.6 var(--font-body);color:var(--color-primary-dark)}
   .dl-lead{max-width:690px;font:400 clamp(16px,1.5vw,19px)/1.65 var(--font-body);color:var(--color-gray-700)}
   .dl-disclaimer{max-width:620px;margin-top:19px;font:400 13px/1.7 var(--font-body);color:var(--color-gray-600)}
   .dl-actions{display:flex;flex-wrap:wrap;align-items:center;gap:15px 24px;margin-top:28px}
@@ -164,17 +167,17 @@ const capacityUrl = (liters: number) => `/depositos/vertical-base-plana/${liters
   .dl-guide-row{display:grid;grid-template-columns:33px minmax(0,1fr);gap:15px;padding:20px 0;border-bottom:1px solid var(--color-gray-200)}
   .dl-num{font:800 12px/1.6 var(--font-display);color:var(--color-primary)}
   .dl-guide-row h3{font:800 16px/1.35 var(--font-display);color:var(--color-primary-dark);margin-bottom:7px}
-  .dl-capacities{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px;margin:28px 0 30px}
-  .dl-capacity{padding:22px 0 14px;border-top:2px solid var(--color-primary)}
-  .dl-capacity h3{font:800 clamp(29px,3vw,42px)/1.15 var(--font-display);color:var(--color-primary-dark);letter-spacing:-.045em;margin-bottom:12px}
-  .dl-capacity h3 span{font-size:14px;letter-spacing:0}
-  .dl-capacity a{display:inline-block;font-size:13px;margin-top:17px}
+  .dl-family-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 30px;margin:27px 0 30px;padding:0;list-style:none;border-top:1px solid var(--color-gray-200)}
+  .dl-family-list li{border-bottom:1px solid var(--color-gray-200)}
+  .dl-family-list a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0;font:700 15px/1.5 var(--font-body);color:var(--color-primary);text-decoration:none}
+  .dl-family-list a:hover{text-decoration:underline;text-underline-offset:4px}
+  .dl-family-list a span{font-size:13px}
   .dl-secondary-links{padding-top:16px;border-top:1px solid var(--color-gray-200)}
   .dl-faq{border-top:1px solid var(--color-gray-200)}
   .dl-faq details{border-bottom:1px solid var(--color-gray-200)}
   .dl-faq summary{cursor:pointer;color:var(--color-primary-dark);font:700 15px/1.5 var(--font-body);padding:19px 0}
   .dl-faq details p{margin:0 0 19px}
   .dl-page a:focus-visible,.dl-page button:focus-visible{outline:3px solid #79b5ef;outline-offset:3px}
-  @media(max-width:820px){.dl-intro,.dl-split{grid-template-columns:1fr}.dl-intro{gap:27px}.dl-photo{max-width:480px}.dl-capacities{gap:16px}}
-  @media(max-width:570px){.dl-capacities{grid-template-columns:1fr}.dl-capacity{padding:18px 0 10px}.dl-section{padding:43px 0}}
+  @media(max-width:820px){.dl-intro,.dl-split{grid-template-columns:1fr}.dl-intro{gap:27px}.dl-photo{max-width:480px}}
+  @media(max-width:570px){.dl-family-list{grid-template-columns:1fr}.dl-section{padding:43px 0}}
 </style>
