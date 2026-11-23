@@ -100,7 +100,7 @@
 <style>
   .quote-overlay {position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,18,38,.72);backdrop-filter:blur(7px);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
   .quote-overlay.is-open {opacity:1;visibility:visible}
-  .quote-card {position:relative;width:min(100%,490px);max-height:min(94dvh,840px);overflow-y:auto;overscroll-behavior:contain;padding:clamp(22px,3vw,32px);border-radius:24px;background:#fff;box-shadow:0 25px 65px rgba(0,18,38,.25);transform:translateY(12px) scale(.98);transition:transform .3s var(--ease-out)}
+  .quote-card {position:relative;width:min(100%,490px);max-height:calc(100dvh - 24px);overflow-y:auto;overscroll-behavior:contain;padding:clamp(22px,3vw,32px);border-radius:24px;background:#fff;box-shadow:0 25px 65px rgba(0,18,38,.25);transform:translateY(12px) scale(.98);transition:transform .3s var(--ease-out)}
   .quote-overlay.is-open .quote-card{transform:translateY(0) scale(1)}
   .quote-close{position:absolute;right:15px;top:15px;width:40px;height:40px;border:0;border-radius:50%;display:grid;place-items:center;color:var(--color-gray-600);background:var(--color-gray-100);cursor:pointer}
   .quote-close:hover{background:var(--color-gray-200)}
@@ -109,7 +109,7 @@
   .quote-desc{color:var(--color-gray-600);font:400 14px/1.6 var(--font-body);margin-bottom:20px;max-width:350px}
   .quote-honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
   .quote-fields{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-  .quote-fields .form-group{min-width:0}
+  .quote-fields .form-group{min-width:0;margin-bottom:0}
   .quote-fields .form-label,.quote-more .form-label{display:block;margin-bottom:6px;font-size:12px;font-weight:700;color:var(--color-gray-700)}
   .quote-fields .form-input,.quote-fields .form-select,.quote-more .form-input{display:block;width:100%;min-width:0;min-height:46px;padding:10px 12px;border:1px solid #cad7e6;border-radius:10px;background:#fff;color:var(--color-dark);font-size:14px;line-height:1.4}
   .quote-fields .form-input::placeholder,.quote-more .form-input::placeholder{color:#8391a2}
@@ -145,6 +145,27 @@
   .quote-call__divider{display:flex;align-items:center;gap:10px;margin:15px 0 0;color:#657789;font:600 11px/1.4 var(--font-body);text-align:center}
   .quote-call__divider::before,.quote-call__divider::after{content:"";height:1px;flex:1;background:#d5e0ea}
   .quote-call__divider span{flex:none}
+  /* El margen global de los campos duplicaba el espacio de cada fila del grid.
+     En un viewport normal el formulario cabe sin scroll interno; en pantallas
+     bajas, con zoom o detalles abiertos se conserva el scroll por accesibilidad. */
+  @media (min-width:531px) and (min-height:800px) {
+    .quote-overlay{padding:12px}
+    .quote-card{padding:20px 28px}
+    .quote-eyebrow{margin-bottom:7px}
+    .quote-title{margin-bottom:5px}
+    .quote-desc{margin-bottom:11px;line-height:1.45}
+    .quote-call{margin:10px 0 12px}
+    .quote-call__intro{margin-bottom:5px}
+    .quote-call__link{min-height:60px;padding:9px 12px}
+    .quote-call__divider{margin-top:9px}
+    .quote-fields{gap:8px 12px}
+    .quote-fields .form-label{margin-bottom:5px}
+    .quote-fields .form-input,.quote-fields .form-select{min-height:42px;padding:8px 12px}
+    .quote-more{margin-top:10px;padding-top:10px}
+    .quote-privacy{margin:11px 0}
+    .quote-submit{min-height:47px}
+    .quote-method{margin-top:7px}
+  }
   @media(max-width:530px){.quote-overlay{padding:8px}.quote-card{padding:24px 18px;border-radius:20px}.quote-fields{grid-template-columns:1fr;gap:10px}.quote-desc{margin-bottom:15px}.quote-title{margin-bottom:8px}.quote-fields .form-input,.quote-fields .form-select{min-height:44px}.quote-more{margin-top:12px}}
   @media(prefers-reduced-motion:reduce){.quote-overlay,.quote-card,.quote-more summary span{transition:none}}
 </style>
