@@ -28,7 +28,7 @@ function getGroup(category: string) {
       '@context':'https://schema.org', '@type':'Blog', '@id':'https://depofibra.com/blog/#blog', name:'Blog de Depofibra',
       url:'https://depofibra.com/blog/', inLanguage:'es-ES',
       isPartOf:{'@id':'https://depofibra.com/#website'},
-      publisher:{'@id':'https://depofibra.com/#organization'},
+      publisher:{'@type':'Organization','@id':'https://depofibra.com/#organization',name:'Depofibra',url:'https://depofibra.com/'},
       blogPost:articlesNewestFirst.map(a=>({ '@type':'BlogPosting','@id':`https://depofibra.com/blog/${a.slug}/#article`,headline:a.title,url:`https://depofibra.com/blog/${a.slug}/` }))
     })}/>
   </Fragment>
