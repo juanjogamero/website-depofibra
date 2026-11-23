@@ -54,15 +54,15 @@ export const secondaryProducts: SecondaryProduct[] = [
     quoteProduct: 'Fosa séptica',
   },
   {
-    slug: 'cuba-remolque', family: 'cubas', title: 'Cuba para remolque agrícola',
-    titleSeo: 'Cuba de poliéster para remolque agrícola | Depofibra',
-    metaDescription: 'Cuba de poliéster para remolque agrícola: comprueba capacidad, dimensiones, apoyos y carga del vehículo antes de consultar presupuesto.',
+    slug: 'cuba-remolque', family: 'cubas', title: 'Cuba o cisterna de poliéster para remolque agrícola',
+    titleSeo: 'Cisternas de poliéster para remolques agrícolas | Depofibra',
+    metaDescription: 'Cuba o cisterna de poliéster para remolque agrícola. Estudia el depósito PRFV sin vehículo: capacidad, medidas, apoyos y transporte según destino.',
     eyebrow: 'APLICACIÓN AGRÍCOLA',
-    summary: 'Cuba de poliéster para estudiar su montaje en remolque y los apoyos necesarios.',
-    details: 'Conviene confirmar las dimensiones del remolque, la carga admisible, los apoyos y la capacidad necesaria. No se presupone incluido el remolque completo.',
+    summary: 'Si ya tienes un remolque agrícola y buscas solo una cuba de poliéster, podemos estudiar el recipiente de PRFV por separado, según vehículo y fabricante.',
+    details: 'Para sustituir una cuba existente o equipar un remolque, indica la longitud y la anchura útiles, la carga admisible, el líquido, los apoyos y los anclajes previstos. La compatibilidad, el montaje y los requisitos de circulación debe confirmarlos el profesional responsable. No se incluye el remolque completo por defecto.',
     selectionNotes: [
       'Capacidad aproximada y líquido que llevará la cuba.',
-      'Medidas del remolque y carga útil disponible, si se conocen.',
+      'Medidas útiles, carga admisible y modelo del remolque existente o previsto, si se conocen.',
       'Tipo de apoyo, anclajes y conexiones a estudiar con el fabricante.',
       'Localidad y código postal de entrega, accesos y medios para descargar.'
     ],

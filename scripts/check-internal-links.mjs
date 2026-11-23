@@ -292,6 +292,23 @@ for (const [source, targets] of [
   }
 }
 
+
+// SEO long tail: páginas existentes deben responder a la compra de cisterna suelta
+// y aljibe enterrable, sin fabricar una landing duplicada ni prometer homologaciones.
+for (const [route, required] of [
+  ['/cubas-cisternas/', ['Cubas y cisternas de poliéster para remolques', 'href="/cubas-cisternas/cuba-remolque/"']],
+  ['/cubas-cisternas/cuba-remolque/', ['Cisternas de poliéster para remolques agrícolas', 'únicamente la cisterna', 'href="/blog/cuba-cisterna-poliester-remolque-agricola/"']],
+  ['/depositos/horizontal-enterrable/', ['Aljibes prefabricados de poliéster para enterrar', 'href="/depositos/agua-de-lluvia/"', 'href="/depositos/agua-de-pozo/"']],
+  ['/blog/cuba-cisterna-poliester-remolque-agricola/', ['href="/cubas-cisternas/cuba-remolque/"']],
+]) {
+  const file = targetFile(route);
+  if (!file) { errors.push('SEO long tail: falta ruta ' + route); continue; }
+  const html = content(file);
+  for (const snippet of required) {
+    if (!html.includes(snippet)) errors.push('SEO long tail: falta referencia en ' + route + ': ' + snippet);
+  }
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
