@@ -118,10 +118,10 @@ export const depositFamilies: DepositFamily[] = [
   },
   {
     slug:'horizontal-enterrable',
-    name:'Depósito horizontal enterrable',
+    name:'Aljibe prefabricado de poliéster para enterrar',
     shortName:'Horizontal enterrable',
     eyebrow:'Depósitos · Instalación enterrada',
-    intro:'Depósitos horizontales de poliéster diseñados para enterramiento, conocidos en algunas aplicaciones de almacenamiento de agua como aljibes prefabricados de PRFV. Comparten medidas de referencia con los horizontales con cunas, pero son productos distintos: el enterrable exige condiciones de instalación específicas y no lleva medidor de capacidad visible.',
+    intro:'Aljibes prefabricados de poliéster reforzado con fibra de vidrio (PRFV) para instalaciones que requieren depósito horizontal enterrable. No se deben confundir con los horizontales con cunas para superficie: la referencia debe estar concebida para enterramiento y verificarse frente a terreno, cargas, profundidad y uso del agua.',
     installation:'Enterrado · Bajo proyecto',geometry:'Horizontal · Enterrable',application:'Agua y otros usos compatibles',
     quoteProduct:'Depósito horizontal para enterrar',
     gallery:[
@@ -130,15 +130,15 @@ export const depositFamilies: DepositFamily[] = [
       {src:'/images/depositos/horizontal-enterrable/deposito-poliester-horizontal-enterrable-gris-vista-frontal.webp',alt:'Vista frontal de depósito horizontal gris con boca de acceso superior',kind:'Fotografía de referencia'},
       {src:'/images/depositos/horizontal-enterrable/deposito-poliester-horizontal-enterrable-gris-en-zanja-instalacion.webp',alt:'Depósito horizontal gris colocado en una zanja con boca de acceso superior',kind:'Fotografía de referencia'},
     ],
-    titleSeo:'Depósitos horizontales enterrables de poliéster | Depofibra',
-    metaDescription:'Aljibes prefabricados de poliéster y depósitos horizontales enterrables. Compara usos, terreno, accesos, conexiones y presupuesto según destino.',
+    titleSeo:'Aljibes prefabricados de poliéster para enterrar | Depofibra',
+    metaDescription:'Aljibe prefabricado de poliéster (PRFV) para enterrar. Compara medidas, cargas del terreno, accesos y conexiones antes de pedir presupuesto.',
     highlights:[
       {title:'Uso enterrado',text:'La elección debe partir de un modelo diseñado expresamente para enterramiento.'},
       {title:'Terreno y cargas',text:'Condiciones del suelo y profundidad requieren verificación técnica.'},
       {title:'Sin medidor visible',text:'El modelo enterrable no incorpora el medidor externo de capacidad previsto en los modelos de superficie; consulta accesos y conexiones.'},
     ],
     description:[
-      'Las referencias enterrables permiten estudiar instalaciones donde no interesa ocupar espacio visible en superficie. No son intercambiables con los depósitos horizontales con cunas.',
+      'Un aljibe prefabricado de poliéster para enterrar puede estudiarse para una finca donde se necesita reservar agua sin ocupar superficie visible, según el uso permitido por su documentación. No es intercambiable con un depósito horizontal con cunas, que está pensado para superficie.',
       'El terreno, la profundidad, la presencia de agua subterránea y las cargas previstas condicionan la solución. La instalación debe seguir la documentación y las prescripciones técnicas aplicables al modelo.',
       'Según las tablas facilitadas, las referencias enterrables comparten parejas de diámetro y longitud con los horizontales con cunas, pero no son el mismo depósito ni llevan sus apoyos de superficie. En el enterrable no se incluye medidor de capacidad visible. Se estudian tapadera, rebosadero, anillas, colores y conexiones personalizadas según viabilidad técnica de la referencia y las exigencias del enterramiento.',
     ],
@@ -149,6 +149,7 @@ export const depositFamilies: DepositFamily[] = [
     ],
     faqs:[
       {q:'¿Puedo enterrar un depósito horizontal convencional?',a:'No se debe hacer. Solo debe enterrarse una referencia diseñada y validada para ese uso.'},
+      {q:'¿Qué revisar si necesito un aljibe prefabricado en una finca?',a:'Concreta capacidad nominal y volumen útil requerido, uso y procedencia autorizada del agua, condiciones del terreno, nivel freático, profundidad, cargas, accesos y descarga. La ficha y la instalación deben validarse para el modelo enterrable concreto.'},
       {q:'¿Qué diferencia hay entre un aljibe de poliéster y una fosa séptica?',a:'El aljibe se plantea para almacenar agua con el uso permitido por su ficha; una fosa séptica tiene una función de saneamiento y una documentación diferente. No son productos intercambiables ni puede darse por apto cualquier aljibe para agua potable.'},
       {q:'¿El precio incluye excavación e instalación?',a:'No se presuponen esos trabajos. Se concretarán por separado si correspondiese, y siempre según condiciones acordadas.'},
       {q:'¿Es obligatorio un proyecto?',a:'Los requisitos técnicos y administrativos dependen del uso y la instalación. Deben revisarse para cada caso.'},
