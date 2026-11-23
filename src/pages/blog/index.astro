@@ -25,9 +25,11 @@ function getGroup(category: string) {
 <Layout title="Guías de depósitos, fosas, piscinas y cubas | Depofibra" description="Guías prácticas sobre depósitos de poliéster, riego, transporte, fosas sépticas, piscinas y cubas. Resuelve tus dudas y encuentra el producto adecuado." canonical="https://depofibra.com/blog/" ogImage={featurePhoto.src} ogImageAlt={featurePhoto.alt} activeNav="blog">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
-      '@context':'https://schema.org', '@type':'Blog', name:'Blog de Depofibra',
+      '@context':'https://schema.org', '@type':'Blog', '@id':'https://depofibra.com/blog/#blog', name:'Blog de Depofibra',
       url:'https://depofibra.com/blog/', inLanguage:'es-ES',
-      blogPost:articlesNewestFirst.map(a=>({ '@type':'BlogPosting',headline:a.title,url:`https://depofibra.com/blog/${a.slug}/` }))
+      isPartOf:{'@id':'https://depofibra.com/#website'},
+      publisher:{'@id':'https://depofibra.com/#organization'},
+      blogPost:articlesNewestFirst.map(a=>({ '@type':'BlogPosting','@id':`https://depofibra.com/blog/${a.slug}/#article`,headline:a.title,url:`https://depofibra.com/blog/${a.slug}/` }))
     })}/>
   </Fragment>
   <div class="db-page">
