@@ -263,7 +263,7 @@ if (!depositCatalogFile || !verticalFamilyFile) {
   if (!catalogHtml.includes('Venta de depósitos de poliéster') || !catalogHtml.includes('href="/depositos/para-riego/"')) {
     errors.push('SEO comercial: catálogo sin intención de compra o enlazado a riego');
   }
-  if (!familyHtml.includes('Referencias de 5.000 a 60.000 litros') || !familyHtml.includes('60.000 L')) {
+  if (!familyHtml.includes('GAMA DE ESTA FAMILIA') || !familyHtml.includes('Capacidades recogidas en la tabla orientativa') || !familyHtml.includes('60.000 L')) {
     errors.push('SEO comercial: verticales sin la amplitud de referencias que consta en la tabla');
   }
   if (familyHtml.includes('Tres ejemplos de capacidad')) {
