@@ -3,7 +3,7 @@
  * No son tiendas/sedes. No se ofrece transporte o aptitud sin confirmación.
  */
 export interface DepositLocalLanding {
-  slug: 'murcia' | 'valencia' | 'sevilla' | 'palencia' | 'soria' | 'huelva' | 'badajoz';
+  slug: 'murcia' | 'valencia' | 'sevilla' | 'palencia' | 'soria' | 'huelva' | 'badajoz' | 'segovia' | 'huesca' | 'teruel' | 'cuenca';
   heroImage: { src: string; alt: string; productHref: string; productLabel: string };
   province: string;
   eyebrow: string;
@@ -497,5 +497,329 @@ export const depositLocalLandings: DepositLocalLanding[] = [
     "sourceName": "Confederación Hidrográfica del Guadiana — Junta de explotación occidental y regantes",
     "sourceUrl": "https://www.chguadiana.es/el-organismo/organos-de-participacion-y-gestion/organo-de-gestion-en-regimen-de-participacion/juntas-de-explotacion/junta-de-explotacion-occidental",
     "quoteContext": "Consulta de depósito PRFV con destino en Badajoz: verificar fuente de agua autorizada, litros, turnos, CP, accesos, origen fabricante, transporte externo y descarga."
+  },
+  {
+    "slug": "segovia",
+    "heroImage": {
+      "src": "/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verde-escala-frontal.webp",
+      "alt": "Depósito vertical verde de poliéster con escala de nivel en su parte frontal",
+      "productHref": "/depositos/vertical-base-plana/",
+      "productLabel": "Ver depósitos verticales"
+    },
+    "province": "provincia de Segovia",
+    "eyebrow": "SEGOVIA · ALMACENAMIENTO DE AGUA PARA GRANJAS Y FINCAS",
+    "seoTitle": "Depósitos de poliéster en Segovia para agua | Depofibra",
+    "metaDescription": "Depósitos PRFV para granjas, fincas y riego en Segovia. Compara formatos y litros y consulta transporte según modelo, accesos y código postal.",
+    "h1": "Depósitos de poliéster para agua en Segovia",
+    "lead": "¿Buscas un depósito de poliéster para reserva de agua en una granja o finca segoviana? Compara depósitos verticales, horizontales de superficie y modelos de enterramiento para necesidades compatibles. Estudiaremos el presupuesto según consumo, modelo y destino exactos, sin asumir reparto inmediato.",
+    "regionHeading": "Segovia: reserva de agua en explotaciones ganaderas y parcelas agrícolas",
+    "regionParagraphs": [
+      "La Junta de Castilla y León mantiene un conjunto de datos sobre explotaciones ganaderas de porcino y su distribución territorial. Esa actividad sirve para identificar usos potenciales de reservas de agua, no para afirmar cuántos compradores buscan depósitos o que un modelo determinado sea apto para dar de beber a animales.",
+      "En una explotación ganadera conviene separar tres cuestiones: cuánto se consume cada jornada, cuánto tiempo debe funcionar la instalación sin reposición y qué condiciones de higiene y compatibilidad exige el agua almacenada. Una reserva nominal de 10.000 litros no equivale automáticamente a 10.000 litros útiles ni asegura una autonomía sin calcular consumos.",
+      "Para fincas con riego o naves agrícolas, la geometría puede ser decisiva: un vertical necesita base y altura libre; un horizontal con cunas requiere longitud y apoyos adecuados; para enterrar se consulta un modelo específicamente concebido para ello. La elección no sustituye autorizaciones de agua ni trabajos de instalación."
+    ],
+    "zoneHeading": "Tres escenarios de compra y entrega en Segovia",
+    "localCases": [
+      {
+        "place": "Cuéllar y Tierra de Pinares",
+        "need": "Si la reserva se plantea para una granja, indica consumo diario, origen del agua y días de autonomía. Aporta la anchura de acceso, espacio de colocación y condiciones para descargar el depósito vacío."
+      },
+      {
+        "place": "Cantalejo, Sepúlveda y el nordeste",
+        "need": "Para fincas con caminos rurales, comprueba curvas, firme, pasos estrechos y obstáculos elevados antes de elegir un diámetro. La foto de catálogo no sustituye las cotas exteriores de la referencia."
+      },
+      {
+        "place": "Segovia capital, Nava de la Asunción y entorno",
+        "need": "En naves o patios interiores es prioritario medir portones, gálibo y maniobra. Un depósito horizontal puede encajar donde uno vertical resulta demasiado alto, según modelo."
+      }
+    ],
+    "choiceHeading": "Comparar capacidad y formato para Segovia: de 5.000 a 15.000 L y otras referencias",
+    "capacityNotes": [
+      {
+        "liters": 5000,
+        "note": "Ejemplo para reservas acotadas o por sectores. Conviene comprobar cuántas horas o días cubre con el consumo real y qué geometría cabe en el acceso."
+      },
+      {
+        "liters": 10000,
+        "note": "Capacidad intermedia orientativa cuando hay periodos sin reposición. Verifica litros útiles, dimensiones máximas y si la descarga dispone de medios adecuados."
+      },
+      {
+        "liters": 15000,
+        "note": "Reserva nominal mayor a valorar sin dar por supuesta su suficiencia; para proyectos superiores se pueden consultar otras capacidades y familias."
+      }
+    ],
+    "logisticsHeading": "Cómo solicitar un presupuesto para una granja o finca de Segovia",
+    "logisticsParagraphs": [
+      "Depofibra comercializa depósitos de fabricantes externos y atiende desde Casariche (Sevilla). No dispone de sede, fabricación, almacén ni flota propios en Segovia. Para estudiar una venta deben confirmarse la referencia, el origen real de carga y la disponibilidad del transportista.",
+      "Indica municipio y código postal, litros aproximados, uso y tipo de agua, espacio, dimensiones de los accesos y medios de descarga. El transporte estándar no incluye descarga. No se garantizan instalaciones, grúas, fechas ni portes antes de cotizarlo con el proveedor."
+    ],
+    "faq": [
+      {
+        "question": "¿Se pueden pedir depósitos de poliéster para una granja en Cuéllar o Cantalejo?",
+        "answer": "Podemos estudiar una propuesta según modelo, compatibilidad de uso, código postal y transporte disponible. No anunciamos stock ni ruta garantizada por municipio."
+      },
+      {
+        "question": "¿El depósito está certificado para agua de bebida animal?",
+        "answer": "No se presume esa aptitud en todas las referencias. Debe verificarse el uso y la documentación del modelo concreto y las condiciones higiénicas de la instalación."
+      },
+      {
+        "question": "¿Qué capacidad necesito para dos días sin suministro?",
+        "answer": "Multiplica el consumo diario medido por los días de reserva y revisa volumen útil y margen operativo. Por ejemplo, 4.000 litros diarios durante dos días requieren al menos 8.000 litros teóricos, sin afirmar que un modelo concreto cumpla el proyecto."
+      },
+      {
+        "question": "¿Qué diferencias hay entre vertical y horizontal con cunas?",
+        "answer": "El vertical de superficie requiere base adecuada y altura disponible. El horizontal con cunas precisa espacio longitudinal y apoyos confirmados; ninguno se debe enterrar si el modelo no está diseñado para ello."
+      },
+      {
+        "question": "¿Incluye descarga el transporte a Segovia?",
+        "answer": "No por defecto. La descarga debe planificarse con medios seguros y cualquier servicio adicional se confirma antes del presupuesto definitivo."
+      }
+    ],
+    "sourceName": "Junta de Castilla y León — datos de explotaciones ganaderas de porcino",
+    "sourceUrl": "https://analisis.datosabiertos.jcyl.es/explore/dataset/explotaciones-ganaderas-de-porcino/",
+    "quoteContext": "Consulta de depósito PRFV para Segovia: granja/finca, consumo y uso, litros, municipio/CP, cotas, origen de carga, transporte externo y descarga."
+  },
+  {
+    "slug": "huesca",
+    "heroImage": {
+      "src": "/images/depositos/vertical-con-patas/deposito-poliester-vertical-con-patas-verde-con-cubierta-solar.webp",
+      "alt": "Depósito vertical verde de poliéster elevado sobre apoyos junto a una cubierta con placas solares",
+      "productHref": "/depositos/vertical-con-patas/",
+      "productLabel": "Comparar verticales con patas"
+    },
+    "province": "provincia de Huesca",
+    "eyebrow": "HUESCA · RESERVA DE AGUA PARA GRANJAS Y REGADÍO",
+    "seoTitle": "Depósitos de poliéster para agua en Huesca | Depofibra",
+    "metaDescription": "Depósitos de poliéster para granjas y fincas de Huesca. Estudia reserva de agua, modelos verticales y horizontales y transporte por destino.",
+    "h1": "Depósitos de poliéster para agua en Huesca",
+    "lead": "Si necesitas un depósito PRFV para reserva de agua en una granja o explotación agrícola oscense, consulta formatos y capacidades según consumo, red de suministro y espacio disponible. La propuesta se prepara para el modelo y código postal concretos, no con una tarifa provincial genérica.",
+    "regionHeading": "La Litera, Bajo Cinca y Monegros: prever reservas de agua por uso",
+    "regionParagraphs": [
+      "El Gobierno de Aragón publica estadísticas sobre la distribución territorial de explotaciones ganaderas. Huesca tiene un importante sector agrario y ganadero, pero eso no acredita una cantidad concreta de búsquedas de depósitos ni ausencia de competidores: hay empresas locales que anuncian depósitos de poliéster.",
+      "En granjas, el cálculo empieza por el volumen consumido en un intervalo sin aportación. Conviene definir consumo real, posibles interrupciones, calidad del agua requerida, condiciones de limpieza y tratamiento del sistema, sin afirmar que un recipiente PRFV cualquiera cumple las necesidades de agua de bebida animal.",
+      "En riego, el depósito puede ayudar a acompasar entradas autorizadas y periodos de uso. Si el espacio en altura es limitado, contrasta vertical base plana con horizontal con cunas; los modelos con patas exigen revisar estructura, estabilidad y cotas, no garantizan por sí solos presión hidráulica."
+    ],
+    "zoneHeading": "Tres situaciones diferentes en la provincia de Huesca",
+    "localCases": [
+      {
+        "place": "Tamarite de Litera, Binéfar y La Litera",
+        "need": "En granjas, concreta consumo de agua, autonomía y limpieza. Una instalación elevada exige revisar apoyo y proyecto; no se presupone aptitud ni presión del sistema solo por la foto."
+      },
+      {
+        "place": "Fraga y Bajo Cinca",
+        "need": "Para parcelas de riego, revisa horarios de aportación, litros por sector, posición de tomas y reserva intermedia. El depósito no amplía concesiones de agua."
+      },
+      {
+        "place": "Sariñena, Monegros y entorno de Huesca",
+        "need": "En caminos de acceso a fincas, confirma radio de giro, firme, pasos y obstáculos superiores; el transporte y la descarga necesitan planificación según tamaño."
+      }
+    ],
+    "choiceHeading": "Qué depósitos de poliéster comparar para Huesca",
+    "capacityNotes": [
+      {
+        "liters": 5000,
+        "note": "Referencia para almacenamiento parcial o consumo acotado; verifica si los litros útiles cubren la autonomía que se persigue."
+      },
+      {
+        "liters": 10000,
+        "note": "Compara esta capacidad con consumos y frecuencia de reposición reales; elige el formato después de medir base, longitud y altura."
+      },
+      {
+        "liters": 15000,
+        "note": "Para una reserva superior revisa dimensiones exteriores, condiciones del apoyo y descarga; otras capacidades del catálogo pueden estudiarse por referencia."
+      }
+    ],
+    "logisticsHeading": "Presupuesto y transporte de depósito PRFV a Huesca",
+    "logisticsParagraphs": [
+      "Atendemos desde Casariche (Sevilla) y trabajamos con fabricantes y transportistas externos. Depofibra no tiene fábrica, almacén o delegación en Huesca. La competencia y la viabilidad del porte se valoran caso a caso; no anunciamos plazos o precios provinciales cerrados.",
+      "Antes del presupuesto indica modelo o litros deseados, uso real, municipio y código postal, altura y anchura de accesos, camino de entrada y medios de descarga. El servicio estándar de transporte no incluye descarga salvo que se pacte expresamente."
+    ],
+    "faq": [
+      {
+        "question": "¿Podéis estudiar un depósito para una granja de La Litera?",
+        "answer": "Sí, podemos evaluar un presupuesto según modelo, uso, documentación, destino y transporte externo. La viabilidad de entrega no se da por confirmada antes de cotizarla."
+      },
+      {
+        "question": "¿Sirve un depósito vertical con patas para dar presión a bebederos?",
+        "answer": "No se puede garantizar por ese solo hecho. El proyecto hidráulico debe verificar desnivel disponible, caudal, presión, estructura y compatibilidad del depósito con el agua requerida."
+      },
+      {
+        "question": "¿Qué opción ocupa menos altura, un vertical o un horizontal?",
+        "answer": "Depende de las cotas de cada referencia. El horizontal con cunas suele distribuir volumen longitudinalmente, pero requiere apoyos y superficie; hay que medir antes de decidir."
+      },
+      {
+        "question": "¿Hacéis suministro a Fraga o Sariñena con descarga?",
+        "answer": "Se puede estudiar destino y transporte según referencia; la descarga no está incluida por defecto y debe contratarse o prepararse por separado."
+      },
+      {
+        "question": "¿Solo hay depósitos de 5.000, 10.000 y 15.000 litros?",
+        "answer": "No. Son tres capacidades con ficha individual. Pueden estudiarse otras capacidades y geometrías de las familias del catálogo, sujetas a confirmación."
+      }
+    ],
+    "sourceName": "Gobierno de Aragón — distribución de explotaciones ganaderas",
+    "sourceUrl": "https://www.aragon.es/estadisticas-agrarias/ganaderas/distribucion-de-ganaderia",
+    "quoteContext": "Consulta de depósito para Huesca: explotación, uso y condiciones de agua, capacidad, CP, modelo, accesos, transporte de tercero y descarga."
+  },
+  {
+    "slug": "teruel",
+    "heroImage": {
+      "src": "/images/depositos/horizontal-con-cunas/deposito-poliester-horizontal-con-cunas-verde-vista-lateral.webp",
+      "alt": "Depósito horizontal verde de poliéster con cunas de apoyo visto de lado",
+      "productHref": "/depositos/horizontal-con-cunas/",
+      "productLabel": "Ver horizontales con cunas"
+    },
+    "province": "provincia de Teruel",
+    "eyebrow": "TERUEL · DEPÓSITOS DE RESERVA PARA FINCAS Y GANADERÍA",
+    "seoTitle": "Depósitos de agua de poliéster en Teruel | Depofibra",
+    "metaDescription": "Depósitos PRFV para agua y riego en Teruel. Compara formatos para fincas y granjas, capacidades y condiciones de transporte y descarga.",
+    "h1": "Depósitos de poliéster para agua en Teruel",
+    "lead": "¿Necesitas almacenar agua en una finca, explotación ganadera o instalación agrícola de Teruel? Estudia depósitos verticales y horizontales de poliéster según autonomía, espacio y accesos. Las medidas, usos admitidos y entrega se confirman antes de presupuestar.",
+    "regionHeading": "Reserva de agua para explotaciones del Bajo Aragón y el interior turolense",
+    "regionParagraphs": [
+      "Las estadísticas agrarias del Gobierno de Aragón registran actividad agrícola y ganadera en Teruel. En unas explotaciones la prioridad puede ser una reserva ante cortes de suministro; en otras, equilibrar periodos de llenado y necesidades de riego. Ninguna de esas actividades demuestra cuántos clientes comprarán depósitos ni sustituye comprobar el precio puesto en destino.",
+      "Un depósito horizontal con cunas puede estudiarse donde la altura de instalación resulte restrictiva, siempre que el suelo y los apoyos sean adecuados. Un vertical de base plana puede resolver otras configuraciones; la comparación exige diámetro, altura, longitud y peso de una referencia concreta.",
+      "Si el destino es riego agrícola, diferencia consumo de la instalación y suministro legal disponible. Si el agua se destina a ganadería, solicita compatibilidad y documentación del modelo; no des por supuesta la idoneidad para bebida animal o almacenamiento químico."
+    ],
+    "zoneHeading": "Qué revisar al recibir un depósito en diferentes comarcas de Teruel",
+    "localCases": [
+      {
+        "place": "Alcañiz, Calanda y Bajo Aragón",
+        "need": "Para una explotación con riego, calcula litros entre llenados y revisa acometidas y puntos de distribución. En la entrega comprueba caminos y espacio para descargar."
+      },
+      {
+        "place": "Valderrobres, Matarraña y Maestrazgo",
+        "need": "En instalaciones con accesos sinuosos o pendientes, determina antes las dimensiones máximas del camión, el giro disponible y la plataforma de descarga."
+      },
+      {
+        "place": "Calamocha, Jiloca y entorno de Teruel",
+        "need": "Para naves y explotaciones ganaderas compara altura, longitud y bases disponibles; consulta la compatibilidad del líquido y las conexiones necesarias para el uso concreto."
+      }
+    ],
+    "choiceHeading": "Elegir geometría y litros del depósito para Teruel",
+    "capacityNotes": [
+      {
+        "liters": 5000,
+        "note": "Ejemplo de referencia para necesidades pequeñas o parciales; calcula horas o días de reserva con el consumo de la instalación."
+      },
+      {
+        "liters": 10000,
+        "note": "Capacidad a estudiar para reserva intermedia; puede ser necesario contrastar vertical y horizontal por accesos y altura libre."
+      },
+      {
+        "liters": 15000,
+        "note": "Referente para necesidades mayores: confirma peso en vacío, longitud/diámetro, acceso y tipo de descarga antes de cotizar."
+      }
+    ],
+    "logisticsHeading": "Cómo preparar el precio de un depósito con destino Teruel",
+    "logisticsParagraphs": [
+      "Depofibra comercializa referencias PRFV de fabricantes externos, atendiendo desde Casariche (Sevilla), sin delegación, fábrica ni flota propia anunciadas en Teruel. El punto real de carga y la ruta dependen del producto y del proveedor; no prometemos tarifa o entrega urgente uniforme.",
+      "Facilita uso, formato, volumen, código postal, anchura de portones, trazado de acceso y medios previstos de recepción. El transporte estándar no incorpora descarga. Si la referencia precisa un servicio especial, su coste y viabilidad se confirman por escrito."
+    ],
+    "faq": [
+      {
+        "question": "¿Hay depósitos de poliéster con entrega a Alcañiz o Calanda?",
+        "answer": "Podemos estudiar un presupuesto para esos destinos sujeto a referencia, origen de carga y transporte confirmados. No anunciamos entrega fija ni stock local."
+      },
+      {
+        "question": "¿Qué depósito conviene donde hay poca altura libre?",
+        "answer": "Conviene comparar las cotas exteriores reales de un horizontal con cunas y las de un vertical; el primero necesita longitud y apoyos suficientes."
+      },
+      {
+        "question": "¿Un depósito horizontal con cunas se puede enterrar?",
+        "answer": "No por ser horizontal. Para enterramiento hace falta un modelo específicamente diseñado para ese uso y respetar sus condiciones de instalación."
+      },
+      {
+        "question": "¿Sirven estos depósitos para agua de bebida animal o fertilizantes?",
+        "answer": "No se debe generalizar. Hay que verificar la compatibilidad del modelo con el líquido y, cuando proceda, su documentación técnica."
+      },
+      {
+        "question": "¿El transporte hasta Teruel incluye descarga y colocación?",
+        "answer": "No. La descarga no está incluida por defecto y la colocación o instalación requieren condiciones y presupuesto separados."
+      }
+    ],
+    "sourceName": "Gobierno de Aragón — estadísticas agrarias y ganaderas",
+    "sourceUrl": "https://www.aragon.es/estadisticas-agrarias",
+    "quoteContext": "Consulta depósito PRFV para Teruel: tipo de finca, uso, capacidad, municipio/CP, dimensiones/accesos, origen transporte y descarga."
+  },
+  {
+    "slug": "cuenca",
+    "heroImage": {
+      "src": "/images/depositos/horizontal-enterrable/deposito-poliester-horizontal-enterrable-gris-lateral-cielo.webp",
+      "alt": "Depósito horizontal gris de poliéster visto de lado, con cielo azul de fondo",
+      "productHref": "/depositos/horizontal-enterrable/",
+      "productLabel": "Comparar enterrables"
+    },
+    "province": "provincia de Cuenca",
+    "eyebrow": "CUENCA · DEPÓSITOS PARA RESERVA DE AGUA Y RIEGO",
+    "seoTitle": "Depósitos de poliéster para agua en Cuenca | Depofibra",
+    "metaDescription": "Consulta depósitos PRFV para agua de riego en Cuenca y La Manchuela. Compara verticales, horizontales y enterrables y pide presupuesto según destino.",
+    "h1": "Depósitos de poliéster para agua en Cuenca",
+    "lead": "Si necesitas un depósito de poliéster para almacenar agua en una finca de Cuenca, podemos estudiar distintas geometrías y capacidades según los litros de reserva, el uso compatible y la ubicación. No se presuponen una dotación de agua, una instalación completa ni un precio de transporte para toda la provincia.",
+    "regionHeading": "La Manchuela conquense: proyecto de riego y planificación de la reserva",
+    "regionParagraphs": [
+      "El Gobierno de Castilla-La Mancha informó en julio de 2026 sobre el desarrollo de propuestas de regadío en La Manchuela y la solicitud de concesión presentada por una asociación de regantes. Se trata de un contexto agrario documentado: una solicitud o proyecto no acredita que cada finca tenga agua concedida ni que exista demanda mensurable de depósitos.",
+      "Si un cultivo recibe aportaciones de agua en periodos concretos, conviene calcular la reserva entre entregas con los caudales y derechos efectivos, sin atribuir al depósito capacidad para aumentar la disponibilidad legal del recurso. Para otras instalaciones, puede ser más importante el espacio, la altura o la posibilidad de situar una referencia apropiada bajo tierra.",
+      "Un horizontal enterrable y uno con cunas para superficie son productos diferentes. Antes de aconsejar un aljibe enterrado hay que revisar compatibilidad del líquido, resistencia y condiciones de excavación y relleno del modelo. También existen verticales de base plana para instalaciones de superficie."
+    ],
+    "zoneHeading": "Cuatro preguntas según la zona de entrega de Cuenca",
+    "localCases": [
+      {
+        "place": "Quintanar del Rey e Iniesta",
+        "need": "En explotaciones de La Manchuela, diferencia necesidades estimadas de riego de un suministro autorizado. Estudia consumo por ciclos, frecuencia efectiva de llenado y conexión a la red."
+      },
+      {
+        "place": "Motilla del Palancar y Graja de Iniesta",
+        "need": "Si el depósito se colocará en una parcela, revisa camino, zona de descarga, anchura libre y espacio de apoyo. La distancia no determina por sí sola el porte."
+      },
+      {
+        "place": "Tarancón, Cuenca capital y entorno",
+        "need": "Para naves o instalaciones con limitación de superficie, indica si se requiere depósito vertical, horizontal de superficie o enterrable específico y aporta las cotas máximas."
+      }
+    ],
+    "choiceHeading": "Comparar depósitos PRFV para Cuenca sin limitarse a una capacidad",
+    "capacityNotes": [
+      {
+        "liters": 5000,
+        "note": "Una referencia para reservas parciales: determina el consumo entre reposiciones y comprueba dimensiones y volumen útil."
+      },
+      {
+        "liters": 10000,
+        "note": "Punto de comparación para necesidades intermedias; contrasta si encaja mejor un modelo vertical u horizontal según apoyo y altura."
+      },
+      {
+        "liters": 15000,
+        "note": "Reserva nominal mayor que exige revisar accesos y descarga. Otras capacidades del catálogo se consultan por familia y referencia."
+      }
+    ],
+    "logisticsHeading": "Transporte y presupuesto de un depósito para Cuenca",
+    "logisticsParagraphs": [
+      "Depofibra comercializa productos PRFV de fabricantes externos y atiende desde Casariche (Sevilla), sin anunciar fábrica, almacén o delegación en Cuenca. El precio y viabilidad del transporte dependen del producto, su lugar real de carga y el destino exacto.",
+      "Indica municipio, código postal, uso y capacidad, superficie o enterramiento, accesibilidad del camión, cotas disponibles y descarga prevista. El transporte estándar no incluye descarga; tampoco se presupone excavación, instalación ni obtención de permisos."
+    ],
+    "faq": [
+      {
+        "question": "¿Podéis estudiar un depósito para Iniesta o Quintanar del Rey?",
+        "answer": "Podemos valorar producto y transporte externo según referencia, uso y código postal. La entrega, la disponibilidad y el importe deben confirmarse antes de ofrecer condiciones."
+      },
+      {
+        "question": "¿Un depósito para riego garantiza agua disponible en La Manchuela?",
+        "answer": "No. El depósito almacena agua que debe proceder de una fuente y aprovechamiento autorizados. Las concesiones y restricciones no cambian por instalar una reserva."
+      },
+      {
+        "question": "¿Qué diferencia hay entre aljibe enterrable y horizontal con cunas?",
+        "answer": "El enterrable exige diseño y condiciones de instalación específicos. El horizontal con cunas está previsto para superficie y no debe enterrarse por similitud de forma."
+      },
+      {
+        "question": "¿Qué información necesitáis para calcular la reserva?",
+        "answer": "Consumo por hora o jornada, intervalos y caudal de reposición, volumen útil requerido, finalidad del agua y espacio disponible. Con ello se puede estudiar una capacidad nominal adecuada."
+      },
+      {
+        "question": "¿El transporte a Cuenca incluye descarga, excavación o instalación?",
+        "answer": "No por defecto. Son operaciones diferentes que necesitan cotización y organización, y el transporte estándar no incorpora descarga salvo acuerdo expreso."
+      }
+    ],
+    "sourceName": "Gobierno de Castilla-La Mancha — propuesta de regadío en La Manchuela (julio de 2026)",
+    "sourceUrl": "https://www.castillalamancha.es/actualidad/notasdeprensa/el-gobierno-regional-muestra-su-apoyo-al-desarrollo-del-regadio-en-la-manchuela",
+    "quoteContext": "Consulta de depósito PRFV para Cuenca: municipio/CP, uso y origen autorizado del agua, capacidad, formato, accesos, transporte y descarga."
   }
 ];
