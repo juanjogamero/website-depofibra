@@ -97,4 +97,11 @@ export const blogPhotos: Record<string, BlogPhoto> = {
     credit: "Jakob Schlothane",
     creditUrl: "https://www.pexels.com/photo/12634302/",
   },
+  "fosas-septicas-homologadas-marcado-ce-documentacion": {
+    src: "https://images.pexels.com/photos/4741887/pexels-photo-4741887.jpeg?auto=compress&dpr=1&h=750&w=1260",
+    alt: "Vista aérea de una instalación industrial de tratamiento de aguas, imagen de contexto, no de una fosa comercializada",
+    fallback: "/images/productos/saneamiento-referencia.jpg",
+    credit: "Pok Rie",
+    creditUrl: "https://www.pexels.com/photo/wastewater-treatment-plant-with-round-ponds-in-factory-4741887/",
+  },
 };
