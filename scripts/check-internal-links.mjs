@@ -327,6 +327,30 @@ for (const [url, required] of [
   }
 }
 
+
+// Las páginas nuevas deben ser rastreables y enlazadas entre sí por un índice NUEVO.
+// No se modifican las fichas ni landings ya existentes.
+for (const url of ['/depositos/avila/','/depositos/salamanca/']) {
+  const pageFile = targetFile(url);
+  if (!pageFile) { errors.push('SEO zonas nuevas: falta ' + url); continue; }
+  const page = content(pageFile);
+  if (!page.includes('100 a 60.000 litros') || !page.includes('Depofibra')) {
+    errors.push('SEO zonas nuevas: no comunicar la gama y comercialización en ' + url);
+  }
+}
+const newRegionsIndex = targetFile('/depositos/zonas/');
+if (!newRegionsIndex) {
+  errors.push('SEO zonas nuevas: falta el índice de provincias');
+} else {
+  const regionsHtml = content(newRegionsIndex);
+  for (const url of ['/depositos/avila/','/depositos/salamanca/','/depositos/segovia/','/depositos/huesca/']) {
+    if (!regionsHtml.includes('href="' + url + '"')) errors.push('SEO zonas nuevas: índice sin enlace a ' + url);
+  }
+  if (!regionsHtml.includes('No son sucursales') || !regionsHtml.includes('descarga')) {
+    errors.push('SEO zonas nuevas: índice debe dejar claros los límites logísticos');
+  }
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));

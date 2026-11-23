@@ -3,7 +3,7 @@
  * No son tiendas/sedes. No se ofrece transporte o aptitud sin confirmación.
  */
 export interface DepositLocalLanding {
-  slug: 'murcia' | 'valencia' | 'sevilla' | 'palencia' | 'soria' | 'huelva' | 'badajoz' | 'segovia' | 'huesca' | 'teruel' | 'cuenca';
+  slug: 'murcia' | 'valencia' | 'sevilla' | 'palencia' | 'soria' | 'huelva' | 'badajoz' | 'segovia' | 'huesca' | 'teruel' | 'cuenca' | 'avila' | 'salamanca';
   heroImage: { src: string; alt: string; productHref: string; productLabel: string };
   province: string;
   eyebrow: string;
@@ -821,5 +821,167 @@ export const depositLocalLandings: DepositLocalLanding[] = [
     "sourceName": "Gobierno de Castilla-La Mancha — propuesta de regadío en La Manchuela (julio de 2026)",
     "sourceUrl": "https://www.castillalamancha.es/actualidad/notasdeprensa/el-gobierno-regional-muestra-su-apoyo-al-desarrollo-del-regadio-en-la-manchuela",
     "quoteContext": "Consulta de depósito PRFV para Cuenca: municipio/CP, uso y origen autorizado del agua, capacidad, formato, accesos, transporte y descarga."
+  },
+  {
+    "slug": "avila",
+    "heroImage": {
+      "src": "/images/depositos/vertical-con-patas/deposito-poliester-vertical-con-patas-verde-con-estructura-metalica.webp",
+      "alt": "Depósito verde de poliéster instalado sobre una estructura metálica de soporte",
+      "productHref": "/depositos/vertical-con-patas/",
+      "productLabel": "Ver depósitos con patas"
+    },
+    "province": "provincia de Ávila",
+    "eyebrow": "ÁVILA · AGUA DE RESERVA PARA GRANJAS Y FINCAS",
+    "seoTitle": "Depósitos de poliéster en Ávila para agua | Depofibra",
+    "metaDescription": "Depósitos PRFV para fincas, riego y explotaciones ganaderas de Ávila. Consulta modelos de 100 a 60.000 L según referencia y transporte por destino.",
+    "h1": "Depósitos de poliéster para agua en Ávila",
+    "lead": "Si buscas un depósito de poliéster para una granja, finca o instalación agrícola de Ávila, podemos estudiar formatos de superficie y enterrables según el uso y las medidas disponibles. Trabajamos con distintas capacidades de 100 a 60.000 litros en el conjunto del catálogo, sujetas a la familia y referencia. El transporte se calcula para el destino real.",
+    "regionHeading": "Ávila: autonomía de agua para fincas y explotaciones ganaderas",
+    "regionParagraphs": [
+      "Los datos públicos de la Junta de Castilla y León documentan explotaciones de porcino y bovino en la provincia. El entorno de Arévalo y Madrigal de las Altas Torres constituye una zona agraria y ganadera donde puede ser relevante planificar el almacenamiento de agua, pero la existencia de explotaciones no demuestra un volumen de búsquedas ni ausencia de distribuidores.",
+      "En una granja, el cálculo útil comienza por el consumo durante una jornada y el número de días que debe cubrir la reserva si se interrumpe el suministro. No es lo mismo agua destinada a limpiar una instalación que agua de bebida animal: hay que comprobar por referencia la compatibilidad y la documentación técnica que exija ese uso. No se afirma la aptitud de todos los modelos para agua de consumo.",
+      "Para una finca con riego, el volumen depende de los caudales disponibles y autorizados, turnos de suministro y litros que necesita la instalación entre aportaciones. Un depósito no modifica concesiones, caudales legales ni derechos de uso. El formato horizontal puede ser interesante si falta altura libre; uno vertical exige comprobar base, altura y maniobras de descarga."
+    ],
+    "zoneHeading": "Situaciones concretas de Ávila que conviene distinguir",
+    "localCases": [
+      {
+        "place": "Arévalo, Madrigal de las Altas Torres y La Moraña",
+        "need": "Para instalaciones porcinas o parcelas agrícolas, indica consumo, frecuencia de llenado y autonomía deseada. Si necesitas un depósito elevado, revisa soporte y estabilidad con un técnico; la foto no acredita presión ni estructura adecuadas."
+      },
+      {
+        "place": "Ávila capital, Muñana y entorno rural",
+        "need": "Antes de elegir diámetro y altura, mide el portón, el paso del camión y la superficie de apoyo. Una reserva de agua útil requiere definir volumen y conexiones, no elegir solo por litros nominales."
+      },
+      {
+        "place": "El Barco de Ávila, Piedrahíta y Sierra de Gredos",
+        "need": "En fincas ganaderas o lugares con accesos de montaña, confirma firme, pendientes, curvas y obstáculos altos. La ruta del transportista, el punto de descarga y las cotas máximas pueden condicionar el formato ofertable."
+      }
+    ],
+    "choiceHeading": "Capacidades y geometrías para instalaciones de Ávila",
+    "capacityNotes": [
+      {
+        "liters": 5000,
+        "note": "Una capacidad nominal que puede estudiarse para reservas parciales, sin presuponer autonomía suficiente."
+      },
+      {
+        "liters": 10000,
+        "note": "Referencia intermedia a contrastar con consumo, duración de la reserva y espacio disponible."
+      },
+      {
+        "liters": 15000,
+        "note": "Una de las capacidades posibles; para otras necesidades se estudian más tamaños y tipos de depósito."
+      }
+    ],
+    "logisticsHeading": "Presupuesto de depósito con destino Ávila: modelo, acceso y descarga",
+    "logisticsParagraphs": [
+      "Depofibra comercializa depósitos PRFV de fabricantes externos y atiende desde Casariche (Sevilla). No tiene sede, fábrica, almacén ni flota propia en Ávila. No todos los tamaños existen en todas las familias, y los costes y viabilidad del transporte se confirman según producto, origen real de carga, código postal y accesos.",
+      "Para estudiar una operación indica uso y tipo de agua, capacidad aproximada, municipio/CP, dimensiones o restricciones del paso, espacio disponible, accesos y medios para recibir el depósito. El transporte estándar no incluye descarga salvo acuerdo específico: los medios de descarga deben prepararse o presupuestarse por separado. No se garantizan fechas, montaje, stock ni aptitud técnica antes de verificar la referencia."
+    ],
+    "faq": [
+      {
+        "question": "¿Puedo pedir presupuesto para una granja de Arévalo o Madrigal de las Altas Torres?",
+        "answer": "Sí, se puede estudiar una oferta según el modelo y su aptitud para el uso, la capacidad, código postal y transporte externo. No se presupone disponibilidad o entrega confirmada antes de consultar al proveedor."
+      },
+      {
+        "question": "¿Tenéis depósitos entre 100 y 60.000 litros?",
+        "answer": "Es el rango general de capacidades con el que trabaja Depofibra según familia y modelo, no una lista de todos los tamaños disponibles en todos los formatos. Consulta la referencia que necesitas."
+      },
+      {
+        "question": "¿Qué depósito sirve para agua de bebida de animales?",
+        "answer": "No puede afirmarse para todas las referencias. Hay que comprobar la compatibilidad del líquido, la documentación del fabricante y los requisitos higiénicos de la instalación por modelo y destino."
+      },
+      {
+        "question": "¿Es adecuado elevar un depósito con patas para alimentar bebederos?",
+        "answer": "La presión, la estabilidad, el peso y las cargas se calculan para la instalación concreta; tener patas no garantiza presión suficiente ni sustituye un proyecto técnico."
+      },
+      {
+        "question": "¿El transporte a Ávila incluye descarga?",
+        "answer": "No por defecto. El servicio estándar de transporte no incluye descarga. El acceso y los medios de manipulación deben confirmarse al presupuestar."
+      }
+    ],
+    "sourceName": "Junta de Castilla y León — explotaciones ganaderas de porcino",
+    "sourceUrl": "https://analisis.datosabiertos.jcyl.es/explore/dataset/explotaciones-ganaderas-de-porcino/",
+    "quoteContext": "Consulta depósito de poliéster Ávila: granja, finca o riego, uso y líquido, litros nominales y necesarios, modelo, CP, origen de carga, accesos y descarga externa."
+  },
+  {
+    "slug": "salamanca",
+    "heroImage": {
+      "src": "/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-izado-grua.webp",
+      "alt": "Depósito vertical blanco de poliéster durante una maniobra de izado con grúa",
+      "productHref": "/depositos/vertical-base-plana/",
+      "productLabel": "Ver depósitos verticales"
+    },
+    "province": "provincia de Salamanca",
+    "eyebrow": "SALAMANCA · RESERVA DE AGUA EN RIEGO Y GANADERÍA",
+    "seoTitle": "Depósitos de poliéster en Salamanca para agua | Depofibra",
+    "metaDescription": "Depósitos PRFV para riego y fincas de Salamanca: La Armuña, Peñaranda y otras comarcas. Compara tipos y solicita presupuesto según modelo y CP.",
+    "h1": "Depósitos de poliéster para agua en Salamanca",
+    "lead": "Para una parcela de regadío, una explotación ganadera o una finca de Salamanca, puedes comparar depósitos PRFV verticales, horizontales y modelos de enterramiento. El catálogo global trabaja capacidades de 100 a 60.000 litros según familia y modelo. La elección y el transporte deben estudiarse con las condiciones del destino concreto.",
+    "regionHeading": "La Armuña: la reserva se dimensiona según aportaciones reales",
+    "regionParagraphs": [
+      "La zona de La Armuña cuenta con actuaciones documentadas de transformación de regadío y con comunidades de regantes identificadas por la Administración. Un proyecto de regadío no significa que todas las fincas dispongan de una dotación de agua concedida ni que cada explotación necesite un depósito. La capacidad se estima según el suministro efectivamente autorizado y los consumos de la instalación.",
+      "En cultivos agrícolas, un depósito de reserva puede estudiarse para acompasar turnos de entrada y consumos por sectores. Antes de pedir presupuesto conviene calcular litros entre reposiciones, caudal disponible y altura o presión de salida requeridas. Un depósito por sí solo no aporta derechos de extracción ni garantiza presión hidráulica en la red.",
+      "En explotaciones ganaderas de Salamanca, las necesidades de reserva dependen del número y tipo de animales, el consumo real, la frecuencia de suministro y el uso concreto del agua. La aptitud para bebida animal y las conexiones no se generalizan: el modelo debe verificarse con su documentación y la instalación debe cumplir las condiciones correspondientes."
+    ],
+    "zoneHeading": "Tres escenarios distintos para un depósito en Salamanca",
+    "localCases": [
+      {
+        "place": "Cantalpino, Villaflores y La Armuña",
+        "need": "En regadío por turnos, indica la dotación efectiva, frecuencia de aportación y consumo por sector. Confirma base de apoyo y espacio de maniobra; el depósito no debe dimensionarse por hectáreas sin datos de caudal."
+      },
+      {
+        "place": "Peñaranda de Bracamonte y Campo de Peñaranda",
+        "need": "Para fincas agrícolas y naves ganaderas, revisa tomas, periodicidad de llenado, capacidad útil y acceso desde la carretera. Un horizontal puede requerir más longitud; un vertical precisa altura disponible."
+      },
+      {
+        "place": "Ciudad Rodrigo, Campo Charro y oeste de la provincia",
+        "need": "En explotaciones extensivas conviene detallar autonomía, usos del agua y distancia al punto de descarga. Hay proveedores regionales activos; se cotiza por referencia, transporte y acceso sin prometer una ventaja de precio general."
+      }
+    ],
+    "choiceHeading": "Cómo elegir el tipo y la capacidad del depósito para Salamanca",
+    "capacityNotes": [
+      {
+        "liters": 5000,
+        "note": "Volumen nominal de ejemplo para reserva acotada, no garantía de consumo o autonomía."
+      },
+      {
+        "liters": 10000,
+        "note": "Otra referencia para comparar con necesidades reales y cotas máximas del espacio."
+      },
+      {
+        "liters": 15000,
+        "note": "Capacidad de comparación, junto con otras referencias de la gama según formato y producto."
+      }
+    ],
+    "logisticsHeading": "Condiciones para estudiar un suministro a Salamanca",
+    "logisticsParagraphs": [
+      "Depofibra es comercializadora de productos PRFV de fabricantes externos, con atención desde Casariche (Sevilla). No tiene fábrica, delegación, almacén ni flota propia en Salamanca. Existen proveedores de material de riego y depósitos en la provincia; por tanto, no afirmamos ausencia de competencia ni precio inferior.",
+      "El presupuesto depende de la referencia, el origen efectivo de carga, la localidad y CP de destino, dimensiones y ruta, altura libre y medios de descarga. El transporte estándar no incluye descarga salvo condición expresamente confirmada. Los modelos para enterramiento, agua potable u otros usos especiales requieren su propia documentación, no una aptitud genérica."
+    ],
+    "faq": [
+      {
+        "question": "¿Podéis estudiar un depósito para una finca de La Armuña o Peñaranda?",
+        "answer": "Podemos estudiar una propuesta sujeta al modelo, uso permitido, capacidad requerida, origen de carga y transporte externo al código postal. No garantizamos entregas ni stock local."
+      },
+      {
+        "question": "¿Una parcela de regadío necesita obligatoriamente un depósito?",
+        "answer": "No necesariamente. Depende del suministro autorizado, del calendario de aportaciones, del consumo por sectores y de la configuración hidráulica de la finca."
+      },
+      {
+        "question": "¿Qué capacidades trabaja Depofibra?",
+        "answer": "El catálogo comercial contempla capacidades desde 100 hasta 60.000 litros según tipo y referencia, no solamente las fichas de 5.000, 10.000 o 15.000 litros."
+      },
+      {
+        "question": "¿Puedo enterrar un horizontal con cunas para ahorrar espacio?",
+        "answer": "No. Un horizontal con cunas para superficie no equivale a un depósito enterrable. Si se necesita enterrar, hay que elegir una referencia específicamente diseñada para ello y seguir sus instrucciones."
+      },
+      {
+        "question": "¿Incluís la descarga del depósito en Salamanca?",
+        "answer": "No en el transporte estándar. Se confirma la ruta, accesos, tamaño del vehículo y equipo necesario para descargar antes de acordar el presupuesto."
+      }
+    ],
+    "sourceName": "Junta de Castilla y León — actuaciones de regadío en La Armuña",
+    "sourceUrl": "https://analisis.datosabiertos.jcyl.es/explore/dataset/expropiaciones-forzosas-en-materia-de-desarrollo-rural/?flg=es-es",
+    "quoteContext": "Consulta depósito PRFV para Salamanca: finca/ganadería, uso, suministro de agua autorizado, capacidad, comarca, CP, acceso del transporte y descarga a organizar."
   }
 ];
