@@ -121,7 +121,7 @@ export const depositFamilies: DepositFamily[] = [
     name:'Depósito horizontal enterrable',
     shortName:'Horizontal enterrable',
     eyebrow:'Depósitos · Instalación enterrada',
-    intro:'Depósitos horizontales de poliéster diseñados para enterramiento. Comparte medidas de referencia con los horizontales con cunas, pero es un producto distinto: requiere condiciones de instalación específicas y no lleva medidor de capacidad visible.',
+    intro:'Depósitos horizontales de poliéster diseñados para enterramiento, conocidos en algunas aplicaciones de almacenamiento de agua como aljibes prefabricados de PRFV. Comparten medidas de referencia con los horizontales con cunas, pero son productos distintos: el enterrable exige condiciones de instalación específicas y no lleva medidor de capacidad visible.',
     installation:'Enterrado · Bajo proyecto',geometry:'Horizontal · Enterrable',application:'Agua y otros usos compatibles',
     quoteProduct:'Depósito horizontal para enterrar',
     gallery:[
@@ -131,7 +131,7 @@ export const depositFamilies: DepositFamily[] = [
       {src:'/images/depositos/horizontal-enterrable/deposito-poliester-horizontal-enterrable-gris-en-zanja-instalacion.webp',alt:'Depósito horizontal gris colocado en una zanja con boca de acceso superior',kind:'Fotografía de referencia'},
     ],
     titleSeo:'Depósitos horizontales enterrables de poliéster | Depofibra',
-    metaDescription:'Depósitos horizontales de poliéster para enterrar. Consulta dimensiones, condiciones del terreno, conexiones a medida y presupuesto según destino.',
+    metaDescription:'Aljibes prefabricados de poliéster y depósitos horizontales enterrables. Compara usos, terreno, accesos, conexiones y presupuesto según destino.',
     highlights:[
       {title:'Uso enterrado',text:'La elección debe partir de un modelo diseñado expresamente para enterramiento.'},
       {title:'Terreno y cargas',text:'Condiciones del suelo y profundidad requieren verificación técnica.'},
@@ -149,6 +149,7 @@ export const depositFamilies: DepositFamily[] = [
     ],
     faqs:[
       {q:'¿Puedo enterrar un depósito horizontal convencional?',a:'No se debe hacer. Solo debe enterrarse una referencia diseñada y validada para ese uso.'},
+      {q:'¿Qué diferencia hay entre un aljibe de poliéster y una fosa séptica?',a:'El aljibe se plantea para almacenar agua con el uso permitido por su ficha; una fosa séptica tiene una función de saneamiento y una documentación diferente. No son productos intercambiables ni puede darse por apto cualquier aljibe para agua potable.'},
       {q:'¿El precio incluye excavación e instalación?',a:'No se presuponen esos trabajos. Se concretarán por separado si correspondiese, y siempre según condiciones acordadas.'},
       {q:'¿Es obligatorio un proyecto?',a:'Los requisitos técnicos y administrativos dependen del uso y la instalación. Deben revisarse para cada caso.'},
       {q:'¿Los depósitos horizontales enterrables llevan medidor de capacidad?',a:'No llevan el medidor de capacidad visible que se contempla en los verticales y los horizontales con cunas. La forma de acceso, inspección y mantenimiento debe estudiarse según el modelo y la instalación enterrada.'},
