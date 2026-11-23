@@ -309,6 +309,24 @@ for (const [route, required] of [
   }
 }
 
+
+// SEO fosas: las consultas de documentación deben llevar a fichas reales sin
+// afirmar homologación genérica ni que la compra autorice un vertido.
+for (const [url, required] of [
+  ['/fosas-septicas/', ['Fosas sépticas de poliéster: tipos y documentos', '¿Todas las fosas sépticas de Depofibra están homologadas?', 'href="/blog/fosas-septicas-homologadas-marcado-ce-documentacion/"']],
+  ['/fosas-septicas/fosa-estanca/', ['Documentación y requisitos antes de comprar', 'href="/blog/fosas-septicas-homologadas-marcado-ce-documentacion/"']],
+  ['/fosas-septicas/fosa-biologica/', ['Fosa séptica con filtro biológico de poliéster', 'Habitantes equivalentes', 'href="/blog/fosas-septicas-homologadas-marcado-ce-documentacion/"']],
+  ['/fosas-septicas/oxidacion-total/', ['Documentación y requisitos antes de comprar', 'Necesidades de aireación']],
+  ['/blog/fosa-estanca-filtro-biologico-oxidacion-total/', ['href="/fosas-septicas/fosa-estanca/"', 'href="/fosas-septicas/fosa-biologica/"', 'href="/fosas-septicas/oxidacion-total/"']],
+]) {
+  const path = targetFile(url);
+  if (!path) { errors.push('SEO fosas: falta ' + url); continue; }
+  const page = content(path);
+  for (const requiredSnippet of required) {
+    if (!page.includes(requiredSnippet)) errors.push('SEO fosas: ' + url + ' no contiene ' + requiredSnippet);
+  }
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
