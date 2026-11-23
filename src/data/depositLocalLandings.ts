@@ -113,7 +113,7 @@ export const depositLocalLandings: DepositLocalLanding[] = [
     heroImage: { src: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp', alt: 'Depósito vertical blanco de poliéster con base plana y escala de nivel frontal', productHref: '/depositos/vertical-base-plana/', productLabel: 'Ver depósitos verticales' },
     province: 'Sevilla',
     eyebrow: 'SEVILLA · DEPÓSITOS DE POLIÉSTER',
-    seoTitle: 'Depósitos de poliéster en Sevilla: capacidades y entrega | Depofibra',
+    seoTitle: 'Depósitos de poliéster en Sevilla: entrega | Depofibra',
     metaDescription: 'Depósitos PRFV para agua y riego en Sevilla. Compara modelos y capacidades y solicita presupuesto según uso, accesos y destino.',
     h1: 'Depósitos de poliéster para agua en Sevilla',
     lead: 'Depofibra atiende consultas comerciales desde Casariche, en la provincia de Sevilla. Si necesitas un depósito de agua de poliéster reforzado con fibra de vidrio (PRFV) para riego u otro uso compatible, compara las capacidades y aclara cómo se hará la entrega antes de pedir precio.',
