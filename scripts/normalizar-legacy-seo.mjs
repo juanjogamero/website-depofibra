@@ -2,7 +2,7 @@
  * GitHub Pages sirve los archivos HTML antiguos mejor si existen como ficheros
  * /cisternas.html y no como carpetas /cisternas.html/index.html.
  *
- * Pilotamos solo las 4 rutas legadas con tráfico GSC acreditado; no cambia
+ * Normalizamos solo rutas legadas con señales GSC acreditadas; no cambia
  * el destino, el contenido del redirect ni las páginas nuevas. No toca legal.
  * Este paso corre después de "astro build" en PR CI y deploy.
  */
@@ -15,6 +15,11 @@ const oldToNew = new Map([
   ['depositos-agua-murcia.html', '/depositos/murcia/'],
   ['depositos-poliester-valencia.html', '/depositos/valencia/'],
   ['fosas-septicas-sevilla.html', '/fosas-septicas/sevilla/'],
+  // URLs legadas con señales de búsqueda en GSC; publicar sin salto extra /xxx.html/.
+  ['blog/normativa-fosas-septicas-2026.html', '/blog/normativa-fosas-septicas-2026-permisos-documentacion/'],
+  ['blog/mantenimiento-piscina-poliester.html', '/blog/mantenimiento-piscina-poliester/'],
+  ['blog/guia-tecnica-prfv.html', '/blog/que-es-prfv-depositos-fibra-vidrio/'],
+  ['piscinas-poliester-badajoz.html', '/piscinas/'],
 ]);
 
 for (const [oldPath, destination] of oldToNew) {
