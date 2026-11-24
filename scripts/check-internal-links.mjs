@@ -432,7 +432,7 @@ else {
     'Depósito de agua para riego por turnos',
     'litros recibibles por turno',
     '10.500 litros',
-    'comprueba volumen útil',
+    'volumen útil',
     'la modalidad estándar no incluye descarga',
     'href="/depositos/para-riego/"',
     'href="/blog/calcular-capacidad-deposito-agua-riego/"',
