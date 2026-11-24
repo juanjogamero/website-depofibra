@@ -10,6 +10,8 @@ interface Props {article:BlogArticle}
 const {article}=Astro.props;
 const canonical=`https://depofibra.com/blog/${article.slug}/`;
 const photo=blogPhotos[article.slug];
+const photoCanonicalUrl = new URL(photo.src, 'https://depofibra.com').href;
+const photoIsCatalogReference = photo.src.startsWith('/');
 // Selección editorial: mismas familias primero y novedades después. No cambia el diseño.
 const familyOf = (category: string): string => {
   if (/piscin/i.test(category)) return 'piscinas';
@@ -37,7 +39,7 @@ const articleHtml=article.html.replace(/<h2>([\s\S]*?)<\/h2>/g, (_match,contents
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context':'https://schema.org','@graph':[
         {'@type':'BlogPosting','@id':`${canonical}#article`,headline:article.title,description:article.description,url:canonical,
-          mainEntityOfPage:canonical,inLanguage:'es-ES',image:photo.src,articleSection:article.category,
+          mainEntityOfPage:canonical,inLanguage:'es-ES',image:photoCanonicalUrl,articleSection:article.category,
           isPartOf:{'@id':'https://depofibra.com/blog/#blog'},
           isAccessibleForFree:true,
           author:{'@type':'Organization','@id':'https://depofibra.com/#organization',name:'Depofibra',url:'https://depofibra.com/'},
@@ -61,7 +63,11 @@ const articleHtml=article.html.replace(/<h2>([\s\S]*?)<\/h2>/g, (_match,contents
       </header>
       <figure class="ba-cover">
         <img src={photo.src} alt={photo.alt} data-fallback={photo.fallback} loading="eager" width="1440" height="780" decoding="async" fetchpriority="high"/>
-        <figcaption>Fotografía ilustrativa · <a href={photo.creditUrl} target="_blank" rel="noopener noreferrer">{photo.credit} / Pexels</a>. No representa un producto ni una instalación de Depofibra.</figcaption>
+        {photoIsCatalogReference ? (
+          <figcaption><a href={photo.creditUrl}>{photo.credit}</a>. La imagen muestra un formato de producto como referencia; no acredita capacidad, instalación ni disponibilidad de una unidad concreta.</figcaption>
+        ) : (
+          <figcaption>Fotografía ilustrativa · <a href={photo.creditUrl} target="_blank" rel="noopener noreferrer">{photo.credit} / Pexels</a>. No representa un producto ni una instalación de Depofibra.</figcaption>
+        )}
       </figure>
       <div class="ba-layout">
         <article class="ba-prose" set:html={articleHtml}/>
