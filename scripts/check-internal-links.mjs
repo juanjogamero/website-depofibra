@@ -117,13 +117,18 @@ for (const file of htmlFiles) {
   }
 }
 
-// Las 4 URLs legadas con tráfico GSC deben servirse como archivo /xxx.html,
+// Las URLs legadas seleccionadas por tráfico GSC deben servirse como archivo /xxx.html,
 // nunca como directorio /xxx.html/ (evitar salto adicional antes del meta-refresh).
 const legacyDirectFiles = new Map([
   ['cisternas.html', '/cubas-cisternas/'],
   ['depositos-agua-murcia.html', '/depositos/murcia/'],
   ['depositos-poliester-valencia.html', '/depositos/valencia/'],
   ['fosas-septicas-sevilla.html', '/fosas-septicas/sevilla/'],
+  // URLs legadas con señales de búsqueda en GSC; publicar sin salto extra /xxx.html/.
+  ['blog/normativa-fosas-septicas-2026.html', '/blog/normativa-fosas-septicas-2026-permisos-documentacion/'],
+  ['blog/mantenimiento-piscina-poliester.html', '/blog/mantenimiento-piscina-poliester/'],
+  ['blog/guia-tecnica-prfv.html', '/blog/que-es-prfv-depositos-fibra-vidrio/'],
+  ['piscinas-poliester-badajoz.html', '/piscinas/'],
 ]);
 for (const [legacy, destination] of legacyDirectFiles) {
   const file = path.join(output, legacy);
