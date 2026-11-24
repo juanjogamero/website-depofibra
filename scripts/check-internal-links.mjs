@@ -127,6 +127,12 @@ const legacyDirectFiles = new Map([
   ['fosas.html', '/fosas-septicas/'],
   ['blog/blog.html', '/blog/'],
   ['blog/poliester-vs-hormigon.html', '/blog/que-es-prfv-depositos-fibra-vidrio/'],
+  // Resultados públicos de Google conservan fragmentos de la web antigua
+  // sobre fabricación/logística: simplificar el acceso a destinos veraces.
+  ['depositos-piscinas-alicante.html', '/'],
+  ['depositos-poliester-jaen.html', '/depositos/'],
+  ['piscinas.html', '/piscinas/'],
+  ['sobre-nosotros.html', '/sobre-depofibra/'],
   ['cisternas.html', '/cubas-cisternas/'],
   ['depositos-agua-murcia.html', '/depositos/murcia/'],
   ['depositos-poliester-valencia.html', '/depositos/valencia/'],
@@ -467,6 +473,25 @@ if (!blogForTurns || !content(blogForTurns).includes('href="' + waterTurnRoute +
 }
 if (existsSync(sitemapPath) && !content(sitemapPath).includes('https://depofibra.com' + waterTurnRoute)) {
   errors.push('SEO riego por turnos: guía no incluida en sitemap');
+}
+
+// Confianza GEO/SEO: impedir que textos antiguos sin respaldo vuelvan a
+// describir a Depofibra como fabricante con flota propia.
+// Solo afecta a las dos páginas corporativas, nunca a fichas de proveedores.
+const brandPages = [
+  { route: '/', expected: /Comercialización de depósitos de poliéster reforzado/ },
+  { route: '/sobre-depofibra/', expected: /comercializadora de productos de fabricantes externos/i },
+];
+const unsupportedBrandClaims = /fabricaci[oó]n propia|log[ií]stica propia|somos fabricantes|no somos intermediarios|sin intermediarios/i;
+for (const { route, expected } of brandPages) {
+  const file = targetFile(route);
+  if (!file) {
+    errors.push('GEO marca: falta página corporativa ' + route);
+    continue;
+  }
+  const html = content(file);
+  if (!expected.test(html)) errors.push('GEO marca: falta identidad comercial verificable ' + route);
+  if (unsupportedBrandClaims.test(html)) errors.push('GEO marca: afirmación no acreditada de fabricación/logística propia ' + route);
 }
 
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;

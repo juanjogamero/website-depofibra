@@ -2,7 +2,7 @@
  * GitHub Pages sirve los archivos HTML antiguos mejor si existen como ficheros
  * /cisternas.html y no como carpetas /cisternas.html/index.html.
  *
- * Normalizamos solo rutas legadas con señales GSC acreditadas; no cambia
+ * Normalizamos rutas legadas con señales GSC o resultados antiguos públicos; no cambia
  * el destino, el contenido del redirect ni las páginas nuevas. No toca legal.
  * Este paso corre después de "astro build" en PR CI y deploy.
  */
@@ -18,6 +18,12 @@ const oldToNew = new Map([
   ['fosas.html', '/fosas-septicas/'],
   ['blog/blog.html', '/blog/'],
   ['blog/poliester-vs-hormigon.html', '/blog/que-es-prfv-depositos-fibra-vidrio/'],
+  // Resultados públicos de Google conservan fragmentos de la web antigua
+  // sobre fabricación/logística: simplificar el acceso a destinos veraces.
+  ['depositos-piscinas-alicante.html', '/'],
+  ['depositos-poliester-jaen.html', '/depositos/'],
+  ['piscinas.html', '/piscinas/'],
+  ['sobre-nosotros.html', '/sobre-depofibra/'],
   ['cisternas.html', '/cubas-cisternas/'],
   ['depositos-agua-murcia.html', '/depositos/murcia/'],
   ['depositos-poliester-valencia.html', '/depositos/valencia/'],
