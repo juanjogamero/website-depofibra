@@ -531,6 +531,26 @@ if (existsSync(sitemapPath) && !content(sitemapPath).includes('https://depofibra
 const legacyMaterial = targetFile('/blog/poliester-vs-plastico-pehd.html');
 if (!legacyMaterial || !content(legacyMaterial).includes('url=' + materialGuide)) errors.push('SEO materiales: antiguo 404 no recuperado');
 
+// Calidad GEO/E-E-A-T: la guía normativa debe citar la fuente oficial
+// actualmente navegable y NO presentar el BOJA original como texto consolidado.
+const fosasNormativaFile = targetFile('/blog/normativa-fosas-septicas-2026-permisos-documentacion/');
+if (!fosasNormativaFile) errors.push('GEO normativa: falta guía de fosas');
+else {
+  const normaHtml = content(fosasNormativaFile);
+  if (!normaHtml.includes('https://www.juntadeandalucia.es/boja/2015/89/3')) {
+    errors.push('GEO normativa: falta Decreto 109/2015 en BOJA oficial');
+  }
+  if (normaHtml.includes('ws040.juntadeandalucia.es/sedeboja/lconsolidada/eli/es-an/d/2015/03/17/109/')) {
+    errors.push('GEO normativa: persiste enlace antiguo BOJA de acceso no directo');
+  }
+  if (!normaHtml.includes('publicación original en el BOJA') || !normaHtml.includes('no constituye por sí sola un texto consolidado vigente')) {
+    errors.push('GEO normativa: no se diferencia BOJA original y modificaciones vigentes');
+  }
+  if (!normaHtml.includes('BOE-A-2025-5737') || !normaHtml.includes('Sentencia del Tribunal Constitucional 40/2025')) {
+    errors.push('GEO normativa: falta contexto de nulidad STC 40/2025');
+  }
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
