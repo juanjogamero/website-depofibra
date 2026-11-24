@@ -79,6 +79,31 @@ test('WhatsApp prioritario conserva el formulario alternativo en la web comercia
   }
 });
 
+test('Los botones WhatsApp comparten icono relleno y letras blancas sobre verde', () => {
+  const icon = read('src/components/WhatsAppIcon.astro');
+  const header = read('src/components/Header.astro');
+  const mobile = read('src/components/MobileNav.astro');
+  const footer = read('src/components/Footer.astro');
+  const contact = read('src/pages/contacto/index.astro');
+  const detail = read('src/components/DepositProductDetail.astro');
+
+  // Corrige .btn svg (fill:none y stroke:currentColor), que anulaba el icono
+  // relleno en Contacto. El tamaño debe seguir la prop size de cada uso.
+  assert.match(icon, /width:\$\{size\}px;height:\$\{size\}px/);
+  assert.match(icon, /fill:currentColor;stroke:none/);
+  assert.match(header, /\.header-whatsapp \{[^\n]*background: #25d366; color: #fff;/);
+  assert.match(header, /\.header-whatsapp:hover \{[^\n]*color: #fff;/);
+  assert.match(mobile, /\.mobile-nav__item--primary \{[\s\S]*?background: #25d366;[\s\S]*?color: #fff;/);
+  assert.match(mobile, /\.mobile-panel__whatsapp \{[\s\S]*?background: #25d366;[\s\S]*?color: #fff;/);
+  assert.match(footer, /\.df-footer__action \.df-footer__whatsapp\{[^\n]*background:#25d366;color:#fff\}/);
+  assert.match(contact, /\.contact-actions \.contact-actions__whatsapp \{[^\n]*background:#25d366;[^\n]*color:#fff/);
+  assert.match(detail, /\.product-button--whatsapp\{background:#25d366;color:#fff\}/);
+  for (const route of ['/', '/contacto/', '/depositos/vertical-base-plana/10000-litros/']) {
+    const html = compiledHtml(route);
+    assert.match(html, /fill:currentColor;stroke:none/, route + ' debe tener SVG WhatsApp relleno');
+  }
+});
+
 test('La solicitud AJAX usa contrato de FormSubmit y no anuncia éxito con solo HTTP 200', () => {
   assert.match(modalSource, /action=["']https:\/\/formsubmit\.co\/ajax\/[^"']+["']/);
   assert.match(modalSource, /headers:\s*\{\s*'Content-Type':\s*'application\/json',\s*'Accept':\s*'application\/json'/);
