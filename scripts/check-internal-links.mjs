@@ -597,6 +597,38 @@ for (const slug of ['5000-litros', '10000-litros', '15000-litros']) {
   }
 }
 
+// SEO con datos GSC: los términos «cubas de agua de poliéster» deben
+// consolidarse en el canonical actual, sin fabricar otro destino duplicado.
+const cubaCanonical = '/cubas-cisternas/';
+const cubaFile = targetFile(cubaCanonical);
+if (!cubaFile) errors.push('SEO cubas: falta categoría canónica');
+else {
+  const html = content(cubaFile);
+  for (const required of [
+    'Cubas de agua y cisternas de poliéster PRFV',
+    'cuba de agua de poliéster',
+    'cuba de poliéster para agua de riego',
+    'remolque completo',
+    'https://depofibra.com/cubas-cisternas/',
+    'href="/cubas-cisternas/cuba-remolque/"',
+    'open-quote-trigger'
+  ]) {
+    if (!html.toLowerCase().includes(required.toLowerCase())) {
+      errors.push('SEO cubas: falta contenido o enlace útil: ' + required);
+    }
+  }
+}
+const legacyCisternas = targetFile('/cisternas.html');
+if (!legacyCisternas ||
+    !content(legacyCisternas).includes('url=/cubas-cisternas/') ||
+    !content(legacyCisternas).includes('https://depofibra.com/cubas-cisternas/')) {
+  errors.push('SEO cubas: alias histórico no dirige a canonical actual');
+}
+const riegoParaCubas = targetFile('/depositos/para-riego/');
+if (!riegoParaCubas || !content(riegoParaCubas).includes('href="/cubas-cisternas/"')) {
+  errors.push('SEO cubas: falta enlace de uso móvil desde riego fijo');
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
