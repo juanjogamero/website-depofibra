@@ -18,6 +18,7 @@ const oldToNew = new Map([
   ['fosas.html', '/fosas-septicas/'],
   ['blog/blog.html', '/blog/'],
   ['blog/poliester-vs-hormigon.html', '/blog/que-es-prfv-depositos-fibra-vidrio/'],
+  ['blog/poliester-vs-plastico-pehd.html', '/blog/poliester-vs-plastico-pehd/'],
   // Resultados públicos de Google conservan fragmentos de la web antigua
   // sobre fabricación/logística: simplificar el acceso a destinos veraces.
   ['depositos-piscinas-alicante.html', '/'],
