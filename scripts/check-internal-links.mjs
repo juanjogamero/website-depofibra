@@ -315,7 +315,7 @@ for (const [source, targets] of [
 // SEO long tail: páginas existentes deben responder a la compra de cisterna suelta
 // y aljibe enterrable, sin fabricar una landing duplicada ni prometer homologaciones.
 for (const [route, required] of [
-  ['/cubas-cisternas/', ['Cubas y cisternas de poliéster para remolques', 'href="/cubas-cisternas/cuba-remolque/"']],
+  ['/cubas-cisternas/', ['Cubas de agua y cisternas de poliéster PRFV', 'href="/cubas-cisternas/cuba-remolque/"']],
   ['/cubas-cisternas/cuba-remolque/', ['Cisternas de poliéster para remolques agrícolas', 'únicamente la cisterna', 'href="/blog/cuba-cisterna-poliester-remolque-agricola/"']],
   ['/depositos/horizontal-enterrable/', ['Aljibes prefabricados de poliéster para enterrar', 'href="/depositos/agua-de-lluvia/"', 'href="/depositos/agua-de-pozo/"']],
   ['/blog/cuba-cisterna-poliester-remolque-agricola/', ['href="/cubas-cisternas/cuba-remolque/"']],
