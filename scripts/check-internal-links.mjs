@@ -310,7 +310,7 @@ if (depositCatalogFile && verticalFamilyFile) {
   // las FAQ guardadas en depositProducts.ts. Comprobar solo HTML publicado.
   if (!familyHtml.includes('Depósitos verticales de poliéster fondo plano | Depofibra') ||
       !familyHtml.includes('base plana o fondo plano') ||
-      !familyHtml.includes('Las medidas definitivas y el suministro')) {
+      !familyHtml.includes('las medidas definitivas y el suministro')) {
     errors.push('SEO vertical: falta «fondo plano», explicación visible o cautela comercial');
   }
   if (catalogHtml.includes('dep-volumes__photo') || catalogHtml.includes('dep-volumes__card')) {
