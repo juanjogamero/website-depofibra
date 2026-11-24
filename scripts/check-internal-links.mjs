@@ -551,6 +551,34 @@ else {
   }
 }
 
+// Regresión de conversión: cada guía comercial canónica conserva enlace de
+// contacto sin JS y, con JS, reutiliza el modal existente con origen y familia.
+const articleGuides = htmlFiles.filter(file => {
+  const rel = path.relative(output, file).replaceAll(path.sep, '/');
+  return /^blog\/[^/]+\/index\.html$/.test(rel);
+});
+if (articleGuides.length < 17) errors.push('Conversión blog: faltan guías canónicas esperadas');
+for (const file of articleGuides) {
+  const html = content(file);
+  const match = html.match(/<a\b[^>]*class="ba-cta__second open-quote-trigger"[^>]*>/);
+  if (!match) {
+    errors.push('Conversión blog: falta CTA contextual en ' + path.relative(output, file));
+    continue;
+  }
+  const link = match[0];
+  if (!link.includes('href="/contacto/"') || !link.includes('data-contact-cta')
+      || !link.includes('data-note="Consulta desde la guía')) {
+    errors.push('Conversión blog: falta fallback o contexto en ' + path.relative(output, file));
+  }
+  const product = html.match(/class="ba-cta__main" href="([^"]+)"/)?.[1] ?? '';
+  const expected = product.startsWith('/fosas-septicas/') ? 'Fosa séptica'
+    : product.startsWith('/piscinas/') ? 'Piscina'
+    : product.startsWith('/cubas-cisternas/') ? 'Cuba o cisterna' : 'Depósito';
+  if (!link.includes('data-product="' + expected + '"')) {
+    errors.push('Conversión blog: familia incorrecta para ' + path.relative(output, file));
+  }
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
