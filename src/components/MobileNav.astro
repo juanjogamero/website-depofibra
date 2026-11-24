@@ -4,6 +4,8 @@
  * Cuatro destinos: Inicio | Productos | Pedir precio | Contacto
  * Se oculta en escritorio (nav horizontal en header).
  */
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { whatsappContactHref } from '../data/whatsappContact';
 interface Props {
   activeNav?: string;
 }
@@ -44,20 +46,17 @@ const { activeNav = 'inicio' } = Astro.props;
     <span>Productos</span>
   </button>
 
-  <!-- Pedir precio (destacado) -->
-  <button
-    class="mobile-nav__item mobile-nav__item--primary open-quote-trigger"
-    type="button"
+  <!-- Contacto prioritario: enlace real accesible incluso sin JavaScript. -->
+  <a
+    class="mobile-nav__item mobile-nav__item--primary"
+    href={whatsappContactHref}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Hablar por WhatsApp con Depofibra"
   >
-    <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-      <polyline points="14 2 14 8 20 8"></polyline>
-      <line x1="16" y1="13" x2="8" y2="13"></line>
-      <line x1="16" y1="17" x2="8" y2="17"></line>
-      <polyline points="10 9 9 9 8 9"></polyline>
-    </svg>
-    <span>Pedir precio</span>
-  </button>
+    <WhatsAppIcon size={23} />
+    <span>WhatsApp</span>
+  </a>
 
   <!-- Contacto -->
   <button
@@ -163,9 +162,11 @@ const { activeNav = 'inicio' } = Astro.props;
           <a href="tel:+34642129233">642 129 233</a>
         </li>
       </ul>
-      <button class="btn btn--primary btn--full open-quote-trigger" type="button">
-        Solicitar presupuesto
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+      <a class="mobile-panel__whatsapp" href={whatsappContactHref} target="_blank" rel="noopener noreferrer">
+        <WhatsAppIcon size={20} /> Consultar por WhatsApp
+      </a>
+      <button class="btn btn--secondary btn--full open-quote-trigger" type="button">
+        Pedir presupuesto por formulario
       </button>
     </div>
   </div>
@@ -238,11 +239,19 @@ const { activeNav = 'inicio' } = Astro.props;
     font-weight: 800;
   }
 
-  /* Pedir precio al mismo nivel que las otras tres opciones: sin botón circular sobresaliente. */
+  /* WhatsApp siempre visible, sin sobresalir de la barra inferior. */
   .mobile-nav__item--primary {
     position: relative;
-    color: var(--color-primary);
+    margin: 5px 2px;
+    border-radius: 12px;
+    background: #dff7e8;
+    color: #065c34;
     font-weight: 800;
+  }
+  .mobile-nav__item--primary:hover,
+  .mobile-nav__item--primary:focus-visible {
+    background: #cdf0db;
+    color: #06452b;
   }
   .mobile-nav__item--primary::before { content: none; }
   .mobile-nav__item--primary span { color: inherit; font-weight: 800; }
@@ -418,6 +427,22 @@ const { activeNav = 'inicio' } = Astro.props;
     color: var(--color-primary);
   }
 
+  .mobile-panel__whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 11px 16px;
+    margin-bottom: 12px;
+    border-radius: 11px;
+    background: #25d366;
+    color: #063d24;
+    font: 800 14px/1.3 var(--font-display);
+    text-decoration: none;
+  }
+  .mobile-panel__whatsapp:hover,
+  .mobile-panel__whatsapp:focus-visible { background: #1cc25a; }
   /* Ocultar paneles en escritorio */
   @media (min-width: 769px) {
     .mobile-panel {

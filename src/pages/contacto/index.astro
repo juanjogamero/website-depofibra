@@ -1,6 +1,8 @@
 ---
 /** Página de contacto preliminar. No publicar dirección ni horarios no confirmados. */
 import Layout from '../../layouts/Layout.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+import { whatsappContactHref, whatsappNumber } from '../../data/whatsappContact';
 ---
 <Layout
   title="Contacto y consultas comerciales | Depofibra"
@@ -20,11 +22,13 @@ import Layout from '../../layouts/Layout.astro';
             <h1 class="heading-xl">Contacto<span>.</span></h1>
             <p class="body-lg">¿Necesitas un depósito, una piscina, una fosa séptica o una cisterna? Indícanos qué producto buscas, la capacidad aproximada y dónde lo recibirías. Te orientamos antes de preparar el presupuesto.</p>
             <div class="contact-actions">
-              <button class="btn btn--primary open-quote-trigger" type="button">Pedir presupuesto <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg></button>
-              <a href="/depositos/" class="btn btn--secondary">Explorar depósitos</a>
+              <a id="contactWhatsapp" class="btn btn--primary contact-actions__whatsapp" href={whatsappContactHref} data-whatsapp-number={whatsappNumber} target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon size={20} /> Consultar por WhatsApp
+              </a>
+              <button class="btn btn--secondary open-quote-trigger" type="button">Pedir presupuesto por formulario</button>
             </div>
             <p class="contact-product-context" id="contactProductContext" hidden></p>
-            <p class="contact-demo">El formulario envía tu consulta a Depofibra sin abrir tu aplicación de correo. También puedes llamarnos o escribirnos directamente.</p>
+            <p class="contact-demo">WhatsApp abre una conversación que tú decides enviar. Si prefieres escribir sin WhatsApp, también puedes utilizar el formulario de presupuesto o llamarnos.</p>
           </div>
           <aside class="contact-location" aria-labelledby="contact-location-heading">
             <span class="contact-location__label">UBICACIÓN</span>
@@ -32,7 +36,7 @@ import Layout from '../../layouts/Layout.astro';
             <p>Atendemos consultas comerciales sobre depósitos, piscinas, fosas sépticas y cisternas desde Casariche (Sevilla).</p>
             <div class="contact-location__rule"></div>
             <span class="contact-location__label">CONTACTO DIRECTO</span>
-            <div class="contact-direct"><a href="tel:+34642129233">642 129 233</a><a href="mailto:depofibra21@gmail.com">depofibra21@gmail.com</a></div>
+            <div class="contact-direct"><a href={whatsappContactHref} target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a><a href="tel:+34642129233">642 129 233</a><a href="mailto:depofibra21@gmail.com">depofibra21@gmail.com</a></div>
             <div class="contact-location__rule"></div>
             <span class="contact-location__label">VISITAS</span>
             <h3>Solo con cita previa</h3>
@@ -66,6 +70,15 @@ import Layout from '../../layouts/Layout.astro';
   const capacity = params.get('capacidad')?.trim();
   const trigger = document.querySelector<HTMLButtonElement>('.contact-actions .open-quote-trigger');
   const context = document.querySelector<HTMLElement>('#contactProductContext');
+  // Conserva el producto y la capacidad también al iniciar la consulta por WhatsApp.
+  // El texto solo se comparte cuando el visitante abre el enlace y decide enviarlo.
+  const whatsapp = document.querySelector<HTMLAnchorElement>('#contactWhatsapp');
+  if (whatsapp && product) {
+    const number = whatsapp.dataset.whatsappNumber || '';
+    const reference = [product, capacity].filter(Boolean).join(' · ');
+    const message = `Hola, quiero consultar ${reference} en Depofibra. ¿Podéis ayudarme con las opciones y el transporte a mi localidad?`;
+    if (number) whatsapp.href = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+  }
   if (product && trigger) {
     trigger.dataset.product = product;
     if (context) {
@@ -90,6 +103,8 @@ import Layout from '../../layouts/Layout.astro';
   .contact-intro h1 span { color:var(--color-primary); }
   .contact-intro .body-lg { max-width:630px; }
   .contact-actions { display:flex;flex-wrap:wrap;gap:12px;margin-top:27px; }
+  .contact-actions .contact-actions__whatsapp {background:#25d366;border:1px solid #25d366;color:#063d24;gap:10px}
+  .contact-actions .contact-actions__whatsapp:hover {background:#1cc45a;border-color:#1cc45a;color:#063d24}
   .contact-product-context { margin:17px 0 0; color:var(--color-primary-dark);font:700 13px/1.5 var(--font-body); }
   .contact-product-context[hidden]{display:none}
   .contact-demo { max-width:490px;color:var(--color-gray-500);font:400 12px/1.65 var(--font-body);margin-top:16px; }

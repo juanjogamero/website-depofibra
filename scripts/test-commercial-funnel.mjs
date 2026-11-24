@@ -50,6 +50,35 @@ test('Todas las páginas comerciales principales incluyen formulario y CTA funci
   }
 });
 
+test('WhatsApp prioritario conserva el formulario alternativo en la web comercial', () => {
+  const config = read('src/data/whatsappContact.ts');
+  const header = read('src/components/Header.astro');
+  const mobile = read('src/components/MobileNav.astro');
+  const footer = read('src/components/Footer.astro');
+  const contact = read('src/pages/contacto/index.astro');
+
+  assert.match(config, /whatsappNumber = '34642129233'/);
+  assert.match(config, /encodeURIComponent\(whatsappDefaultMessage\)/);
+  assert.match(header, /class="header-whatsapp"[^>]*href=\{whatsappHref\}/);
+  assert.match(header, /header-whatsapp__label">WhatsApp<\/span>/);
+  assert.match(mobile, /class="mobile-nav__item mobile-nav__item--primary"[^>]*[\s\S]*?href=\{whatsappContactHref\}/);
+  assert.match(mobile, /mobile-panel__whatsapp/);
+  assert.match(mobile, /open-quote-trigger[^"]*" type="button"/);
+  assert.match(footer, /df-footer__whatsapp/);
+  assert.match(footer, /open-quote-trigger df-footer__form/);
+  assert.match(contact, /id="contactWhatsapp"/);
+  assert.match(contact, /open-quote-trigger" type="button">Pedir presupuesto por formulario/);
+  assert.match(contact, /encodeURIComponent\(message\)/);
+
+  // El canal principal debe estar en el HTML generado sin depender de JS
+  // y el formulario existente sigue disponible en todas las URLs probadas.
+  for (const route of commercialPages) {
+    const html = compiledHtml(route);
+    assert.match(html, /href="https:\/\/wa\.me\/34642129233\?text=/, route + ' WhatsApp visible');
+    assert.match(html, /id="quoteForm"/, route + ' formulario conservado');
+  }
+});
+
 test('La solicitud AJAX usa contrato de FormSubmit y no anuncia éxito con solo HTTP 200', () => {
   assert.match(modalSource, /action=["']https:\/\/formsubmit\.co\/ajax\/[^"']+["']/);
   assert.match(modalSource, /headers:\s*\{\s*'Content-Type':\s*'application\/json',\s*'Accept':\s*'application\/json'/);
