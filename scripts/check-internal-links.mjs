@@ -381,6 +381,37 @@ if (!existsSync(robotsPath)) {
   }
 }
 
+// SEO diferencial: la guía de gran capacidad debe ser una página real, rastreable,
+// conectada con catálogo y logística, sin declarar dimensiones ni precios inventados.
+const largeTankGuideRoute = '/blog/depositos-gran-capacidad-20000-60000-litros/';
+const largeTankGuideFile = targetFile(largeTankGuideRoute);
+if (!largeTankGuideFile) {
+  errors.push('SEO: falta guía de compra de depósitos de gran capacidad');
+} else {
+  const guide = content(largeTankGuideFile);
+  for (const ref of [
+    '20.000', '60.000', 'Un depósito de 30.000 litros o tres de 10.000',
+    'El acceso de entrega puede decidir la capacidad',
+    'La entrega estándar no incluye la descarga',
+    'href="/depositos/vertical-base-plana/"',
+    'href="/depositos/horizontal-con-cunas/"',
+    'href="/depositos/horizontal-enterrable/"',
+    'href="/blog/transporte-descarga-depositos-poliester/"'
+  ]) {
+    if (!guide.includes(ref)) errors.push('SEO gran capacidad: falta contenido/enlace ' + ref);
+  }
+  if (!guide.includes('https://depofibra.com' + largeTankGuideRoute)) {
+    errors.push('SEO gran capacidad: canonical ausente o incorrecta');
+  }
+}
+const blogList = targetFile('/blog/');
+if (!blogList || !content(blogList).includes('href="' + largeTankGuideRoute + '"')) {
+  errors.push('SEO gran capacidad: índice editorial sin enlace rastreable a la nueva guía');
+}
+if (existsSync(sitemapPath) && !content(sitemapPath).includes('https://depofibra.com' + largeTankGuideRoute)) {
+  errors.push('SEO gran capacidad: guía no incluida en sitemap de producción');
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
