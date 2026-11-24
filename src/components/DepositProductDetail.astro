@@ -202,6 +202,9 @@ const contactHref = `/contacto/?producto=${encodeURIComponent(product.quoteProdu
           <div class="product-panel__title"><span class="product-eyebrow">SOBRE ESTE DEPÓSITO</span><h2>Conoce las características del formato.</h2></div>
           <div class="product-panel__body">
             {product.description.map(paragraph => <p>{paragraph}</p>)}
+            {product.slug === 'vertical-base-plana' && (
+              <p>Si buscas un depósito de poliéster con conexiones personalizadas, tapas u otras condiciones de instalación, consulta <a href="/depositos/a-medida/">qué opciones pueden estudiarse a medida y cuáles necesitan aprobación del fabricante</a>. No todos los cambios son viables por modelo.</p>
+            )}
             {product.slug === 'horizontal-enterrable' && (
               <p>Si necesitas almacenar <a href="/depositos/agua-de-lluvia/">agua de lluvia procedente de una cubierta</a> o <a href="/depositos/agua-de-pozo/">agua de pozo para una finca</a>, compara primero la finalidad y el volumen de reserva. Después se confirmará que el aljibe enterrable específico es compatible con el uso y las condiciones del terreno.</p>
             )}
