@@ -403,6 +403,15 @@ if (!largeTankGuideFile) {
   if (!guide.includes('https://depofibra.com' + largeTankGuideRoute)) {
     errors.push('SEO gran capacidad: canonical ausente o incorrecta');
   }
+  if (!guide.includes('La imagen muestra un formato de producto como referencia;')) {
+    errors.push('SEO gran capacidad: atribución de fotografía de catálogo no visible');
+  }
+  if (/Fotografía de referencia del catálogo \/ Pexels/.test(guide)) {
+    errors.push('SEO gran capacidad: crédito equivocado de Pexels para foto propia del catálogo');
+  }
+  if (!guide.includes('https://depofibra.com/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verdes-conjunto-diferentes-tamanos.webp')) {
+    errors.push('GEO gran capacidad: Image en JSON-LD sin URL completa de producción');
+  }
 }
 const blogList = targetFile('/blog/');
 if (!blogList || !content(blogList).includes('href="' + largeTankGuideRoute + '"')) {
