@@ -11,6 +11,13 @@ import path from 'node:path';
 
 const output = path.resolve('dist');
 const oldToNew = new Map([
+  // GSC 21/08–21/11: rutas antiguas todavía presentes en resultados.
+  // Conservamos el destino publicado y quitamos el salto /archivo.html/.
+  ['productos.html', '/'],
+  ['depositos-horizontales.html', '/depositos/'],
+  ['fosas.html', '/fosas-septicas/'],
+  ['blog/blog.html', '/blog/'],
+  ['blog/poliester-vs-hormigon.html', '/blog/que-es-prfv-depositos-fibra-vidrio/'],
   ['cisternas.html', '/cubas-cisternas/'],
   ['depositos-agua-murcia.html', '/depositos/murcia/'],
   ['depositos-poliester-valencia.html', '/depositos/valencia/'],
