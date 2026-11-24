@@ -289,6 +289,32 @@ if (!depositCatalogFile || !verticalFamilyFile) {
     errors.push('SEO comercial: no presentar solamente tres tarjetas como catálogo completo');
   }
 }
+// SEO comercial de depósitos: cinco fichas ya existentes deben encontrarse
+// desde /depositos/, con énfasis en 5/10/15k y sin duplicar fotografías.
+if (depositCatalogFile && verticalFamilyFile) {
+  const catalogHtml = content(depositCatalogFile);
+  const familyHtml = content(verticalFamilyFile);
+  for (const liters of [5000, 10000, 15000, 20000, 30000]) {
+    const route = '/depositos/vertical-base-plana/' + liters + '-litros/';
+    if (!catalogHtml.includes('href="' + route + '"')) {
+      errors.push('SEO capacidades: falta enlace directo desde el catálogo a ' + route);
+    }
+    if (!targetFile(route)) errors.push('SEO capacidades: la ficha de ' + liters + ' litros no existe');
+  }
+  if (!catalogHtml.includes('id="por-capacidad"') ||
+      !catalogHtml.includes('Depósitos de agua por capacidad') ||
+      !catalogHtml.includes('fondo plano')) {
+    errors.push('SEO catálogo: falta acceso compacto y contextual a capacidades');
+  }
+  if (!familyHtml.includes('Depósitos verticales de poliéster fondo plano | Depofibra') ||
+      !familyHtml.includes('base plana o fondo plano') ||
+      !familyHtml.includes('base plana y depósito de fondo plano')) {
+    errors.push('SEO vertical: falta nomenclatura «fondo plano» y explicación útil');
+  }
+  if (catalogHtml.includes('dep-volumes__photo') || catalogHtml.includes('dep-volumes__card')) {
+    errors.push('UX catálogo: no añadir tarjetas ni fotografías al acceso por litros');
+  }
+}
 if (!homeHtml.includes('De 100 a 60.000 L.') || !homeHtml.includes('href="/depositos/para-riego/"')) {
   errors.push('SEO comercial: Home sin gama amplia o enlace a depósitos para riego');
 }
