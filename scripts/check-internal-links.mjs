@@ -127,6 +127,7 @@ const legacyDirectFiles = new Map([
   ['fosas.html', '/fosas-septicas/'],
   ['blog/blog.html', '/blog/'],
   ['blog/poliester-vs-hormigon.html', '/blog/que-es-prfv-depositos-fibra-vidrio/'],
+  ['blog/poliester-vs-plastico-pehd.html', '/blog/poliester-vs-plastico-pehd/'],
   // Resultados públicos de Google conservan fragmentos de la web antigua
   // sobre fabricación/logística: simplificar el acceso a destinos veraces.
   ['depositos-piscinas-alicante.html', '/'],
@@ -493,6 +494,42 @@ for (const { route, expected } of brandPages) {
   if (!expected.test(html)) errors.push('GEO marca: falta identidad comercial verificable ' + route);
   if (unsupportedBrandClaims.test(html)) errors.push('GEO marca: afirmación no acreditada de fabricación/logística propia ' + route);
 }
+
+// Regresión SEO: la URL histórica PRFV/PEHD aún aparece indexada en GSC
+// pero era 404. Exigir nueva comparativa útil y transición directa al canonical.
+const materialGuide = '/blog/poliester-vs-plastico-pehd/';
+const materialGuideFile = targetFile(materialGuide);
+if (!materialGuideFile) errors.push('SEO materiales: falta nueva comparativa PRFV/PEHD');
+else {
+  const html = content(materialGuideFile);
+  for (const text of [
+    'Poliéster PRFV o plástico PEHD',
+    '¿el poliéster es un plástico?',
+    '¿Cuál soporta mejor el sol',
+    'La instalación exterior',
+    'no está confirmado en todos los depósitos PRFV',
+    'no queda automáticamente habilitado para agua de consumo humano',
+    'diseñado expresamente para enterramiento',
+    'comercialización de productos PRFV de fabricantes externos',
+    'href="/depositos/vertical-base-plana/"',
+    'href="/depositos/horizontal-enterrable/"',
+    'href="/blog/depositos-poliester-agua-potable-documentacion/"',
+    'href="/contacto/"',
+    'La imagen muestra un formato de producto como referencia'
+  ]) {
+    if (!html.toLowerCase().includes(text.toLowerCase())) errors.push('SEO materiales: falta ' + text);
+  }
+  if (!html.includes('https://depofibra.com' + materialGuide)) errors.push('SEO materiales: canonical ausente');
+  if (!html.includes('https://depofibra.com/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp')) {
+    errors.push('GEO materiales: imagen schema no absoluta');
+  }
+  if (html.includes('Fotografía de referencia del catálogo / Pexels')) errors.push('SEO materiales: crédito fotográfico falso');
+}
+const materialsBlog = targetFile('/blog/');
+if (!materialsBlog || !content(materialsBlog).includes('href="' + materialGuide + '"')) errors.push('SEO materiales: guía no enlazada desde Blog');
+if (existsSync(sitemapPath) && !content(sitemapPath).includes('https://depofibra.com' + materialGuide)) errors.push('SEO materiales: no está en sitemap');
+const legacyMaterial = targetFile('/blog/poliester-vs-plastico-pehd.html');
+if (!legacyMaterial || !content(legacyMaterial).includes('url=' + materialGuide)) errors.push('SEO materiales: antiguo 404 no recuperado');
 
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
