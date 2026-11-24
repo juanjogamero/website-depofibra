@@ -6,6 +6,13 @@ export interface BlogPhoto {
   src: string; alt: string; fallback: string; credit: string; creditUrl: string;
 }
 export const blogPhotos: Record<string, BlogPhoto> = {
+  "deposito-agua-riego-por-turnos-comunidad-regantes": {
+    "src": "/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-instalado.webp",
+    "alt": "Depósito vertical blanco de poliéster con escala de nivel apoyado sobre plataforma, fotografía de catálogo sin relación con un turno concreto de riego",
+    "fallback": "/images/productos/categoria-depositos.jpg",
+    "credit": "Fotografía de referencia del catálogo",
+    "creditUrl": "https://depofibra.com/depositos/vertical-base-plana/"
+  },
   "depositos-gran-capacidad-20000-60000-litros": {
     "src": "/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verdes-conjunto-diferentes-tamanos.webp",
     "alt": "Conjunto de depósitos verticales verdes de poliéster de distintas alturas, fotografía de referencia de catálogo; sin capacidad exacta identificada",

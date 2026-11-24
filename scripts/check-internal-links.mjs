@@ -421,6 +421,47 @@ if (existsSync(sitemapPath) && !content(sitemapPath).includes('https://depofibra
   errors.push('SEO gran capacidad: guía no incluida en sitemap de producción');
 }
 
+// SEO/GEO: página de necesidad de riego POR TURNOS (no duplicar categoría general).
+// Validamos contenido visible, balance de agua, contexto de permiso y enlaces útiles.
+const waterTurnRoute = '/blog/deposito-agua-riego-por-turnos-comunidad-regantes/';
+const waterTurnFile = targetFile(waterTurnRoute);
+if (!waterTurnFile) errors.push('SEO riego por turnos: falta guía compilada');
+else {
+  const turnHtml = content(waterTurnFile);
+  for (const text of [
+    'Depósito de agua para riego por turnos',
+    'litros recibibles por turno',
+    '10.500 litros',
+    'volumen útil',
+    'la modalidad estándar no incluye descarga',
+    'href="/depositos/para-riego/"',
+    'href="/blog/calcular-capacidad-deposito-agua-riego/"',
+    'href="/blog/transporte-descarga-depositos-poliester/"',
+    'Ministerio de Agricultura',
+    'texto refundido de la Ley de Aguas',
+    'La imagen muestra un formato de producto como referencia'
+  ]) {
+    if (!turnHtml.toLowerCase().includes(text.toLowerCase())) errors.push('SEO riego por turnos: falta ' + text);
+  }
+  if (!turnHtml.includes('<link rel="canonical" href="https://depofibra.com' + waterTurnRoute + '"')) {
+    // Canonical puede tener otro orden de atributos; comprobar también por URL absoluta.
+    if (!turnHtml.includes('https://depofibra.com' + waterTurnRoute)) errors.push('SEO riego por turnos: URL canónica ausente');
+  }
+  if (!turnHtml.includes('https://depofibra.com/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-instalado.webp')) {
+    errors.push('GEO riego por turnos: imagen JSON-LD debe tener URL absoluta');
+  }
+  if (turnHtml.includes('Fotografía de referencia del catálogo / Pexels')) {
+    errors.push('SEO riego por turnos: foto de catálogo atribuida erróneamente a Pexels');
+  }
+}
+const blogForTurns = targetFile('/blog/');
+if (!blogForTurns || !content(blogForTurns).includes('href="' + waterTurnRoute + '"')) {
+  errors.push('SEO riego por turnos: blog no enlaza guía');
+}
+if (existsSync(sitemapPath) && !content(sitemapPath).includes('https://depofibra.com' + waterTurnRoute)) {
+  errors.push('SEO riego por turnos: guía no incluida en sitemap');
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
