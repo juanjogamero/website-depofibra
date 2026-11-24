@@ -695,6 +695,81 @@ if (!fosasCategory ||
   errors.push('SEO fosas Sevilla: falta enlace desde categoría');
 }
 
+// SEO/GEO: página comercial singular para necesidades de configuración;
+ // no prometer que Depofibra fabrique depósitos de geometría arbitraria.
+const customRoute = '/depositos/a-medida/';
+const customFile = targetFile(customRoute);
+if (!customFile) errors.push('SEO a medida: falta página comercial nueva');
+else {
+  const html = content(customFile);
+  for (const required of [
+    'Depósitos de poliéster a medida',
+    'https://depofibra.com/depositos/a-medida/',
+    'depósito de fibra de vidrio a medida',
+    'fabricantes externos',
+    'no garantizamos',
+    'tomas de entrada y salida',
+    'croquis acotado',
+    '¿Depofibra fabrica depósitos de poliéster a medida?',
+    'open-quote-trigger',
+    'href="/contacto/"',
+    'href="/depositos/vertical-base-plana/"',
+    'href="/depositos/horizontal-con-cunas/"',
+    'href="/depositos/cuadrados-rectangulares/"',
+    '"FAQPage"'
+  ]) {
+    if (!html.toLowerCase().includes(required.toLowerCase())) {
+      errors.push('SEO a medida: falta información o enlace ' + required);
+    }
+  }
+  if (html.includes('primaryImageOfPage') || html.includes('class="made-hero__photo"')) {
+    errors.push('SEO a medida: no asignar fotos de otros modelos a una geometría especial');
+  }
+  if (/somos fabricantes|fabricamos cualquier|fabricación propia/.test(html.toLowerCase())) {
+    errors.push('Veracidad a medida: falsa atribución de fabricación/viabilidad');
+  }
+  if (existsSync(sitemapPath) &&
+    !content(sitemapPath).includes('https://depofibra.com/depositos/a-medida/')) {
+    errors.push('SEO a medida: URL ausente del sitemap');
+  }
+}
+const catalogForCustom = targetFile('/depositos/');
+const verticalForCustom = targetFile('/depositos/vertical-base-plana/');
+if (!catalogForCustom || !content(catalogForCustom).includes('href="/depositos/a-medida/"')) {
+  errors.push('SEO a medida: enlace comercial ausente del catálogo');
+}
+if (!verticalForCustom || !content(verticalForCustom).includes('href="/depositos/a-medida/"')) {
+  errors.push('SEO a medida: enlace de familia vertical ausente');
+}
+
+// Regresión de conversión: cada guía comercial canónica conserva enlace de
+// contacto sin JS y, con JS, reutiliza el modal existente con origen y familia.
+const articleGuides = htmlFiles.filter(file => {
+  const rel = path.relative(output, file).replaceAll(path.sep, '/');
+  return /^blog\/[^/]+\/index\.html$/.test(rel) && !rel.includes('.html/index.html');
+});
+if (articleGuides.length < 17) errors.push('Conversión blog: faltan guías canónicas esperadas');
+for (const file of articleGuides) {
+  const html = content(file);
+  const match = html.match(/<a\b[^>]*class="ba-cta__second open-quote-trigger"[^>]*>/);
+  if (!match) {
+    errors.push('Conversión blog: falta CTA contextual en ' + path.relative(output, file));
+    continue;
+  }
+  const link = match[0];
+  if (!link.includes('href="/contacto/"') || !link.includes('data-contact-cta')
+      || !link.includes('data-note="Consulta desde la guía')) {
+    errors.push('Conversión blog: falta fallback o contexto en ' + path.relative(output, file));
+  }
+  const product = html.match(/class="ba-cta__main" href="([^"]+)"/)?.[1] ?? '';
+  const expected = product.startsWith('/fosas-septicas/') ? 'Fosa séptica'
+    : product.startsWith('/piscinas/') ? 'Piscina'
+    : product.startsWith('/cubas-cisternas/') ? 'Cuba o cisterna' : 'Depósito';
+  if (!link.includes('data-product="' + expected + '"')) {
+    errors.push('Conversión blog: familia incorrecta para ' + path.relative(output, file));
+  }
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
