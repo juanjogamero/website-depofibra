@@ -6,6 +6,13 @@ export interface BlogPhoto {
   src: string; alt: string; fallback: string; credit: string; creditUrl: string;
 }
 export const blogPhotos: Record<string, BlogPhoto> = {
+  "poliester-vs-plastico-pehd": {
+    "src": "/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp",
+    "alt": "Depósito vertical blanco de poliéster reforzado con fibra de vidrio del catálogo, fotografía ilustrativa de PRFV; no se muestra un depósito PEHD",
+    "fallback": "/images/productos/categoria-depositos.jpg",
+    "credit": "Fotografía de referencia del catálogo",
+    "creditUrl": "https://depofibra.com/depositos/vertical-base-plana/"
+  },
   "deposito-agua-riego-por-turnos-comunidad-regantes": {
     "src": "/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-instalado.webp",
     "alt": "Depósito vertical blanco de poliéster con escala de nivel apoyado sobre plataforma, fotografía de catálogo sin relación con un turno concreto de riego",
