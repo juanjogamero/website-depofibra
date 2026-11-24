@@ -110,6 +110,67 @@ export const capacityLandings: CapacityLanding[] = [
       { question: '¿Puedo personalizar el color y las entradas de un depósito de 15.000 litros?', answer: 'Se pueden estudiar colores de la gama y conexiones en posiciones y diámetros adecuados a la instalación. Su disponibilidad técnica y posibles suplementos se confirman en la referencia presupuestada.' },
     ],
   },
+
+  {
+    slug: '20000-litros', liters: 20000, cubicMeters: 20,
+    keyword: 'depósito de agua 20000 litros',
+    titleSeo: 'Depósito de agua 20.000 litros de poliéster | Depofibra',
+    metaDescription: 'Depósito de agua de 20.000 litros PRFV, vertical de base plana para riego y reserva en superficie. Medidas orientativas, accesos y presupuesto.',
+    h1: 'Depósito de agua de 20.000 litros de poliéster',
+    lead: 'Si necesitas una reserva de 20.000 litros (20 m³) para riego u otro uso compatible, la familia de depósitos verticales de poliéster PRFV permite estudiar una solución en superficie. La capacidad no basta para decidir: hay que contrastar diámetro, altura exterior, conexiones y medios de entrega con el modelo real.',
+    image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp',
+    imageAlt: 'Fotografía ilustrativa de la familia de depósitos verticales de poliéster, sin identificación de una unidad de 20.000 litros',
+    decisionTitle: '20.000 litros: comprueba reserva, base y acceso',
+    decisionParagraphs: [
+      'Un depósito de 20.000 litros equivale a 20 m³ nominales. Para dimensionar una reserva de riego necesitas conocer el consumo por jornada o turno y el intervalo hasta la siguiente reposición. El volumen nominal no garantiza por sí solo la autonomía: influyen el volumen útil de cada modelo y la demanda real.',
+      'La tabla interna de referencia recoge para esta capacidad un diámetro de ficha de 2.450 mm y una segunda cota de 4.850 mm. Esta segunda cota se denomina «longitud» en la fuente, por lo que NO se considera una altura exterior total verificada. Antes de preparar una oferta deben confirmarse modelo vigente, tapa, bocas, accesorios y dimensiones completas.',
+      'Si el acceso o la altura condicionan el transporte, también puede estudiarse una distribución en varios depósitos de menor capacidad; por ejemplo, dos unidades nominales de 10.000 litros. No se presupone que sea más barata ni que tenga la misma instalación: compara base, conexiones, mantenimiento, portes y descarga en ambas alternativas.',
+      'Depofibra comercializa referencias PRFV de fabricantes externos. Para 20.000 litros estudiaremos la documentación, las conexiones y el destino antes de facilitar un presupuesto; el transporte habitual no incluye descarga salvo acuerdo específico.'
+    ],
+    checklist: [
+      { title: 'Consumo y reposición', detail: 'Litros diarios o por turno, días de autonomía y origen del agua.' },
+      { title: 'Espacio disponible', detail: 'Anchura y altura libre en acceso e instalación, solera, obstáculos y conexiones previstas.' },
+      { title: 'Entrega y descarga', detail: 'Localidad y código postal, acceso para vehículo pesado y medios seguros de descarga.' }
+    ],
+    faqs: [
+      { question: '¿Cuántos metros cúbicos tiene un depósito de 20.000 litros?', answer: 'Son 20 m³ de capacidad nominal. El volumen útil concreto, las conexiones y el margen operativo deben confirmarse según referencia.' },
+      { question: '¿Qué medidas tiene un depósito vertical de 20.000 litros?', answer: 'La documentación histórica interna contiene una configuración con diámetro de ficha de 2.450 mm y segunda cota de 4.850 mm. No debe interpretarse esta última como altura total acreditada. Hay que solicitar al proveedor el plano y todas las medidas exteriores de la unidad ofertada.' },
+      { question: '¿Conviene uno de 20.000 litros o dos de 10.000 litros?', answer: 'Depende del espacio, la instalación, las conexiones, la autonomía y el coste completo de suministro y descarga. Dos depósitos no son automáticamente más económicos ni equivalentes hidráulicamente. Podemos estudiar ambas opciones con datos reales.' },
+      { question: '¿Puede enterrarse este depósito de base plana?', answer: 'Es una familia de instalación en superficie. No debe enterrarse sin documentación específica de aptitud; para enterramiento hay que consultar los modelos horizontales expresamente diseñados para ello.' },
+      { question: '¿Qué precio tiene un depósito de agua de 20.000 litros?', answer: 'El precio se determina al comprobar la referencia disponible, equipamiento, uso, transporte hasta el código postal y condiciones de descarga. Solicita una valoración indicando destino y aplicación, sin dar por confirmado un plazo ni coste único.' }
+    ],
+  },
+  {
+    slug: '30000-litros', liters: 30000, cubicMeters: 30,
+    keyword: 'depósito de agua 30000 litros',
+    titleSeo: 'Depósito de agua 30.000 litros de poliéster | Depofibra',
+    metaDescription: 'Depósito vertical PRFV de 30.000 litros para reserva de agua y riego. Consulta cotas orientativas, dimensiones reales, descarga y presupuesto por destino.',
+    h1: 'Depósito de agua de 30.000 litros de poliéster',
+    lead: 'Una reserva nominal de 30.000 litros equivale a 30 m³. Este volumen puede estudiarse en la familia de depósitos PRFV verticales de base plana para superficie, siempre que el acceso, el apoyo, el líquido y la entrega sean compatibles con la referencia concreta.',
+    image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verde-escala-en-exterior.webp',
+    imageAlt: 'Fotografía representativa de un depósito de poliéster vertical verde, no identificada como modelo exacto de 30.000 litros',
+    decisionTitle: '30.000 litros: la dimensión exterior condiciona el proyecto',
+    decisionParagraphs: [
+      'Los 30.000 litros pueden responder a demandas de reserva agrícola o de suministro técnico cuando el consumo y la frecuencia de reposición justifican ese volumen. Antes de elegir, estima los litros útiles necesarios y comprueba que el sistema de llenado, rebose y salida se adapte al proyecto.',
+      'En la tabla histórica de esta familia figuran un diámetro de ficha de 3.000 mm y una segunda cota de 4.300 mm para 30.000 litros. La fuente llama «longitud» a esa segunda cota; no hay base suficiente para publicarla como altura exterior total. Deben confirmarse las dimensiones definitivas, el peso y los elementos salientes del modelo ofertado.',
+      'Un diámetro nominal de ficha de 3 metros puede condicionar el paso por portones, caminos y la colocación sobre la base. Además de medir la parcela, hay que revisar el itinerario del transportista y el espacio de maniobra. Las condiciones exactas solo pueden confirmarse con una referencia y una ruta de expedición determinadas.',
+      'Una sola unidad de 30.000 litros puede compararse con varias unidades de menor volumen cuando haya limitaciones de acceso, pero esa comparación requiere diseño de conexiones, apoyos, costes, descarga y mantenimiento. No debe asumirse equivalencia ni una ventaja de precio universal.',
+      'Depofibra comercializa depósitos PRFV procedentes de fabricantes externos. Antes del presupuesto verificaremos producto, documentación y suministro. La descarga no se incluye en el transporte estándar salvo acuerdo expreso.'
+    ],
+    checklist: [
+      { title: 'Necesidad de reserva', detail: 'Consumo real, frecuencia de reposición, uso del agua y volumen útil requerido.' },
+      { title: 'Accesibilidad del emplazamiento', detail: 'Ancho libre, giros, obstáculos elevados, superficie de apoyo y cotas exteriores definitivas.' },
+      { title: 'Plan de entrega', detail: 'Municipio, código postal, condiciones para vehículo, peso y medios adecuados de descarga.' }
+    ],
+    faqs: [
+      { question: '¿30.000 litros son 30 m³?', answer: 'Sí, la equivalencia nominal es 30 metros cúbicos. El volumen útil de explotación y las medidas exteriores dependen del modelo.' },
+      { question: '¿Cuánto mide un depósito de poliéster de 30.000 litros?', answer: 'La ficha histórica incluye una pareja de cotas de referencia: diámetro de 3.000 mm y segunda cota de 4.300 mm. Esta segunda cifra no está confirmada como altura exterior total; se necesita comprobar plano, tapa y accesorios con el proveedor antes de contratar.' },
+      { question: '¿Se puede instalar un depósito de 30.000 litros en cualquier finca?', answer: 'No debe presuponerse. La solera, el acceso, la altura libre, la estabilidad y las condiciones de llenado y descarga tienen que ajustarse a las instrucciones del producto y al emplazamiento.' },
+      { question: '¿El transporte incluye grúa o descarga?', answer: 'La entrega estándar se estudia sin descarga incluida. Es necesario pactar por separado los medios de descarga y comprobar peso, accesos, restricciones y maniobras antes del suministro.' },
+      { question: '¿Sirve para agua potable o reserva contra incendios?', answer: 'La capacidad y el material no acreditan por sí solos esos usos. Solo se puede ofrecer una referencia para agua potable, protección contra incendios u otro uso regulado cuando la documentación del modelo y las exigencias del proyecto lo respalden.' },
+      { question: '¿Cómo solicitar precio de un depósito de 30.000 litros?', answer: 'Indica el uso y la localidad o código postal de entrega, y si existe alguna limitación de paso o descarga. Comprobaremos modelo, dimensiones, transporte, equipamiento y condiciones antes de preparar una propuesta.' }
+    ],
+  },
 ];
 
 export const getCapacityLanding = (slug: string) => capacityLandings.find(item => item.slug === slug);
