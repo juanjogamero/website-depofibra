@@ -551,6 +551,39 @@ else {
   }
 }
 
+// SEO comercial: las nuevas capacidades tienen una URL rastreable, canonical,
+// enlaces contextuales, solicitud de presupuesto y cotas expresamente orientativas.
+for (const { slug, label } of [
+  { slug: '20000-litros', label: '20.000' },
+  { slug: '30000-litros', label: '30.000' }
+]) {
+  const route = '/depositos/vertical-base-plana/' + slug + '/';
+  const file = targetFile(route);
+  if (!file) {
+    errors.push('SEO capacidades: falta ficha ' + route);
+    continue;
+  }
+  const html = content(file);
+  for (const required of [
+    'Depósito de agua de ' + label + ' litros de poliéster',
+    'https://depofibra.com' + route,
+    'MEDIDAS DE REFERENCIA',
+    'No se considera altura total verificada',
+    'open-quote-trigger',
+    'Transporte estándar sin descarga incluida'
+  ]) {
+    if (!html.toLowerCase().includes(required.toLowerCase()))
+      errors.push('SEO capacidades: falta ' + required + ' en ' + route);
+  }
+  if (existsSync(sitemapPath) && !content(sitemapPath).includes('https://depofibra.com' + route)) {
+    errors.push('SEO capacidades: sitemap no incluye ' + route);
+  }
+  const riego = targetFile('/depositos/para-riego/');
+  if (!riego || !content(riego).includes('href="' + route + '"')) {
+    errors.push('SEO capacidades: falta enlace desde riego a ' + route);
+  }
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
