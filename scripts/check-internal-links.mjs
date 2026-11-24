@@ -629,6 +629,44 @@ if (!riegoParaCubas || !content(riegoParaCubas).includes('href="/cubas-cisternas
   errors.push('SEO cubas: falta enlace de uso móvil desde riego fijo');
 }
 
+// SEO Sevilla: consolidar la intención de compra sobre la ficha provincial
+// indexada y mantener el alias antiguo como redirección, no página duplicada.
+const sevillaFosasPath = '/fosas-septicas/sevilla/';
+const sevillaFosasFile = targetFile(sevillaFosasPath);
+if (!sevillaFosasFile) errors.push('SEO fosas Sevilla: falta la ficha comercial');
+else {
+  const html = content(sevillaFosasFile);
+  for (const required of [
+    'Fosa séptica en Sevilla: compra y presupuesto',
+    'https://depofibra.com/fosas-septicas/sevilla/',
+    'casa de campo',
+    '4 personas',
+    'documentación de cada modelo',
+    'href="/fosas-septicas/fosa-estanca/"',
+    'href="/fosas-septicas/fosa-biologica/"',
+    'href="/fosas-septicas/oxidacion-total/"',
+    'href="/blog/normativa-fosas-septicas-2026-permisos-documentacion/"',
+    'open-quote-trigger'
+  ]) {
+    if (!html.toLowerCase().includes(required.toLowerCase()))
+      errors.push('SEO fosas Sevilla: falta ' + required);
+  }
+  if (html.includes('somos fabricantes') || html.includes('nuestra fábrica')) {
+    errors.push('Veracidad fosas Sevilla: posible atribución falsa de fabricación');
+  }
+}
+const sevillaFosasLegacy = targetFile('/fosas-septicas-sevilla.html');
+if (!sevillaFosasLegacy ||
+    !content(sevillaFosasLegacy).includes('url=/fosas-septicas/sevilla/') ||
+    !content(sevillaFosasLegacy).includes('https://depofibra.com/fosas-septicas/sevilla/')) {
+  errors.push('SEO fosas Sevilla: falta redirección de la URL histórica');
+}
+const fosasCategory = targetFile('/fosas-septicas/');
+if (!fosasCategory ||
+    !content(fosasCategory).includes('href="/fosas-septicas/sevilla/"')) {
+  errors.push('SEO fosas Sevilla: falta enlace desde categoría');
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
