@@ -15,11 +15,21 @@ const modalSource = read('src/components/QuoteModal.astro');
 const consentSource = read('src/components/CookieConsent.astro');
 const thanksSource = read('src/pages/solicitud-enviada/index.astro');
 
+// Cobertura de conversión: todas las URLs comerciales prioritarias deben
+// mantener la opción real de solicitar presupuesto tras cada despliegue.
 const commercialPages = [
-  '/','/depositos/','/depositos/para-riego/','/depositos/murcia/',
-  '/depositos/valencia/','/depositos/sevilla/','/depositos/palencia/',
-  '/depositos/soria/','/cubas-cisternas/','/cubas-cisternas/cuba-remolque/',
-  '/cubas-cisternas/cisterna-camion/','/fosas-septicas/','/piscinas/','/contacto/'
+  '/', '/depositos/', '/depositos/para-riego/', '/depositos/para-granjas/',
+  '/depositos/agua-de-lluvia/', '/depositos/agua-de-pozo/',
+  '/depositos/vertical-base-plana/5000-litros/',
+  '/depositos/vertical-base-plana/10000-litros/',
+  '/depositos/vertical-base-plana/15000-litros/',
+  '/depositos/murcia/', '/depositos/valencia/', '/depositos/sevilla/',
+  '/depositos/palencia/', '/depositos/soria/',
+  '/cubas-cisternas/', '/cubas-cisternas/cuba-remolque/',
+  '/cubas-cisternas/cisterna-camion/',
+  '/fosas-septicas/', '/fosas-septicas/fosa-estanca/',
+  '/fosas-septicas/fosa-biologica/', '/fosas-septicas/oxidacion-total/',
+  '/piscinas/', '/contacto/'
 ];
 
 function compiledHtml(urlPath) {
