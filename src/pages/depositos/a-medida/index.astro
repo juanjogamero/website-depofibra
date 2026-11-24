@@ -1,0 +1,192 @@
+---
+/**
+ * Página comercial diferenciada para búsquedas «depósitos de poliéster a medida».
+ * La documentación de Depofibra respalda opciones de accesorios y conexiones
+ * POR REFERENCIA; no confirma fabricación propia ni geometrías especiales universales.
+ */
+import Layout from '../../../layouts/Layout.astro';
+
+const canonical = 'https://depofibra.com/depositos/a-medida/';
+const title = 'Depósitos de poliéster a medida: opciones | Depofibra';
+const description = '¿Buscas depósitos de poliéster a medida? Estudiamos conexiones, bocas, colores y necesidades especiales según fabricante y modelo. Solicita presupuesto PRFV.';
+const faqs = [
+  {
+    q: '¿Depofibra fabrica depósitos de poliéster a medida?',
+    a: 'No. Depofibra comercializa depósitos PRFV de fabricantes externos. Podemos consultar configuraciones y solicitudes especiales a un proveedor, pero no garantizamos que pueda fabricar cualquier forma, tamaño o modificación.'
+  },
+  {
+    q: '¿Qué se puede personalizar en un depósito de poliéster?',
+    a: 'Según la referencia y el fabricante, se pueden estudiar la ubicación y diámetro de entradas y salidas, la tapa, el rebosadero, el indicador de nivel y opciones de color o accesorios. No todas las variantes son compatibles ni están incluidas en el precio.'
+  },
+  {
+    q: '¿Puedo encargar un depósito con dimensiones exteriores exactas?',
+    a: 'Indícanos el espacio disponible, el volumen y, si lo tienes, un croquis acotado. Primero compararemos geometrías existentes; si ninguna sirve, consultaremos al fabricante si acepta una solución especial. Las cotas y la viabilidad no quedan confirmadas hasta disponer de plano y propuesta.'
+  },
+  {
+    q: '¿Sirve un depósito PRFV configurado para agua potable o productos químicos?',
+    a: 'No basta con elegir poliéster reforzado con fibra de vidrio. La resina, el revestimiento, los accesorios y la documentación deben acreditar el uso concreto. Antes de ofertar pediremos el líquido y sus condiciones; no afirmamos compatibilidades generales.'
+  },
+  {
+    q: '¿Se pueden enterrar depósitos a medida?',
+    a: 'Una personalización de conexiones no convierte un depósito de superficie en uno enterrable. Para enterramiento se necesita una referencia específicamente apta, con instrucciones de instalación, resistencia y condiciones de terreno confirmadas por fabricante.'
+  },
+  {
+    q: '¿Cuánto cuesta un depósito de poliéster configurado?',
+    a: 'El presupuesto depende del modelo comprobado, capacidad, accesorios aceptados, destino, transporte y descarga. El precio de una geometría especial, si resulta viable, solo se puede calcular tras consulta al fabricante. No existe una tarifa universal.'
+  }
+];
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebPage', '@id': canonical, url: canonical, name: title, description, inLanguage: 'es-ES',
+      about: { '@type': 'Thing', name: 'Configuración de depósitos PRFV según modelo y fabricante' },
+      isPartOf: { '@id': 'https://depofibra.com/#website' } },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://depofibra.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Depósitos de poliéster', item: 'https://depofibra.com/depositos/' },
+      { '@type': 'ListItem', position: 3, name: 'Configuraciones a medida', item: canonical }
+    ] },
+    { '@type': 'FAQPage', mainEntity: faqs.map(faq => ({
+      '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a }
+    })) }
+  ]
+};
+const steps = [
+  { title: 'Uso y líquido', description: 'Agua de riego, agua de consumo u otro líquido. La compatibilidad se comprueba por modelo y documentación.' },
+  { title: 'Capacidad necesaria', description: 'Litros nominales y, si procede, consumo y frecuencia de reposición.' },
+  { title: 'Espacio y acceso', description: 'Altura y anchura libres, base, puertas, recorridos, obstáculos y medidas máximas admisibles.' },
+  { title: 'Conexiones y accesorios', description: 'Número, diámetro y posición deseada de bocas, entradas, salidas, rebosadero y elementos opcionales.' },
+  { title: 'Destino y descarga', description: 'Municipio, código postal, acceso del vehículo y medios disponibles para descargar el recipiente.' }
+];
+---
+<Layout title={title} description={description} canonical={canonical} activeNav="depositos">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+
+  <main class="made-page">
+    <div class="container">
+      <nav class="made-breadcrumb" aria-label="Migas de pan">
+        <a href="/">Inicio</a><span aria-hidden="true">/</span>
+        <a href="/depositos/">Depósitos</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Configuraciones a medida</span>
+      </nav>
+      <header class="made-hero">
+        <div class="made-eyebrow">DEPÓSITOS PRFV · CONSULTA DE CONFIGURACIÓN</div>
+        <h1>Depósitos de poliéster a medida: qué podemos estudiar</h1>
+        <p class="made-lead">¿Necesitas un <strong>depósito de fibra de vidrio a medida</strong>, con unas conexiones concretas o que encaje en un espacio limitado? En Depofibra comercializamos depósitos PRFV de fabricantes externos y podemos estudiar las opciones de una referencia o trasladar una necesidad especial al proveedor.</p>
+        <p><strong>Importante:</strong> adaptar tomas o accesorios no significa que exista fabricación completamente a medida. Si necesitas cambiar la geometría, las cotas o el material, primero hay que comprobar si el fabricante acepta ese proyecto.</p>
+        <div class="made-actions">
+          <a class="made-primary open-quote-trigger" data-contact-cta data-product="Depósito" data-note="Consulta de depósito de poliéster con conexiones o dimensiones especiales. Verificar fabricante, plano, uso, capacidad, destino y descarga antes de presupuestar." href="/contacto/">Consultar un depósito a medida <span aria-hidden="true">↗</span></a>
+          <a class="made-secondary" href="/depositos/">Comparar formatos existentes</a>
+        </div>
+      </header>
+    </div>
+
+    <section class="made-section made-section--soft" aria-labelledby="made-options-title">
+      <div class="container">
+        <span class="made-eyebrow">QUÉ NECESITAS CONCRETAR</span>
+        <h2 id="made-options-title">Opciones configurables y soluciones especiales: no son lo mismo</h2>
+        <p class="made-section-lead">Esta distinción ayuda a evitar presupuestos de un depósito que después no encaja en la instalación.</p>
+        <div class="made-comparison">
+          <article>
+            <h3>Configuración de un modelo existente</h3>
+            <p>Podemos consultar, según referencia, <strong>tomas de entrada y salida</strong>, diámetro y ubicación de conexiones, rebosadero, tapa, indicador de nivel y opciones de color. La oferta habitual de fábrica contempla parte de estos elementos, pero hay que confirmar qué incluye cada modelo y los posibles suplementos.</p>
+            <p class="made-detail">Ejemplo: depósito vertical de 10.000 litros con salida en una posición requerida por la tubería del proyecto. No se garantiza la modificación hasta que la acepte el fabricante.</p>
+          </article>
+          <article>
+            <h3>Dimensiones o geometría especiales</h3>
+            <p>Si ningún producto estándar cabe en el espacio, hace falta un <strong>croquis acotado</strong>, el volumen requerido y condiciones de instalación. Con esos datos consultaremos si existe otra geometría en catálogo o si el proveedor puede evaluar un diseño específico.</p>
+            <p class="made-detail">No ofrecemos por defecto fabricación de cualquier medida, certificación técnica particular, resistencia estructural especial ni plano aprobado sin propuesta documental.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="made-section" aria-labelledby="made-types-title">
+      <div class="container">
+        <span class="made-eyebrow">ELIGE PRIMERO UNA GEOMETRÍA</span>
+        <h2 id="made-types-title">Formatos de depósitos PRFV que conviene comparar</h2>
+        <div class="made-types">
+          <div><a href="/depositos/vertical-base-plana/">Verticales de base plana <span aria-hidden="true">↗</span></a><p>Para reserva en superficie. Revisa diámetro exterior, altura total, apoyo y conexiones. Consulta las fichas de <a href="/depositos/vertical-base-plana/5000-litros/">5.000 L</a>, <a href="/depositos/vertical-base-plana/10000-litros/">10.000 L</a> y <a href="/depositos/vertical-base-plana/15000-litros/">15.000 L</a>.</p></div>
+          <div><a href="/depositos/horizontal-con-cunas/">Horizontales con cunas <span aria-hidden="true">↗</span></a><p>Para colocar sobre apoyos en superficie; las cunas, longitud y accesos dependen de la referencia.</p></div>
+          <div><a href="/depositos/vertical-con-patas/">Verticales con patas <span aria-hidden="true">↗</span></a><p>La altura de apoyo, las patas y su diseño necesitan comprobación específica; no se presuponen medidas universales.</p></div>
+          <div><a href="/depositos/cuadrados-rectangulares/">Cuadrados o rectangulares <span aria-hidden="true">↗</span></a><p>Otra geometría de catálogo para espacios concretos, con capacidades y condiciones propias. No implica que se fabrique cualquier forma solicitada.</p></div>
+        </div>
+        <p class="made-caution">Si el depósito debe ir enterrado, consulta únicamente <a href="/depositos/horizontal-enterrable/">modelos específicamente enterrables</a>. No debe enterrarse un depósito de superficie por añadirle accesorios o refuerzos sin documentación expresa.</p>
+      </div>
+    </section>
+
+    <section class="made-section made-section--soft" aria-labelledby="made-data-title">
+      <div class="container made-data">
+        <div>
+          <span class="made-eyebrow">PARA PEDIR PRESUPUESTO</span>
+          <h2 id="made-data-title">Cinco datos que necesitamos para consultar una configuración</h2>
+          <p>No necesitas conocer el nombre exacto del modelo. Si dispones de un plano, fotografía del hueco o croquis, describe sus medidas en la consulta; después podremos solicitar los documentos técnicos al fabricante que corresponda.</p>
+          <p>La descarga no se incluye en el transporte estándar salvo acuerdo expreso; el tamaño y la ruta pueden exigir medios especiales.</p>
+          <a class="made-primary open-quote-trigger" data-contact-cta data-product="Depósito" data-note="Solicitud de depósito PRFV a medida: confirmar líquido, capacidad, medidas del espacio, entradas/salidas, código postal, acceso y descarga. Viabilidad sujeta a fabricante." href="/contacto/">Solicitar presupuesto <span aria-hidden="true">↗</span></a>
+        </div>
+        <ol>
+          {steps.map((step, index) => (
+            <li><span class="made-number">{String(index + 1).padStart(2, '0')}</span><div><strong>{step.title}</strong><p>{step.description}</p></div></li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="made-section" aria-labelledby="made-faq-title">
+      <div class="container made-faq">
+        <span class="made-eyebrow">RESPUESTAS ANTES DEL PEDIDO</span>
+        <h2 id="made-faq-title">Preguntas frecuentes sobre depósitos de poliéster a medida</h2>
+        <div class="made-faq-items">
+          {faqs.map(faq => <details><summary>{faq.q}</summary><p>{faq.a}</p></details>)}
+        </div>
+        <p class="made-end">Para conocer posibilidades reales, <a href="/contacto/">envía tu consulta</a> con el uso, la capacidad, el destino y las restricciones de espacio. Contrastaremos cada referencia antes de ofrecer condiciones.</p>
+      </div>
+    </section>
+  </main>
+</Layout>
+<style>
+  .made-page{background:#fff;color:var(--color-dark)}
+  .made-breadcrumb{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:24px 0 0;font:600 12px/1.6 var(--font-body);color:var(--color-gray-600)}
+  .made-breadcrumb a{color:var(--color-primary)}
+  .made-hero{max-width:1000px;padding:clamp(43px,6vw,78px) 0 clamp(48px,6vw,80px)}
+  .made-eyebrow{display:block;font:800 11px/1.5 var(--font-display);letter-spacing:.09em;color:var(--color-primary)}
+  .made-hero h1{max-width:840px;font:800 clamp(32px,4.5vw,56px)/1.1 var(--font-display);letter-spacing:-.043em;margin:12px 0 22px}
+  .made-hero p,.made-section p{font:400 15px/1.78 var(--font-body);color:var(--color-gray-600)}
+  .made-hero p{max-width:770px}.made-hero .made-lead{font-size:clamp(16px,1.7vw,19px);color:var(--color-dark);margin-bottom:14px}
+  .made-hero strong,.made-section strong{color:var(--color-dark)}
+  .made-actions{display:flex;flex-wrap:wrap;align-items:center;gap:20px;margin-top:30px}
+  .made-primary{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:48px;padding:13px 20px;background:#01488e;color:#fff;border-radius:7px;font:750 14px/1.45 var(--font-display);text-decoration:none}
+  .made-primary:hover,.made-primary:focus-visible{background:#002d59;color:#fff}
+  .made-secondary{font:700 14px/1.5 var(--font-display);color:#01488e;text-decoration:underline;text-underline-offset:4px}
+  .made-section{padding:clamp(48px,6vw,82px) 0;border-top:1px solid #e0e8f0}
+  .made-section--soft{background:#f6f9fc}
+  .made-section h2{max-width:850px;font:800 clamp(25px,3vw,35px)/1.2 var(--font-display);letter-spacing:-.03em;margin:10px 0 20px}
+  .made-section-lead{max-width:710px;margin-top:-6px}
+  .made-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,5vw,70px);margin-top:35px}
+  .made-comparison article{border-top:2px solid #01488e;padding-top:22px}
+  .made-comparison h3{font:800 19px/1.35 var(--font-display);margin-bottom:12px}
+  .made-comparison p+p{margin-top:13px}
+  .made-comparison .made-detail{font-size:13px;border-left:2px solid #bbd1e7;padding-left:13px}
+  .made-types{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(25px,5vw,70px);margin-top:30px}
+  .made-types>div{border-top:1px solid #dce5ed;padding:20px 0 24px}
+  .made-types>div>a{font:800 17px/1.4 var(--font-display);color:#01488e;text-decoration:underline;text-underline-offset:4px}
+  .made-types p{font-size:14px;margin-top:8px}
+  .made-types p a,.made-caution a,.made-end a{color:#01488e;text-decoration:underline;text-underline-offset:3px}
+  .made-section .made-caution{margin-top:18px;border-top:1px solid #dce5ed;padding-top:18px;font-size:14px}
+  .made-data{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,6vw,88px)}
+  .made-data>div>p{margin:12px 0;max-width:540px}.made-data .made-primary{margin-top:16px}
+  .made-data ol{margin:0;padding:0;list-style:none;border-top:1px solid #dce5ed}
+  .made-data li{display:grid;grid-template-columns:35px 1fr;gap:12px;padding:17px 0;border-bottom:1px solid #dce5ed}
+  .made-number{font:800 12px/1.7 var(--font-display);color:#01488e}
+  .made-data li strong{font:800 15px/1.4 var(--font-display)}
+  .made-data li p{font-size:13px;margin-top:5px}
+  .made-faq{max-width:1010px}.made-faq-items{margin-top:25px;border-top:1px solid #dce5ed}
+  .made-faq details{border-bottom:1px solid #dce5ed;padding:18px 0}
+  .made-faq summary{cursor:pointer;font:750 16px/1.5 var(--font-display);color:var(--color-dark);padding-right:15px}
+  .made-faq details p{font-size:14px;margin-top:11px;max-width:800px}
+  .made-end{margin-top:30px}
+  @media(max-width:760px){.made-comparison,.made-types,.made-data{grid-template-columns:1fr}.made-hero{padding-top:40px}.made-actions{align-items:stretch}.made-primary{width:100%}}
+  @media(prefers-reduced-motion:reduce){.made-primary{transition:none}}
+</style>

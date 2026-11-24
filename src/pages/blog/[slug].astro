@@ -12,6 +12,7 @@ const canonical=`https://depofibra.com/blog/${article.slug}/`;
 const photo=blogPhotos[article.slug];
 const photoCanonicalUrl = new URL(photo.src, 'https://depofibra.com').href;
 const photoIsCatalogReference = photo.src.startsWith('/');
+const quoteProduct = article.productUrl.startsWith('/fosas-septicas/') ? 'Fosa séptica' : article.productUrl.startsWith('/piscinas/') ? 'Piscina' : article.productUrl.startsWith('/cubas-cisternas/') ? 'Cuba o cisterna' : 'Depósito';
 // Selección editorial: mismas familias primero y novedades después. No cambia el diseño.
 const familyOf = (category: string): string => {
   if (/piscin/i.test(category)) return 'piscinas';
@@ -81,7 +82,7 @@ const articleHtml=article.html.replace(/<h2>([\s\S]*?)<\/h2>/g, (_match,contents
             <h2>¿Buscas una solución para tu caso?</h2>
             <p>Consulta el catálogo y cuéntanos qué necesitas. Revisamos la referencia y las condiciones antes de presupuestar.</p>
             <a class="ba-cta__main" href={article.productUrl}>{article.productLabel} <span aria-hidden="true">↗</span></a>
-            <a class="ba-cta__second" href="/contacto/">Contacto y presupuesto ↗</a>
+            <a class="ba-cta__second open-quote-trigger" href="/contacto/" data-contact-cta data-product={quoteProduct} data-note={`Consulta desde la guía «${article.title}». Confirmar uso, capacidad, destino, modelo y transporte antes del presupuesto.`}>Pedir presupuesto de este caso ↗</a>
           </div>
         </aside>
       </div>
