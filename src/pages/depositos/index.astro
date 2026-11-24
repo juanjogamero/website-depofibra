@@ -192,6 +192,25 @@ const categoryFaqs = questions.map(item => ({ question: item.q, answer: item.a }
       squarePhotos={true}
     />
 
+    <!-- Enlaces directos de compra por litros: fichas existentes, sin nuevas tarjetas ni fotografías. -->
+    <section class="dep-volumes" id="por-capacidad" aria-labelledby="dep-volumes-title">
+      <div class="container dep-volumes__layout">
+        <div class="dep-volumes__copy">
+          <span class="eyebrow">Verticales de base plana</span>
+          <h2 id="dep-volumes-title">Depósitos de agua por capacidad</h2>
+          <p>Consulta fichas de depósitos verticales de poliéster (PRFV) de fondo plano para riego y reserva en superficie. Las medidas y el suministro se confirman por referencia.</p>
+        </div>
+        <nav class="dep-volumes__links" aria-label="Fichas de depósitos verticales de poliéster por capacidad">
+          <a href="/depositos/vertical-base-plana/5000-litros/">5.000 litros</a>
+          <a href="/depositos/vertical-base-plana/10000-litros/">10.000 litros</a>
+          <a href="/depositos/vertical-base-plana/15000-litros/">15.000 litros</a>
+          <a href="/depositos/vertical-base-plana/20000-litros/">20.000 litros</a>
+          <a href="/depositos/vertical-base-plana/30000-litros/">30.000 litros</a>
+          <a class="dep-volumes__more" href="/depositos/vertical-base-plana/">Ver todas las capacidades de fondo plano</a>
+        </nav>
+      </div>
+    </section>
+
     <!-- Acceso visible a las aplicaciones comerciales, sin crear fichas duplicadas ni tarjetas. -->
     <section class="dep-uses" id="por-uso" aria-labelledby="dep-uses-title">
       <div class="container">
@@ -260,7 +279,7 @@ const categoryFaqs = questions.map(item => ({ question: item.q, answer: item.a }
           <h2 class="heading-lg" id="dep-help-title">Lo importante no es solo cuántos litros necesitas.</h2>
         </div>
         <div class="dep-help__content">
-          <p class="body-lg">Al elegir un depósito de agua de poliéster para riego o almacenamiento, revisa la capacidad, las dimensiones, las conexiones y las condiciones de entrega. Puedes consultar directamente arriba las aplicaciones para riego, granjas, captación de lluvia o agua de pozo, sin confundir el uso del depósito con su instalación. Un depósito vertical de superficie no equivale a uno enterrable. Para agua potable, verifica la aptitud y la documentación del modelo concreto. Si buscas un vertical de base plana, consulta <a href="/depositos/vertical-base-plana/">toda la familia y sus capacidades de referencia</a>. La gama global abarca <strong>de 100 a 60.000 litros, según familia y referencia</strong>. Consulta los <a href="/depositos/vertical-base-plana/">verticales de base plana y sus distintas capacidades</a> o los <a href="/depositos/para-riego/">depósitos para riego agrícola</a>. Para presupuestar cualquier otro tamaño se comprueba primero la referencia; no todas las capacidades existen en todos los formatos.</p>
+          <p class="body-lg">Al elegir un depósito de agua de poliéster para riego o almacenamiento, revisa la capacidad, las dimensiones, las conexiones y las condiciones de entrega. Puedes consultar directamente arriba las aplicaciones para riego, granjas, captación de lluvia o agua de pozo, sin confundir el uso del depósito con su instalación. Un depósito vertical de superficie no equivale a uno enterrable. Para agua potable, verifica la aptitud y la documentación del modelo concreto. Si buscas un vertical de base plana, consulta el apartado de <a href="#por-capacidad">capacidades de 5.000 a 30.000 litros</a> o la <a href="/depositos/vertical-base-plana/">familia completa de fondo plano</a>. La gama global abarca <strong>de 100 a 60.000 litros, según familia y referencia</strong>; no todas las capacidades existen en todos los formatos. Para comparar el uso, consulta también los <a href="/depositos/para-riego/">depósitos para riego agrícola</a>. Para presupuestar cualquier otro tamaño se comprueba primero la referencia; no todas las capacidades existen en todos los formatos.</p>
           <p class="body-lg">Atendemos consultas desde <strong>Casariche (Sevilla)</strong> según producto y logística. Consulta los criterios para <a href="/depositos/sevilla/">Sevilla</a>, <a href="/depositos/murcia/">Murcia</a> y <a href="/depositos/valencia/">Valencia</a>. Si tu finca está en <a href="/depositos/huelva/">Huelva</a>, revisa cómo dimensionar una reserva para riego de frutos rojos; si está en las Vegas del Guadiana, consulta los <a href="/depositos/badajoz/">depósitos para riego en Badajoz</a> y las condiciones de suministro por turnos. También puedes estudiar <a href="/depositos/palencia/">Palencia</a> y <a href="/depositos/soria/">Soria</a>. Todas las propuestas requieren confirmar modelo, código postal, accesos, ruta y descarga. Estas páginas no representan sedes locales.</p>
           <p class="body-lg">Para otras zonas agrícolas y ganaderas, consulta las condiciones específicas de reserva y entrega en <a href="/depositos/segovia/">Segovia</a>, <a href="/depositos/huesca/">Huesca</a> y <a href="/depositos/teruel/">Teruel</a>. En <a href="/depositos/cuenca/">Cuenca</a>, revisa además las diferencias entre depósitos de superficie y aljibes enterrables y los requisitos de suministro de agua. Son destinos de estudio, no sucursales: el presupuesto dependerá del modelo y del punto de entrega.</p>
           <button class="btn btn--primary open-quote-trigger" type="button">Consultar mi depósito <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
@@ -283,6 +302,16 @@ const categoryFaqs = questions.map(item => ({ question: item.q, answer: item.a }
   /* Mostrar el depósito completo en el catálogo: algunas fotografías son verticales. */
   :global(.deposits-page .pc-catalog .pc-products__grid .pc-product__photo img) { object-fit: contain; padding: 7px; }
 
+  /* Acceso compacto por capacidad. Sin fotos ajenas, nuevas tarjetas ni precios. */
+  .dep-volumes{border-top:1px solid var(--color-gray-200);padding:clamp(25px,3.5vw,42px) 0;background:#fff;scroll-margin-top:95px}
+  .dep-volumes__layout{display:grid;grid-template-columns:minmax(240px,.88fr) minmax(0,1.12fr);gap:clamp(20px,4vw,65px);align-items:center}
+  .dep-volumes__copy h2{color:var(--color-dark);font:800 clamp(20px,2vw,28px)/1.2 var(--font-display);letter-spacing:-.035em;margin:8px 0 8px}
+  .dep-volumes__copy p{font:400 13px/1.7 var(--font-body);color:var(--color-gray-600);max-width:510px}
+  .dep-volumes__links{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline}
+  .dep-volumes__links a{color:var(--color-primary);font:750 13px/1.6 var(--font-display);text-decoration:underline;text-underline-offset:4px}
+  .dep-volumes__links a:hover,.dep-volumes__links a:focus-visible{color:var(--color-primary-dark);text-decoration-thickness:2px}
+  .dep-volumes__links .dep-volumes__more{font-weight:600;color:var(--color-gray-600)}
+  @media(max-width:760px){.dep-volumes__layout{grid-template-columns:1fr;gap:17px}.dep-volumes__links{gap:11px 18px}}
   /* Navegación por aplicaciones: enlaces de texto, sin tarjetas ni sombras. */
   .dep-uses { padding: clamp(42px, 5vw, 70px) 0; border-top: 1px solid var(--color-gray-200); background: #fff; scroll-margin-top: 92px; }
   .dep-uses__heading { max-width: 760px; margin-bottom: 26px; }
