@@ -306,10 +306,12 @@ if (depositCatalogFile && verticalFamilyFile) {
       !catalogHtml.includes('fondo plano')) {
     errors.push('SEO catálogo: falta acceso compacto y contextual a capacidades');
   }
+  // DepositProductDetail muestra título, introducción y párrafos, pero NO
+  // las FAQ guardadas en depositProducts.ts. Comprobar solo HTML publicado.
   if (!familyHtml.includes('Depósitos verticales de poliéster fondo plano | Depofibra') ||
       !familyHtml.includes('base plana o fondo plano') ||
-      !familyHtml.includes('base plana y depósito de fondo plano')) {
-    errors.push('SEO vertical: falta nomenclatura «fondo plano» y explicación útil');
+      !familyHtml.includes('Las medidas definitivas y el suministro')) {
+    errors.push('SEO vertical: falta «fondo plano», explicación visible o cautela comercial');
   }
   if (catalogHtml.includes('dep-volumes__photo') || catalogHtml.includes('dep-volumes__card')) {
     errors.push('UX catálogo: no añadir tarjetas ni fotografías al acceso por litros');
