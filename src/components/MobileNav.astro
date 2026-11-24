@@ -244,18 +244,18 @@ const { activeNav = 'inicio' } = Astro.props;
     position: relative;
     margin: 5px 2px;
     border-radius: 12px;
-    background: #dff7e8;
-    color: #065c34;
+    background: #25d366;
+    color: #fff;
     font-weight: 800;
   }
   .mobile-nav__item--primary:hover,
   .mobile-nav__item--primary:focus-visible {
-    background: #cdf0db;
-    color: #06452b;
+    background: #1ebe59;
+    color: #fff;
   }
   .mobile-nav__item--primary::before { content: none; }
   .mobile-nav__item--primary span { color: inherit; font-weight: 800; }
-  .mobile-nav__item--primary svg { position: static; }
+  .mobile-nav__item--primary svg { position: static; width: 21px; height: 21px; display: block; }
 
   /* Ocultar en escritorio */
   @media (min-width: 769px) {
@@ -437,12 +437,12 @@ const { activeNav = 'inicio' } = Astro.props;
     margin-bottom: 12px;
     border-radius: 11px;
     background: #25d366;
-    color: #063d24;
+    color: #fff;
     font: 800 14px/1.3 var(--font-display);
     text-decoration: none;
   }
   .mobile-panel__whatsapp:hover,
-  .mobile-panel__whatsapp:focus-visible { background: #1cc25a; }
+  .mobile-panel__whatsapp:focus-visible { background: #1ebe59; color: #fff; }
   /* Ocultar paneles en escritorio */
   @media (min-width: 769px) {
     .mobile-panel {
