@@ -1,11 +1,18 @@
-/** Imágenes editoriales de Pexels (licencia gratuita para uso comercial).
- * Son imágenes de contexto, no fotografías de productos ni instalaciones propias de Depofibra.
- * Para la web final: descargar originales optimizados y sustituir remote por ficheros locales.
+/** Imágenes editoriales de contexto con licencia comercial y fotografías de referencia
+ * ya utilizadas en el catálogo. Las imágenes de referencia no acreditan fabricación
+ * propia ni una capacidad, instalación o entrega específica.
  */
 export interface BlogPhoto {
   src: string; alt: string; fallback: string; credit: string; creditUrl: string;
 }
 export const blogPhotos: Record<string, BlogPhoto> = {
+  "depositos-gran-capacidad-20000-60000-litros": {
+    "src": "/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verdes-conjunto-diferentes-tamanos.webp",
+    "alt": "Conjunto de depósitos verticales verdes de poliéster de distintas alturas, fotografía de referencia de catálogo; sin capacidad exacta identificada",
+    "fallback": "/images/productos/categoria-depositos.jpg",
+    "credit": "Fotografía de referencia del catálogo",
+    "creditUrl": "https://depofibra.com/depositos/vertical-base-plana/"
+  },
   "como-elegir-deposito-poliester-riego": {
     src: "https://images.pexels.com/photos/3351909/pexels-photo-3351909.jpeg?auto=compress&cs=tinysrgb&w=1600",
     alt: "Riego por aspersión sobre un campo verde",
