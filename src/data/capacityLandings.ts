@@ -14,8 +14,9 @@ export interface CapacityLanding {
   metaDescription: string;
   h1: string;
   lead: string;
-  image: string;
-  imageAlt: string;
+  /** Imagen del modelo exacto solo cuando esté acreditada; si falta, no se muestra foto de producto. */
+  image?: string;
+  imageAlt?: string;
   decisionTitle: string;
   decisionParagraphs: string[];
   checklist: { title: string; detail: string }[];
@@ -118,8 +119,6 @@ export const capacityLandings: CapacityLanding[] = [
     metaDescription: 'Depósito de agua de 20.000 litros PRFV, vertical de base plana para riego y reserva en superficie. Medidas orientativas, accesos y presupuesto.',
     h1: 'Depósito de agua de 20.000 litros de poliéster',
     lead: 'Si necesitas una reserva de 20.000 litros (20 m³) para riego u otro uso compatible, la familia de depósitos verticales de poliéster PRFV permite estudiar una solución en superficie. La capacidad no basta para decidir: hay que contrastar diámetro, altura exterior, conexiones y medios de entrega con el modelo real.',
-    image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp',
-    imageAlt: 'Fotografía ilustrativa de la familia de depósitos verticales de poliéster, sin identificación de una unidad de 20.000 litros',
     decisionTitle: '20.000 litros: comprueba reserva, base y acceso',
     decisionParagraphs: [
       'Un depósito de 20.000 litros equivale a 20 m³ nominales. Para dimensionar una reserva de riego necesitas conocer el consumo por jornada o turno y el intervalo hasta la siguiente reposición. El volumen nominal no garantiza por sí solo la autonomía: influyen el volumen útil de cada modelo y la demanda real.',
@@ -147,8 +146,6 @@ export const capacityLandings: CapacityLanding[] = [
     metaDescription: 'Depósito vertical PRFV de 30.000 litros para reserva de agua y riego. Consulta cotas orientativas, dimensiones reales, descarga y presupuesto por destino.',
     h1: 'Depósito de agua de 30.000 litros de poliéster',
     lead: 'Una reserva nominal de 30.000 litros equivale a 30 m³. Este volumen puede estudiarse en la familia de depósitos PRFV verticales de base plana para superficie, siempre que el acceso, el apoyo, el líquido y la entrega sean compatibles con la referencia concreta.',
-    image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-verde-escala-en-exterior.webp',
-    imageAlt: 'Fotografía representativa de un depósito de poliéster vertical verde, no identificada como modelo exacto de 30.000 litros',
     decisionTitle: '30.000 litros: la dimensión exterior condiciona el proyecto',
     decisionParagraphs: [
       'Los 30.000 litros pueden responder a demandas de reserva agrícola o de suministro técnico cuando el consumo y la frecuencia de reposición justifican ese volumen. Antes de elegir, estima los litros útiles necesarios y comprueba que el sistema de llenado, rebose y salida se adapte al proyecto.',

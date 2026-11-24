@@ -578,9 +578,22 @@ for (const { slug, label } of [
   if (existsSync(sitemapPath) && !content(sitemapPath).includes('https://depofibra.com' + route)) {
     errors.push('SEO capacidades: sitemap no incluye ' + route);
   }
+  // No mostrar ni declarar como imagen principal fotos de otra capacidad.
+  // El logotipo corporativo del layout puede mantenerse para compartir la URL.
+  if (html.includes('class="cap-hero__photo"') || html.includes('primaryImageOfPage')) {
+    errors.push('Calidad catálogo: imagen ajena presente en ficha ' + route);
+  }
   const riego = targetFile('/depositos/para-riego/');
   if (!riego || !content(riego).includes('href="' + route + '"')) {
     errors.push('SEO capacidades: falta enlace desde riego a ' + route);
+  }
+}
+
+// No alterar las fotografías ya existentes de las tres capacidades originales.
+for (const slug of ['5000-litros', '10000-litros', '15000-litros']) {
+  const file = targetFile('/depositos/vertical-base-plana/' + slug + '/');
+  if (!file || !content(file).includes('class="cap-hero__photo"')) {
+    errors.push('Calidad catálogo: falta foto original de ' + slug);
   }
 }
 

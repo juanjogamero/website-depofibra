@@ -13,7 +13,8 @@ const pathname = `/depositos/vertical-base-plana/${landing.slug}/`;
 const canonical = `https://depofibra.com${pathname}`;
 const schemaOrigin = Astro.site?.origin ?? 'https://demo.depofibra.com';
 const url = new URL(pathname, schemaOrigin).href;
-const imageUrl = new URL(landing.image, schemaOrigin).href;
+const hasProductImage = Boolean(landing.image && landing.imageAlt);
+const imageUrl = landing.image ? new URL(landing.image, schemaOrigin).href : undefined;
 const contactHref = `/contacto/?producto=${encodeURIComponent('Depósito vertical de base plana')}&capacidad=${encodeURIComponent(String(landing.liters) + ' litros')}`;
 const waNumber = String(import.meta.env.PUBLIC_WHATSAPP_NUMBER || '34642129233').replace(/\D/g, '');
 const waMessage = `Hola, estoy interesado en un depósito vertical de poliéster de ${formatNumber(landing.liters)} litros. ¿Podéis confirmarme el modelo, las dimensiones y el transporte a mi código postal?`;
@@ -31,7 +32,8 @@ const waHref = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(w
           { '@type': 'ListItem', position: 4, name: `${formatNumber(landing.liters)} litros`, item: url },
         ] },
         { '@type': 'WebPage', '@id': url, url, name: landing.h1, inLanguage: 'es-ES',
-          description: landing.metaDescription, primaryImageOfPage: { '@type': 'ImageObject', url: imageUrl } },
+          description: landing.metaDescription,
+          ...(hasProductImage ? { primaryImageOfPage: { '@type': 'ImageObject', url: imageUrl } } : {}) },
       ],
     })} />
   </Fragment>
@@ -45,7 +47,7 @@ const waHref = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(w
         <span aria-current="page">{formatNumber(landing.liters)} L</span>
       </nav>
 
-      <section class="cap-hero" aria-labelledby="cap-title">
+      <section class:list={['cap-hero', { 'cap-hero--no-image': !hasProductImage }]} aria-labelledby="cap-title">
         <div class="cap-hero__text">
           <span class="cap-eyebrow">DEPÓSITOS DE POLIÉSTER · BASE PLANA</span>
           <h1 id="cap-title">{landing.h1}</h1>
@@ -61,10 +63,12 @@ const waHref = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(w
           </div>
           <p class="cap-small">Presupuesto sujeto a modelo, uso y lugar de entrega. Transporte estándar sin descarga incluida.</p>
         </div>
-        <figure class="cap-hero__photo">
-          <img src={landing.image} alt={landing.imageAlt} width="1000" height="1000" decoding="async" loading="eager" fetchpriority="high" />
-          <figcaption>Fotografía de la familia de depósitos verticales. No identifica necesariamente una unidad de {formatNumber(landing.liters)} litros.</figcaption>
-        </figure>
+        {hasProductImage && (
+          <figure class="cap-hero__photo">
+            <img src={landing.image} alt={landing.imageAlt} width="1000" height="1000" decoding="async" loading="eager" fetchpriority="high" />
+            <figcaption>Fotografía de la familia de depósitos verticales. No identifica necesariamente una unidad de {formatNumber(landing.liters)} litros.</figcaption>
+          </figure>
+        )}
       </section>
 
       <section class="cap-section cap-section--measures" aria-labelledby="cap-measures-title">
@@ -148,6 +152,10 @@ const waHref = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(w
   .cap-breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:23px 0 27px;color:var(--color-gray-500);font:600 12px/1.5 var(--font-body)}
   .cap-breadcrumb a{color:var(--color-primary)}.cap-breadcrumb a:hover{text-decoration:underline}
   .cap-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,64px);align-items:center;padding-bottom:clamp(50px,6vw,78px)}
+  .cap-hero--no-image{display:block;max-width:960px}
+  .cap-hero--no-image h1{max-width:23ch}
+  .cap-hero--no-image .cap-lead{max-width:72ch}
+  .cap-hero--no-image .cap-facts{max-width:800px}
   .cap-eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--color-primary);font:800 11px/1.5 var(--font-display);letter-spacing:.09em}
   .cap-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--color-primary)}
   .cap-hero h1{font:800 clamp(2.25rem,4.3vw,3.9rem)/1.08 var(--font-display);letter-spacing:-.055em;margin:14px 0 19px;max-width:15ch;color:#111d30;text-wrap:balance}
