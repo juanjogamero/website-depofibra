@@ -351,6 +351,31 @@ if (!newRegionsIndex) {
   }
 }
 
+
+// Descubrimiento: los hubs de aplicaciones y provincias deben estar enlazados
+// desde la portada y el catálogo a través del pie común; sitemap NO basta solo.
+for (const route of ['/', '/depositos/', '/fosas-septicas/', '/blog/']) {
+  const file = targetFile(route);
+  if (!file) { errors.push('Indexación: ruta de prueba no generada ' + route); continue; }
+  const html = content(file);
+  for (const url of ['/depositos/para-riego/', '/depositos/para-granjas/', '/depositos/zonas/']) {
+    if (!html.includes('href="' + url + '"')) {
+      errors.push('Indexación: ' + route + ' debe enlazar a ' + url + ' de manera rastreable');
+    }
+  }
+}
+const robotsPath = path.join(output, 'robots.txt');
+if (!existsSync(robotsPath)) {
+  errors.push('Indexación: falta robots.txt con sitemap de producción');
+} else {
+  const robotsText = content(robotsPath);
+  if (!robotsText.includes('Sitemap: https://depofibra.com/sitemap.xml')
+      || !/User-agent:\s*\*/i.test(robotsText)
+      || !/Allow:\s*\//i.test(robotsText)) {
+    errors.push('Indexación: robots.txt debe permitir rastreo y anunciar sitemap de producción');
+  }
+}
+
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));

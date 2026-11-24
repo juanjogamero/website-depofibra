@@ -1,0 +1,6 @@
+# Descubrimiento de contenido público de Depofibra
+# Las páginas de preproducción declaran noindex en su HTML.
+User-agent: *
+Allow: /
+
+Sitemap: https://depofibra.com/sitemap.xml
