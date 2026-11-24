@@ -555,7 +555,7 @@ else {
 // contacto sin JS y, con JS, reutiliza el modal existente con origen y familia.
 const articleGuides = htmlFiles.filter(file => {
   const rel = path.relative(output, file).replaceAll(path.sep, '/');
-  return /^blog\/[^/]+\/index\.html$/.test(rel);
+  return /^blog\/[^/]+\/index\.html$/.test(rel) && !rel.includes('.html/index.html');
 });
 if (articleGuides.length < 17) errors.push('Conversión blog: faltan guías canónicas esperadas');
 for (const file of articleGuides) {
