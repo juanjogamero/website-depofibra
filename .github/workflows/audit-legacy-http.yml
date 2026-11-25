@@ -1,0 +1,26 @@
+name: Auditar rutas antiguas HTTP (solo lectura)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/audit-legacy-http.yml'
+      - 'scripts/audit-legacy-http.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Obtener estado HTTP antes de redirecciones HTML
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Obtener codigo
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Leer respuestas HTTPS en depofibra.com sin cambios
+        run: node scripts/audit-legacy-http.mjs
