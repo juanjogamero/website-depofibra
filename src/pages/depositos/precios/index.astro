@@ -1,0 +1,121 @@
+---
+/**
+ * Intención transaccional «depósitos de poliéster precios».
+ * No publica PVP ficticios ni costes de compra privados.
+ */
+import CommercialQuoteLanding from '../../../components/CommercialQuoteLanding.astro';
+
+const page = {
+  canonicalPath: '/depositos/precios/',
+  seoTitle: 'Precios de depósitos de poliéster | Pide presupuesto | Depofibra',
+  metaDescription: 'Consulta precio de depósitos de poliéster PRFV de 5.000 a 30.000 L y otras capacidades. Presupuesto según modelo, accesorios, destino y descarga.',
+  eyebrow: 'PRECIO DE DEPÓSITOS PRFV · CONSULTA POR CAPACIDAD',
+  h1: 'Precios de depósitos de poliéster: solicita tu presupuesto',
+  introduction: '¿Quieres saber cuánto cuesta un depósito de poliéster para agua o riego? El importe depende de los litros, el formato, las conexiones y el transporte hasta tu localidad. Aquí puedes ir directamente a una referencia y pedir una propuesta ajustada al uso y al destino, sin precios orientativos que puedan resultar engañosos.',
+  quoteProduct: 'Depósito de poliéster PRFV — consulta de precio',
+  quoteNote: 'Solicitud de precio desde la página /depositos/precios/. Confirmar litros, formato, uso y código postal; comprobar coste vigente, transporte, descarga y accesorios antes de la oferta.',
+  optionsTitle: 'Pide precio para la capacidad que necesitas',
+  optionsIntro: 'Estas fichas corresponden a la familia vertical de base plana, para instalación en superficie. También hay depósitos horizontales y otras capacidades; las medidas y la disponibilidad deben verificarse por modelo.',
+  options: [
+    {
+      name: 'Depósito de poliéster de 5.000 litros',
+      href: '/depositos/vertical-base-plana/5000-litros/',
+      detail: 'Dos geometrías de referencia documentadas. Conviene comparar diámetro, acceso y altura exterior definitiva antes de elegir.',
+      quoteProduct: 'Depósito vertical de base plana de 5.000 litros',
+      quoteNote: 'Consulta de precio de depósito PRFV 5.000 L. Verificar geometría, uso, destino, accesorios y descarga.'
+    },
+    {
+      name: 'Depósito de poliéster de 10.000 litros',
+      href: '/depositos/vertical-base-plana/10000-litros/',
+      detail: 'Reserva nominal de 10 m³. Confirma necesidades de llenado, conexiones, apoyo y acceso al punto de entrega.',
+      quoteProduct: 'Depósito vertical de base plana de 10.000 litros',
+      quoteNote: 'Consulta de precio de depósito PRFV 10.000 L. Verificar uso, medidas, destino y condiciones de descarga.'
+    },
+    {
+      name: 'Depósito de poliéster de 15.000 litros',
+      href: '/depositos/vertical-base-plana/15000-litros/',
+      detail: 'Reserva nominal de 15 m³. Es importante planificar las dimensiones exteriores y los medios de descarga.',
+      quoteProduct: 'Depósito vertical de base plana de 15.000 litros',
+      quoteNote: 'Consulta de precio de depósito PRFV 15.000 L. Verificar modelo, medidas, destino y logística.'
+    },
+    {
+      name: 'Depósito de poliéster de 20.000 litros',
+      href: '/depositos/vertical-base-plana/20000-litros/',
+      detail: 'Reserva nominal de 20 m³. Compara la solución de una unidad con otras configuraciones cuando el acceso sea difícil.',
+      quoteProduct: 'Depósito vertical de base plana de 20.000 litros',
+      quoteNote: 'Consulta de precio de depósito PRFV 20.000 L. Contrastar medidas exteriores, usos y transporte.'
+    },
+    {
+      name: 'Depósito de poliéster de 30.000 litros',
+      href: '/depositos/vertical-base-plana/30000-litros/',
+      detail: 'Reserva nominal de 30 m³. La anchura de paso, el soporte y la descarga pueden condicionar la viabilidad del pedido.',
+      quoteProduct: 'Depósito vertical de base plana de 30.000 litros',
+      quoteNote: 'Consulta de precio de depósito PRFV 30.000 L. Confirmar ficha, accesos, transporte y descarga.'
+    }
+  ],
+  guideTitle: 'Qué determina el precio final del depósito',
+  guideIntro: 'Un precio de catálogo aislado puede no representar el coste completo de suministro. Para que la oferta sirva para tomar una decisión, debemos comprobar estas condiciones.',
+  steps: [
+    {
+      title: 'Litros, formato y uso real',
+      detail: 'No cuesta lo mismo una referencia vertical de superficie que una horizontal con cunas o una diseñada para enterrar. Indica si almacenarás agua de riego u otro líquido; las compatibilidades se acreditan por modelo.'
+    },
+    {
+      title: 'Conexiones y accesorios',
+      detail: 'El diámetro y posición de tomas, tapa, rebosadero, indicador de nivel y otros elementos se concretan en la referencia ofertada. No debe suponerse que todas las opciones están incluidas.'
+    },
+    {
+      title: 'Transporte hasta el código postal',
+      detail: 'El volumen exterior, la ruta, las restricciones del acceso y el destino afectan al transporte. Antes de presupuestar hay que estudiar los portes para el modelo concreto.'
+    },
+    {
+      title: 'Descarga y condiciones del pedido',
+      detail: 'El transporte estándar no incluye descarga. Confirma medios de elevación, espacio de maniobra y condiciones de recepción; los impuestos y las condiciones comerciales deben figurar en el presupuesto.'
+    }
+  ],
+  faqs: [
+    {
+      question: '¿Por qué no aparece un precio fijo en euros?',
+      answer: 'Un precio sin comprobar modelo vigente, accesorios y entrega puede llevar a error. Depofibra prepara la oferta tras verificar el suministro y el transporte; no se publica un PVP antiguo como si fuera actual.'
+    },
+    {
+      question: '¿Puedo pedir precio sin conocer las medidas exactas?',
+      answer: 'Sí. Para iniciar la consulta basta con indicar capacidad aproximada, uso y localidad o código postal. Si existe un portón estrecho, altura limitada o acceso difícil, conviene decirlo desde el principio.'
+    },
+    {
+      question: '¿El presupuesto incluye transporte y descarga?',
+      answer: 'Se debe indicar por escrito qué incluye la oferta. El transporte se estudia según destino y referencia; la descarga no está incluida en el transporte estándar salvo acuerdo expreso.'
+    },
+    {
+      question: '¿Hay depósitos de poliéster de otras capacidades?',
+      answer: 'Sí. La documentación de las familias contempla desde capacidades pequeñas hasta 60.000 litros según modelo. También existen formatos verticales y horizontales. Se consultan disponibilidad y configuración antes de ofrecer precio.'
+    },
+    {
+      question: '¿Se puede usar cualquier depósito para agua potable?',
+      answer: 'No. La aptitud para agua destinada al consumo humano necesita documentación específica del modelo y de sus materiales; no se deduce del uso de PRFV ni de la capacidad.'
+    },
+    {
+      question: '¿Cómo recibo un presupuesto de compra?',
+      answer: 'Pulsa «Solicitar precio» junto a la capacidad que te interese y facilita uso, localidad y código postal. Revisaremos referencia, medidas y condiciones de suministro antes de contestar; no se garantiza un plazo fijo sin validación.'
+    }
+  ],
+  related: [
+    {
+      title: 'Ver todos los tipos de depósito',
+      href: '/depositos/',
+      detail: 'Vertical, horizontal con cunas, enterrable, con patas y otras configuraciones.'
+    },
+    {
+      title: 'Depósitos de gran capacidad',
+      href: '/depositos/gran-capacidad/',
+      detail: 'Reserva de 20.000 a 60.000 litros, accesos y alternativas de suministro.'
+    },
+    {
+      title: 'Opciones de depósitos a medida',
+      href: '/depositos/a-medida/',
+      detail: 'Consultas sobre tomas, geometrías y accesorios sujetos a fabricante.'
+    }
+  ],
+};
+---
+<CommercialQuoteLanding {...page} />
