@@ -85,6 +85,43 @@ for (const expected of definitions) {
     'Falta enlace de categoría a ' + expected.route);
 }
 
+
+const commercialGuides = [
+  {
+    route: '/blog/que-es-prfv-depositos-fibra-vidrio/',
+    firstAnchor: 'consulta cómo pedir precio de un depósito de poliéster',
+    needsLarge: true,
+  },
+  {
+    route: '/blog/calcular-capacidad-deposito-agua-riego/',
+    firstAnchor: 'consulta qué determina el precio de los depósitos de poliéster',
+    needsLarge: false,
+  },
+  {
+    route: '/blog/depositos-gran-capacidad-20000-60000-litros/',
+    firstAnchor: 'comparar depósitos PRFV de 20.000 a 60.000 litros',
+    needsLarge: true,
+  },
+];
+// Los lectores deben llegar de las guías rastreables al presupuesto sin
+// redirecciones antiguas ni navegación complicada. No hay envíos de formulario.
+for (const guide of commercialGuides) {
+  const { body, meta } = await getLive(guide.route);
+  assert.match(meta.contentType || '', /text\/html/i, 'La guía debe servir HTML ' + guide.route);
+  const canonical = extractHeadTag(body, 'rel', 'canonical');
+  assert.ok(canonical.includes('href="' + origin + guide.route + '"'),
+    'Canonical incorrecta en guía ' + guide.route);
+  assert.ok(body.includes(guide.firstAnchor), 'Falta texto de compra contextual en ' + guide.route);
+  assert.ok(body.includes('href="/depositos/precios/"'), 'Falta enlace a pedir precio en ' + guide.route);
+  if (guide.needsLarge) {
+    assert.ok(body.includes('href="/depositos/gran-capacidad/"'),
+      'Falta enlace de reserva grande en ' + guide.route);
+  }
+  assert.ok(body.includes('open-quote-trigger') && body.includes('href="/contacto/"'),
+    'La guía debe conservar acceso al presupuesto y contacto ' + guide.route);
+  results.push({ route: guide.route, status: 'HTTP 200 + canonical + puentes de compra' });
+}
+
 const xmlResult = await getLive('/sitemap.xml', 'application/xml,text/xml');
 assert.match(xmlResult.meta.contentType || '', /xml/i, 'El sitemap debe responder XML');
 const paths = [...xmlResult.body.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
