@@ -3,7 +3,7 @@
  * No son tiendas/sedes. No se ofrece transporte o aptitud sin confirmación.
  */
 export interface DepositLocalLanding {
-  slug: 'murcia' | 'valencia' | 'sevilla' | 'palencia' | 'soria' | 'huelva' | 'badajoz' | 'segovia' | 'huesca' | 'teruel' | 'cuenca' | 'avila' | 'salamanca';
+  slug: 'murcia' | 'valencia' | 'sevilla' | 'palencia' | 'soria' | 'huelva' | 'badajoz' | 'segovia' | 'huesca' | 'teruel' | 'cuenca' | 'avila' | 'salamanca' | 'malaga';
   heroImage: { src: string; alt: string; productHref: string; productLabel: string };
   province: string;
   eyebrow: string;
@@ -983,5 +983,87 @@ export const depositLocalLandings: DepositLocalLanding[] = [
     "sourceName": "Junta de Castilla y León — actuaciones de regadío en La Armuña",
     "sourceUrl": "https://analisis.datosabiertos.jcyl.es/explore/dataset/expropiaciones-forzosas-en-materia-de-desarrollo-rural/?flg=es-es",
     "quoteContext": "Consulta depósito PRFV para Salamanca: finca/ganadería, uso, suministro de agua autorizado, capacidad, comarca, CP, acceso del transporte y descarga a organizar."
+  },
+
+  {
+    "slug": "malaga",
+    "heroImage": {
+      "src": "/images/depositos/horizontal-con-cunas/deposito-poliester-horizontal-con-cunas-verde-vista-extremo.webp",
+      "alt": "Depósito horizontal verde de poliéster con cunas visto desde un extremo; imagen representativa de la familia, no entrega en Málaga",
+      "productHref": "/depositos/vertical-base-plana/",
+      "productLabel": "Ver depósitos de base plana"
+    },
+    "province": "provincia de Málaga",
+    "eyebrow": "MÁLAGA · DEPÓSITOS PRFV PARA FINCAS Y RIEGO",
+    "seoTitle": "Depósitos de poliéster en Málaga para riego | Depofibra",
+    "metaDescription": "Depósitos de poliéster para agua y riego en Málaga. Compara 5.000, 10.000 y 15.000 L, tipos de apoyo, accesos y transporte según el municipio.",
+    "h1": "Depósitos de agua de poliéster en Málaga",
+    "lead": "Si necesitas un depósito de agua para una finca en Málaga, Depofibra puede estudiar referencias de poliéster reforzado con fibra de vidrio (PRFV) de fabricantes externos. Compara formatos y capacidades según el uso del agua, los turnos de suministro, el espacio y el acceso al punto de entrega. No anunciamos almacén, fábrica ni reparto propio en la provincia.",
+    "regionHeading": "Fincas y riego de Málaga: la reserva se elige según el suministro real",
+    "regionParagraphs": [
+      "El Sistema de Información Geográfica de Regadíos de la Junta de Andalucía documenta diversidad de zonas de riego, modalidades y orígenes de agua. Esa información ayuda a contextualizar la necesidad agrícola, pero no demuestra que cualquier finca de Málaga tenga derecho de agua ni que necesite un depósito. La capacidad debe calcularse con la dotación autorizada, el consumo y el calendario efectivos de cada explotación.",
+      "Para almacenar agua de riego, no es suficiente comparar el precio por litro. Conviene revisar el volumen útil, los periodos entre aportaciones, las conexiones con la instalación existente y las dimensiones exteriores. El almacenamiento no garantiza presión en goteo ni mejora el caudal de un pozo; la hidráulica de riego la debe dimensionar el técnico responsable.",
+      "Los depósitos verticales de base plana constituyen una familia prioritaria, con fichas de 5.000, 10.000 y 15.000 litros y más capacidades documentadas. También hay horizontales para superficie y enterrables expresamente diseñados. Un modelo de superficie no debe enterrarse por el mero hecho de ser de poliéster."
+    ],
+    "zoneHeading": "Tres situaciones diferentes antes de solicitar presupuesto",
+    "localCases": [
+      {
+        "place": "Axarquía y este de Málaga",
+        "need": "En parcelas de riego, indica origen autorizado del agua, volumen entre turnos y acceso a la ubicación. Si la parcela está en ladera, confirma pendientes, firme y espacios de maniobra del vehículo de transporte."
+      },
+      {
+        "place": "Valle del Guadalhorce y entorno de Málaga",
+        "need": "Para instalaciones con riego sectorizado, prepara consumo por sector, horario de aportación, conexiones y espacio de apoyo. Comprueba portones, restricciones de altura y dónde se realizaría la descarga."
+      },
+      {
+        "place": "Antequera, campiña e interior",
+        "need": "En fincas de olivar u otros cultivos, el tamaño no se decide por hectáreas sino por consumo y reposiciones. Si se trata de olivar, consulta además nuestra guía específica de reserva para riego por goteo."
+      }
+    ],
+    "choiceHeading": "Qué capacidades de depósitos de agua comparar en Málaga",
+    "capacityNotes": [
+      {
+        "liters": 5000,
+        "note": "Capacidad de referencia para reservas acotadas o parciales; valida litros reales entre turnos, modelo y dimensiones antes de elegir."
+      },
+      {
+        "liters": 10000,
+        "note": "Interesa compararla si el consumo y el intervalo de reposición requieren más volumen; comprueba diámetro, altura, base y accesos."
+      },
+      {
+        "liters": 15000,
+        "note": "Para estudiar necesidades de reserva mayores, valora espacio, volumen útil, conexión, peso de servicio y los medios de descarga."
+      }
+    ],
+    "logisticsHeading": "Entrega de un depósito en Málaga: ruta, accesos y descarga",
+    "logisticsParagraphs": [
+      "Depofibra es una comercializadora con atención desde Casariche (Sevilla), no una fábrica ni una tienda con sede en Málaga. El lugar de carga depende del fabricante y del producto. Podemos estudiar operaciones con transporte externo según ruta, dimensiones del depósito, acceso y viabilidad comercial; no anunciamos disponibilidad inmediata ni un precio o plazo uniforme para toda la provincia.",
+      "Indica el municipio, código postal, modelo/capacidad, líquido, anchura y altura libres, pendientes, firme del camino y medios para descargar. La modalidad estándar de transporte NO incluye descarga, y la excavación o la instalación no se presuponen como servicio contratado. El uso para agua potable, productos químicos o enterramiento requiere confirmación documental de la referencia exacta."
+    ],
+    "faq": [
+      {
+        "question": "¿Tenéis fábrica o almacén de depósitos de poliéster en Málaga?",
+        "answer": "No anunciamos instalaciones propias en Málaga. Depofibra comercializa desde Casariche (Sevilla) referencias de fabricantes externos y estudia el suministro al destino que indiques."
+      },
+      {
+        "question": "¿Cuánto cuesta un depósito de 10.000 litros entregado en Málaga?",
+        "answer": "No existe una tarifa única válida para todos los modelos y destinos. Hay que confirmar variante, geometría, entradas y salidas, origen de carga, código postal y medios de descarga antes de elaborar una oferta actualizada."
+      },
+      {
+        "question": "¿Qué depósito elegir para riego de olivar en Antequera o la campiña?",
+        "answer": "La elección depende del agua disponible y autorizada, consumo real entre turnos, emplazamiento y accesos. Se pueden comparar verticales de base plana y horizontales según referencia; el hecho de cultivar olivar no determina una capacidad universal."
+      },
+      {
+        "question": "¿Puedo enterrar un depósito horizontal de superficie?",
+        "answer": "No. Solo deben enterrarse referencias expresamente diseñadas y validadas para las condiciones del terreno, nivel freático y cargas del proyecto."
+      },
+      {
+        "question": "¿El transporte hasta la Axarquía o Guadalhorce incluye descarga?",
+        "answer": "El porte estándar no incluye descarga. Deben confirmarse el acceso del camión, la maniobra, el equipo para descargar y cualquier servicio adicional antes de cerrar el presupuesto."
+      }
+    ],
+    "sourceName": "Junta de Andalucía — Sistema de Información Geográfica de Regadíos",
+    "sourceUrl": "https://www.juntadeandalucia.es/organismos/agriculturapescaaguaydesarrollorural/areas/infraestructuras-agrarias/regadios/paginas/sig-regadios.html",
+    "quoteContext": "Consulta depósito de poliéster para Málaga: capacidad y uso, finca o instalación, origen autorizado del agua, municipio y CP, accesos, modelo y descarga a coordinar."
   }
 ];
