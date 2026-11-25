@@ -200,14 +200,25 @@ const categoryFaqs = questions.map(item => ({ question: item.q, answer: item.a }
           <h2 id="dep-volumes-title">Depósitos de agua por capacidad</h2>
           <p>Consulta fichas de depósitos verticales de poliéster (PRFV) de fondo plano para riego y reserva en superficie. Las medidas y el suministro se confirman por referencia. Si necesitas bocas o dimensiones especiales, revisa <a href="/depositos/a-medida/">qué opciones de depósitos a medida podemos estudiar</a> antes de comprar.</p>
         </div>
-        <nav class="dep-volumes__links" aria-label="Fichas de depósitos verticales de poliéster por capacidad">
-          <a href="/depositos/vertical-base-plana/5000-litros/">5.000 litros</a>
-          <a href="/depositos/vertical-base-plana/10000-litros/">10.000 litros</a>
-          <a href="/depositos/vertical-base-plana/15000-litros/">15.000 litros</a>
-          <a href="/depositos/vertical-base-plana/20000-litros/">20.000 litros</a>
-          <a href="/depositos/vertical-base-plana/30000-litros/">30.000 litros</a>
-          <a class="dep-volumes__more" href="/depositos/vertical-base-plana/">Ver todas las capacidades de fondo plano</a>
-        </nav>
+        <div class="dep-volumes__choice">
+          <nav class="dep-volumes__links" aria-label="Fichas de depósitos verticales de poliéster por capacidad">
+            <a href="/depositos/vertical-base-plana/5000-litros/">Depósito vertical de 5.000 litros</a>
+            <a href="/depositos/vertical-base-plana/10000-litros/">Depósito vertical de 10.000 litros</a>
+            <a href="/depositos/vertical-base-plana/15000-litros/">Depósito vertical de 15.000 litros</a>
+            <a href="/depositos/vertical-base-plana/20000-litros/">20.000 litros</a>
+            <a href="/depositos/vertical-base-plana/30000-litros/">30.000 litros</a>
+            <a class="dep-volumes__more" href="/depositos/vertical-base-plana/">Ver todas las capacidades de fondo plano</a>
+          </nav>
+          <div class="dep-volumes__comparison">
+            <h3>¿Qué diferencia hay entre 5.000, 10.000 y 15.000 litros?</h3>
+            <ul>
+              <li><strong>5.000 L (5 m³):</strong> hay dos geometrías de referencia; comprueba cuál encaja por altura y acceso.</li>
+              <li><strong>10.000 L (10 m³):</strong> compara el consumo entre reposiciones, el espacio y la posición de las tomas.</li>
+              <li><strong>15.000 L (15 m³):</strong> revisa especialmente las dimensiones finales, la base y la maniobra de descarga.</li>
+            </ul>
+            <p>Son criterios de comparación, no recomendaciones universales: el volumen útil, las medidas y la aptitud se verifican por modelo. El transporte estándar no incluye descarga.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -311,10 +322,17 @@ const categoryFaqs = questions.map(item => ({ question: item.q, answer: item.a }
   .dep-volumes__layout{display:grid;grid-template-columns:minmax(240px,.88fr) minmax(0,1.12fr);gap:clamp(20px,4vw,65px);align-items:center}
   .dep-volumes__copy h2{color:var(--color-dark);font:800 clamp(20px,2vw,28px)/1.2 var(--font-display);letter-spacing:-.035em;margin:8px 0 8px}
   .dep-volumes__copy p{font:400 13px/1.7 var(--font-body);color:var(--color-gray-600);max-width:510px}
+  .dep-volumes__choice{min-width:0}
   .dep-volumes__links{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline}
   .dep-volumes__links a{color:var(--color-primary);font:750 13px/1.6 var(--font-display);text-decoration:underline;text-underline-offset:4px}
   .dep-volumes__links a:hover,.dep-volumes__links a:focus-visible{color:var(--color-primary-dark);text-decoration-thickness:2px}
   .dep-volumes__links .dep-volumes__more{font-weight:600;color:var(--color-gray-600)}
+  .dep-volumes__comparison{border-top:1px solid var(--color-gray-200);margin-top:18px;padding-top:15px}
+  .dep-volumes__comparison h3{font:750 14px/1.4 var(--font-display);color:var(--color-dark);margin:0 0 9px}
+  .dep-volumes__comparison ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+  .dep-volumes__comparison li,.dep-volumes__comparison p{font:400 12px/1.65 var(--font-body);color:var(--color-gray-600)}
+  .dep-volumes__comparison li strong{color:var(--color-dark);font-weight:750}
+  .dep-volumes__comparison p{margin-top:10px}
   @media(max-width:760px){.dep-volumes__layout{grid-template-columns:1fr;gap:17px}.dep-volumes__links{gap:11px 18px}}
   /* Navegación por aplicaciones: enlaces de texto, sin tarjetas ni sombras. */
   .dep-uses { padding: clamp(42px, 5vw, 70px) 0; border-top: 1px solid var(--color-gray-200); background: #fff; scroll-margin-top: 92px; }
