@@ -116,7 +116,13 @@ test('La solicitud AJAX usa contrato de FormSubmit y no anuncia éxito con solo 
   const navigate = modalSource.indexOf("window.location.assign('/solicitud-enviada/')", accepted);
   assert.ok(accepted >= 0 && reject > accepted && session > reject && navigate > session,
     'Sin confirmación explícita no debe mostrarse la página de gracias');
-  assert.match(modalSource, /quoteOrigin\.value = window\.location\.href/);
+  assert.match(modalSource, /quoteOrigin\.value = window\.location\.origin \+ window\.location\.pathname/);
+  assert.ok(!modalSource.includes('quoteOrigin.value = window.location.href'),
+    'El formulario no debe adjuntar a los correos parámetros de URL potencialmente privados');
+  assert.match(modalSource, /id="quoteFallback" class="quote-fallback" hidden/);
+  assert.match(modalSource, /href=\{whatsappContactHref\}/);
+  assert.match(modalSource, /if \(quoteFallback\) quoteFallback\.hidden = false;/);
+  assert.match(modalSource, /if \(quoteFallback\) quoteFallback\.hidden = true;/);
   assert.match(modalSource, /quoteReference\.value = selectedProduct/);
 });
 
