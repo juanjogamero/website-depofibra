@@ -144,9 +144,9 @@ export const depositFamilies: DepositFamily[] = [
       'Según las tablas facilitadas, las referencias enterrables comparten parejas de diámetro y longitud con los horizontales con cunas, pero no son el mismo depósito ni llevan sus apoyos de superficie. En el enterrable no se incluye medidor de capacidad visible. Se estudian tapadera, rebosadero, anillas, colores y conexiones personalizadas según viabilidad técnica de la referencia y las exigencias del enterramiento.',
     ],
     installationPoints:[
-      {title:'Comprobar el terreno',text:'Identificar condiciones del suelo, nivel freático y cargas del entorno.'},
-      {title:'Revisión técnica',text:'Solicitar la ficha de la referencia y seguir las instrucciones de instalación y relleno.'},
-      {title:'Entrega y maniobra',text:'Estudiar cómo accederá el camión y qué medios de descarga se necesitan.'},
+      {title:'Nivel freático y cargas del terreno',text:'Antes de comprar, indica si existe agua subterránea, profundidad prevista y posible paso de vehículos. La referencia y el proyecto deben validar cargas, flotación y condiciones especiales, sin suponer aptitud genérica.'},
+      {title:'Instalación según ficha del modelo',text:'Revisar con el responsable técnico el apoyo, los rellenos, el acceso al registro y las instrucciones específicas del fabricante. No copiar la solución de un depósito de superficie ni de otra referencia.'},
+      {title:'Acceso de camión, descarga y excavación',text:'Comunica código postal, acceso a la obra, espacio de maniobra y medios de descarga. El porte estándar no incluye descarga; excavación, izado y montaje se coordinan por separado.'},
     ],
     faqs:[
       {q:'¿Puedo enterrar un depósito horizontal convencional?',a:'No se debe hacer. Solo debe enterrarse una referencia diseñada y validada para ese uso.'},
@@ -154,6 +154,7 @@ export const depositFamilies: DepositFamily[] = [
       {q:'¿Qué diferencia hay entre un aljibe de poliéster y una fosa séptica?',a:'El aljibe se plantea para almacenar agua con el uso permitido por su ficha; una fosa séptica tiene una función de saneamiento y una documentación diferente. No son productos intercambiables ni puede darse por apto cualquier aljibe para agua potable.'},
       {q:'¿El precio incluye excavación e instalación?',a:'No se presuponen esos trabajos. Se concretarán por separado si correspondiese, y siempre según condiciones acordadas.'},
       {q:'¿Es obligatorio un proyecto?',a:'Los requisitos técnicos y administrativos dependen del uso y la instalación. Deben revisarse para cada caso.'},
+      {q:'¿Puede enterrarse el aljibe si hay nivel freático alto o paso de vehículos?',a:'No puede confirmarse para cualquier modelo. El agua subterránea puede generar empuje de flotación y el tráfico añade cargas; la profundidad, el tipo de terreno y la necesidad de refuerzo o anclaje deben estudiarse con la documentación del fabricante y el técnico responsable. No se presupone que una referencia estándar sirva en esas condiciones.'},
       {q:'¿Los depósitos horizontales enterrables llevan medidor de capacidad?',a:'No llevan el medidor de capacidad visible que se contempla en los verticales y los horizontales con cunas. La forma de acceso, inspección y mantenimiento debe estudiarse según el modelo y la instalación enterrada.'},
       {q:'¿Tienen las mismas medidas que los horizontales con cunas?',a:'La documentación facilitada recoge las mismas combinaciones de diámetro y longitud, pero no son productos intercambiables. El enterrable debe estar diseñado y validado específicamente para las condiciones del suelo y las cargas del proyecto.'},
       {q:'¿Se pueden personalizar las entradas y salidas de un enterrable?',a:'Se estudian las conexiones en el diámetro y la posición necesarios, pero su viabilidad y estanqueidad deben confirmarse para la referencia y las condiciones de instalación enterrada.'},
