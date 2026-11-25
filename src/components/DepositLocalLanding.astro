@@ -117,7 +117,7 @@ const applicationExplanation = isGranjasArea
             {landing.capacityNotes.map(item => (
               <li>
                 <a href={`/depositos/vertical-base-plana/${item.liters}-litros/`}>
-                  Depósito vertical de {item.liters.toLocaleString('es-ES')} litros <span aria-hidden="true">↗</span>
+                  Depósito vertical de {item.liters === 5000 ? '5.000' : item.liters.toLocaleString('es-ES')} litros <span aria-hidden="true">↗</span>
                 </a>
                 <p>{item.note}</p>
               </li>
