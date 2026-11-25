@@ -31,6 +31,9 @@ const applicationExplanation = isGranjasArea
           description:landing.metaDescription,inLanguage:'es-ES',
           isPartOf:{'@id':'https://depofibra.com/#website'},
           about:{'@id':'https://depofibra.com/#organization'},
+          // Referencia territorial, sin simular sedes ni puntos físicos de Depofibra.
+          spatialCoverage:{'@type':'AdministrativeArea',name:landing.province},
+          citation:{'@type':'WebPage',name:landing.sourceName,url:landing.sourceUrl},
           primaryImageOfPage:{'@type':'ImageObject',url:new URL(heroPhoto,'https://depofibra.com').href,caption:heroAlt}}
       ]
     })} />
@@ -107,6 +110,20 @@ const applicationExplanation = isGranjasArea
             <li><a href="/depositos/cuadrados-rectangulares/">Cuadrados y rectangulares <span aria-hidden="true">↗</span></a></li>
           </ul>
         </nav>
+        <div class="dl-volume-links" aria-labelledby="dl-volume-links-heading">
+          <h3 id="dl-volume-links-heading">Comparar depósitos verticales de 5.000, 10.000 y 15.000 litros</h3>
+          <p class="dl-volume-links__intro">Estas fichas de base plana ayudan a estudiar el volumen de reserva para una finca o instalación en {landing.province}. No son ofertas cerradas ni confirman disponibilidad, dimensiones definitivas o entrega.</p>
+          <ul class="dl-volume-links__list">
+            {landing.capacityNotes.map(item => (
+              <li>
+                <a href={`/depositos/vertical-base-plana/${item.liters}-litros/`}>
+                  Depósito vertical de {item.liters.toLocaleString('es-ES')} litros <span aria-hidden="true">↗</span>
+                </a>
+                <p>{item.note}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
         <p class="dl-secondary-links">Consulta el <a href="/depositos/">catálogo completo de formatos</a> o la <a href="/blog/calcular-capacidad-deposito-agua-riego/">guía para calcular la reserva de agua</a>. Indícanos los litros que necesitas, el uso y el código postal para estudiar la referencia y el transporte.</p>
         <p class="dl-secondary-links">¿Buscas una solución para tu actividad? Consulta nuestros <a href={applicationHref}>{applicationLabel}</a>. {applicationExplanation} La viabilidad de entrega en {landing.province} se confirma según referencia y código postal.</p>
       </div>
@@ -179,6 +196,16 @@ const applicationExplanation = isGranjasArea
   .dl-family-list a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0;font:700 15px/1.5 var(--font-body);color:var(--color-primary);text-decoration:none}
   .dl-family-list a:hover{text-decoration:underline;text-underline-offset:4px}
   .dl-family-list a span{font-size:13px}
+  /* Fichas por capacidad: enlaces semánticos y texto útil, sin fotos o tarjetas nuevas. */
+  .dl-volume-links{margin:7px 0 28px;padding-top:25px;border-top:1px solid var(--color-gray-200)}
+  .dl-volume-links h3{font:800 clamp(18px,2vw,22px)/1.35 var(--font-display);letter-spacing:-.02em;color:var(--color-primary-dark);margin:0 0 10px}
+  .dl-volume-links__intro{max-width:790px;margin:0 0 19px;font:400 14px/1.7 var(--font-body);color:var(--color-gray-600)}
+  .dl-volume-links__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.6vw,30px)}
+  .dl-volume-links__list li{padding:14px 0 0;border-top:2px solid #a7c6e2;min-width:0}
+  .dl-volume-links__list a{font:750 15px/1.5 var(--font-display);color:var(--color-primary);text-decoration:underline;text-underline-offset:3px}
+  .dl-volume-links__list a:hover{color:var(--color-primary-dark)}
+  .dl-volume-links__list p{margin:9px 0 0;font:400 13px/1.65 var(--font-body);color:var(--color-gray-600)}
+  @media(max-width:760px){.dl-volume-links__list{grid-template-columns:1fr;gap:17px}}
   .dl-secondary-links{padding-top:16px;border-top:1px solid var(--color-gray-200)}
   .dl-faq{border-top:1px solid var(--color-gray-200)}
   .dl-faq details{border-bottom:1px solid var(--color-gray-200)}
