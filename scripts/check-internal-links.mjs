@@ -770,6 +770,38 @@ for (const file of articleGuides) {
   }
 }
 
+// SEO/GEO territorial: las notas originales 5k/10k/15k de cada provincia
+// deben mostrarse y enlazar a las fichas canónicas, sin landings duplicadas.
+for (const slug of [
+  'murcia','valencia','sevilla','palencia','soria','huelva','badajoz',
+  'segovia','huesca','teruel','cuenca','avila','salamanca'
+]) {
+  const route = '/depositos/' + slug + '/';
+  const file = targetFile(route);
+  if (!file) {
+    errors.push('GEO capacidad: falta página comercial provincial ' + route);
+    continue;
+  }
+  const html = content(file);
+  if (!html.includes('id="dl-volume-links-heading"') ||
+      !html.includes('Comparar depósitos verticales de 5.000, 10.000 y 15.000 litros') ||
+      !html.includes('No son ofertas cerradas ni confirman disponibilidad')) {
+    errors.push('GEO capacidad: faltan criterios comerciales visibles en ' + route);
+  }
+  for (const liters of [5000,10000,15000]) {
+    const destination = '/depositos/vertical-base-plana/' + liters + '-litros/';
+    if (!html.includes('href="' + destination + '"')) {
+      errors.push('GEO capacidad: falta enlace directo a ' + liters + ' L en ' + route);
+    }
+  }
+  // Los datos geográficos describen la página, no una tienda/local de la zona.
+  if (!html.includes('"spatialCoverage"') || !html.includes('"citation"')) {
+    errors.push('GEO capacidad: falta fuente y cobertura territorial en JSON-LD ' + route);
+  }
+  if (html.includes('class="dl-volume-links__photo"')) {
+    errors.push('GEO capacidad: no incorporar fotos de otras capacidades en ' + route);
+  }
+}
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
