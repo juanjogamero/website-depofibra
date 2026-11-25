@@ -376,7 +376,11 @@ for (const [slug, liters, desc] of priorityCapacityCommercialChecks) {
     if (!html.includes(snippet)) errors.push('SEO capacidades prioritarias: falta contenido en ' + route + ': ' + snippet);
   }
   const catalog = comparisonPage ? content(comparisonPage) : '';
-  if (!catalog.includes('href="' + route + '">Depósito vertical de ' + liters + ' litros</a>')) {
+  // Astro puede insertar atributos data-astro-cid entre href y el texto visible.
+  const anchorStart = catalog.indexOf('href="' + route + '"');
+  const anchorEnd = anchorStart >= 0 ? catalog.indexOf('</a>', anchorStart) : -1;
+  const anchorMarkup = anchorStart >= 0 && anchorEnd > anchorStart ? catalog.slice(anchorStart, anchorEnd) : '';
+  if (!anchorMarkup.includes('Depósito vertical de ' + liters + ' litros')) {
     errors.push('SEO capacidades prioritarias: ancla descriptiva ausente desde catálogo a ' + route);
   }
 }
