@@ -1,0 +1,125 @@
+---
+/**
+ * Landing de compra y solicitud de oferta para depósitos de reserva de gran capacidad.
+ * No confunde referencias históricas con stock ni medidas definitivas.
+ */
+import CommercialQuoteLanding from '../../../components/CommercialQuoteLanding.astro';
+
+const page = {
+  canonicalPath: '/depositos/gran-capacidad/',
+  seoTitle: 'Depósitos de poliéster de gran capacidad | 20.000–60.000 L | Depofibra',
+  metaDescription: 'Depósitos de poliéster PRFV de 20.000 a 60.000 litros para reservas agrícolas. Compara verticales, horizontales, accesos y descarga. Pide presupuesto.',
+  eyebrow: 'DEPÓSITOS DE GRAN CAPACIDAD · DE 20 A 60 M³ SEGÚN MODELO',
+  h1: 'Depósitos de poliéster de gran capacidad: 20.000 a 60.000 litros',
+  introduction: 'Para almacenar 20, 30 o hasta 60 m³ de agua en una finca o instalación profesional, no basta con elegir el depósito de más litros. Hay que comprobar qué modelo puede suministrarse, si cabe por los accesos, qué superficie de apoyo necesita y cómo se descargará. Depofibra estudia depósitos PRFV de fabricantes externos y prepara la propuesta según la referencia y el destino.',
+  quoteProduct: 'Depósito PRFV de gran capacidad, 20.000 a 60.000 litros',
+  quoteNote: 'Consulta de compra desde /depositos/gran-capacidad/. Indicar litros, uso, localidad/CP, espacio, accesos y descarga. Verificar referencia vigente del fabricante.',
+  optionsTitle: 'Alternativas para una reserva importante de agua',
+  optionsIntro: 'Las capacidades de esta página proceden de la documentación de referencia de las familias. Son opciones para estudiar, no una relación de unidades disponibles ni una oferta cerrada. En cada caso es necesario confirmar dimensiones exteriores, uso y logística.',
+  options: [
+    {
+      name: 'Depósito vertical de 20.000 litros (20 m³)',
+      href: '/depositos/vertical-base-plana/20000-litros/',
+      detail: 'Ficha comercial propia de un vertical de base plana para superficie. Compara la referencia con el espacio libre y los puntos de llenado y salida.',
+      quoteProduct: 'Depósito vertical de base plana de 20.000 litros',
+      quoteNote: 'Interés de compra 20.000 L, gran capacidad. Confirmar medidas exteriores, uso y portes al CP.'
+    },
+    {
+      name: 'Depósito vertical de 30.000 litros (30 m³)',
+      href: '/depositos/vertical-base-plana/30000-litros/',
+      detail: 'Ficha de capacidad nominal para reserva de agua. Antes del presupuesto hay que revisar paso de vehículo, soporte y descarga.',
+      quoteProduct: 'Depósito vertical de base plana de 30.000 litros',
+      quoteNote: 'Interés de compra 30.000 L, gran capacidad. Confirmar referencia, acceso, descarga y destino.'
+    },
+    {
+      name: 'Verticales de 40.000, 50.000 o 60.000 litros',
+      href: '/depositos/vertical-base-plana/',
+      detail: 'La tabla histórica incluye estas capacidades en la familia vertical. Se necesita validar con el proveedor modelo actual, dimensiones y viabilidad de expedición.',
+      quoteProduct: 'Depósito vertical de gran capacidad de 40.000 a 60.000 litros',
+      quoteNote: 'Consulta por vertical 40k/50k/60k L. Confirmar cuál capacidad, uso, disponibilidad documental y ruta.'
+    },
+    {
+      name: 'Depósito horizontal de superficie con cunas',
+      href: '/depositos/horizontal-con-cunas/',
+      detail: 'Alternativa cuando la altura sea una limitación y exista espacio longitudinal suficiente. Los apoyos y la longitud varían según referencia.',
+      quoteProduct: 'Depósito horizontal con cunas de gran capacidad',
+      quoteNote: 'Consulta de horizontal de superficie 20.000–60.000 L; aclarar volumen, longitud disponible y descarga.'
+    },
+    {
+      name: 'Comparar una unidad grande con varias menores',
+      href: '/depositos/vertical-base-plana/10000-litros/',
+      detail: 'A veces conviene estudiar varios depósitos conectados si la entrada es complicada. Requiere diseño hidráulico, bases, mayor número de conexiones y comparación real de costes.',
+      quoteProduct: 'Comparar un depósito grande con varios depósitos de menor capacidad',
+      quoteNote: 'Solicitan alternativa modular por acceso o reserva. Confirmar volumen total, diseño hidráulico, unidades y transporte.'
+    }
+  ],
+  guideTitle: 'Antes de comprar 20.000 litros o más',
+  guideIntro: 'La diferencia entre una reserva viable y una entrega problemática suele estar en el uso, las dimensiones y la descarga. Estas comprobaciones ayudan a decidir qué modelo presupuestar.',
+  steps: [
+    {
+      title: 'Calcula el volumen útil que necesitas',
+      detail: 'Elige los litros a partir del consumo diario o por turno y la frecuencia con que puedes reponer agua. La capacidad nominal no equivale necesariamente al volumen útil de explotación.'
+    },
+    {
+      title: 'Confirma formato e instalación',
+      detail: 'Un depósito vertical de base plana necesita apoyo y altura adecuados; un horizontal con cunas precisa la longitud y los puntos de soporte del modelo. No se debe enterrar un depósito de superficie sin autorización expresa de su fabricante.'
+    },
+    {
+      title: 'Mide toda la ruta de acceso',
+      detail: 'Comprueba anchura libre de portones y caminos, giros, obstáculos elevados, superficie de descarga y la ubicación final. Las cotas de las tablas internas son orientativas hasta obtener la ficha del modelo vigente.'
+    },
+    {
+      title: 'Planifica la descarga antes de aceptar la oferta',
+      detail: 'La descarga no forma parte del transporte estándar. Es necesario confirmar peso, medios de elevación, acceso para el vehículo, responsable de la maniobra y cualquier coste adicional.'
+    },
+    {
+      title: 'Define tomas, uso y documentación',
+      detail: 'Indica el líquido, las entradas y salidas, la tapa y otras necesidades. Para uso potable, enterramiento o aplicaciones reguladas hay que disponer de documentación específica de aptitud.'
+    }
+  ],
+  faqs: [
+    {
+      question: '¿Se puede pedir un depósito de poliéster de 60.000 litros?',
+      answer: 'La gama histórica documenta referencias de hasta 60.000 litros para determinadas familias. Eso no confirma disponibilidad actual, características ni posibilidad de transporte al destino. Estudiaremos el modelo con el fabricante antes de presupuestar.'
+    },
+    {
+      question: '¿Un depósito de 30.000 litros es mejor que tres de 10.000?',
+      answer: 'No siempre. Una unidad ocupa un espacio distinto y requiere una maniobra de entrega diferente; varias unidades añaden conexiones, bases y posibles necesidades de mantenimiento. La elección exige valorar la instalación completa y los costes reales.'
+    },
+    {
+      question: '¿Qué medidas tienen los depósitos de 40.000 o 50.000 litros?',
+      answer: 'Las tablas de referencia incluyen cotas orientativas, pero su segunda medida no está validada como altura exterior total. No deben usarse esas cifras para contratar un transporte. Se confirma un plano completo de la referencia antes de la oferta.'
+    },
+    {
+      question: '¿Se incluye grúa o descarga en el precio?',
+      answer: 'El transporte estándar no incluye la descarga. Para capacidades grandes hay que coordinar expresamente el medio de descarga, las maniobras y quién asume cada servicio.'
+    },
+    {
+      question: '¿Puedo comprar un depósito grande para agua potable?',
+      answer: 'Solo si la referencia concreta tiene documentación que acredite la aptitud para contacto con agua de consumo humano. La capacidad o el hecho de estar fabricado en PRFV no garantizan esa compatibilidad.'
+    },
+    {
+      question: '¿Qué datos necesitáis para darme precio?',
+      answer: 'Indica litros aproximados, uso del líquido, código postal, lugar de instalación, accesos y si cuentas con medios de descarga. Con esos datos podremos consultar el modelo, los portes y las condiciones de suministro.'
+    }
+  ],
+  related: [
+    {
+      title: 'Precio de depósitos de poliéster',
+      href: '/depositos/precios/',
+      detail: 'Acceso directo a solicitudes de precio para 5.000, 10.000, 15.000, 20.000 y 30.000 litros.'
+    },
+    {
+      title: 'Depósitos para riego agrícola',
+      href: '/depositos/para-riego/',
+      detail: 'Compara formatos de superficie y enterrables por necesidades de riego.'
+    },
+    {
+      title: 'Guía de depósitos de gran capacidad',
+      href: '/blog/depositos-gran-capacidad-20000-60000-litros/',
+      detail: 'Información práctica para estudiar un depósito grande frente a varios más pequeños.'
+    }
+  ],
+};
+---
+<CommercialQuoteLanding {...page} />
