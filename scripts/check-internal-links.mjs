@@ -357,6 +357,38 @@ for (const [route, required] of [
 }
 
 
+// SEO/GEO comercial: dos intenciones reales de compra (remolque y camión).
+// Reutilizar páginas canónicas existentes, sin crear landings duplicadas.
+const cisternasBuyingExamples = [
+  ['/cubas-cisternas/cuba-remolque/', [
+    'Cisternas de poliéster para remolques agrícolas | Depofibra',
+    'cuba de un remolque agrícola',
+    'href="/cubas-cisternas/cisterna-camion/"',
+    'Cuba de poliéster para remolque agrícola',
+  ]],
+  ['/cubas-cisternas/cisterna-camion/', [
+    'Cisternas de poliéster para camión y plataforma | Depofibra',
+    '¿Vas a sustituir una cisterna de camión o a equipar una plataforma?',
+    'href="/cubas-cisternas/cuba-remolque/"',
+    'Cisterna de poliéster para camión o plataforma',
+  ]],
+  ['/blog/cuba-cisterna-poliester-remolque-agricola/', [
+    'Si la cisterna va sobre un camión o plataforma',
+    'href="/cubas-cisternas/cisterna-camion/"',
+    'Para sustituir una cisterna:',
+  ]],
+];
+for (const [route, required] of cisternasBuyingExamples) {
+  const file = targetFile(route);
+  if (!file) { errors.push('SEO/GEO cisternas: falta ' + route); continue; }
+  const html = content(file);
+  for (const snippet of required) {
+    if (!html.includes(snippet)) {
+      errors.push('SEO/GEO cisternas: falta contenido de compra en ' + route + ': ' + snippet);
+    }
+  }
+}
+
 // SEO fosas: las consultas de documentación deben llevar a fichas reales sin
 // afirmar homologación genérica ni que la compra autorice un vertido.
 for (const [url, required] of [
