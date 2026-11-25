@@ -100,6 +100,34 @@ try {
   assert.equal(direct.submitted.length, 0);
   await direct.context.close();
   console.log('PASS: visita directa sin consentimiento no genera solicitud ni carga evento de éxito.');
+  // PR#107: las nuevas landings comerciales deben precargar el mismo modal
+  // en móvil y escritorio. Sin peticiones reales a FormSubmit/GA4.
+  for (const { route, capacity, mobile } of [
+    { route: '/depositos/precios/', capacity: '5.000', mobile: true },
+    { route: '/depositos/gran-capacidad/', capacity: '20.000', mobile: false },
+  ]) {
+    const next = await newQaPage({ analytics: false, mobile });
+    await next.page.goto(base + route + '?utm_source=qa_secreta_no_compartir', { waitUntil: 'load' });
+    assert.equal(await next.page.locator('main.purchase-page h1').count(), 1, 'Una cabecera comercial única en ' + route);
+    const first = next.page.locator('.purchase-hero .open-quote-trigger');
+    await first.click();
+    assert.equal(await next.page.locator('#quoteModal').getAttribute('aria-hidden'), 'false', 'CTA principal funcional en ' + route);
+    assert.equal(await next.page.locator('#quoteProduct').inputValue(), 'Depósito', 'Categoría seleccionada en ' + route);
+    assert.match(await next.page.locator('#quoteReference').inputValue(), /depósito|Depósito/i);
+    assert.equal(await next.page.locator('#quoteOrigin').inputValue(), base + route,
+      'No transmitir parámetros de marketing al formulario en ' + route);
+    await next.page.locator('#quoteCloseBtn').click();
+    assert.equal(await next.page.locator('#quoteModal').getAttribute('aria-hidden'), 'true', 'El visitante puede cerrar el formulario');
+    await next.page.locator('.purchase-option-quote').first().click();
+    assert.equal(await next.page.locator('#quoteModal').getAttribute('aria-hidden'), 'false');
+    assert.match(await next.page.locator('#quoteReference').inputValue(), new RegExp(capacity.replace('.', '\\\\.') + ' litros'),
+      'La opción comercial debe precargar ' + capacity + ' L');
+    assert.match(await next.page.locator('#quoteDetails').inputValue(), new RegExp(capacity.replace('.', '\\\\.') + ' L'),
+      'El formulario conserva el contexto de ' + capacity + ' L');
+    assert.equal(next.submitted.length, 0, 'La apertura del formulario nunca envía una solicitud');
+    await next.context.close();
+    console.log('PASS: ' + route + ' CTA principal y ' + capacity + ' L con origen limpio (' + (mobile ? 'móvil' : 'escritorio') + ').');
+  }
 } finally {
   await browser.close();
 }
