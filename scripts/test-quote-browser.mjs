@@ -120,9 +120,9 @@ try {
     assert.equal(await next.page.locator('#quoteModal').getAttribute('aria-hidden'), 'true', 'El visitante puede cerrar el formulario');
     await next.page.locator('.purchase-option-quote').first().click();
     assert.equal(await next.page.locator('#quoteModal').getAttribute('aria-hidden'), 'false');
-    assert.match(await next.page.locator('#quoteReference').inputValue(), new RegExp(capacity.replace('.', '\\\\.') + ' litros'),
+    assert.match(await next.page.locator('#quoteReference').inputValue(), new RegExp(capacity.replace('.', '\\.') + ' litros'),
       'La opción comercial debe precargar ' + capacity + ' L');
-    assert.match(await next.page.locator('#quoteDetails').inputValue(), new RegExp(capacity.replace('.', '\\\\.') + ' L'),
+    assert.match(await next.page.locator('#quoteDetails').inputValue(), new RegExp(capacity.replace('.', '\\.') + ' L'),
       'El formulario conserva el contexto de ' + capacity + ' L');
     assert.equal(next.submitted.length, 0, 'La apertura del formulario nunca envía una solicitud');
     await next.context.close();
