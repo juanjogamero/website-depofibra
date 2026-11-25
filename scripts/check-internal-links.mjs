@@ -160,9 +160,34 @@ const sitemapPath = path.join(output, 'sitemap.xml');
 if (!existsSync(sitemapPath)) errors.push('Falta dist/sitemap.xml');
 else {
   const sitemapUrls = new Set([...content(sitemapPath).matchAll(/<loc>(.*?)<\/loc>/g)].map(match => decodeAttribute(match[1])));
-  for (const mustInclude of ['/depositos/para-riego/', '/depositos/palencia/', '/depositos/soria/']) {
+  for (const mustInclude of ['/depositos/para-riego/', '/depositos/para-olivar/', '/depositos/malaga/', '/depositos/palencia/', '/depositos/soria/']) {
     if (!sitemapUrls.has('https://depofibra.com' + mustInclude) && !sitemapUrls.has('https://demo.depofibra.com' + mustInclude)) {
       errors.push(`Sitemap: falta página comercial rastreable ${mustInclude}`);
+    }
+  }
+  // Cada ficha comercial de depósitos indexable compilada debe figurar en
+  // sitemap.xml: no basta con que exista la URL y reciba enlaces internos.
+  // Este control evita omisiones al añadir nuevas guías, provincias y modelos.
+  const commercialDepositHtml = htmlFiles.filter(file => {
+    const rel = path.relative(output, file).replaceAll(path.sep, '/');
+    return /^depositos\/(?:[^/]+\/)+index\.html$/.test(rel);
+  });
+  for (const file of commercialDepositHtml) {
+    const rel = path.relative(output, file).replaceAll(path.sep, '/');
+    const route = '/' + rel.slice(0, -'index.html'.length);
+    const html = content(file);
+    const robotsTag = html.match(/<meta\b[^>]*\bname=["']robots["'][^>]*>/i)?.[0] ?? '';
+    if (/\bnoindex\b/i.test(robotsTag)) continue;
+    if (!sitemapUrls.has('https://depofibra.com' + route) &&
+        !sitemapUrls.has('https://demo.depofibra.com' + route)) {
+      errors.push('Sitemap: ficha comercial de depósitos sin URL canónica en sitemap: ' + route);
+    }
+  }
+  // No volver a publicar alias .html como URLs canónicas en sitemap.
+  for (const legacy of legacyDirectFiles.keys()) {
+    if (sitemapUrls.has('https://depofibra.com/' + legacy) ||
+        sitemapUrls.has('https://demo.depofibra.com/' + legacy)) {
+      errors.push('Sitemap: alias histórico incluido indebidamente: /' + legacy);
     }
   }
   for (const match of content(sitemapPath).matchAll(/<loc>(.*?)<\/loc>/g)) {
