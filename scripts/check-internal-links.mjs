@@ -793,6 +793,10 @@ for (const slug of [
     if (!html.includes('href="' + destination + '"')) {
       errors.push('GEO capacidad: falta enlace directo a ' + liters + ' L en ' + route);
     }
+    const visibleLiters = liters === 5000 ? '5.000' : liters === 10000 ? '10.000' : '15.000';
+    if (!html.includes('Depósito vertical de ' + visibleLiters + ' litros')) {
+      errors.push('GEO capacidad: formato inconsistente de ' + visibleLiters + ' L en ' + route);
+    }
   }
   // Los datos geográficos describen la página, no una tienda/local de la zona.
   if (!html.includes('"spatialCoverage"') || !html.includes('"citation"')) {
