@@ -1067,6 +1067,29 @@ for (const [route, heading, productHref] of purchaseLandings) {
     errors.push('SEO precio: marcado de precios o meta keywords no autorizado en ' + route);
   }
 }
+// SEO orgánico sin anuncios: llevar lectores de tres guías reales a páginas de compra.
+// La URL histórica .html sigue redirigiendo a la canónica de la guía.
+const commercialGuideBridges = [
+  ['/blog/que-es-prfv-depositos-fibra-vidrio/', 'consulta cómo pedir precio de un depósito de poliéster'],
+  ['/blog/calcular-capacidad-deposito-agua-riego/', 'consulta qué determina el precio de los depósitos de poliéster'],
+  ['/blog/depositos-gran-capacidad-20000-60000-litros/', 'comparar depósitos PRFV de 20.000 a 60.000 litros'],
+];
+for (const [route, commercialText] of commercialGuideBridges) {
+  const file = targetFile(route);
+  if (!file) { errors.push('SEO guías comerciales: falta ' + route); continue; }
+  const html = content(file);
+  if (!html.includes(commercialText) ||
+      !html.includes('href="/depositos/precios/"')) {
+    errors.push('SEO guías comerciales: falta puente a precios y texto contextual en ' + route);
+  }
+  if (route !== '/blog/calcular-capacidad-deposito-agua-riego/' &&
+      !html.includes('href="/depositos/gran-capacidad/"')) {
+    errors.push('SEO guías comerciales: falta enlace a gran capacidad en ' + route);
+  }
+  if (!html.includes('href="/contacto/"') || !html.includes('open-quote-trigger')) {
+    errors.push('SEO guías comerciales: conservar contacto y CTA en ' + route);
+  }
+}
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
