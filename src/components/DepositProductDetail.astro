@@ -277,6 +277,26 @@ const contactHref = `/contacto/?producto=${encodeURIComponent(product.quoteProdu
         </div>
       </section>
 
+      <!-- Respuestas ya documentadas en la ficha de cada familia, ahora visibles y accesibles. -->
+      {product.faqs.length > 0 && (
+        <section class="product-faqs" aria-labelledby="product-faqs-heading">
+          <div class="product-faqs__head">
+            <span class="product-eyebrow">PREGUNTAS ANTES DE COMPRAR</span>
+            <h2 id="product-faqs-heading">Preguntas frecuentes sobre {product.shortName.toLowerCase()}</h2>
+            <p>Respuestas sobre características, instalación y uso del tipo de depósito. La referencia final, la documentación técnica y las condiciones de suministro se confirman antes del presupuesto.</p>
+          </div>
+          <div class="product-faqs__list">
+            {product.faqs.map(item => (
+              <details class="product-faqs__item">
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+          <p class="product-faqs__contact">¿Necesitas comprobar un modelo concreto? <a href={contactHref}>Envíanos el uso, los litros y la localidad de entrega</a> para preparar la consulta técnica y logística.</p>
+        </section>
+      )}
+
       <section class="product-related" aria-labelledby="product-related-heading">
         <div class="product-related__head"><div><span class="product-eyebrow">DESCUBRE MÁS OPCIONES</span><h2 id="product-related-heading">Otros depósitos que pueden interesarte</h2></div><a href="/depositos/">Ver el catálogo completo <span aria-hidden="true">↗</span></a></div>
         <div class="product-related__grid">{related.map(item => <a href={`/depositos/${item.slug}/`} class="product-related__item"><span class="product-related__image" style={`--related-photo:url("${item.gallery[0].src}")`}><img src={item.gallery[0].src} alt={item.gallery[0].alt} width="420" height="320" loading="lazy" /></span><span class="product-related__name">{item.shortName}<span aria-hidden="true">↗</span></span><small>{item.installation}</small></a>)}</div>
@@ -427,6 +447,19 @@ const contactHref = `/contacto/?producto=${encodeURIComponent(product.quoteProdu
 
 <style>
   .product-page{padding:0 0 clamp(48px,6vw,80px);background:#fff;color:var(--color-dark)}
+  /* Contenido técnico visible para personas y buscadores, sin nuevas tarjetas ni galerías. */
+  .product-faqs{margin-top:clamp(42px,5.5vw,78px);padding:clamp(30px,4vw,52px) 0;border-top:1px solid var(--color-gray-200);border-bottom:1px solid var(--color-gray-200)}
+  .product-faqs__head{max-width:800px}
+  .product-faqs__head h2{font:800 clamp(24px,3vw,34px)/1.24 var(--font-display);letter-spacing:-.035em;color:var(--color-primary-dark);margin:10px 0 12px}
+  .product-faqs__head p,.product-faqs__item p,.product-faqs__contact{font:400 14px/1.75 var(--font-body);color:var(--color-gray-600)}
+  .product-faqs__list{margin-top:25px;border-top:1px solid var(--color-gray-200)}
+  .product-faqs__item{border-bottom:1px solid var(--color-gray-200)}
+  .product-faqs__item summary{display:list-item;cursor:pointer;padding:18px 30px 18px 2px;color:var(--color-primary-dark);font:750 15px/1.5 var(--font-display)}
+  .product-faqs__item summary:focus-visible{outline:3px solid #79b5ef;outline-offset:2px}
+  .product-faqs__item p{max-width:900px;margin:0 0 20px}
+  .product-faqs__contact{margin:22px 0 0}
+  .product-faqs__contact a{font-weight:700;color:var(--color-primary);text-decoration:underline;text-underline-offset:3px}
+
   .product-breadcrumb{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:22px 0 25px;font:600 12px/1.5 var(--font-body);color:#788595}
   .product-breadcrumb a{color:var(--color-primary-dark);transition:color .2s}.product-breadcrumb a:hover{color:var(--color-primary)}
   .product-intro{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(35px,5vw,75px);align-items:start}
