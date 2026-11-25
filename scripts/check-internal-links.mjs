@@ -1038,6 +1038,18 @@ else {
     if (!categoryHtml.includes('href="' + route + '"')) errors.push('SEO precio: falta acceso desde catálogo a ' + route);
   }
 }
+// La portada es una URL rastreada con regularidad: ofrecer enlaces directos
+// de precio y gran capacidad sin mover el catálogo ni duplicar landings.
+const purchaseHome = targetFile('/');
+if (!purchaseHome) errors.push('SEO precio: falta portada');
+else {
+  const homeHtml = content(purchaseHome);
+  for (const [route] of purchaseLandings) {
+    if (!homeHtml.includes('href="' + route + '"')) {
+      errors.push('SEO precio: falta enlace comercial desde portada a ' + route);
+    }
+  }
+}
 for (const [route, heading, productHref] of purchaseLandings) {
   const file = targetFile(route);
   if (!file) { errors.push('SEO precio: falta landing ' + route); continue; }
