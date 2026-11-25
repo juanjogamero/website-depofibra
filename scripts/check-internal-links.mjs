@@ -833,6 +833,32 @@ for (const [slug, question] of depositFaqExamples) {
     errors.push('SEO FAQ: no añadir fotos a secciones técnicas ' + route);
   }
 }
+// SEO/GEO: respuestas de compra visibles para seis fichas de saneamiento y cubas.
+// No añadir páginas locales duplicadas ni depender de FAQ rich results.
+const secondaryFaqExamples = [
+  ['/fosas-septicas/fosa-estanca/', '¿Una fosa estanca depura el agua residual?'],
+  ['/fosas-septicas/fosa-biologica/', '¿Es lo mismo una fosa con filtro biológico que una fosa estanca?'],
+  ['/fosas-septicas/oxidacion-total/', '¿Una depuradora de oxidación total necesita electricidad?'],
+  ['/cubas-cisternas/cuba-remolque/', '¿Puedo comprar la cisterna sin comprar un remolque?'],
+  ['/cubas-cisternas/cisterna-camion/', '¿Sirve cualquier cisterna de poliéster para una plataforma?'],
+  ['/cubas-cisternas/cuba-especial/', '¿Se pueden pedir conexiones o accesorios especiales?'],
+];
+for (const [route, question] of secondaryFaqExamples) {
+  const file = targetFile(route);
+  if (!file) { errors.push('FAQ fosas/cubas: falta ' + route); continue; }
+  const html = content(file);
+  const faqCount = (html.match(/class="secondary-faq__item"/g) || []).length;
+  if (!html.includes('id="secondary-faq-heading"') ||
+      !html.includes('Preguntas frecuentes sobre') ||
+      faqCount !== 3 ||
+      !html.includes(question) ||
+      !html.includes('La referencia, los documentos técnicos y las condiciones de entrega')) {
+    errors.push('FAQ fosas/cubas: faltan tres respuestas visibles de compra en ' + route);
+  }
+  if (html.includes('secondary-faq__photo') || html.includes('secondary-faq__card')) {
+    errors.push('FAQ fosas/cubas: no añadir fotos o tarjetas decorativas en ' + route);
+  }
+}
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
