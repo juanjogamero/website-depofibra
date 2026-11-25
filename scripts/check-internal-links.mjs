@@ -340,6 +340,47 @@ for (const [source, targets] of [
 }
 
 
+// SEO/GEO priorizado por negocio: 5.000, 10.000 y 15.000 L.
+// GSC muestra casi exclusivamente impresiones de marca en estas fichas:
+// no simular que ya posicionan para búsquedas genéricas ni inventar precios.
+const comparisonPage = targetFile('/depositos/');
+if (!comparisonPage) {
+  errors.push('SEO capacidades prioritarias: falta catálogo');
+} else {
+  const html = content(comparisonPage);
+  for (const snippet of [
+    '¿Qué diferencia hay entre 5.000, 10.000 y 15.000 litros?',
+    '5.000 L (5 m³)', '10.000 L (10 m³)', '15.000 L (15 m³)',
+    'dos geometrías de referencia', 'volumen útil',
+    'transporte estándar no incluye descarga',
+  ]) {
+    if (!html.includes(snippet)) errors.push('SEO capacidades prioritarias: falta comparación ' + snippet);
+  }
+}
+const priorityCapacityCommercialChecks = [
+  ['5000-litros', '5.000', 'Depósito de agua de 5.000 litros PRFV, vertical de base plana para riego.'],
+  ['10000-litros', '10.000', 'Depósito vertical de agua de 10.000 litros (10 m³) en poliéster PRFV.'],
+  ['15000-litros', '15.000', 'Depósito de agua de 15.000 litros PRFV vertical de base plana para riego.'],
+];
+for (const [slug, liters, desc] of priorityCapacityCommercialChecks) {
+  const route = '/depositos/vertical-base-plana/' + slug + '/';
+  const file = targetFile(route);
+  if (!file) { errors.push('SEO capacidades prioritarias: falta ficha ' + route); continue; }
+  const html = content(file);
+  for (const snippet of [
+    desc, 'Pedir presupuesto de ' + liters + ' L',
+    'href="/blog/deposito-agua-riego-por-turnos-comunidad-regantes/"',
+    'href="/depositos/para-olivar/"',
+    'Transporte estándar sin descarga incluida',
+  ]) {
+    if (!html.includes(snippet)) errors.push('SEO capacidades prioritarias: falta contenido en ' + route + ': ' + snippet);
+  }
+  const catalog = comparisonPage ? content(comparisonPage) : '';
+  if (!catalog.includes('href="' + route + '">Depósito vertical de ' + liters + ' litros</a>')) {
+    errors.push('SEO capacidades prioritarias: ancla descriptiva ausente desde catálogo a ' + route);
+  }
+}
+
 // SEO/GEO 25/11: dos URL nuevas con intención distinta y fuentes/entrega prudentes.
 // Olivar = aplicación y cálculo de reserva; Málaga = destino de suministro sin falsa sede.
 const oliveAndMalagaChecks = [
