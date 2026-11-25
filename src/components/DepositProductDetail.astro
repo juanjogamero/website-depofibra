@@ -206,7 +206,11 @@ const contactHref = `/contacto/?producto=${encodeURIComponent(product.quoteProdu
               <p>Si buscas un depósito de poliéster con conexiones personalizadas, tapas u otras condiciones de instalación, consulta <a href="/depositos/a-medida/">qué opciones pueden estudiarse a medida y cuáles necesitan aprobación del fabricante</a>. No todos los cambios son viables por modelo.</p>
             )}
             {product.slug === 'horizontal-enterrable' && (
-              <p>Si necesitas almacenar <a href="/depositos/agua-de-lluvia/">agua de lluvia procedente de una cubierta</a> o <a href="/depositos/agua-de-pozo/">agua de pozo para una finca</a>, compara primero la finalidad y el volumen de reserva. Después se confirmará que el aljibe enterrable específico es compatible con el uso y las condiciones del terreno.</p>
+              <>
+                <p>Si necesitas almacenar <a href="/depositos/agua-de-lluvia/">agua de lluvia procedente de una cubierta</a> o <a href="/depositos/agua-de-pozo/">agua de pozo para una finca</a>, compara primero la finalidad y el volumen de reserva. Después se confirmará que el aljibe enterrable específico es compatible con el uso y las condiciones del terreno.</p>
+                <p><strong>Antes de solicitar precio de un aljibe prefabricado enterrable:</strong> indica la capacidad aproximada, el uso y origen del agua, la profundidad prevista, si hay nivel freático, si pueden pasar vehículos por encima y el código postal de entrega. Estos datos permiten consultar al fabricante una referencia adecuada; no sustituyen el proyecto o las instrucciones de instalación.</p>
+                <p>Si tu instalación no requiere enterramiento, compara un <a href="/depositos/horizontal-con-cunas/">depósito horizontal con cunas para superficie</a> o un <a href="/depositos/vertical-base-plana/">depósito vertical de base plana</a>. Ninguna de esas familias debe enterrarse sin autorización técnica específica para el modelo.</p>
+              </>
             )}
             <ul class="product-highlights">{product.highlights.map(item => <li><strong>{item.title}</strong><span>{item.text}</span></li>)}</ul>
           </div>
