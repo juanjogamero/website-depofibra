@@ -90,10 +90,10 @@ export const secondaryProducts: SecondaryProduct[] = [
   {
     slug: 'cuba-remolque', family: 'cubas', title: 'Cuba o cisterna de poliéster para remolque agrícola',
     titleSeo: 'Cisternas de poliéster para remolques agrícolas | Depofibra',
-    metaDescription: 'Cuba o cisterna de poliéster para remolque agrícola. Estudia el depósito PRFV sin vehículo: capacidad, medidas, apoyos y transporte según destino.',
+    metaDescription: 'Cuba de poliéster para remolque agrícola: consulta solo el recipiente PRFV, sin vehículo. Compara medidas, apoyos y entrega según destino.',
     eyebrow: 'APLICACIÓN AGRÍCOLA',
     summary: 'Si ya tienes un remolque agrícola y buscas solo una cuba de poliéster, podemos estudiar el recipiente de PRFV por separado, según vehículo y fabricante.',
-    details: 'Para sustituir una cuba existente o equipar un remolque, indica la longitud y la anchura útiles, la carga admisible, el líquido, los apoyos y los anclajes previstos. La compatibilidad, el montaje y los requisitos de circulación debe confirmarlos el profesional responsable. No se incluye el remolque completo por defecto.',
+    details: 'Si quieres sustituir solo la cuba de un remolque agrícola, indica las medidas útiles de largo, ancho y alto, la carga admisible y el líquido previsto. Compara la geometría de la nueva cisterna, sus bocas, apoyos y anclajes con la instalación existente, sin asumir que dos recipientes de igual capacidad son intercambiables. El fabricante debe confirmar el modelo y el profesional de montaje los requisitos de fijación y circulación. Ni el remolque ni la instalación están incluidos por defecto.',
     selectionNotes: [
       'Capacidad aproximada y líquido que llevará la cuba.',
       'Medidas útiles, carga admisible y modelo del remolque existente o previsto, si se conocen.',
@@ -107,20 +107,20 @@ export const secondaryProducts: SecondaryProduct[] = [
       { question: "¿Cómo saber si una cuba encaja en mi remolque?", answer: "Hay que comprobar medidas útiles, carga admisible, apoyos, anclajes y líquido a transportar. El fabricante y el profesional responsable del montaje deben validar la compatibilidad." },
       { question: "¿El precio incluye montaje o descarga?", answer: "No se presuponen esos servicios. El presupuesto debe concretar qué incluye el suministro y cómo se resolverán el transporte y la descarga." },
     ],
-    quoteProduct: 'Cuba o cisterna',
+    quoteProduct: 'Cuba de poliéster para remolque agrícola',
   },
   {
-    slug: 'cisterna-camion', family: 'cubas', title: 'Cisterna para plataforma',
-    titleSeo: 'Cisterna de poliéster para plataforma o camión | Depofibra',
-    metaDescription: 'Cisternas de poliéster para plataforma o camión. Consulta compatibilidad, medidas, soportes y condiciones de suministro según tu vehículo.',
+    slug: 'cisterna-camion', family: 'cubas', title: 'Cisterna de poliéster para camión o plataforma',
+    titleSeo: 'Cisternas de poliéster para camión y plataforma | Depofibra',
+    metaDescription: 'Cisterna de poliéster para camión o plataforma. Estudiamos el recipiente PRFV sin vehículo: espacio útil, apoyos, cargas y entrega por destino.',
     eyebrow: 'PLATAFORMA / CAMIÓN',
-    summary: 'Formato para montaje sobre plataforma o caja de vehículo según proyecto.',
-    details: 'Debe comprobarse la compatibilidad con el vehículo o plataforma, la distribución de cargas, las sujeciones, los apoyos y las condiciones de circulación aplicables.',
+    summary: 'Si ya dispones de una plataforma o camión y necesitas solo la cisterna de poliéster, podemos estudiar el recipiente PRFV según capacidad, espacio útil y uso. El vehículo y el montaje no se incluyen por defecto.',
+    details: 'Para sustituir una cisterna existente o estudiar su montaje sobre una plataforma, no basta con saber los litros: deben revisarse la longitud, la anchura y la altura disponibles, la carga admisible con el conjunto lleno, los puntos de apoyo y anclaje, las conexiones y el líquido. El proveedor confirmará las características de la referencia y el profesional competente deberá validar el montaje y las exigencias de circulación. No se presume incluido el chasis, el vehículo, la instalación ni la descarga.',
     selectionNotes: [
-      'Vehículo o plataforma previstos y espacio útil disponible.',
-      'Capacidad, líquido y frecuencia de desplazamientos.',
-      'Requisitos de sujeción, reparto de cargas y montaje que revisará el profesional responsable.',
-      'Accesorios y conexiones necesarios, destino y descarga.'
+      'Vehículo o plataforma previstos, espacio útil (largo, ancho y alto) y carga admisible.',
+      'Capacidad nominal orientativa, líquido y frecuencia o condiciones de desplazamiento.',
+      'Croquis o foto de apoyos, fijaciones y posición de las conexiones, para revisión del profesional responsable.',
+      'Accesorios y conexiones solicitados, código postal, accesos y medios de descarga.'
     ],
     image: '/images/cubas/cisterna-camion.svg',
     imageAlt: 'Esquema orientativo de cisterna de poliéster sobre plataforma; vehículo no incluido',
@@ -129,7 +129,7 @@ export const secondaryProducts: SecondaryProduct[] = [
       { question: "¿Qué datos necesito facilitar para pedir presupuesto?", answer: "Tipo de plataforma o camión, medidas útiles, capacidad y líquido previstos, apoyos y conexiones requeridos, código postal y medios de descarga." },
       { question: "¿El suministro incluye vehículo y montaje?", answer: "No se consideran incluidos por defecto. La oferta debe especificar el recipiente, accesorios confirmados y cualquier servicio adicional contratado." },
     ],
-    quoteProduct: 'Cuba o cisterna',
+    quoteProduct: 'Cisterna de poliéster para camión o plataforma',
   },
   {
     slug: 'cuba-especial', family: 'cubas', title: 'Cuba de configuración especial',
