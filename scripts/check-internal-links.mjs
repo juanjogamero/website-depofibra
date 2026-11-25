@@ -1024,6 +1024,37 @@ for (const [route, question] of secondaryFaqExamples) {
     errors.push('FAQ fosas/cubas: no añadir fotos o tarjetas decorativas en ' + route);
   }
 }
+// SEO comercial: dos landings independientes que llevan al formulario real,
+// con canonical propia, enlaces de catálogo y sin PVP inventado.
+const purchaseLandings = [
+  ['/depositos/precios/', 'Precios de depósitos de poliéster: solicita tu presupuesto', '/depositos/vertical-base-plana/5000-litros/'],
+  ['/depositos/gran-capacidad/', 'Depósitos de poliéster de gran capacidad: 20.000 a 60.000 litros', '/depositos/vertical-base-plana/20000-litros/'],
+];
+const purchaseCategory = targetFile('/depositos/');
+if (!purchaseCategory) errors.push('SEO precio: falta catálogo de depósitos');
+else {
+  const categoryHtml = content(purchaseCategory);
+  for (const [route] of purchaseLandings) {
+    if (!categoryHtml.includes('href="' + route + '"')) errors.push('SEO precio: falta acceso desde catálogo a ' + route);
+  }
+}
+for (const [route, heading, productHref] of purchaseLandings) {
+  const file = targetFile(route);
+  if (!file) { errors.push('SEO precio: falta landing ' + route); continue; }
+  const html = content(file);
+  if (!html.includes(heading) || !html.includes('<h1')) errors.push('SEO precio: H1/contenido específico ausente ' + route);
+  if (!html.includes('https://depofibra.com' + route)) errors.push('SEO precio: canonical pública ausente ' + route);
+  if (!html.includes('href="' + productHref + '"')) errors.push('SEO precio: falta acceso a ficha existente en ' + route);
+  if ((html.match(/open-quote-trigger/g)||[]).length < 3 || !html.includes('data-product=')) {
+    errors.push('SEO precio: CTA de presupuesto no integrado en ' + route);
+  }
+  if (!html.includes('no incluye descarga') || !html.includes('fabricantes externos')) {
+    errors.push('SEO precio: faltan condiciones transparentes en ' + route);
+  }
+  if (/<meta[^>]+(?:name|property)=["'](?:keywords|product:price:amount)["']/i.test(html)) {
+    errors.push('SEO precio: marcado de precios o meta keywords no autorizado en ' + route);
+  }
+}
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
