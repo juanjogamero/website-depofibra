@@ -806,6 +806,33 @@ for (const slug of [
     errors.push('GEO capacidad: no incorporar fotos de otras capacidades en ' + route);
   }
 }
+// GEO de producto: las respuestas técnicas ya existentes en datos de cada
+// familia deben ser legibles en HTML, sin depender de JS ni de FAQ rich results.
+const depositFaqExamples = [
+  ['vertical-base-plana', '¿Depósito vertical de base plana y depósito de fondo plano son lo mismo?'],
+  ['horizontal-con-cunas', '¿Un horizontal con cunas puede enterrarse?'],
+  ['horizontal-enterrable', '¿Qué revisar si necesito un aljibe prefabricado en una finca?'],
+  ['vertical-con-patas', '¿Puedo elegir la altura de las patas?'],
+  ['tipo-vaso', '¿Puedo elegir una capacidad concreta?'],
+  ['cuadrados-rectangulares', '¿Puedo pedir un depósito rectangular para un hueco exacto?'],
+];
+for (const [slug, question] of depositFaqExamples) {
+  const route = '/depositos/' + slug + '/';
+  const file = targetFile(route);
+  if (!file) { errors.push('SEO FAQ: falta familia ' + route); continue; }
+  const html = content(file);
+  const renderedCount = (html.match(/class="product-faqs__item"/g) || []).length;
+  if (!html.includes('id="product-faqs-heading"') ||
+      !html.includes('Preguntas frecuentes sobre') ||
+      renderedCount < 3 ||
+      !html.includes(question) ||
+      !html.includes('Envíanos el uso, los litros y la localidad de entrega')) {
+    errors.push('SEO FAQ: faltan preguntas de producto visibles en ' + route);
+  }
+  if (html.includes('class="product-faqs__image"')) {
+    errors.push('SEO FAQ: no añadir fotos a secciones técnicas ' + route);
+  }
+}
 const counts = `${htmlFiles.length} HTML, ${checkedLinks} enlaces internos, ${checkedFragments} anclas, ${checkedMediaAssets} referencias de imágenes locales, ${checkedSitemapUrls} URLs del sitemap`;
 if (errors.length) {
   console.error(`ERROR en la auditoría de enlaces (${counts}):\n` + errors.map(e => ' - ' + e).join('\n'));
