@@ -58,7 +58,7 @@ const waHref = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(w
             <div><span>Instalación</span><strong>En superficie</strong></div>
           </div>
           <div class="cap-actions">
-            <button class="cap-btn cap-btn--primary open-quote-trigger" type="button" data-product={`Depósito vertical de base plana de ${formatNumber(landing.liters)} litros`} data-note={`Capacidad solicitada: ${formatNumber(landing.liters)} litros (${landing.cubicMeters} m³). Indica uso previsto, localidad y código postal para estudiar el transporte.`}>Pedir presupuesto <span aria-hidden="true">↗</span></button>
+            <button class="cap-btn cap-btn--primary open-quote-trigger" type="button" data-product={`Depósito vertical de base plana de ${formatNumber(landing.liters)} litros`} data-note={`Capacidad solicitada: ${formatNumber(landing.liters)} litros (${landing.cubicMeters} m³). Indica uso previsto, localidad y código postal para estudiar el transporte.`}>Pedir presupuesto de {formatNumber(landing.liters)} L <span aria-hidden="true">↗</span></button>
             <a class="cap-btn cap-btn--secondary" href={waHref} target={waNumber ? '_blank' : undefined} rel={waNumber ? 'noopener noreferrer' : undefined}>Consultar por WhatsApp <span aria-hidden="true">↗</span></a>
           </div>
           <p class="cap-small">Presupuesto sujeto a modelo, uso y lugar de entrega. Transporte estándar sin descarga incluida.</p>
@@ -136,6 +136,12 @@ const waHref = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(w
         <div class="cap-reading">
           <h3>Te puede ayudar</h3>
           <a href="/depositos/para-riego/">Depósitos de poliéster para riego: formatos y uso <span aria-hidden="true">↗</span></a>
+          {[5000,10000,15000].includes(landing.liters) && (
+            <>
+              <a href="/blog/deposito-agua-riego-por-turnos-comunidad-regantes/">Reserva de agua entre turnos de riego <span aria-hidden="true">↗</span></a>
+              <a href="/depositos/para-olivar/">Depósitos de agua para riego del olivar <span aria-hidden="true">↗</span></a>
+            </>
+          )}
           <a href="/blog/como-elegir-deposito-poliester-riego/">Cómo elegir un depósito para riego <span aria-hidden="true">↗</span></a>
           <a href="/blog/transporte-descarga-depositos-poliester/">Transporte y descarga: qué debes saber <span aria-hidden="true">↗</span></a>
           <a href="/depositos/">Ver catálogo completo de depósitos <span aria-hidden="true">↗</span></a>
