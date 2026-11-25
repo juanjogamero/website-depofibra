@@ -14,6 +14,7 @@ export interface SecondaryProduct {
   image: string;
   imageAlt: string;
   selectionNotes?: string[];
+  faqs?: { question: string; answer: string }[];
   quoteProduct: string;
   titleSeo: string;
   metaDescription: string;
@@ -35,6 +36,11 @@ export const secondaryProducts: SecondaryProduct[] = [
     ],
     image: '/images/fosas-septicas/estanca.svg',
     imageAlt: 'Esquema ilustrativo de fosa estanca para almacenar aguas residuales sin vertido; no es una ficha técnica',
+    faqs: [
+      { question: "¿Una fosa estanca depura el agua residual?", answer: "No. Su función es almacenar aguas residuales sin vertido hasta su retirada. La capacidad, el mantenimiento y la frecuencia de vaciado se estudian según el uso y las condiciones de la instalación." },
+      { question: "¿Qué datos hacen falta para elegir una fosa estanca?", answer: "Uso, ocupación prevista, volumen que indique el proyecto, acceso para mantenimiento y frecuencia de vaciado estimada; además, código postal y condiciones de descarga para estudiar el transporte." },
+      { question: "¿Incluye excavación o descarga?", answer: "No se consideran incluidas por defecto. El transporte estándar no incluye descarga y cualquier trabajo de excavación o instalación necesitaría confirmación aparte." },
+    ],
     quoteProduct: 'Fosa séptica',
   },
   {
@@ -52,6 +58,11 @@ export const secondaryProducts: SecondaryProduct[] = [
     ],
     image: '/images/fosas-septicas/filtro-biologico.svg',
     imageAlt: 'Esquema ilustrativo de fosa con filtro biológico; la configuración real depende del fabricante',
+    faqs: [
+      { question: "¿Es lo mismo una fosa con filtro biológico que una fosa estanca?", answer: "No. La estanca almacena el agua residual sin salida de vertido; una unidad con filtro biológico incorpora una etapa de tratamiento. La elección depende del proyecto, las condiciones del vertido y la referencia concreta." },
+      { question: "¿Basta el número de personas para elegir el tamaño?", answer: "No. Los habitantes equivalentes orientan el dimensionamiento, pero también deben revisarse caudal, uso estacional y documentación técnica del equipo." },
+      { question: "¿Todas las fosas con filtro biológico tienen marcado CE?", answer: "No debe afirmarse de forma genérica. Hay que comprobar el modelo, las normas aplicables y la declaración de prestaciones y marcado CE cuando sean exigibles." },
+    ],
     quoteProduct: 'Fosa séptica',
   },
   {
@@ -69,6 +80,11 @@ export const secondaryProducts: SecondaryProduct[] = [
     ],
     image: '/images/fosas-septicas/oxidacion-total.svg',
     imageAlt: 'Esquema ilustrativo de depuradora por oxidación total; no representa un equipo certificado concreto',
+    faqs: [
+      { question: "¿Una depuradora de oxidación total necesita electricidad?", answer: "El tratamiento mediante aireación suele requerir alimentación eléctrica. Los equipos incluidos, el consumo y el mantenimiento se confirman en la ficha de cada referencia." },
+      { question: "¿Puedo escogerla solo por el número de habitantes?", answer: "No. También deben valorarse caudal y carga de entrada, uso previsto, mantenimiento y requisitos de vertido del proyecto." },
+      { question: "¿La compra del equipo autoriza el vertido?", answer: "No. La documentación del equipo no sustituye los permisos, el proyecto ni los controles que correspondan según la instalación y la administración competente." },
+    ],
     quoteProduct: 'Fosa séptica',
   },
   {
@@ -86,6 +102,11 @@ export const secondaryProducts: SecondaryProduct[] = [
     ],
     image: '/images/cubas/cuba-remolque.svg',
     imageAlt: 'Esquema orientativo de cuba de poliéster para montaje en remolque agrícola; remolque no incluido',
+    faqs: [
+      { question: "¿Puedo comprar la cisterna sin comprar un remolque?", answer: "Sí, puede estudiarse el suministro de la cuba o recipiente PRFV por separado. El chasis, el remolque completo y el montaje no se consideran incluidos por defecto." },
+      { question: "¿Cómo saber si una cuba encaja en mi remolque?", answer: "Hay que comprobar medidas útiles, carga admisible, apoyos, anclajes y líquido a transportar. El fabricante y el profesional responsable del montaje deben validar la compatibilidad." },
+      { question: "¿El precio incluye montaje o descarga?", answer: "No se presuponen esos servicios. El presupuesto debe concretar qué incluye el suministro y cómo se resolverán el transporte y la descarga." },
+    ],
     quoteProduct: 'Cuba o cisterna',
   },
   {
@@ -103,6 +124,11 @@ export const secondaryProducts: SecondaryProduct[] = [
     ],
     image: '/images/cubas/cisterna-camion.svg',
     imageAlt: 'Esquema orientativo de cisterna de poliéster sobre plataforma; vehículo no incluido',
+    faqs: [
+      { question: "¿Sirve cualquier cisterna de poliéster para una plataforma?", answer: "No. Deben validarse dimensiones, reparto de cargas, soportes, fijaciones y requisitos aplicables al vehículo y a su circulación." },
+      { question: "¿Qué datos necesito facilitar para pedir presupuesto?", answer: "Tipo de plataforma o camión, medidas útiles, capacidad y líquido previstos, apoyos y conexiones requeridos, código postal y medios de descarga." },
+      { question: "¿El suministro incluye vehículo y montaje?", answer: "No se consideran incluidos por defecto. La oferta debe especificar el recipiente, accesorios confirmados y cualquier servicio adicional contratado." },
+    ],
     quoteProduct: 'Cuba o cisterna',
   },
   {
@@ -120,6 +146,11 @@ export const secondaryProducts: SecondaryProduct[] = [
     ],
     image: '/images/cubas/cuba-configurable.svg',
     imageAlt: 'Esquema ilustrativo de cuba de poliéster configurable; accesorios y medidas por confirmar',
+    faqs: [
+      { question: "¿Se pueden pedir conexiones o accesorios especiales?", answer: "Pueden estudiarse según el fabricante y la referencia. No todos los accesorios están incluidos ni cualquier cambio es técnicamente viable." },
+      { question: "¿Puede utilizarse para productos químicos?", answer: "Solo si se confirma documentalmente la compatibilidad del modelo con la sustancia, concentración y temperatura previstas. No se debe asumir por ser un recipiente PRFV." },
+      { question: "¿Qué datos conviene enviar para estudiar una cuba especial?", answer: "Capacidad, uso y líquido, croquis o espacio disponible, conexiones y accesorios solicitados, código postal y condiciones para la descarga." },
+    ],
     quoteProduct: 'Cuba o cisterna',
   },
 ];
