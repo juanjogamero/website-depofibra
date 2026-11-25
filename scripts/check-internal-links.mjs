@@ -340,6 +340,43 @@ for (const [source, targets] of [
 }
 
 
+// SEO/GEO 25/11: dos URL nuevas con intención distinta y fuentes/entrega prudentes.
+// Olivar = aplicación y cálculo de reserva; Málaga = destino de suministro sin falsa sede.
+const oliveAndMalagaChecks = [
+  ['/depositos/para-olivar/', [
+    'Depósitos de agua para riego de olivar | PRFV | Depofibra',
+    'Cómo calcular una reserva para el riego del olivar',
+    'IFAPA',
+    'no garantiza por sí sola la presión',
+    'href="/depositos/vertical-base-plana/5000-litros/"',
+    'href="/depositos/vertical-base-plana/10000-litros/"',
+    'href="/depositos/vertical-base-plana/15000-litros/"',
+    'href="/depositos/malaga/"',
+  ]],
+  ['/depositos/malaga/', [
+    'Depósitos de poliéster en Málaga para riego | Depofibra',
+    'Depósitos de agua de poliéster en Málaga',
+    'Junta de Andalucía',
+    'Axarquía',
+    'Guadalhorce',
+    'No anunciamos instalaciones propias en Málaga',
+    'href="/depositos/vertical-base-plana/5000-litros/"',
+    'href="/depositos/vertical-base-plana/10000-litros/"',
+    'href="/depositos/vertical-base-plana/15000-litros/"',
+  ]],
+  ['/depositos/para-riego/', ['href="/depositos/para-olivar/"']],
+  ['/depositos/', ['href="/depositos/para-olivar/"']],
+  ['/depositos/zonas/', ['href="/depositos/malaga/"']],
+];
+for (const [route, snippets] of oliveAndMalagaChecks) {
+  const file = targetFile(route);
+  if (!file) { errors.push('SEO/GEO olivar-Málaga: falta ruta ' + route); continue; }
+  const html = content(file);
+  for (const snippet of snippets) {
+    if (!html.includes(snippet)) errors.push('SEO/GEO olivar-Málaga: falta ' + route + ': ' + snippet);
+  }
+}
+
 // SEO long tail: páginas existentes deben responder a la compra de cisterna suelta
 // y aljibe enterrable, sin fabricar una landing duplicada ni prometer homologaciones.
 for (const [route, required] of [
@@ -832,7 +869,7 @@ for (const file of articleGuides) {
 // deben mostrarse y enlazar a las fichas canónicas, sin landings duplicadas.
 for (const slug of [
   'murcia','valencia','sevilla','palencia','soria','huelva','badajoz',
-  'segovia','huesca','teruel','cuenca','avila','salamanca'
+  'segovia','huesca','teruel','cuenca','avila','salamanca','malaga'
 ]) {
   const route = '/depositos/' + slug + '/';
   const file = targetFile(route);

@@ -1,0 +1,123 @@
+---
+/**
+ * Página de aplicación agrícola diferenciada del riego genérico:
+ * reserva entre turnos y sectorización del olivar con depósitos PRFV.
+ * La fuente IFAPA informa sobre gestión hídrica, no valida modelos de Depofibra.
+ */
+import CategoryInterior from '../../../components/CategoryInterior.astro';
+
+const page = {
+  nav: 'depositos',
+  title: 'Depósitos de poliéster para agua de riego del olivar',
+  seoTitle: 'Depósitos de agua para riego de olivar | PRFV | Depofibra',
+  canonicalPath: '/depositos/para-olivar/',
+  breadcrumb: 'Depósitos para olivar',
+  eyebrow: 'OLIVAR · RIEGO POR GOTEO · RESERVA DE AGUA',
+  description: 'Depósitos PRFV para reservar agua de riego en olivares. Compara capacidades y apoyo, calcula litros entre turnos y solicita presupuesto según destino.',
+  intro: '¿Necesitas almacenar agua para regar un olivar? Depofibra comercializa depósitos de poliéster reforzado con fibra de vidrio (PRFV) de fabricantes externos para estudiar reservas de agua agrícola. Antes de elegir entre 5.000, 10.000, 15.000 litros u otra capacidad, necesitamos conocer el consumo de los sectores de riego, los turnos o caudales de reposición y el acceso a la finca. El depósito almacena agua, pero no aumenta la dotación autorizada ni sustituye el proyecto hidráulico.',
+  items: [
+    {
+      id: 'vertical-olivar',
+      href: '/depositos/vertical-base-plana/',
+      name: 'Depósito vertical de base plana',
+      subtitle: 'Reserva en superficie para finca con espacio y altura suficientes',
+      image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp',
+      mediaCaption: 'Modelo de referencia de la familia; capacidad exacta por confirmar',
+      tags: ['riego', 'vertical', 'superficie'],
+      specification: 'VERTICAL · FONDO PLANO',
+      quoteProduct: 'Depósito vertical de base plana',
+      quoteNote: 'Consulta de reserva de agua para olivar; verificar capacidad, turnos, CP y accesos.',
+      detail: 'Es el primer formato a comparar cuando existe una base adecuada y altura libre. Las fichas de 5.000, 10.000 y 15.000 L permiten estudiar diferencias de volumen y geometría, pero no se confirma la referencia ni la disponibilidad antes del presupuesto.'
+    },
+    {
+      id: 'horizontal-olivar',
+      href: '/depositos/horizontal-con-cunas/',
+      name: 'Depósito horizontal de superficie con cunas',
+      subtitle: 'Alternativa cuando la altura es limitada y se dispone de longitud',
+      image: '/images/depositos/horizontal-con-cunas/deposito-poliester-horizontal-con-cunas-verde-vista-perspectiva.webp',
+      mediaCaption: 'Fotografía orientativa de depósito con apoyos de superficie',
+      tags: ['riego', 'horizontal', 'superficie'],
+      specification: 'HORIZONTAL · SUPERFICIE',
+      quoteProduct: 'Depósito horizontal con cunas',
+      quoteNote: 'Reserva de agua agrícola para olivar; comprobar apoyos, cotas y suministro.',
+      detail: 'Revisa la longitud disponible, el número y disposición de apoyos y los accesos del vehículo. No es un modelo enterrable y su capacidad útil, bocas y conexiones deben comprobarse para la referencia elegida.'
+    },
+    {
+      id: 'enterrable-olivar',
+      href: '/depositos/horizontal-enterrable/',
+      name: 'Aljibe o depósito horizontal enterrable',
+      subtitle: 'Bajo tierra únicamente con modelo diseñado para ese uso',
+      image: '/images/depositos/horizontal-enterrable/deposito-poliester-horizontal-enterrable-gris-registro-lateral.webp',
+      mediaCaption: 'Referencia visual de la familia enterrable; instalación por proyecto',
+      tags: ['riego', 'enterrable', 'horizontal'],
+      specification: 'ENTERRABLE · A VALIDAR',
+      quoteProduct: 'Depósito horizontal para enterrar',
+      quoteNote: 'Aljibe para agua de riego de olivar; revisar terreno, nivel freático y ficha.',
+      detail: 'Se estudia cuando el proyecto requiere reserva enterrada. Hay que confirmar terreno, nivel freático, profundidad y cargas, además de la documentación del fabricante. Un depósito horizontal con cunas de superficie no puede enterrarse por defecto.'
+    }
+  ],
+  filterGroups: [],
+  note: 'Los depósitos no incluyen por defecto instalación de riego por goteo, bomba, filtros, automatismos, fertirrigación ni obra. Las fotos son de referencia, no de una finca concreta. Cada capacidad, uso del agua, conexión, medio de descarga y transporte se confirma antes de la oferta.',
+  guideTitle: 'Cómo calcular una reserva para el riego del olivar',
+  guideDescription: 'El tamaño del depósito depende del calendario real de aportaciones, la demanda de los sectores de goteo y la capacidad útil, no de una cifra fija de litros por olivo o hectárea.',
+  guideRows: [
+    {
+      title: '1. Anota el origen autorizado del agua y los turnos',
+      detail: 'Indica si la finca recibe agua de una comunidad de regantes, de pozo con derecho de uso u otra fuente autorizada. Registra cuándo entra el agua, el caudal real y el tiempo entre aportaciones. Un depósito no crea ni amplía derechos de captación o concesiones.'
+    },
+    {
+      title: '2. Calcula el consumo de cada sector',
+      detail: 'Para un cálculo inicial, suma el caudal real de los goteros o emisores que funcionan a la vez y multiplícalo por las horas de riego. Por ejemplo, si el conjunto consume 2.000 L/h durante 3 horas, utiliza 6.000 L. Son cifras ilustrativas; no son una recomendación agronómica para olivos.'
+    },
+    {
+      title: '3. Compara entrada, salida y autonomía',
+      detail: 'Si necesitas 6.000 L entre dos reposiciones y no entra más agua durante ese intervalo, un depósito nominal de 5.000 L no cubriría la necesidad teórica; compara 10.000 L u otra referencia, teniendo en cuenta volumen útil, reserva mínima y margen de operación. En otro calendario, el tamaño adecuado puede cambiar.'
+    },
+    {
+      title: '4. Confirma si el bombeo aporta la presión necesaria',
+      detail: 'El agua almacenada en un depósito no garantiza por sí sola la presión del riego por goteo. La altura, pérdidas de carga, bombeo, filtros y sectorización los calcula el profesional de la instalación. Si el llenado depende de una bomba solar, facilita sus horas y caudal reales, no solo la potencia nominal.'
+    },
+    {
+      title: '5. Prepara un presupuesto de depósito y entrega',
+      detail: 'Indica el uso, litros estimados, municipio y código postal, anchura del camino, acceso de camión, altura libre, base prevista, diámetro de entradas/salidas y medios de descarga. El transporte se estudia con operadores externos; la modalidad estándar no incluye descarga.'
+    }
+  ],
+  localLink: {
+    href: '/depositos/para-riego/',
+    label: 'Comparar otras soluciones de depósito para riego agrícola'
+  },
+  faqs: [
+    {
+      question: '¿Cuántos litros de depósito necesito por hectárea de olivar?',
+      answer: 'No hay un número universal. Depende de la dotación autorizada, demanda de riego, época del año, variedad, marco, suelo, emisores, sectores y frecuencia de reposición. Para elegir el depósito calculamos los litros que entran y salen entre turnos; el plan agronómico lo define un técnico.'
+    },
+    {
+      question: '¿Un depósito de 5.000 litros sirve para riego por goteo de olivos?',
+      answer: 'Puede ser una referencia a estudiar para una reserva parcial, pero solo si el consumo entre reposiciones y el volumen útil lo permiten. También hay referencias de 10.000 y 15.000 L y otras capacidades. El número de olivos por sí solo no basta para escoger.'
+    },
+    {
+      question: '¿Es mejor un depósito vertical o horizontal para una finca de olivar?',
+      answer: 'Depende del espacio, altura libre, apoyo, accesos y conexiones. Un vertical de base plana ocupa menos longitud, mientras que un horizontal de superficie necesita cunas adecuadas. Un enterrable requiere una referencia y proyecto específicos.'
+    },
+    {
+      question: '¿El depósito incluye la bomba, filtros o sistema de goteo?',
+      answer: 'No se consideran incluidos. Depofibra estudia el suministro del recipiente PRFV; los accesorios confirmados deben especificarse en la oferta. El sistema hidráulico, la instalación y su dimensionamiento no se presuponen contratados.'
+    },
+    {
+      question: '¿Puedo guardar en el mismo depósito agua y abono líquido?',
+      answer: 'No debe darse por compatible. Si se pretende almacenar fertilizantes, químicos o mezclas, hay que informar de la sustancia, concentración y temperatura para que el proveedor confirme documentalmente resina, modelo y condiciones de uso.'
+    },
+    {
+      question: '¿Enviáis depósitos para olivar a Jaén, Córdoba, Sevilla o Málaga?',
+      answer: 'Se pueden estudiar consultas con esos destinos según la referencia y las condiciones reales del transporte externo. Depofibra atiende desde Casariche (Sevilla); no dispone de sedes ni stock confirmado en esas provincias. El porte y la descarga se revisan caso por caso.'
+    }
+  ]
+};
+---
+<CategoryInterior {...page}>
+  <p slot="related-destinations" class="body-lg">
+    Para una primera comparación de reservas en superficie, consulta las fichas de <a href="/depositos/vertical-base-plana/5000-litros/">5.000 litros</a>, <a href="/depositos/vertical-base-plana/10000-litros/">10.000 litros</a> y <a href="/depositos/vertical-base-plana/15000-litros/">15.000 litros</a>; no representan el límite del catálogo ni garantizan stock.
+    Si el agua llega de un pozo, revisa <a href="/depositos/agua-de-pozo/">cómo coordinar su llenado con el riego</a>. Para una finca de Málaga, consulta <a href="/depositos/malaga/">las condiciones de reserva y entrega en la provincia</a>.
+    Sobre programación agronómica del olivar, consulta las <a href="https://www.juntadeandalucia.es/agriculturaypesca/ifapa/web/recomendacion_riego_sequia" target="_blank" rel="noopener noreferrer">recomendaciones públicas del IFAPA para el riego en sequía</a>. Son orientaciones agronómicas, no certificados ni características de un depósito concreto.
+  </p>
+</CategoryInterior>
