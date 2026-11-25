@@ -1,0 +1,26 @@
+name: Comprobar landings comerciales en producción (solo lectura)
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/audit-commercial-live.mjs'
+      - '.github/workflows/audit-commercial-live.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live:
+    name: Auditar HTTP, sitemap y captación sin enviar formularios
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Descargar código de auditoría
+        uses: actions/checkout@v6
+      - name: Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Leer páginas públicas y comprobar contenido actual
+        run: node scripts/audit-commercial-live.mjs
