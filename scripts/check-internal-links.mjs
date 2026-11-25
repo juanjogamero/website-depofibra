@@ -357,6 +357,32 @@ for (const [route, required] of [
 }
 
 
+// SEO/GEO aljibes: Google ya indexa la ficha especializada pero la búsqueda
+// «aljibes prefabricados poliester» mostraba sobre todo Inicio y catálogo.
+// Enlazar la ficha canónica con texto útil; no crear una URL duplicada.
+const aljibesInternalLinkChecks = [
+  ['/', ['aljibes prefabricados de poliéster (PRFV)', 'href="/depositos/horizontal-enterrable/"']],
+  ['/depositos/', ['Aljibe PRFV enterrable', 'Aljibes prefabricados enterrables', 'aljibes prefabricados de poliéster para enterrar']],
+  ['/depositos/horizontal-enterrable/', [
+    'Aljibes prefabricados de poliéster para enterrar | Depofibra',
+    'Antes de solicitar precio de un aljibe prefabricado enterrable:',
+    '¿Puede enterrarse el aljibe si hay nivel freático alto o paso de vehículos?',
+    'href="/depositos/horizontal-con-cunas/"',
+    'href="/depositos/vertical-base-plana/"',
+    'El porte estándar no incluye descarga',
+  ]],
+];
+for (const [route, snippets] of aljibesInternalLinkChecks) {
+  const file = targetFile(route);
+  if (!file) { errors.push('SEO aljibes: falta ruta ' + route); continue; }
+  const html = content(file);
+  for (const snippet of snippets) {
+    if (!html.includes(snippet)) {
+      errors.push('SEO aljibes: falta contenido enlazado o técnico en ' + route + ': ' + snippet);
+    }
+  }
+}
+
 // SEO/GEO comercial: dos intenciones reales de compra (remolque y camión).
 // Reutilizar páginas canónicas existentes, sin crear landings duplicadas.
 const cisternasBuyingExamples = [
