@@ -1,0 +1,85 @@
+---
+/**
+ * Landing comercial piloto Valladolid, diferenciada de León:
+ * elección de depósitos para espacio/accesos y cuba suelta si transporte.
+ * No indica fabricación, vehículo, montaje ni disponibilidad en Valladolid.
+ */
+import CategoryInterior from '../../../components/CategoryInterior.astro';
+
+const page = {
+  nav: 'depositos',
+  title: 'Depósitos y cubas de poliéster para Valladolid',
+  seoTitle: 'Depósitos de poliéster en Valladolid | Presupuesto PRFV | Depofibra',
+  canonicalPath: '/depositos/valladolid/',
+  breadcrumb: 'Depósitos en Valladolid',
+  eyebrow: 'VALLADOLID · MEDINA DE RIOSECO · TIERRA DE CAMPOS',
+  description: 'Consulta depósitos de agua de poliéster PRFV en Valladolid. Compara verticales, horizontales y cubas sueltas para remolque; entrega y presupuesto por destino.',
+  intro: '¿Necesitas un recipiente de poliéster reforzado con fibra de vidrio para agua de riego, una instalación agrícola o una cuba para un remolque en Valladolid? Depofibra comercializa productos de fabricantes externos desde Casariche (Sevilla). Aquí puedes distinguir un depósito fijo de superficie de una cuba para montar en un vehículo y preparar una consulta con litros, uso, soporte y código postal. No ofrecemos fábrica, delegación, flota ni stock propio en Valladolid; la referencia ofertable y el transporte se confirman caso por caso.',
+  items: [
+    {
+      id: 'valladolid-vertical',
+      href: '/depositos/vertical-base-plana/',
+      name: 'Depósito vertical para reserva de agua',
+      subtitle: 'Recipiente estacionario cuando existe base y altura suficientes',
+      image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp',
+      mediaCaption: 'Fotografía del catálogo, no de una explotación vallisoletana',
+      tags: ['vertical', 'riego', 'superficie'],
+      specification: 'BASE PLANA · RESERVA FIJA',
+      quoteProduct: 'Depósito vertical de poliéster',
+      quoteNote: 'Valladolid: reserva fija de agua, litros, uso, localidad y descarga.',
+      detail: 'Si el proyecto necesita almacenar agua entre aportaciones, compara diámetro y altura exterior, apoyo, tomas y espacio para limpieza. No hay una medida estándar por explotación: se selecciona por consumo, cadencia de llenado y geometría.'
+    },
+    {
+      id: 'valladolid-horizontal',
+      href: '/depositos/horizontal-con-cunas/',
+      name: 'Depósito horizontal con cunas de apoyo',
+      subtitle: 'Para superficie con altura limitada o espacio longitudinal disponible',
+      image: '/images/depositos/horizontal-con-cunas/deposito-poliester-horizontal-con-cunas-verde-vista-perspectiva.webp',
+      mediaCaption: 'Referencia horizontal de superficie; no se identifica como enterrable',
+      tags: ['horizontal', 'superficie', 'soportes'],
+      specification: 'CUNAS · SUPERFICIE',
+      quoteProduct: 'Depósito horizontal de poliéster',
+      quoteNote: 'Valladolid: depósito horizontal, longitud, apoyos y logística.',
+      detail: 'Es importante confirmar número y posición de apoyos, longitud útil, anchura de acceso y maniobras. Una cuba horizontal sobre cunas no equivale a un depósito enterrable y sus cargas deben revisarse según ficha.'
+    },
+    {
+      id: 'valladolid-cuba',
+      href: '/cubas-cisternas/cuba-remolque/',
+      name: 'Cuba de poliéster suelta para remolque',
+      subtitle: 'Solo el recipiente PRFV, pendiente de verificar vehículo y montaje',
+      image: '/images/cubas/cuba-remolque.svg',
+      visualType: 'illustration',
+      mediaCaption: 'Esquema orientativo de la cuba, no vehículo o entrega en Valladolid',
+      tags: ['cuba', 'remolque', 'agricultura'],
+      specification: 'RECIPIENTE · VEHÍCULO NO INCLUIDO',
+      quoteProduct: 'Cuba de poliéster para remolque',
+      quoteNote: 'Valladolid: cuba suelta, uso, litros, remolque, apoyos y CP.',
+      detail: 'Si ya tienes un remolque y buscas sustituir únicamente el recipiente, aporta largo, ancho, carga admisible, apoyos y condiciones de sujeción. No se presume incluido el chasis, la instalación, la homologación del conjunto ni los accesorios; el profesional responsable debe comprobar la compatibilidad.'
+    }
+  ],
+  note: 'Se comparan formatos de depósito fijo y cuba agrícola, que NO son intercambiables. No se anuncian remolques completos, fabricación propia, potabilidad universal, compatibilidad química ni equipos homologados para circulación sin revisión. Fotos y esquemas son orientativos; porte y descarga se presupuestan por separado.',
+  guideTitle: 'Qué datos facilitan la compra de un depósito o cuba en Valladolid',
+  guideDescription: 'En Medina de Rioseco y Tierra de Campos, el uso real del agua y el formato del equipo importan más que una lista genérica de capacidades. No todos los cultivos o proyectos necesitan reserva individual.',
+  guideRows: [
+    {title: 'Comunidad de regantes del canal de Macías Picavea', detail: 'El Ministerio informa sobre modernización de regadíos en el entorno de Medina de Rioseco. Si la finca ya dispone de suministro mejorado, primero verifica si de verdad necesita un depósito de reserva: no sería correcto recomendarlo solo por su ubicación.'},
+    {title: 'Instalación estacionaria: calcula entradas y salidas', detail: 'Para riego o una instalación agrícola, registra litros consumidos entre reposiciones, caudal real de llegada y espacio de apoyo. Si hay acceso con altura limitada o nave cerrada, un horizontal puede merecer comparación; el volumen útil y conexiones se verifican por modelo.'},
+    {title: 'Sustitución de cuba existente: comprueba el vehículo', detail: 'Si se trata de renovar una cuba de remolque, envía capacidad deseada, medidas del bastidor, configuración de apoyos y carga admisible. No se puede recomendar un recipiente nuevo sin conocer las condiciones de montaje y transporte lleno.'},
+    {title: 'Valora acceso de camión y medios de descarga', detail: 'En caminos, recintos agrícolas o polígonos, señala código postal, anchura/altura de acceso, firme y espacio de maniobra. El origen de transporte depende del fabricante y la modalidad estándar no incluye la descarga.'},
+    {title: 'Solicita dos alternativas solo cuando proceda', detail: 'Para un depósito fijo podemos comparar vertical y horizontal si ambos son viables. Para una cuba sobre remolque, cotizamos el recipiente cuando existan datos del vehículo. Todas las opciones dependen de ficha vigente, accesorios, transporte, precio e impuestos confirmados.'}
+  ],
+  localLink: {href: '/depositos/zonas/', label: 'Explorar otras provincias y condiciones de entrega'},
+  faqs: [
+    {question: '¿Puedo pedir un depósito de poliéster con entrega en Valladolid?', answer: 'Sí se puede estudiar la solicitud, pero no se garantiza entrega de cualquier referencia. Depofibra vende productos de fabricantes externos; el modelo, origen de carga, accesos, medios de descarga y presupuesto deben confirmarse.'},
+    {question: '¿El canal de Macías Picavea significa que necesito un depósito?', answer: 'No. Las obras de modernización del regadío son información del territorio, no una recomendación de comprar un depósito. La necesidad se determina por los consumos y la continuidad del suministro concreto de la finca.'},
+    {question: '¿Una cuba para remolque incluye ruedas, chasis y montaje?', answer: 'No se debe presuponer. La consulta de cuba suelta se refiere al recipiente PRFV; vehículo, montaje, accesorios y requisitos legales de circulación se deben revisar y presupuestar expresamente.'},
+    {question: '¿Qué conviene comparar, depósito vertical u horizontal?', answer: 'Para almacenamiento fijo: altura y espacio longitudinal, base, apoyo, volumen útil, accesos y conexiones. Los horizontales con cunas no se deben enterrar salvo que exista un modelo específico diseñado para ese uso.'},
+    {question: '¿Cómo pedir precio de una cuba o depósito en Valladolid?', answer: 'Indica uso y litros aproximados, municipio y código postal, accesos, descarga y, si se trata de una cuba, las dimensiones, soporte y carga admisible del remolque. Con esos datos podemos comprobar la referencia y las condiciones de suministro.'}
+  ]
+};
+---
+<CategoryInterior {...page}>
+  <p slot="related-destinations" class="body-lg">
+    Si buscas solo el recipiente para un vehículo, consulta la <a href="/cubas-cisternas/cuba-remolque/">ficha de cuba para remolque agrícola</a>. Para reserva fija, compara <a href="/depositos/para-riego/">alternativas de depósito para riego</a>.
+    El <a href="https://planderecuperacion.gob.es/noticias/luis-planas-visita-obras-finalizadas-modernizacion-regadios-canal-macias-picavea-valladolid-prtr" target="_blank" rel="noopener noreferrer">Gobierno de España documenta la modernización de los regadíos del canal de Macías Picavea</a>. Es contexto territorial, no evidencia de una instalación realizada por Depofibra ni de una necesidad automática de compra.
+  </p>
+</CategoryInterior>
