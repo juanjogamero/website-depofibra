@@ -553,8 +553,14 @@ for (const [route, expected] of newCommercialRegions) {
   for (const snippet of expected) {
     if (!html.includes(snippet)) errors.push('SEO pilotos locales: falta ' + snippet + ' en ' + route);
   }
-  for (const warning of ['No tenemos fábrica', 'No disponemos de', 'el transporte lo realizan terceros', 'no incluye descarga']) {
-    if (html.includes(warning)) break;
+  if (!html.includes('Depofibra') || !html.includes('descarga')) {
+    errors.push('SEO pilotos locales: falta contexto veraz de comercialización y descarga en ' + route);
+  }
+  if (route.includes('/leon/') && !html.includes('No tenemos fábrica, almacén ni delegación en León')) {
+    errors.push('SEO pilotos locales: falta aviso de ausencia de sede León');
+  }
+  if (route.includes('/valladolid/') && !html.includes('No ofrecemos fábrica, delegación, flota ni stock propio en Valladolid')) {
+    errors.push('SEO pilotos locales: falta aviso de ausencia de sede Valladolid');
   }
 }
 const newRegionsHub = targetFile('/depositos/zonas/');
