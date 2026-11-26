@@ -543,7 +543,7 @@ for (const [url, required] of [
 // Las páginas nuevas deben ser rastreables y enlazadas entre sí por un índice NUEVO.
 // Landings territoriales piloto con contenido de compra genuino (sin puerta clónica).
 const newCommercialRegions = [
-  ['/depositos/leon/', ['Depósitos de agua de poliéster en León', 'Canal de Villadangos', 'href="/depositos/horizontal-con-cunas/"', 'href="/depositos/horizontal-enterrable/"', 'León: depósito para reserva de agua']],
+  ['/depositos/leon/', ['Depósitos de agua de poliéster en León', 'canal de Villadangos', 'href="/depositos/horizontal-con-cunas/"', 'href="/depositos/horizontal-enterrable/"', 'León: depósito para reserva de agua']],
   ['/depositos/valladolid/', ['Depósitos y cubas de poliéster para Valladolid', 'Macías Picavea', 'href="/cubas-cisternas/cuba-remolque/"', 'href="/depositos/vertical-base-plana/"', 'Valladolid: reserva fija de agua']],
 ];
 for (const [route, expected] of newCommercialRegions) {
