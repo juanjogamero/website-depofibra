@@ -561,13 +561,13 @@ if (!newRegionsIndex) {
   if (!regionsHtml.includes('No son sucursales') || !regionsHtml.includes('descarga')) {
     errors.push('SEO zonas nuevas: índice debe dejar claros los límites logísticos');
   }
-  for (const url of ['/depositos/murcia/', '/depositos/valencia/', '/depositos/sevilla/']) {
+  for (const url of ['/depositos/murcia/', '/depositos/valencia/']) {
     if (!regionsHtml.includes('href="' + url + '"')) errors.push('SEO local: zona prioritaria sin enlace ' + url);
   }
-  if (!regionsHtml.includes('Depósitos en Murcia, Valencia y Sevilla')) {
+  if (!regionsHtml.includes('Depósitos en Murcia y Valencia')) {
     errors.push('SEO local: falta bloque visible de zonas con evidencia GSC');
   }
-  for (const url of ['/cubas-cisternas/', '/fosas-septicas/']) {
+  for (const url of ['/cubas-cisternas/', '/fosas-septicas/', '/fosas-septicas/sevilla/']) {
     if (!regionsHtml.includes('href="' + url + '"')) errors.push('SEO producto: índice de zonas sin acceso a ' + url);
   }
 }
