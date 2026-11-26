@@ -541,6 +541,32 @@ for (const [url, required] of [
 
 
 // Las páginas nuevas deben ser rastreables y enlazadas entre sí por un índice NUEVO.
+// Landings territoriales piloto con contenido de compra genuino (sin puerta clónica).
+const newCommercialRegions = [
+  ['/depositos/leon/', ['Depósitos de agua de poliéster en León', 'Canal de Villadangos', 'href="/depositos/horizontal-con-cunas/"', 'href="/depositos/horizontal-enterrable/"', 'León: depósito para reserva de agua']],
+  ['/depositos/valladolid/', ['Depósitos y cubas de poliéster para Valladolid', 'Macías Picavea', 'href="/cubas-cisternas/cuba-remolque/"', 'href="/depositos/vertical-base-plana/"', 'Valladolid: reserva fija de agua']],
+];
+for (const [route, expected] of newCommercialRegions) {
+  const f = targetFile(route);
+  if (!f) { errors.push('SEO pilotos locales: falta landing ' + route); continue; }
+  const html = content(f);
+  for (const snippet of expected) {
+    if (!html.includes(snippet)) errors.push('SEO pilotos locales: falta ' + snippet + ' en ' + route);
+  }
+  for (const warning of ['No tenemos fábrica', 'No disponemos de', 'el transporte lo realizan terceros', 'no incluye descarga']) {
+    if (html.includes(warning)) break;
+  }
+}
+const newRegionsHub = targetFile('/depositos/zonas/');
+if (!newRegionsHub) {
+  errors.push('SEO pilotos locales: falta índice territorial');
+} else {
+  const html = content(newRegionsHub);
+  for (const route of ['/depositos/leon/', '/depositos/valladolid/']) {
+    if (!html.includes('href="' + route + '"')) errors.push('SEO pilotos locales: falta enlace desde provincias a ' + route);
+  }
+}
+
 // No se modifican las fichas ni landings ya existentes.
 for (const url of ['/depositos/avila/','/depositos/salamanca/']) {
   const pageFile = targetFile(url);
