@@ -1,0 +1,83 @@
+---
+/**
+ * Landing comercial piloto, León. Solo guía elección/solicitud de presupuesto.
+ * No acredita demanda de depósitos individuales a partir del regadío publicado.
+ */
+import CategoryInterior from '../../../components/CategoryInterior.astro';
+
+const page = {
+  nav: 'depositos',
+  title: 'Depósitos de agua de poliéster en León',
+  seoTitle: 'Depósitos de poliéster en León para fincas y riego | Depofibra',
+  canonicalPath: '/depositos/leon/',
+  breadcrumb: 'Depósitos en León',
+  eyebrow: 'LEÓN · EL PÁRAMO · RIEGO Y EXPLOTACIONES AGRARIAS',
+  description: 'Consulta depósitos PRFV para reserva de agua en fincas de León. Compara formatos verticales, horizontales y apoyos; presupuesto según uso, localidad y descarga.',
+  intro: '¿Buscas un depósito de agua para una finca, una explotación agraria o una instalación de riego en León? Depofibra comercializa depósitos de poliéster reforzado con fibra de vidrio (PRFV) de fabricantes externos. Comparamos la geometría del recipiente con la reserva necesaria, el espacio disponible y las condiciones de acceso al punto de entrega. Antes de presupuestar confirmamos el modelo, su uso compatible, medidas, accesorios y viabilidad de transporte. No tenemos fábrica, almacén ni delegación en León.',
+  items: [
+    {
+      id: 'leon-vertical',
+      href: '/depositos/vertical-base-plana/',
+      name: 'Depósito vertical de superficie',
+      subtitle: 'Para comparar la reserva en finca con el diámetro y la altura libres',
+      image: '/images/depositos/vertical-base-plana/deposito-poliester-vertical-base-plana-blanco-escala-frontal.webp',
+      mediaCaption: 'Imagen de catálogo; no representa una entrega en León',
+      tags: ['vertical', 'superficie', 'riego'],
+      specification: 'BASE PLANA · SUPERFICIE',
+      quoteProduct: 'Depósito vertical de poliéster',
+      quoteNote: 'León: depósito para reserva de agua, modelo, capacidad, CP, accesos y descarga.',
+      detail: 'Si la finca tiene una base estable y suficiente altura, un vertical puede resultar práctico. Comprobaremos el diámetro exterior, la tapa, la posición de tomas, las necesidades de apoyo y el paso de camión. La familia incluye referencias de diferentes capacidades; ninguna se presume disponible ni apta para cualquier uso.'
+    },
+    {
+      id: 'leon-horizontal',
+      href: '/depositos/horizontal-con-cunas/',
+      name: 'Depósito horizontal con apoyos',
+      subtitle: 'Alternativa para parcela o nave con menor altura disponible',
+      image: '/images/depositos/horizontal-con-cunas/deposito-poliester-horizontal-con-cunas-verde-vista-perspectiva.webp',
+      mediaCaption: 'Depósito horizontal representativo, con medidas y apoyos a verificar',
+      tags: ['horizontal', 'superficie', 'cunas'],
+      specification: 'APOYOS · SUPERFICIE',
+      quoteProduct: 'Depósito horizontal de poliéster',
+      quoteNote: 'León: comparar depósito horizontal, apoyos, longitud y descarga.',
+      detail: 'La longitud disponible, las cunas y la maniobra para colocar el equipo son factores decisivos en una nave o finca. No equivale a un depósito enterrable: las cargas, soportes y conexiones deben comprobarse para el modelo seleccionado.'
+    },
+    {
+      id: 'leon-enterrable',
+      href: '/depositos/horizontal-enterrable/',
+      name: 'Depósito o aljibe enterrable',
+      subtitle: 'Solo cuando la referencia esté diseñada y validada para enterramiento',
+      image: '/images/depositos/horizontal-enterrable/deposito-poliester-horizontal-enterrable-gris-registro-lateral.webp',
+      mediaCaption: 'Referencia visual de la familia enterrable, sin obra ni instalación incluidas',
+      tags: ['enterrable', 'aljibe', 'proyecto'],
+      specification: 'TERRENO Y CARGAS A VERIFICAR',
+      quoteProduct: 'Aljibe de poliéster enterrable',
+      quoteNote: 'León: estudiar modelo enterrable, terreno, nivel freático, CP y accesos.',
+      detail: 'Si el proyecto exige almacenamiento bajo tierra, se necesitan datos del terreno, nivel freático, profundidad, cargas y accesibilidad para mantenimiento. La documentación del fabricante es imprescindible antes de considerar la referencia.'
+    }
+  ],
+  note: 'Los modelos y fotografías son ejemplos de familias de producto, no ofertas ni stock en León. La aptitud del PRFV para beber, productos químicos o enterramiento no se generaliza. Depofibra es comercializadora; el transporte lo realizan terceros y no incluye descarga como estándar.',
+  guideTitle: 'Cómo preparar un presupuesto de depósito para una finca de León',
+  guideDescription: 'La necesidad depende de los litros consumidos entre reposiciones, el origen autorizado del agua y el punto concreto de descarga. No se determina un depósito por hectáreas ni por municipio.',
+  guideRows: [
+    {title: 'Zona del Páramo y canal de Villadangos', detail: 'En el ámbito de Villadangos del Páramo, Bustillo del Páramo o Santa Marina del Rey, empieza por anotar si el agua llega por turnos, los caudales de llenado y los consumos por sectores. La modernización pública del regadío es contexto territorial, no prueba de que cada regante necesite un depósito privado.'},
+    {title: 'Fincas y explotaciones ganaderas de otras comarcas', detail: 'En una explotación con varios usos del agua conviene separar el consumo de riego, limpieza y animales. La calidad exigible, la compatibilidad del material con cada uso y la autonomía se revisan antes de escoger una referencia.'},
+    {title: 'Elige vertical, horizontal o enterrable por geometría', detail: 'Mide superficie y altura disponibles, espacio de mantenimiento, entradas y salidas, estabilidad del apoyo y posibilidad de paso de un vehículo de transporte. Un formato de superficie no se entierra por defecto.'},
+    {title: 'Indica el lugar exacto y los medios de descarga', detail: 'Comunica municipio y código postal, tipo de camino, puertas, pendientes, cableado u obstáculos. El porte depende del fabricante que sirva la referencia y del acceso real. La descarga estándar no viene incluida.'},
+    {title: 'Pide una propuesta con producto y transporte diferenciados', detail: 'Facilita uso, litros orientativos, tipo de depósito, código postal, accesos y medios previstos para descargar. La oferta confirmará modelo, accesorios, impuestos, condiciones de pago y entrega sin confundir presupuesto con disponibilidad inmediata.'}
+  ],
+  localLink: {href: '/depositos/zonas/', label: 'Ver otras provincias donde estudiar el suministro'},
+  faqs: [
+    {question: '¿Vendéis depósitos de poliéster para León?', answer: 'Depofibra estudia solicitudes para la provincia de León desde su actividad comercial en Casariche (Sevilla), con fabricantes externos y transporte sujeto a modelo, acceso y destino. No disponemos de una delegación ni stock anunciado en León.'},
+    {question: '¿Cómo calcular un depósito de agua para el riego del Páramo?', answer: 'Parte del volumen consumido entre aportaciones y del caudal real de reposición; añade las reservas operativas exigidas por la instalación. La modernización de un canal no significa que todos sus usuarios necesiten depósito. La capacidad nominal definitiva se revisa con las condiciones de la finca.'},
+    {question: '¿Qué formato necesita una nave con poca altura disponible?', answer: 'Puede compararse un horizontal con cunas frente a un vertical, pero hay que comprobar longitud libre, apoyos, boca de acceso y maniobra. No se garantiza ninguna cota sin ficha específica.'},
+    {question: '¿Puedo almacenar agua para animales?', answer: 'Es una posible aplicación a estudiar, pero la aptitud y la documentación sanitaria se confirman por referencia y condiciones del agua. Un depósito de riego no se considera automáticamente apto para ese uso.'},
+    {question: '¿El transporte a León incluye colocar y descargar el depósito?', answer: 'No por defecto. La descarga del transporte estándar no está incluida. La colocación, los medios de elevación y las obras se coordinan y presupuestan por separado si procede.'}
+  ]
+};
+---
+<CategoryInterior {...page}>
+  <p slot="related-destinations" class="body-lg">
+    Para comparar los formatos disponibles, revisa el <a href="/depositos/">catálogo completo de depósitos</a> y la <a href="/depositos/para-riego/">guía de reserva para riego agrícola</a>.
+    Como referencia pública de la actividad agraria local, el <a href="https://www.mapa.gob.es/en/prensa/ultimas-noticias/detalle_noticias/el-gobierno-autoriza-obras-de-modernizaci-n-de-regad-os-en-le-n-y-huesca-por-m-s-de-84-millones-de-euros/422dfab5-aca7-40e3-9e17-cb9ae0ddd30e" target="_blank" rel="noopener noreferrer">Ministerio de Agricultura documenta la modernización del canal de Villadangos</a>. Esa fuente no acredita ventas, demanda ni instalaciones de Depofibra en León.
+  </p>
+</CategoryInterior>
