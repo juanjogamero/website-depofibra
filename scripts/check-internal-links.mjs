@@ -541,6 +541,38 @@ for (const [url, required] of [
 
 
 // Las páginas nuevas deben ser rastreables y enlazadas entre sí por un índice NUEVO.
+// Landings territoriales piloto con contenido de compra genuino (sin puerta clónica).
+const newCommercialRegions = [
+  ['/depositos/leon/', ['Depósitos de agua de poliéster en León', 'canal de Villadangos', 'href="/depositos/horizontal-con-cunas/"', 'href="/depositos/horizontal-enterrable/"', 'León: depósito para reserva de agua']],
+  ['/depositos/valladolid/', ['Depósitos y cubas de poliéster para Valladolid', 'Macías Picavea', 'href="/cubas-cisternas/cuba-remolque/"', 'href="/depositos/vertical-base-plana/"', 'Valladolid: reserva fija de agua']],
+];
+for (const [route, expected] of newCommercialRegions) {
+  const f = targetFile(route);
+  if (!f) { errors.push('SEO pilotos locales: falta landing ' + route); continue; }
+  const html = content(f);
+  for (const snippet of expected) {
+    if (!html.includes(snippet)) errors.push('SEO pilotos locales: falta ' + snippet + ' en ' + route);
+  }
+  if (!html.includes('Depofibra') || !html.includes('descarga')) {
+    errors.push('SEO pilotos locales: falta contexto veraz de comercialización y descarga en ' + route);
+  }
+  if (route.includes('/leon/') && !html.includes('No tenemos fábrica, almacén ni delegación en León')) {
+    errors.push('SEO pilotos locales: falta aviso de ausencia de sede León');
+  }
+  if (route.includes('/valladolid/') && !html.includes('No ofrecemos fábrica, delegación, flota ni stock propio en Valladolid')) {
+    errors.push('SEO pilotos locales: falta aviso de ausencia de sede Valladolid');
+  }
+}
+const newRegionsHub = targetFile('/depositos/zonas/');
+if (!newRegionsHub) {
+  errors.push('SEO pilotos locales: falta índice territorial');
+} else {
+  const html = content(newRegionsHub);
+  for (const route of ['/depositos/leon/', '/depositos/valladolid/']) {
+    if (!html.includes('href="' + route + '"')) errors.push('SEO pilotos locales: falta enlace desde provincias a ' + route);
+  }
+}
+
 // No se modifican las fichas ni landings ya existentes.
 for (const url of ['/depositos/avila/','/depositos/salamanca/']) {
   const pageFile = targetFile(url);
@@ -560,6 +592,15 @@ if (!newRegionsIndex) {
   }
   if (!regionsHtml.includes('No son sucursales') || !regionsHtml.includes('descarga')) {
     errors.push('SEO zonas nuevas: índice debe dejar claros los límites logísticos');
+  }
+  for (const url of ['/depositos/murcia/', '/depositos/valencia/']) {
+    if (!regionsHtml.includes('href="' + url + '"')) errors.push('SEO local: zona prioritaria sin enlace ' + url);
+  }
+  if (!regionsHtml.includes('Depósitos en Murcia y Valencia')) {
+    errors.push('SEO local: falta bloque visible de zonas con evidencia GSC');
+  }
+  for (const url of ['/cubas-cisternas/', '/fosas-septicas/', '/fosas-septicas/sevilla/']) {
+    if (!regionsHtml.includes('href="' + url + '"')) errors.push('SEO producto: índice de zonas sin acceso a ' + url);
   }
 }
 
