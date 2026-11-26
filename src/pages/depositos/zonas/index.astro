@@ -2,8 +2,16 @@
 import Layout from '../../../layouts/Layout.astro';
 import { depositLocalLandings } from '../../../data/depositLocalLandings';
 
-const newZones = depositLocalLandings.filter(zone => zone.slug === 'avila' || zone.slug === 'salamanca');
-const otherZones = depositLocalLandings.filter(zone => zone.slug !== 'avila' && zone.slug !== 'salamanca');
+// Provincias con consultas/clics observados en GSC sobre URLs históricas.
+ // No se infiere volumen nacional ni conversión de estas señales.
+const prioritySlugs = new Set(['murcia', 'valencia', 'sevilla']);
+const priorityZones = depositLocalLandings.filter(zone => prioritySlugs.has(zone.slug));
+const otherZones = depositLocalLandings.filter(zone => !prioritySlugs.has(zone.slug));
+const priorityNotes: Record<string, string> = {
+  murcia: 'Reserva de agua y riego: uso, reposición y accesos para el transporte.',
+  valencia: 'Fincas y regadíos: geometría, conexiones y entrega según municipio.',
+  sevilla: 'Atención comercial desde Casariche: modelo, destino y condiciones reales.',
+};
 ---
 <Layout title="Depósitos de poliéster por provincias | Depofibra"
   description="Consulta depósitos de poliéster PRFV para fincas, riego y granjas por provincia. Compara usos y prepara un presupuesto con modelo, código postal y descarga."
@@ -31,18 +39,18 @@ const otherZones = depositLocalLandings.filter(zone => zone.slug !== 'avila' && 
         <p><strong>Depofibra comercializa desde Casariche, Sevilla, referencias de fabricantes externos.</strong> No son sucursales ni indicamos stock o transporte garantizado en estas provincias: todo presupuesto depende del modelo, lugar de carga, destino y acceso.</p>
         <a href="/contacto/" class="zn-cta">Solicitar presupuesto según destino <span aria-hidden="true">↗</span></a>
       </header>
-      <section aria-labelledby="zn-new-title" class="zn-section">
-        <span class="eyebrow">NUEVAS ZONAS DE ESTUDIO</span>
-        <h2 id="zn-new-title">Ávila y Salamanca: fincas, granjas y regadío</h2>
-        <p>La documentación pública de la Junta de Castilla y León permite identificar actividad agraria y ganadera. Eso no equivale a clientes asegurados ni a poca competencia. Para estos destinos distinguimos consumo, modo de reserva y requisitos de descarga antes de elegir un depósito.</p>
+      <section aria-labelledby="zn-priority-title" class="zn-section">
+        <span class="eyebrow">GUÍAS TERRITORIALES DESTACADAS</span>
+        <h2 id="zn-priority-title">Depósitos en Murcia, Valencia y Sevilla</h2>
+        <p>Estas zonas cuentan con señales de búsqueda registradas en páginas anteriores de Depofibra. Las guías actuales explican cómo elegir el formato del depósito y qué datos necesitamos para estudiar su entrega. La presencia de búsquedas no garantiza pedidos ni disponibilidad.</p>
         <ul class="zn-links">
-          {newZones.map(zone => <li><a href={`/depositos/${zone.slug}/`}>{zone.province}<span aria-hidden="true">↗</span></a><span>{zone.slug === 'avila' ? 'Granjas, fincas y accesos rurales' : 'La Armuña, regadío y ganadería'}</span></li>)}
+          {priorityZones.map(zone => <li><a href={`/depositos/${zone.slug}/`}>{zone.province}<span aria-hidden="true">↗</span></a><span>{priorityNotes[zone.slug]}</span></li>)}
         </ul>
       </section>
       <section aria-labelledby="zn-other-title" class="zn-section">
-        <span class="eyebrow">OTRAS PROVINCIAS CON GUÍAS</span>
-        <h2 id="zn-other-title">Consultar las zonas ya estudiadas</h2>
-        <p>Las páginas existentes describen usos agrícolas o de almacenamiento y qué información facilita un presupuesto. No indican depósitos disponibles de inmediato en cada localidad.</p>
+        <span class="eyebrow">RESTO DE ZONAS DE CONSULTA</span>
+        <h2 id="zn-other-title">Otras provincias: productos y entrega por destino</h2>
+        <p>Estas páginas aportan orientación territorial, no sucursales ni depósitos en stock. Antes de elegir conviene contrastar uso, referencia y código postal con una propuesta real.</p>
         <ul class="zn-links zn-links--others">{otherZones.map(zone => <li><a href={`/depositos/${zone.slug}/`}>{zone.province}<span aria-hidden="true">↗</span></a></li>)}</ul>
       </section>
       <section aria-labelledby="zn-logistics-title" class="zn-section">
@@ -53,7 +61,8 @@ const otherZones = depositLocalLandings.filter(zone => zone.slug !== 'avila' && 
           <div><h3>2. Código postal y accesos</h3><p>Comunica municipio, código postal, anchura y altura libres, firme y giros de acceso. El punto de origen de carga depende del fabricante y no se debe presuponer que todos los transportes parten de Casariche.</p></div>
           <div><h3>3. Descarga y presupuesto</h3><p>El transporte estándar no incluye descarga. Conviene identificar el equipo de descarga disponible antes de confirmar el precio final. No se prometen fechas, rutas o tarifas sin cotización.</p></div>
         </div>
-        <p>También puedes revisar los <a href="/depositos/vertical-base-plana/">verticales de base plana</a>, los <a href="/depositos/horizontal-con-cunas/">horizontales de superficie</a> y los <a href="/depositos/horizontal-enterrable/">enterrables</a>. El <a href="/depositos/">catálogo de depósitos</a> reúne el resto de familias.</p>
+        <p>Según el uso, puedes revisar los <a href="/depositos/vertical-base-plana/">verticales de base plana</a>, los <a href="/depositos/horizontal-con-cunas/">horizontales de superficie</a> y los <a href="/depositos/horizontal-enterrable/">enterrables</a>. El <a href="/depositos/">catálogo de depósitos</a> reúne los demás formatos.</p>
+        <p>Si no buscas un depósito fijo, consulta también las <a href="/cubas-cisternas/">cubas y cisternas para remolque o plataforma</a>. Para equipos de saneamiento, visita la categoría de <a href="/fosas-septicas/">fosas sépticas</a>. Son productos distintos y requieren comprobar su uso y documentación.</p>
       </section>
     </div>
   </div>
