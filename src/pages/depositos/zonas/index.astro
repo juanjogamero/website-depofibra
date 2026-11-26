@@ -46,6 +46,15 @@ const priorityNotes: Record<string, string> = {
           {priorityZones.map(zone => <li><a href={`/depositos/${zone.slug}/`}>{zone.province}<span aria-hidden="true">↗</span></a><span>{priorityNotes[zone.slug]}</span></li>)}
         </ul>
       </section>
+      <section aria-labelledby="zn-pilots-title" class="zn-section">
+        <span class="eyebrow">NUEVOS DESTINOS PARA CONSULTAR</span>
+        <h2 id="zn-pilots-title">León y Valladolid: reservas de agua y cubas agrícolas</h2>
+        <p>Estas guías distinguen necesidades de una finca de riego, un depósito fijo y un recipiente para remolque. La actividad agraria documentada en ambas provincias no implica que haya demanda comprobada de depósitos ni que existan ofertas o entregas garantizadas.</p>
+        <ul class="zn-links">
+          <li><a href="/depositos/leon/">León <span aria-hidden="true">↗</span></a><span>El Páramo: reserva de agua, tipo de apoyo y accesos</span></li>
+          <li><a href="/depositos/valladolid/">Valladolid <span aria-hidden="true">↗</span></a><span>Tierra de Campos: depósito estacionario frente a cuba suelta</span></li>
+        </ul>
+      </section>
       <section aria-labelledby="zn-other-title" class="zn-section">
         <span class="eyebrow">RESTO DE ZONAS DE CONSULTA</span>
         <h2 id="zn-other-title">Otras provincias: productos y entrega por destino</h2>
