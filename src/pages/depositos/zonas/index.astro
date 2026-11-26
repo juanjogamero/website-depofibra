@@ -2,15 +2,14 @@
 import Layout from '../../../layouts/Layout.astro';
 import { depositLocalLandings } from '../../../data/depositLocalLandings';
 
-// Provincias con consultas/clics observados en GSC sobre URLs históricas.
- // No se infiere volumen nacional ni conversión de estas señales.
-const prioritySlugs = new Set(['murcia', 'valencia', 'sevilla']);
+// Provincias con señales de GSC en los alias históricos de DEPÓSITOS.
+// La visibilidad de fosas en Sevilla pertenece a una familia distinta.
+const prioritySlugs = new Set(['murcia', 'valencia']);
 const priorityZones = depositLocalLandings.filter(zone => prioritySlugs.has(zone.slug));
 const otherZones = depositLocalLandings.filter(zone => !prioritySlugs.has(zone.slug));
 const priorityNotes: Record<string, string> = {
   murcia: 'Reserva de agua y riego: uso, reposición y accesos para el transporte.',
   valencia: 'Fincas y regadíos: geometría, conexiones y entrega según municipio.',
-  sevilla: 'Atención comercial desde Casariche: modelo, destino y condiciones reales.',
 };
 ---
 <Layout title="Depósitos de poliéster por provincias | Depofibra"
@@ -41,8 +40,8 @@ const priorityNotes: Record<string, string> = {
       </header>
       <section aria-labelledby="zn-priority-title" class="zn-section">
         <span class="eyebrow">GUÍAS TERRITORIALES DESTACADAS</span>
-        <h2 id="zn-priority-title">Depósitos en Murcia, Valencia y Sevilla</h2>
-        <p>Estas zonas cuentan con señales de búsqueda registradas en páginas anteriores de Depofibra. Las guías actuales explican cómo elegir el formato del depósito y qué datos necesitamos para estudiar su entrega. La presencia de búsquedas no garantiza pedidos ni disponibilidad.</p>
+        <h2 id="zn-priority-title">Depósitos en Murcia y Valencia</h2>
+        <p>Estas dos provincias muestran señales de búsqueda en las páginas antiguas de depósitos de Depofibra. Las guías actuales explican cómo elegir el formato del depósito y qué datos necesitamos para estudiar su entrega. La presencia de búsquedas no garantiza pedidos ni disponibilidad.</p>
         <ul class="zn-links">
           {priorityZones.map(zone => <li><a href={`/depositos/${zone.slug}/`}>{zone.province}<span aria-hidden="true">↗</span></a><span>{priorityNotes[zone.slug]}</span></li>)}
         </ul>
@@ -62,7 +61,7 @@ const priorityNotes: Record<string, string> = {
           <div><h3>3. Descarga y presupuesto</h3><p>El transporte estándar no incluye descarga. Conviene identificar el equipo de descarga disponible antes de confirmar el precio final. No se prometen fechas, rutas o tarifas sin cotización.</p></div>
         </div>
         <p>Según el uso, puedes revisar los <a href="/depositos/vertical-base-plana/">verticales de base plana</a>, los <a href="/depositos/horizontal-con-cunas/">horizontales de superficie</a> y los <a href="/depositos/horizontal-enterrable/">enterrables</a>. El <a href="/depositos/">catálogo de depósitos</a> reúne los demás formatos.</p>
-        <p>Si no buscas un depósito fijo, consulta también las <a href="/cubas-cisternas/">cubas y cisternas para remolque o plataforma</a>. Para equipos de saneamiento, visita la categoría de <a href="/fosas-septicas/">fosas sépticas</a>. Son productos distintos y requieren comprobar su uso y documentación.</p>
+        <p>Si no buscas un depósito fijo, consulta también las <a href="/cubas-cisternas/">cubas y cisternas para remolque o plataforma</a>. Para equipos de saneamiento, visita la categoría de <a href="/fosas-septicas/">fosas sépticas</a> o la guía de <a href="/fosas-septicas/sevilla/">compra de fosas sépticas en Sevilla</a>. Son productos distintos y requieren comprobar su uso y documentación.</p>
       </section>
     </div>
   </div>
