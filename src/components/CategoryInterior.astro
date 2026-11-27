@@ -24,6 +24,14 @@ interface Item {
 }
 interface FAQ { question: string; answer: string }
 interface GuideRow { title: string; detail: string }
+interface DecisionGuide {
+  title: string;
+  intro: string;
+  rows: { situation: string; option: string; verify: string }[];
+  caution: string;
+  sourceUrl: string;
+  sourceLabel: string;
+}
 interface Feature { title: string; eyebrow: string; description: string; image: string; quoteProduct: string; quoteNote?: string }
 interface Props {
   nav: string;
@@ -40,10 +48,11 @@ interface Props {
   guideTitle: string;
   guideDescription: string;
   guideRows: GuideRow[];
+  decisionGuide?: DecisionGuide;
   faqs: FAQ[];
   feature?: Feature;
 }
-const {nav,title,eyebrow,description,seoTitle,canonicalPath,breadcrumb,localLink,intro,items,note,guideTitle,guideDescription,guideRows,faqs,feature}=Astro.props;
+const {nav,title,eyebrow,description,seoTitle,canonicalPath,breadcrumb,localLink,intro,items,note,guideTitle,guideDescription,guideRows,decisionGuide,faqs,feature}=Astro.props;
 const path = canonicalPath ?? (nav === 'depositos' ? '/depositos/' : nav === 'piscinas' ? '/piscinas/' : nav === 'fosas' ? '/fosas-septicas/' : '/cubas-cisternas/');
 const crumbs = breadcrumb ?? (nav === 'depositos' ? 'Depósitos' : nav === 'piscinas' ? 'Piscinas' : nav === 'fosas' ? 'Fosas sépticas' : 'Cubas y cisternas');
 const categoryShort = nav === 'depositos' ? 'tipos de depósito' : nav === 'piscinas' ? 'modelos de referencia' : nav === 'fosas' ? 'sistemas' : 'configuraciones';
@@ -154,6 +163,36 @@ const catalogItems = items.map(item => ({
       </div>
     </section>}
 
+
+    {decisionGuide && <section class="df-decision" aria-labelledby="df-decision-title">
+      <div class="container">
+        <span class="eyebrow">COMPARATIVA PARA DECIDIR</span>
+        <h2 class="heading-lg" id="df-decision-title">{decisionGuide.title}</h2>
+        <p class="body-lg df-decision__intro">{decisionGuide.intro}</p>
+        <div class="df-decision__scroller" role="region" aria-label="Tabla comparativa de equipos de saneamiento" tabindex="0">
+          <table class="df-decision__table">
+            <thead>
+              <tr>
+                <th scope="col">Situación que describes</th>
+                <th scope="col">Equipo a estudiar</th>
+                <th scope="col">Qué falta comprobar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {decisionGuide.rows.map(row => (
+                <tr>
+                  <th scope="row">{row.situation}</th>
+                  <td>{row.option}</td>
+                  <td>{row.verify}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="df-decision__caution">{decisionGuide.caution} <a href={decisionGuide.sourceUrl} target="_blank" rel="noopener noreferrer">{decisionGuide.sourceLabel}</a>.</p>
+      </div>
+    </section>}
+
     <section class="df-guide" id="guia" aria-labelledby="df-guide-title">
       <div class="container df-guide__layout">
         <div class="df-guide__intro">
@@ -209,6 +248,18 @@ const catalogItems = items.map(item => ({
   .df-special__layout {display:grid;grid-template-columns:1fr 0.8fr;gap:48px;align-items:center}
   .df-special h2 {margin:10px 0 14px}.df-special p {max-width:650px}.df-special .btn {margin-top:20px}
   .df-special__art {position:relative;min-width:0}.df-special__art img {width:100%;max-height:300px;object-fit:contain}.df-special__art span {display:block;margin-top:6px;color:var(--color-gray-500);font-size:11px;text-align:right}
+
+  .df-decision {padding:clamp(48px,6vw,74px) 0;background:#f7fafd;border-top:1px solid #dce7f0;border-bottom:1px solid #dce7f0}
+  .df-decision h2 {margin:12px 0 12px;max-width:850px}
+  .df-decision__intro {max-width:780px;margin-bottom:25px}
+  .df-decision__scroller {width:100%;overflow-x:auto;outline-offset:4px}
+  .df-decision__table {width:100%;min-width:640px;border-collapse:collapse;text-align:left;background:#fff}
+  .df-decision__table th,.df-decision__table td {padding:18px 20px;border-bottom:1px solid #dce7f0;vertical-align:top;font:400 14px/1.65 var(--font-body)}
+  .df-decision__table thead th {background:#eaf2fb;color:#002d59;font:750 12px/1.5 var(--font-display)}
+  .df-decision__table tbody th {color:#002d59;font-weight:750}
+  .df-decision__caution {max-width:960px;margin-top:17px;color:var(--color-gray-600);font-size:13px;line-height:1.7}
+  .df-decision__caution a {color:#01488e;text-decoration:underline;text-underline-offset:3px}
+  @media(max-width:760px) {.df-decision__table th,.df-decision__table td {padding:13px 14px}}
   .df-guide {padding:clamp(50px,7vw,86px) 0}
   .df-guide__layout {display:grid;grid-template-columns:.85fr 1.1fr;gap:clamp(24px,6vw,80px)}
   .df-guide__intro {position:sticky;top:114px;align-self:start}
