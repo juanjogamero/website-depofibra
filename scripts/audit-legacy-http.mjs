@@ -150,6 +150,7 @@ console.log('RESUMEN HTTP LEGACY:', JSON.stringify({
   failing: failed.length,
   methods,
   failedAliases: failed.map(item => item.alias),
-  source: 'Live GET 27/11/2026 - no Google canonical claim',
+  source: 'Live GET - no Google canonical claim',
+  observedAt: new Date().toISOString(),
 }));
 if (failed.length) process.exitCode = 1;
