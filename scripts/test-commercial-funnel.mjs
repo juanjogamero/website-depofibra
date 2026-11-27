@@ -135,6 +135,11 @@ test('La página de gracias no contabiliza visitas directas como consultas acept
   assert.ok(used >= 0 && consumed > used && success > consumed && event > success);
   assert.match(thanksSource, /pref\.analytics !== true\) return/);
   assert.match(thanksSource, /pref\?\.version !== 'depofibra-cookies-v2-ga4-consent'/);
+  assert.match(thanksSource, /if \(accepted\) submittedFrom = sessionStorage\.getItem\('depofibra-form-origin-path-v1'\)/);
+  assert.match(thanksSource, /sessionStorage\.removeItem\('depofibra-form-origin-path-v1'\)/);
+  assert.match(modalSource, /sessionStorage\.setItem\('depofibra-form-origin-path-v1', window\.location\.pathname\)/);
+  assert.ok(!modalSource.includes("sessionStorage.setItem('depofibra-form-origin-path-v1', window.location.href"),
+    'No deben enviarse parámetros ni fragmentos de URL a Analytics');
 });
 
 test('Eventos de intención separados de aceptación y respetando la elección analítica', () => {
@@ -153,7 +158,11 @@ test('Eventos de intención separados de aceptación y respetando la elección a
 test('No hay nombres, teléfono, correos ni contenido del formulario en payload de medición', () => {
   const allowed = [...consentSource.matchAll(/dataLayer\?\.push\(([^)]*)\)/g)].map(m => m[1]);
   assert.deepEqual(allowed, ['{event:name}']);
-  assert.match(thanksSource, /layer\.push\(\{event: 'quote_form_provider_accepted'\}\)/);
+  assert.match(thanksSource, /source_page_path: safeSource/);
+  assert.match(thanksSource, /layer\.push\(safeSource/);
+  assert.ok(!thanksSource.includes('source_page_path: quoteDetails'));
+  assert.ok(!thanksSource.includes('source_page_path: quotePhone'));
+  assert.ok(!thanksSource.includes('source_page_path: quoteEmail'));
   assert.ok(!consentSource.includes('formData.forEach('));
 });
 
