@@ -323,7 +323,12 @@ import { whatsappContactHref } from '../data/whatsappContact';
       if (!accepted) throw new Error('Solicitud no confirmada por el proveedor');
 
       // Marcador SOLO local y de un uso. No contiene nombre, telefono ni correo.
-      try { sessionStorage.setItem('depofibra-form-success-v1', '1'); } catch { /* OK */ }
+      try {
+        sessionStorage.setItem('depofibra-form-success-v1', '1');
+        // Solo ruta del catálogo, nunca query string ni datos del formulario.
+        // El dato se consume una sola vez al abrir la página de confirmación.
+        sessionStorage.setItem('depofibra-form-origin-path-v1', window.location.pathname);
+      } catch { /* La confirmación visible no depende de sessionStorage */ }
       // La medicion del evento ocurre tras la navegacion en la pagina de gracias;
       // no se arriesga a perder el evento por la redireccion inmediata.
       window.location.assign('/solicitud-enviada/');
