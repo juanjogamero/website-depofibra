@@ -44,9 +44,12 @@ const description = 'Información sobre la solicitud de presupuesto desde el for
   // Unicamente la respuesta AJAX positiva del formulario de ESTA web coloca
   // el marcador de una sola visita. La URL publica por si sola NO confirma nada.
   let accepted = false;
+  let submittedFrom = '';
   try {
     accepted = sessionStorage.getItem('depofibra-form-success-v1') === '1';
+    if (accepted) submittedFrom = sessionStorage.getItem('depofibra-form-origin-path-v1') || '';
     sessionStorage.removeItem('depofibra-form-success-v1');
+    sessionStorage.removeItem('depofibra-form-origin-path-v1');
   } catch { /* En navegadores sin storage se mostrara el texto neutro */ }
   if (accepted) {
     const heading = document.getElementById('confirmationTitle');
@@ -61,7 +64,13 @@ const description = 'Información sobre la solicitud de presupuesto desde el for
         const pref = JSON.parse(localStorage.getItem('depofibra-cookie-preferences') || 'null');
         if (pref?.version !== 'depofibra-cookies-v2-ga4-consent' || pref.analytics !== true) return;
         const layer = (window as any).dataLayer;
-        if (Array.isArray(layer)) layer.push({event: 'quote_form_provider_accepted'});
+        // Evitar PII: solo una ruta estática sin query, hash ni datos introducidos.
+        // GTM debe mapear source_page_path a GA4 para disponer del dato en informes.
+        const safeSource = /^\/(?:[a-z0-9-]+\/)*$/.test(submittedFrom) && submittedFrom.length <= 140
+          ? submittedFrom : '';
+        if (Array.isArray(layer)) layer.push(safeSource
+          ? {event: 'quote_form_provider_accepted', source_page_path: safeSource}
+          : {event: 'quote_form_provider_accepted'});
       } catch { /* La web funciona sin analítica si no hay acceso al almacenamiento */ }
     };
     if (document.readyState === 'complete') announceAccepted();
